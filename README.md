@@ -11,10 +11,6 @@ Languages: English, Italiano, Français.
 2. Wait for the import, then run **Tools → Subnet → Build Full Game**.
 3. Open `Assets/_Project/Scenes/00_MainMenu` and press Play.
 
-## Note
-Only the Kenney models and sounds the scenes actually use are included (to keep the repo small).
-The full packs are free at kenney.nl if you want to add more.
-
 ## Credits
 - 3D models, UI and sounds: [Kenney](https://kenney.nl) (CC0)
 - Fonts: VT323, Permanent Marker, Audiowide, Special Elite, Patrick Hand (Google Fonts, OFL / Apache)
