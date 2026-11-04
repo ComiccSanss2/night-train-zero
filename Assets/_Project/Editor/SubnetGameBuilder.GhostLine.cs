@@ -77,12 +77,18 @@ namespace Subnet.EditorTools
             GameObject byteNpc = Character(ctx, "Byte", "animal-cat", "cube-pets", new Vector3(-9.2f, 0f, -0.8f), 90f, 0.45f, null, false);
             Inspectable(byteNpc, "Byte_Train",
                 L("this train smells like old phone calls.", "dont sit there. {p}{small}some seats are taken even when theyre empty.{/small}"),
-                L("im fine. {p}cats are always fine. {p}{small}its a whole thing.{/small}"), null, spkByte);
+                L("im fine. {p}cats are always fine. {p}{small}its a whole thing.{/small}",
+                  "that kid with no front teeth looks like you. {p}{small}less tired.{/small}",
+                  "if anything happens, the collar is waterproof. {p}{small}in case anyone cries on it. not saying anyone will.{/small}"), null, spkByte);
+            Set(byteNpc.GetComponent<InspectableObject>(), "cycleRepeat", true);
             Follower(byteNpc, string.Empty, -0.6f);
             GameObject kiraNpc = Character(ctx, "Kira", "character-female-c", "mini-characters", new Vector3(-9.2f, 0f, 0.8f), 90f, 1.05f, null, false);
             Inspectable(kiraNpc, "Kira_Train",
                 L("Nobody's getting off. {p}{small}I keep checking.{/small}"),
-                L("Every stop is just more tunnel. {p}I hate that I'm used to it."), null, spkKira);
+                L("Every stop is just more tunnel. {p}I hate that I'm used to it.",
+                  "Your mom has your hands. {p}She holds the phone like you hold everything. {small}Too tight.{/small}",
+                  "Byte keeps looking at the back of the train. {p}{small}Do you think he knows something?{/small}"), null, spkKira);
+            Set(kiraNpc.GetComponent<InspectableObject>(), "cycleRepeat", true);
             Follower(kiraNpc, string.Empty, 0.75f);
 
             // A truthful voice for one line: Byte, for once, with capital letters.
@@ -112,7 +118,21 @@ namespace Subnet.EditorTools
                 Say(spkByte, "thanks. {p}{small}...dont make it weird.{/small}", "let"),
                 Say(spkKira, "{small}...I'll walk with you the rest of the way.{/small} {p}Okay? {p}Okay.", "", "", "byte_stays"));
             Event(ctx, "TrainStops", StoryEvent.TriggerMode.OnPlayerEnter, string.Empty, 0.2f, null, null, null, null, "train_stopped",
-                new Vector3(5.6f, 1f, 0f), new Vector3(1f, 2f, 3.6f), goodbye);
+                new Vector3(6.8f, 1f, 0f), new Vector3(1f, 2f, 3.6f), goodbye);
+
+            DialogueSequence carriageTalk = SeqAsset("Act4/Carriage_Talk",
+                Say(spkKira, "Okay, nobody panic, but every single person in here is looking at you."),
+                Say(spkByte, "theyre not looking. {p}theyre waiting. {p}{small}different thing.{/small}"),
+                Say(spkLeo, "I know them. {p}{slow}All of them.{/slow}"),
+                Ask(spkKira, "...Do you want to talk to them?",
+                    Opt("[\"Not yet.\"]", "talk"),
+                    Opt("[\"I don't know what I'd say.\"]", "talk", "+openness#carriage_open")),
+                Say(spkByte, "you dont have to say anything. {p}thats kind of the point of a train. {p}{small}you just sit next to stuff.{/small}", "talk"),
+                Say(spkKira, "Byte. {p}That was almost wise."),
+                Say(spkByte, "{shake}take it back.{/shake}"),
+                Say(null, "For a second, the three of us laugh. {p}{wave}In an empty carriage full of people.{/wave}", "", "", "+closeness#carriage_laugh"));
+            Event(ctx, "CarriageTalk", StoryEvent.TriggerMode.OnPlayerEnter, string.Empty, 0.2f, null, null, null, null, "carriage_talk",
+                new Vector3(-2.4f, 1f, 0f), new Vector3(1f, 2f, 3.6f), carriageTalk);
 
             // ---------------------------------------------------------------- The grief hack (can't be won by dodging)
             var doorRoot = new GameObject("Obstacle_MemoryPurge");
@@ -156,8 +176,27 @@ namespace Subnet.EditorTools
             EditorUtility.SetDirty(griefHack);
 
             // After: twenty seconds of total silence. Then the collar on the seat vibrates.
-            Event(ctx, "Silence", StoryEvent.TriggerMode.OnFlag, "ghostline_done", 0.1f, null, null, null, null, "silence_long");
-            Event(ctx, "Collar", StoryEvent.TriggerMode.OnFlag, "ghostline_done", 21f, "BYTE",
+            DialogueSequence kiraAfter = SeqAsset("Act4/Kira_After",
+                Say(null, "Kira sits down on the seat next to the collar. {p}After a while, so do I."),
+                Say(spkKira, "He sat down like it was nothing. {p}{slow}Like he was saving us seats.{/slow}"),
+                Ask(null, "...",
+                    Opt("[\"He made the joke so I'd say yes faster.\"]", "joke", "+openness#after_joke"),
+                    Opt("[Say nothing]", "quiet")),
+                Say(spkKira, "Yeah. {p}He was... {p}{slow}he was really good at that.{/slow}", "joke", "hospital"),
+                Say(null, "I don't say anything. Kira doesn't make me.", "quiet"),
+                Say(spkKira, "It's okay. {p}I'll talk. You can just... be here."),
+                Say(spkKira, "At the hospital, when someone left, we weren't allowed to stop. {p}Next room. Next tray.", "hospital"),
+                Say(spkKira, "So I'm going to do the thing I never did. {p}{slow}I'm going to stop for a minute.{/slow}"),
+                Say(null, "The tunnel lights go by. {p}Nobody counts them."),
+                Ask(spkKira, "Tell me one thing he said that made you laugh. {p}{small}Even a stupid one.{/small}",
+                    Opt("['cats are incredible at being in the way.']", "laugh"),
+                    Opt("['dont pet me. ...ok. once.']", "laugh"),
+                    Opt("['i type in lowercase. its a lifestyle.']", "laugh")),
+                Say(spkKira, "{bounce}Ha.{/bounce} {p}...yeah. {p}{wave}That's him.{/wave}", "laugh"),
+                Say(spkKira, "Okay. {p}We keep going. {p}{small}Together. That part's not optional.{/small}", "", "", "kira_after;+closeness#kira_after"));
+            Event(ctx, "KiraAfter", StoryEvent.TriggerMode.OnFlag, "ghostline_done", 1.5f, null, null, null, null, string.Empty,
+                default, default, kiraAfter);
+            Event(ctx, "Collar", StoryEvent.TriggerMode.OnFlag, "kira_after", 2.5f, "BYTE",
                 L("still here. kinda. in your head. gross"), null, null, "byte_gone");
             Event(ctx, "Arrive", StoryEvent.TriggerMode.OnStart, string.Empty, 1.2f, null, null,
                 L("* Night Train Zero leaves again. {p}Toward the Core.",

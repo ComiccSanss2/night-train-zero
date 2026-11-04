@@ -41,6 +41,9 @@ namespace Subnet.Interaction
         [TextArea(2, 4)]
         [SerializeField] private string[] specialInspection = { };
 
+        [Tooltip("Companions: each later talk plays ONE entry of Repeat lines, in order, looping (a new thing to say every time). Use ' || ' inside an entry to split it into several boxes.")]
+        [SerializeField] private bool cycleRepeat;
+
         [Tooltip("Speaker for inline lines. Empty = DialogueManager default (Leo's inner voice).")]
         [SerializeField] private DialogueSpeaker speaker;
 
@@ -171,6 +174,11 @@ namespace Subnet.Interaction
             }
 
             string[] lines = !firstTime && hasRepeat ? repeatInspection : firstInspection;
+            if (!firstTime && hasRepeat && cycleRepeat)
+            {
+                int talk = (TimesInspected - 1) % repeatInspection.Length;
+                lines = repeatInspection[talk].Split(new[] { " || " }, System.StringSplitOptions.RemoveEmptyEntries);
+            }
             if (specialInspectionAt > 0 && TimesInspected == specialInspectionAt - 1 && specialInspection != null && specialInspection.Length > 0)
             {
                 lines = specialInspection;

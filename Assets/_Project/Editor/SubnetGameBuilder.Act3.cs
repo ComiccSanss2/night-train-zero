@@ -143,7 +143,12 @@ namespace Subnet.EditorTools
             Inspectable(byteNpc, "Byte_Park",
                 L("This park used to have kids in it. Now it has statues and a pigeon with a spending problem.",
                   "Read the plaques. Sad things always leave instructions."),
-                L("first. then. last. i'm a cat, not a puzzle book."), null, spkByte);
+                L("first. then. last. {p}im a cat, not a puzzle book.",
+                  "statues are just people who stopped halfway through a sentence. {p}{small}dont stop halfway.{/small}",
+                  "kira hums when she thinks nobodys listening. {p}always the same song. {p}{small}i think its a lullaby.{/small}",
+                  "you looked at the station sign for a long time back there. {p}{small}home is a direction, not a place. or whatever. i read it on a mug.{/small}",
+                  "if this goes bad, i want you to know something. {p=1}your shoelace is untied. {p}{small}...gotcha.{/small}"), null, spkByte);
+            Set(byteNpc.GetComponent<Subnet.Interaction.InspectableObject>(), "cycleRepeat", true);
             Follower(byteNpc, string.Empty, -0.6f);
 
             // The Weeping Commuter (Obstacle Hacking #2)
@@ -189,7 +194,12 @@ namespace Subnet.EditorTools
                 Say(spkKira, "Not yet. {p}Keep walking with me and maybe I'll open it. {small}At the end.{/small}", "", DialogueSequence.EndNodeId),
                 Say(spkKira, "Yeah. {p}Some things stay in the bag.", "no"));
             Inspectable(kiraNpc, "Kira_Park", L("..."),
-                L("Ready when you are. {p}{small}The bag's zipped. I checked twice.{/small}"), null, spkKira, packageSeq);
+                L("Ready when you are. {p}{small}The bag's zipped. I checked twice.{/small}",
+                  "My skates are older than my job. {p}I fixed the left wheel with a hair tie. {p}{bounce}Still rolling.{/bounce}",
+                  "You and Byte bicker like brothers. I never had brothers. {p}{small}It's loud. I like it.{/small}",
+                  "Do you think the Core has a back door? {p}Couriers always use the back door. {p}{small}Nobody looks at you there.{/small}",
+                  "When this is over, let's get food. Real food. {p}{fast}Hot, on a plate, with a fork, sitting down, the whole fancy thing.{/fast}"), null, spkKira, packageSeq);
+            Set(kiraNpc.GetComponent<Subnet.Interaction.InspectableObject>(), "cycleRepeat", true);
 
             // ---------------------------------------------------------------- Bible, act III: the dry fountain (breathing room)
             Vector3 fountainPos = new Vector3(0.4f, 0f, -0.9f);
@@ -262,6 +272,19 @@ namespace Subnet.EditorTools
                   "...Mind if I come with you to the Core? I think I need to stop running in circles.",
                   "* (KIRA joined you.)"),
                 spkKira, "kira_joined");
+
+            DialogueSequence walkPark = SeqAsset("Act3/Walk_Park",
+                Say(spkByte, "this park used to have ducks. {p}{small}i can tell. the concrete looks disappointed.{/small}"),
+                Say(spkLeo, "Mia fed ducks once. She threw the whole bag. {p}The bag, not the bread."),
+                Say(spkByte, "{bounce}legend.{/bounce}"),
+                Ask(spkByte, "you talk about her like shes far away. {p}{small}is she?{/small}",
+                    Opt("[\"Three hours by train.\"]", "far"),
+                    Opt("[\"Further than that.\"]", "further", "+openness#walk_mia")),
+                Say(spkByte, "three hours. {p}thats like nine naps. {p}{small}doable.{/small}", "far", "end"),
+                Say(spkByte, "...ok. {p}{small}then we walk slower. so you dont get there all at once.{/small}", "further"),
+                Say(null, "Byte bumps his head against my ankle. {p}Once. {p}Like it was an accident.", "end", "", "+closeness#walk_park"));
+            Event(ctx, "WalkPark", StoryEvent.TriggerMode.OnPlayerEnter, string.Empty, 0.2f, null, null, null, null, "walk_park",
+                new Vector3(-6f, 1f, 0f), new Vector3(1f, 2f, 14.4f), walkPark);
 
             ExitZone(ctx, "Exit_ToGhostLine", new Vector3(13.9f, 1f, 0f), new Vector3(1f, 2f, 3.6f), GhostLineScene, "ch5", "hack2_done",
                 L("* Not yet."));

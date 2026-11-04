@@ -2857,3 +2857,281 @@ fr|MEM_06 // LE CORE CENTRAL
 en|Collar
 it|Collare
 fr|Collier
+
+# ---- Bible part 3b: bonding (talk pools, walk-and-talks, Kira after Byte)
+
+en|keep walking. the interesting stuff is always behind the scariest wall.
+it|continua a camminare. la roba interessante sta sempre dietro il muro più spaventoso.
+fr|continue d'avancer. les trucs intéressants sont toujours derrière le mur le plus flippant.
+
+en|and dont pet me. {p}...ok. {bounce}once.{/bounce}
+it|e non accarezzarmi. {p}...ok. {bounce}una volta.{/bounce}
+fr|et me caresse pas. {p}...ok. {bounce}une fois.{/bounce}
+
+en|you want to know how i got here? {p}same as everyone. {p}{small}somebody stopped thinking about me.{/small}
+it|vuoi sapere come sono finito qui? {p}come tutti. {p}{small}qualcuno ha smesso di pensare a me.{/small}
+fr|tu veux savoir comment j'ai atterri ici ? {p}comme tout le monde. {p}{small}quelqu'un a arrêté de penser à moi.{/small}
+
+en|...dont look at me like that. its a good gig. free rent.
+it|...non guardarmi così. è un buon lavoro. affitto gratis.
+fr|...me regarde pas comme ça. c'est un bon plan. loyer gratuit.
+
+en|my collar shows texts from 2003. {p}nobody i know. {p}i read them anyway. {p}'r u up' was big that year.
+it|il mio collare mostra SMS del 2003. {p}gente che non conosco. {p}li leggo lo stesso. {p}'sei sveglio?' andava fortissimo quell'anno.
+fr|mon collier affiche des SMS de 2003. {p}des gens que je connais pas. {p}je les lis quand même. {p}'tu dors ?' cartonnait cette année-là.
+
+en|kira talks fast so she doesnt have to hear herself. {p}you talk slow so you dont have to say anything. {p}{small}im the only normal one here.{/small}
+it|kira parla veloce per non doversi ascoltare. {p}tu parli piano per non dover dire niente. {p}{small}sono l'unico normale qui.{/small}
+fr|kira parle vite pour pas s'entendre. {p}toi tu parles lentement pour rien avoir à dire. {p}{small}je suis le seul normal ici.{/small}
+
+en|if you get lost, look for the brightest sign and go the other way. {p}{small}thats where the good stuff hides.{/small}
+it|se ti perdi, cerca l'insegna più luminosa e vai dall'altra parte. {p}{small}è lì che si nasconde la roba buona.{/small}
+fr|si tu te perds, cherche l'enseigne la plus lumineuse et va dans l'autre sens. {p}{small}c'est là que se cachent les bons trucs.{/small}
+
+en|...you can pet me. {p}{slow}not because i want it.{/slow} {p}for your mental health.
+it|...puoi accarezzarmi. {p}{slow}non perché lo voglio io.{/slow} {p}per la tua salute mentale.
+fr|...tu peux me caresser. {p}{slow}pas parce que j'en ai envie.{/slow} {p}pour ta santé mentale.
+
+en|Still here! Technically on break. {p}{small}Don't tell my rating.{/small}
+it|Ancora qui! Tecnicamente in pausa. {p}{small}Non dirlo alle mie recensioni.{/small}
+fr|Toujours là ! Techniquement en pause. {p}{small}Le dis pas à ma note.{/small}
+
+en|The wall's that way. Be nice to it. It's having a rough decade.
+it|Il muro è di là. Sii gentile. Sta passando un decennio difficile.
+fr|Le mur, c'est par là. Sois gentil avec lui. Il traverse une décennie difficile.
+
+en|Five-star tip: never deliver on an empty stomach. {p}{fast}I always deliver on an empty stomach.{/fast}
+it|Consiglio da cinque stelle: mai consegnare a stomaco vuoto. {p}{fast}Io consegno sempre a stomaco vuoto.{/fast}
+fr|Conseil cinq étoiles : ne jamais livrer le ventre vide. {p}{fast}Moi je livre toujours le ventre vide.{/fast}
+
+en|I've got forty-two packages in this bag. {p}Forty-one addresses. {p}{small}Don't do the math.{/small}
+it|Ho quarantadue pacchi in questa borsa. {p}Quarantuno indirizzi. {p}{small}Non fare i conti.{/small}
+fr|J'ai quarante-deux colis dans ce sac. {p}Quarante et une adresses. {p}{small}Fais pas le calcul.{/small}
+
+en|Your cat looks at me like I owe him money. {p}...Do I owe him money?
+it|Il tuo gatto mi guarda come se gli dovessi dei soldi. {p}...Gli devo dei soldi?
+fr|Ton chat me regarde comme si je lui devais de l'argent. {p}...Je lui dois de l'argent ?
+
+en|You walk like you're carrying boxes. Even when your hands are empty. {p}{small}I notice stuff. Occupational hazard.{/small}
+it|Cammini come se portassi scatoloni. Anche a mani vuote. {p}{small}Le cose le noto. Deformazione professionale.{/small}
+fr|Tu marches comme si tu portais des cartons. Même les mains vides. {p}{small}Je remarque les trucs. Déformation professionnelle.{/small}
+
+en|Hey. {p}Thanks for staying. {p}{fast}Most people take the package and go, which, fair, that's the job, but still.{/fast}
+it|Ehi. {p}Grazie di essere rimasto. {p}{fast}Quasi tutti prendono il pacco e se ne vanno, che, giusto, è il lavoro, però dai.{/fast}
+fr|Hé. {p}Merci d'être resté. {p}{fast}La plupart des gens prennent le colis et s'en vont, ce qui, d'accord, c'est le boulot, mais quand même.{/fast}
+
+en|first. then. last. {p}im a cat, not a puzzle book.
+it|prima. poi. ultimo. {p}sono un gatto, non un libro di enigmi.
+fr|d'abord. ensuite. enfin. {p}je suis un chat, pas un cahier d'énigmes.
+
+en|statues are just people who stopped halfway through a sentence. {p}{small}dont stop halfway.{/small}
+it|le statue sono solo persone che si sono fermate a metà frase. {p}{small}non fermarti a metà.{/small}
+fr|les statues, c'est juste des gens qui se sont arrêtés au milieu d'une phrase. {p}{small}t'arrête pas au milieu.{/small}
+
+en|kira hums when she thinks nobodys listening. {p}always the same song. {p}{small}i think its a lullaby.{/small}
+it|kira canticchia quando pensa che nessuno ascolti. {p}sempre la stessa canzone. {p}{small}credo sia una ninna nanna.{/small}
+fr|kira fredonne quand elle croit que personne écoute. {p}toujours la même chanson. {p}{small}je crois que c'est une berceuse.{/small}
+
+en|you looked at the station sign for a long time back there. {p}{small}home is a direction, not a place. or whatever. i read it on a mug.{/small}
+it|prima hai fissato a lungo il cartello della stazione. {p}{small}casa è una direzione, non un posto. o qualcosa del genere. l'ho letto su una tazza.{/small}
+fr|tout à l'heure t'as regardé le panneau de la gare longtemps. {p}{small}la maison c'est une direction, pas un endroit. un truc comme ça. je l'ai lu sur un mug.{/small}
+
+en|if this goes bad, i want you to know something. {p=1}your shoelace is untied. {p}{small}...gotcha.{/small}
+it|se va male, voglio che tu sappia una cosa. {p=1}hai la scarpa slacciata. {p}{small}...ci sei cascato.{/small}
+fr|si ça tourne mal, je veux que tu saches un truc. {p=1}ton lacet est défait. {p}{small}...eh, eu.{/small}
+
+en|My skates are older than my job. {p}I fixed the left wheel with a hair tie. {p}{bounce}Still rolling.{/bounce}
+it|I miei pattini sono più vecchi del mio lavoro. {p}Ho aggiustato la ruota sinistra con un elastico per capelli. {p}{bounce}E vanno ancora.{/bounce}
+fr|Mes rollers sont plus vieux que mon boulot. {p}J'ai réparé la roue gauche avec un élastique à cheveux. {p}{bounce}Ça roule encore.{/bounce}
+
+en|You and Byte bicker like brothers. I never had brothers. {p}{small}It's loud. I like it.{/small}
+it|Tu e Byte litigate come fratelli. Io non ho mai avuto fratelli. {p}{small}È rumoroso. Mi piace.{/small}
+fr|Byte et toi, vous vous chamaillez comme des frères. J'ai jamais eu de frères. {p}{small}C'est bruyant. J'aime bien.{/small}
+
+en|Do you think the Core has a back door? {p}Couriers always use the back door. {p}{small}Nobody looks at you there.{/small}
+it|Secondo te il Core ha una porta sul retro? {p}I corrieri usano sempre la porta sul retro. {p}{small}Lì nessuno ti guarda.{/small}
+fr|Tu crois que le Core a une porte de derrière ? {p}Les livreurs passent toujours par derrière. {p}{small}Là, personne te regarde.{/small}
+
+en|When this is over, let's get food. Real food. {p}{fast}Hot, on a plate, with a fork, sitting down, the whole fancy thing.{/fast}
+it|Quando sarà finita, andiamo a mangiare. Cibo vero. {p}{fast}Caldo, nel piatto, con la forchetta, seduti, tutta la roba elegante.{/fast}
+fr|Quand ce sera fini, on va manger. De la vraie bouffe. {p}{fast}Chaude, dans une assiette, avec une fourchette, assis, tout le tralala.{/fast}
+
+en|that kid with no front teeth looks like you. {p}{small}less tired.{/small}
+it|quella bambina senza denti davanti ti somiglia. {p}{small}meno stanca.{/small}
+fr|la petite sans dents de devant te ressemble. {p}{small}en moins fatiguée.{/small}
+
+en|if anything happens, the collar is waterproof. {p}{small}in case anyone cries on it. not saying anyone will.{/small}
+it|se succede qualcosa, il collare è impermeabile. {p}{small}nel caso qualcuno ci pianga sopra. non dico che succederà.{/small}
+fr|s'il arrive quoi que ce soit, le collier est étanche. {p}{small}au cas où quelqu'un pleure dessus. je dis pas que ça arrivera.{/small}
+
+en|Your mom has your hands. {p}She holds the phone like you hold everything. {small}Too tight.{/small}
+it|Tua madre ha le tue mani. {p}Tiene il telefono come tu tieni tutto. {small}Troppo stretto.{/small}
+fr|Ta mère a tes mains. {p}Elle tient le téléphone comme tu tiens tout. {small}Trop fort.{/small}
+
+en|Byte keeps looking at the back of the train. {p}{small}Do you think he knows something?{/small}
+it|Byte continua a guardare il fondo del treno. {p}{small}Pensi che sappia qualcosa?{/small}
+fr|Byte arrête pas de regarder le fond du train. {p}{small}Tu crois qu'il sait quelque chose ?{/small}
+
+en|Okay, nobody panic, but every single person in here is looking at you.
+it|Ok, niente panico, ma ogni singola persona qui dentro ti sta guardando.
+fr|Ok, pas de panique, mais absolument tout le monde ici te regarde.
+
+en|theyre not looking. {p}theyre waiting. {p}{small}different thing.{/small}
+it|non stanno guardando. {p}stanno aspettando. {p}{small}è diverso.{/small}
+fr|ils regardent pas. {p}ils attendent. {p}{small}c'est pas pareil.{/small}
+
+en|I know them. {p}{slow}All of them.{/slow}
+it|Li conosco. {p}{slow}Tutti.{/slow}
+fr|Je les connais. {p}{slow}Tous.{/slow}
+
+en|...Do you want to talk to them?
+it|...Vuoi parlarci?
+fr|...Tu veux leur parler ?
+
+en|["Not yet."]
+it|["Non ancora."]
+fr|[« Pas encore. »]
+
+en|["I don't know what I'd say."]
+it|["Non saprei cosa dire."]
+fr|[« Je saurais pas quoi dire. »]
+
+en|you dont have to say anything. {p}thats kind of the point of a train. {p}{small}you just sit next to stuff.{/small}
+it|non devi dire niente. {p}è un po' il senso di un treno. {p}{small}ti siedi vicino alle cose e basta.{/small}
+fr|t'as rien à dire. {p}c'est un peu le principe d'un train. {p}{small}tu t'assois à côté des choses, c'est tout.{/small}
+
+en|Byte. {p}That was almost wise.
+it|Byte. {p}Era quasi saggio.
+fr|Byte. {p}C'était presque sage.
+
+en|{shake}take it back.{/shake}
+it|{shake}ritiralo.{/shake}
+fr|{shake}retire ça.{/shake}
+
+en|For a second, the three of us laugh. {p}{wave}In an empty carriage full of people.{/wave}
+it|Per un attimo, ridiamo tutti e tre. {p}{wave}In una carrozza vuota piena di gente.{/wave}
+fr|Un instant, on rit tous les trois. {p}{wave}Dans un wagon vide plein de monde.{/wave}
+
+en|Kira sits down on the seat next to the collar. {p}After a while, so do I.
+it|Kira si siede accanto al collare. {p}Dopo un po', anch'io.
+fr|Kira s'assoit à côté du collier. {p}Au bout d'un moment, moi aussi.
+
+en|He sat down like it was nothing. {p}{slow}Like he was saving us seats.{/slow}
+it|Si è seduto come se niente fosse. {p}{slow}Come se ci stesse tenendo il posto.{/slow}
+fr|Il s'est assis comme si de rien n'était. {p}{slow}Comme s'il nous gardait des places.{/slow}
+
+en|["He made the joke so I'd say yes faster."]
+it|["Ha fatto la battuta perché dicessi di sì più in fretta."]
+fr|[« Il a fait la blague pour que je dise oui plus vite. »]
+
+en|[Say nothing]
+it|[Non dire niente]
+fr|[Ne rien dire]
+
+en|Yeah. {p}He was... {p}{slow}he was really good at that.{/slow}
+it|Già. {p}Era... {p}{slow}era davvero bravo in questo.{/slow}
+fr|Ouais. {p}Il était... {p}{slow}il était vraiment doué pour ça.{/slow}
+
+en|I don't say anything. Kira doesn't make me.
+it|Non dico niente. Kira non mi obbliga.
+fr|Je dis rien. Kira m'y oblige pas.
+
+en|It's okay. {p}I'll talk. You can just... be here.
+it|Va bene. {p}Parlo io. Tu puoi solo... esserci.
+fr|C'est pas grave. {p}Je parle, moi. Toi, t'as qu'à... être là.
+
+en|At the hospital, when someone left, we weren't allowed to stop. {p}Next room. Next tray.
+it|In ospedale, quando qualcuno se ne andava, non potevamo fermarci. {p}Stanza dopo. Vassoio dopo.
+fr|À l'hôpital, quand quelqu'un partait, on n'avait pas le droit de s'arrêter. {p}Chambre suivante. Plateau suivant.
+
+en|So I'm going to do the thing I never did. {p}{slow}I'm going to stop for a minute.{/slow}
+it|Quindi faccio quello che non ho mai fatto. {p}{slow}Mi fermo un minuto.{/slow}
+fr|Alors je vais faire ce que j'ai jamais fait. {p}{slow}Je vais m'arrêter une minute.{/slow}
+
+en|The tunnel lights go by. {p}Nobody counts them.
+it|Le luci della galleria passano. {p}Nessuno le conta.
+fr|Les lumières du tunnel défilent. {p}Personne les compte.
+
+en|Tell me one thing he said that made you laugh. {p}{small}Even a stupid one.{/small}
+it|Dimmi una cosa che ha detto e che ti ha fatto ridere. {p}{small}Anche una stupida.{/small}
+fr|Dis-moi un truc qu'il a dit qui t'a fait rire. {p}{small}Même un truc débile.{/small}
+
+en|['cats are incredible at being in the way.']
+it|['i gatti sono fenomenali a stare in mezzo.']
+fr|['les chats sont incroyables pour barrer la route.']
+
+en|['dont pet me. ...ok. once.']
+it|['non accarezzarmi. ...ok. una volta.']
+fr|['me caresse pas. ...ok. une fois.']
+
+en|['i type in lowercase. its a lifestyle.']
+it|['scrivo in minuscolo. è uno stile di vita.']
+fr|['j'écris en minuscules. c'est un mode de vie.']
+
+en|{bounce}Ha.{/bounce} {p}...yeah. {p}{wave}That's him.{/wave}
+it|{bounce}Ah.{/bounce} {p}...già. {p}{wave}È proprio lui.{/wave}
+fr|{bounce}Ha.{/bounce} {p}...ouais. {p}{wave}C'est tout lui.{/wave}
+
+en|Okay. {p}We keep going. {p}{small}Together. That part's not optional.{/small}
+it|Ok. {p}Andiamo avanti. {p}{small}Insieme. Questa parte non è facoltativa.{/small}
+fr|Ok. {p}On continue. {p}{small}Ensemble. Ça, c'est pas optionnel.{/small}
+
+en|so. {p}leo. {p}what do you do. {p}{small}besides look sad at vending machines.{/small}
+it|allora. {p}leo. {p}che lavoro fai. {p}{small}a parte guardare tristemente i distributori.{/small}
+fr|bon. {p}leo. {p}tu fais quoi dans la vie. {p}{small}à part regarder tristement les distributeurs.{/small}
+
+en|["I move boxes. In a warehouse."]
+it|["Sposto scatoloni. In un magazzino."]
+fr|[« Je déplace des cartons. Dans un entrepôt. »]
+
+en|["I don't really know anymore."]
+it|["Non lo so più, davvero."]
+fr|[« Je sais plus trop. »]
+
+en|boxes. {p}{bounce}nice.{/bounce} {p}cats respect boxes. {p}{small}youre basically a cat landlord.{/small}
+it|scatoloni. {p}{bounce}forte.{/bounce} {p}i gatti rispettano gli scatoloni. {p}{small}in pratica sei un padrone di casa per gatti.{/small}
+fr|des cartons. {p}{bounce}classe.{/bounce} {p}les chats respectent les cartons. {p}{small}t'es en gros un propriétaire pour chats.{/small}
+
+en|thats fine. {p}i dont know either. {p}{small}i just walk next to people until it makes sense.{/small}
+it|va bene così. {p}nemmeno io lo so. {p}{small}cammino accanto alla gente finché non ha senso.{/small}
+fr|c'est pas grave. {p}moi non plus je sais pas. {p}{small}je marche à côté des gens jusqu'à ce que ça ait du sens.{/small}
+
+en|anyway. {p}stay close. this district bites. {p}{small}not me. i nibble.{/small}
+it|comunque. {p}stammi vicino. questo quartiere morde. {p}{small}io no. io mordicchio.{/small}
+fr|bref. {p}reste près de moi. ce quartier mord. {p}{small}pas moi. moi je mordille.{/small}
+
+en|this park used to have ducks. {p}{small}i can tell. the concrete looks disappointed.{/small}
+it|questo parco una volta aveva le anatre. {p}{small}si capisce. il cemento sembra deluso.{/small}
+fr|ce parc avait des canards, avant. {p}{small}ça se voit. le béton a l'air déçu.{/small}
+
+en|Mia fed ducks once. She threw the whole bag. {p}The bag, not the bread.
+it|Mia una volta ha dato da mangiare alle anatre. Ha lanciato tutto il sacchetto. {p}Il sacchetto, non il pane.
+fr|Mia a nourri des canards une fois. Elle a lancé tout le sac. {p}Le sac, pas le pain.
+
+en|{bounce}legend.{/bounce}
+it|{bounce}leggenda.{/bounce}
+fr|{bounce}légende.{/bounce}
+
+en|you talk about her like shes far away. {p}{small}is she?{/small}
+it|parli di lei come se fosse lontana. {p}{small}lo è?{/small}
+fr|tu parles d'elle comme si elle était loin. {p}{small}elle l'est ?{/small}
+
+en|["Three hours by train."]
+it|["Tre ore di treno."]
+fr|[« Trois heures de train. »]
+
+en|["Further than that."]
+it|["Più lontano di così."]
+fr|[« Plus loin que ça. »]
+
+en|three hours. {p}thats like nine naps. {p}{small}doable.{/small}
+it|tre ore. {p}sono tipo nove pisolini. {p}{small}fattibile.{/small}
+fr|trois heures. {p}ça fait genre neuf siestes. {p}{small}faisable.{/small}
+
+en|...ok. {p}{small}then we walk slower. so you dont get there all at once.{/small}
+it|...ok. {p}{small}allora camminiamo più piano. così non ci arrivi tutto in una volta.{/small}
+fr|...ok. {p}{small}alors on marche plus lentement. pour que t'y arrives pas d'un coup.{/small}
+
+en|Byte bumps his head against my ankle. {p}Once. {p}Like it was an accident.
+it|Byte mi dà una testata alla caviglia. {p}Una volta. {p}Come se fosse un caso.
+fr|Byte me donne un coup de tête dans la cheville. {p}Une fois. {p}Comme si c'était un accident.

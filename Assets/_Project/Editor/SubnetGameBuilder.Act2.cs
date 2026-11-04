@@ -97,9 +97,14 @@ namespace Subnet.EditorTools
                 Say(null, "(BYTE joined you. Its collar will text you when you look lost.)"));
 
             GameObject byteNpc = Character(ctx, "Byte", "animal-cat", "cube-pets", new Vector3(-9f, 0f, 1.6f), -90f, 0.45f, null, false);
-            Inspectable(byteNpc, "Byte", L("..."),
-                L("Keep walking. The interesting stuff is always behind the scariest wall.", "Also, don't pet me. ...Okay, once."),
-                "met_byte", spkByte, byteMeeting);
+            Set(Inspectable(byteNpc, "Byte", L("..."),
+                L("keep walking. the interesting stuff is always behind the scariest wall. || and dont pet me. {p}...ok. {bounce}once.{/bounce}",
+                  "you want to know how i got here? {p}same as everyone. {p}{small}somebody stopped thinking about me.{/small} || ...dont look at me like that. its a good gig. free rent.",
+                  "my collar shows texts from 2003. {p}nobody i know. {p}i read them anyway. {p}'r u up' was big that year.",
+                  "kira talks fast so she doesnt have to hear herself. {p}you talk slow so you dont have to say anything. {p}{small}im the only normal one here.{/small}",
+                  "if you get lost, look for the brightest sign and go the other way. {p}{small}thats where the good stuff hides.{/small}",
+                  "...you can pet me. {p}{slow}not because i want it.{/slow} {p}for your mental health."),
+                "met_byte", spkByte, byteMeeting), "cycleRepeat", true);
             Follower(byteNpc, "met_byte", -0.6f);
 
             // Static wall that opens after meeting Byte
@@ -189,9 +194,14 @@ namespace Subnet.EditorTools
                 Say(spkKira, "The wall's at the end of the street. Don't let the clocks get in your head. They bite."));
 
             GameObject kira = Character(ctx, "Kira", "character-female-c", "mini-characters", new Vector3(9.5f, 0f, -1.6f), -90f, 1.05f);
-            Inspectable(kira, "Kira", L("..."),
-                L("Still here! Technically on break. Don't tell my rating.", "The wall's that way. Be nice to it. It's having a rough decade."),
-                "met_kira", spkKira, kiraMeeting);
+            Set(Inspectable(kira, "Kira", L("..."),
+                L("Still here! Technically on break. {p}{small}Don't tell my rating.{/small} || The wall's that way. Be nice to it. It's having a rough decade.",
+                  "Five-star tip: never deliver on an empty stomach. {p}{fast}I always deliver on an empty stomach.{/fast}",
+                  "I've got forty-two packages in this bag. {p}Forty-one addresses. {p}{small}Don't do the math.{/small}",
+                  "Your cat looks at me like I owe him money. {p}...Do I owe him money?",
+                  "You walk like you're carrying boxes. Even when your hands are empty. {p}{small}I notice stuff. Occupational hazard.{/small}",
+                  "Hey. {p}Thanks for staying. {p}{fast}Most people take the package and go, which, fair, that's the job, but still.{/fast}"),
+                "met_kira", spkKira, kiraMeeting), "cycleRepeat", true);
             // Jet-skate glow under her feet.
             Deco("SkateGlow", kira.transform, kira.transform.position + new Vector3(0, 0.03f, 0), new Vector3(0.45f, 0.03f, 0.45f), neonCyan);
             PointLight(kira.transform, kira.transform.position + new Vector3(0, 0.8f, -0.6f), new Color(1f, 0.7f, 0.3f), 1.2f, 2.5f);
@@ -387,6 +397,17 @@ namespace Subnet.EditorTools
 
             Event(ctx, "RoofInvite", StoryEvent.TriggerMode.OnFlag, "got_care_package", 1.2f, "KIRA",
                 L("roof. fire escape by the freed guy. come up. no reason."), null, null, string.Empty);
+
+            DialogueSequence walkByte = SeqAsset("Act2/Walk_Byte",
+                Say(spkByte, "so. {p}leo. {p}what do you do. {p}{small}besides look sad at vending machines.{/small}"),
+                Ask(spkLeo, "...",
+                    Opt("[\"I move boxes. In a warehouse.\"]", "boxes"),
+                    Opt("[\"I don't really know anymore.\"]", "dunno", "+openness#walk_dunno")),
+                Say(spkByte, "boxes. {p}{bounce}nice.{/bounce} {p}cats respect boxes. {p}{small}youre basically a cat landlord.{/small}", "boxes", "end"),
+                Say(spkByte, "thats fine. {p}i dont know either. {p}{small}i just walk next to people until it makes sense.{/small}", "dunno"),
+                Say(spkByte, "anyway. {p}stay close. this district bites. {p}{small}not me. i nibble.{/small}", "end", "", "+closeness#walk_byte"));
+            Event(ctx, "WalkByte", StoryEvent.TriggerMode.OnPlayerEnter, "met_byte", 0.2f, null, null, null, null, "walk_byte",
+                new Vector3(0f, 1f, 0f), new Vector3(1f, 2f, 9f), walkByte);
 
             ExitZone(ctx, "Exit_ToConcretePark", new Vector3(22.3f, 1f, 0f), new Vector3(1.5f, 2f, 8.4f), ParkScene, "ch4", "hack1_done",
                 L("* The street goes on, but something's still blocking Kira's route."));
