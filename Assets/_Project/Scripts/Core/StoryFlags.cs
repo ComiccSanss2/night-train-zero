@@ -15,9 +15,25 @@ namespace Subnet.Core
 
         public static bool Has(string flag) => !string.IsNullOrEmpty(flag) && flags.Contains(flag);
 
+        /// <summary>
+        /// Sets a flag. Several flags can be given at once separated by ';'.
+        /// Special forms: "+closeness" / "+openness" raise a hidden value by one (Trust),
+        /// "+key" raises any counter. Raising happens once per call, so put it on choices / one-shot lines.
+        /// </summary>
         public static void Set(string flag)
         {
-            if (!string.IsNullOrEmpty(flag)) flags.Add(flag);
+            if (string.IsNullOrEmpty(flag)) return;
+            if (flag.IndexOf(';') >= 0)
+            {
+                foreach (string part in flag.Split(';')) Set(part.Trim());
+                return;
+            }
+            if (flag.Length > 1 && flag[0] == '+')
+            {
+                Increment(flag.Substring(1));
+                return;
+            }
+            flags.Add(flag);
         }
 
         public static void Clear(string flag)
@@ -46,6 +62,7 @@ namespace Subnet.Core
         /// <summary>Writes flags and counters into the save (called on checkpoints and SAVE GAME).</summary>
         public static void SaveToPrefs()
         {
+            PlayerPrefs.SetString("save.phone", PhoneLog.Serialize());
             PlayerPrefs.SetString(PrefFlags, string.Join("|", flags));
             var parts = new List<string>();
             foreach (KeyValuePair<string, int> pair in counters) parts.Add(pair.Key + "=" + pair.Value);
@@ -57,6 +74,7 @@ namespace Subnet.Core
         public static void LoadFromPrefs()
         {
             ResetAll();
+            PhoneLog.Deserialize(PlayerPrefs.GetString("save.phone", string.Empty));
             foreach (string flag in PlayerPrefs.GetString(PrefFlags, string.Empty).Split('|'))
             {
                 if (!string.IsNullOrEmpty(flag)) flags.Add(flag);
@@ -70,6 +88,7 @@ namespace Subnet.Core
 
         public static void ResetAll()
         {
+            PhoneLog.Clear();
             flags.Clear();
             counters.Clear();
         }

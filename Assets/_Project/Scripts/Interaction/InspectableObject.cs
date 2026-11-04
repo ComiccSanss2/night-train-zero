@@ -36,6 +36,11 @@ namespace Subnet.Interaction
         [TextArea(2, 4)]
         [SerializeField] private string[] repeatInspection = { };
 
+        [Tooltip("Optional: the Nth inspection (e.g. 3) shows these lines instead (a detail you only find by insisting).")]
+        [SerializeField] private int specialInspectionAt;
+        [TextArea(2, 4)]
+        [SerializeField] private string[] specialInspection = { };
+
         [Tooltip("Speaker for inline lines. Empty = DialogueManager default (Leo's inner voice).")]
         [SerializeField] private DialogueSpeaker speaker;
 
@@ -166,6 +171,10 @@ namespace Subnet.Interaction
             }
 
             string[] lines = !firstTime && hasRepeat ? repeatInspection : firstInspection;
+            if (specialInspectionAt > 0 && TimesInspected == specialInspectionAt - 1 && specialInspection != null && specialInspection.Length > 0)
+            {
+                lines = specialInspection;
+            }
             DialogueManager.Instance.PlayLines(lines, speaker, OnDialogueFinished, textEffect);
         }
 

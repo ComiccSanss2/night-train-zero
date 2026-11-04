@@ -83,6 +83,14 @@ namespace Subnet.EditorTools
             Prop(ctx, "Mirror", "bathroomMirror", F, new Vector3(3.93f, 1.05f, -1.45f), -90, 0.6f, false,
                 L("A cracked mirror. The crack runs right through your reflection, like it's trying to split you into a before and an after.", "You look away first."),
                 L("Still cracked. Still you. Both of those feel like problems."), "inspected_mirror", false);
+            {
+                // Bible: looked at three times, the crack moves.
+                var mirror = GameObject.Find("Prop_Mirror").GetComponent<InspectableObject>();
+                Set(mirror, "specialInspectionAt", 3);
+                SetStrings(mirror, "specialInspection", L(
+                    "You look again. {p}The crack has moved. {p}{slow}It runs a little to the left of you now.{/slow}",
+                    "* Like it's making room."));
+            }
 
             // Front door → Central Station (only after checking the handheld).
             GameObject door = Block("Prop_FrontDoor", ctx.props, new Vector3(3.97f, 0.9f, -2.3f), new Vector3(0.08f, 1.8f, 0.9f), doorMat, ctx.interactableLayer);
@@ -121,18 +129,27 @@ namespace Subnet.EditorTools
             reach.isTrigger = true;
             reach.size = new Vector3(4.2f, 14f, 6.5f); // local units (parent is 0.26 x 0.05 x 0.16) ≈ 1.1 x 0.7 x 1.0 m
             reach.center = new Vector3(0, -5f, 0);
-            Inspectable(handheld, "Handheld",
-                L("Your handheld. You modded it yourself, back when you still had weekends.",
-                  "One new message. No sender. It just says: <color=#33FFF2>'last train leaves at 00:00. platform zero. don't miss it.'</color>",
-                  "* There's no platform zero at Central Station. ...Is there?"),
-                L("The message is still there. The clock on the screen says 23:51."), "handheld_checked");
-            Inspectable(handheld, "Handheld",
-                L("Your handheld. You modded it yourself, back when you still had weekends.",
-                  "It's lying on box fourteen. The last box. The lightest, and somehow the hardest to open.",
-                  "One new message. No sender. It just says: <color=#33FFF2>'last train leaves at 00:00. platform zero. don't miss it.'</color>",
-                  "* There's no platform zero at Central Station. ...Is there?",
-                  "* (Now I can leave through the front door.)"),
-                L("The message is still there. The clock on the screen says 23:51. The door is that way."), "handheld_checked");
+            // Bible, prologue: the phone as a character. Two old voicemails from Mia, plus the anonymous train message.
+            DialogueSequence handheldSeq = SeqAsset("Act1/Handheld_First",
+                Say(null, "Your handheld. You modded it yourself, back when you still had weekends."),
+                Say(null, "It's lying on box fourteen. The last box. The lightest, and somehow the hardest to open."),
+                Ask(null, "Three unread. {p}Two voicemails from Mia, from months ago. {p}And one new message. No sender.",
+                    Opt("[Listen to Mia]", "vm", "+openness;heard_mia;heard_mia_0;heard_mia_1"),
+                    Opt("[Not now]", "msg")),
+                Say(null, "VOICEMAIL  //  MIA  //  MARCH 3", "vm"),
+                Say(spkMia, "Leo? It's me. Mom says you got the job. {p}That's... {p}that's huge."),
+                Say(spkMia, "Call me back, okay? {p}I want to hear you say it. {wave}With your stupid proud voice.{/wave}"),
+                Say(null, "VOICEMAIL  //  MIA  //  MAY 28"),
+                Say(spkMia, "Hey. It's me again. {p}The recital's on the twelfth."),
+                Say(spkMia, "You don't have to come. {p=0.8}{slow}I'm just saying it's on the twelfth.{/slow}"),
+                Say(spkMia, "{small}...okay. bye.{/small}", "", "", "silence_request"),
+                Say(null, "One new message. No sender. Just: <color=#33FFF2>'last train leaves at 00:00. platform zero. don't miss it.'</color>", "msg"),
+                Say(null, "There's no platform zero at Central Station. {p}{small}...is there?{/small}"),
+                Say(null, "(The front door. It's time.)"));
+            Inspectable(handheld, "Handheld", L("..."),
+                L("The message is still there. 23:51. The door is that way. {p}It's not getting any closer on its own.",
+                  "* (Tab opens the handheld: messages and voicemails.)"),
+                "handheld_checked", null, handheldSeq);
             PointLight(handheld.transform, handheldPos + new Vector3(0, 0.25f, 0), Cyan, 1.2f, 1.6f);
 
             // Guidance after the intro.
@@ -312,14 +329,30 @@ namespace Subnet.EditorTools
             boarding.fadeToBlackAtEnd = true;
             boarding.fadeOutDuration = 1.5f;
             EditorUtility.SetDirty(boarding);
-            Exit(doors, SubnetScene, "ch3", "train_arrived",
-                L("* The edge of the platform. The tracks hum below.", "* I should check the timetable first. Something about tonight feels scheduled."),
+            // Bible, act I: the Conductor punches the ticket home Leo never used.
+            GameObject conductor = Character(ctx, "Conductor", "character-male-c", "mini-characters", new Vector3(3.6f, 0, 1.9f), 200, 1.05f);
+            DialogueSequence conductorSeq = SeqAsset("Act1/Conductor",
+                Say(spkConductor, "{small}Ticket, please.{/small}"),
+                Say(null, "My pocket. The ticket home. {p}Three weeks old. Never used."),
+                Ask(spkConductor, "Ticket.",
+                    Opt("[Show him the ticket home]", "punch", "+openness"),
+                    Opt("[\"I don't have one.\"]", "lie")),
+                Say(null, "He looks at my pocket like he can see straight through it.", "lie"),
+                Say(null, "{quake}Click. {p}He punches it anyway.", "punch"),
+                Say(spkConductor, "This one's still valid. {p=0.9}{slow}They usually are.{/slow}", "", "", "ticket_punched"),
+                Say(spkConductor, "Mind the gap. {p}{small}All of them.{/small}"));
+            InspectableObject conductorTalk = Inspectable(conductor, "Conductor", L("..."),
+                L("This one's still valid. {p}Don't lose it.", "* He tips his cap. It doesn't have a train company's logo. It has a tiny zero."), null, spkConductor, conductorSeq);
+            Set(conductorTalk, "requiredFlag", "train_arrived");
+
+            Exit(doors, SubnetScene, "ch3", "ticket_punched",
+                L("* The edge of the platform. The tracks hum below.", "* Something about tonight feels scheduled. {p}And someone in a cap is watching my pocket."),
                 null, boarding, false, null, ctx.sfx, Clip("confirmation_003"));
 
             Event(ctx, "Arrive", Subnet.Gameplay.StoryEvent.TriggerMode.OnStart, string.Empty, 1.5f, "UNKNOWN",
                 L("ur here. good. check the timetable."), L("* Central Station at 23:57. Empty, except for the people who look like they've forgotten how to leave."), null, string.Empty);
             Event(ctx, "TrainComing", Subnet.Gameplay.StoryEvent.TriggerMode.OnFlag, "train_arrived", 0.5f, "UNKNOWN",
-                L("get on. dont think about it too much. thats the trick."), L("* A train with no number. Its doors are open. It's waiting for me."), null, string.Empty);
+                L("get on. dont think about it too much. thats the trick."), L("* A train with no number. Its doors are open. It's waiting for me.", "* A conductor stands by the doors. {p}He's looking at my pocket."), null, string.Empty);
 
             EndGameplayScene(ctx, StationScene);
         }

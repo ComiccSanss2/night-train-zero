@@ -58,7 +58,7 @@ namespace Subnet.EditorTools
         private static Material crtMaterial;
 
         // Speakers (created once per build).
-        private static DialogueSpeaker spkLeoInner, spkLeo, spkByte, spkKira, spkAlgorithm, spkObject, spkCommuter, spkStatue, spkUnknown;
+        private static DialogueSpeaker spkLeoInner, spkLeo, spkByte, spkKira, spkAlgorithm, spkObject, spkCommuter, spkStatue, spkUnknown, spkMia, spkConductor;
 
         // ====================================================================== Entry
 
@@ -191,6 +191,12 @@ namespace Subnet.EditorTools
                 SpeakerStyle.Enemy, new Color(0.84f, 0.86f, 0.92f));
             spkUnknown = CreateSpeaker("Speaker_Unknown", "???", "glitch_001", new Vector2(0.9f, 1.3f), 0.9f, Lilac,
                 SpeakerStyle.Unknown, new Color(0.82f, 0.75f, 1f), TextEffect.Glitch);
+            spkConductor = CreateSpeaker("Speaker_Conductor", "CONDUCTOR", "drop_002", new Vector2(0.62f, 0.7f), 0.75f, new Color(0.95f, 0.85f, 0.55f),
+                SpeakerStyle.Object, new Color(0.95f, 0.92f, 0.85f));
+            // Mia lives in Resources so the handheld menu can replay her voicemails from any scene.
+            EnsureFolder(Root + "/Resources");
+            spkMia = CreateSpeaker("../Resources/Speaker_Mia", "MIA", "tick_002", new Vector2(1.08f, 1.16f), 0.85f, new Color(1f, 0.75f, 0.85f),
+                SpeakerStyle.Default, new Color(1f, 0.92f, 0.95f), TextEffect.None);
             EnsureFolder(Root + "/Resources/Fonts");
             BuildFontLibrary();
         }
@@ -226,7 +232,7 @@ namespace Subnet.EditorTools
         private static DialogueSpeaker CreateSpeaker(string assetName, string displayName, string blip, Vector2 pitch, float speed, Color color,
             SpeakerStyle style = SpeakerStyle.Default, Color textColor = default, TextEffect signature = TextEffect.None)
         {
-            string path = Root + "/Data/Speakers/" + assetName + ".asset";
+            string path = assetName.StartsWith("../Resources/") ? Root + "/Resources/" + assetName.Substring(13) + ".asset" : Root + "/Data/Speakers/" + assetName + ".asset";
             var speaker = AssetDatabase.LoadAssetAtPath<DialogueSpeaker>(path);
             if (speaker == null)
             {

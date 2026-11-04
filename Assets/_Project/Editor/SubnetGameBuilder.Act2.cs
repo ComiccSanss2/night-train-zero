@@ -160,7 +160,7 @@ namespace Subnet.EditorTools
                 Say(null, "A courier on jet-powered inline skates. Her thermal backpack is glowing and humming softly, like it's purring."),
                 Say(spkKira, "I'm Kira. I deliver care packages. Little boxes of self-esteem, addressed to people nobody sees anymore."),
                 Ask(spkKira, "Problem is, my route's blocked. Some guy turned into a wall of overtime and paperwork. You look... less busy than me. Can you help?",
-                    Opt("I'll talk to him.", "yes", "kira_trusts_leo"),
+                    Opt("I'll talk to him.", "yes", "kira_trusts_leo;+closeness"),
                     Opt("Why don't YOU do it?", "why")),
                 Say(spkKira, "Because if I stop moving, I have to feel things. And I'm booked solid until, uh, forever.", "why", "after"),
                 Say(spkKira, "Really? Okay. Okay! That's... nobody ever offers.", "yes", "after"),

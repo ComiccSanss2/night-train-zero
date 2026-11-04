@@ -34,6 +34,7 @@ namespace Subnet.UI
 
         public static void Show(string sender, string message)
         {
+            PhoneLog.Add(sender, message);
             if (instance == null) instance = new GameObject("PhoneNotifier").AddComponent<PhoneNotifier>();
             instance.queue.Enqueue((sender, message));
             if (!instance.showing) instance.StartCoroutine(instance.ProcessQueue());

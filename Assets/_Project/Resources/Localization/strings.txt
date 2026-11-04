@@ -2199,3 +2199,157 @@ fr|[BRUIT]
 en|[OBSOLETE]
 it|[OBSOLETA]
 fr|[OBSOLÈTE]
+
+# ---- Bible part 1: the phone, Mia, the mirror, the Conductor, the handheld menu
+
+en|Three unread. {p}Two voicemails from Mia, from months ago. {p}And one new message. No sender.
+it|Tre non letti. {p}Due vocali di Mia, di mesi fa. {p}E un messaggio nuovo. Nessun mittente.
+fr|Trois non lus. {p}Deux messages vocaux de Mia, vieux de plusieurs mois. {p}Et un nouveau message. Sans expéditeur.
+
+en|[Listen to Mia]
+it|[Ascolta Mia]
+fr|[Écouter Mia]
+
+en|[Not now]
+it|[Non adesso]
+fr|[Pas maintenant]
+
+en|VOICEMAIL  //  MIA  //  MARCH 3
+it|VOCALE  //  MIA  //  3 MARZO
+fr|MESSAGE VOCAL  //  MIA  //  3 MARS
+
+en|VOICEMAIL  //  MIA  //  MAY 28
+it|VOCALE  //  MIA  //  28 MAGGIO
+fr|MESSAGE VOCAL  //  MIA  //  28 MAI
+
+en|Leo? It's me. Mom says you got the job. {p}That's... {p}that's huge.
+it|Leo? Sono io. La mamma dice che ti hanno preso. {p}È... {p}è enorme.
+fr|Leo ? C'est moi. Maman dit que t'as eu le boulot. {p}C'est... {p}c'est énorme.
+
+en|Call me back, okay? {p}I want to hear you say it. {wave}With your stupid proud voice.{/wave}
+it|Richiamami, ok? {p}Voglio sentirtelo dire. {wave}Con quella tua voce da scemo orgoglioso.{/wave}
+fr|Rappelle-moi, d'accord ? {p}Je veux te l'entendre dire. {wave}Avec ta voix de crâneur.{/wave}
+
+en|Hey. It's me again. {p}The recital's on the twelfth.
+it|Ehi. Sono di nuovo io. {p}Il saggio è il dodici.
+fr|Coucou. C'est encore moi. {p}Le spectacle, c'est le douze.
+
+en|You don't have to come. {p=0.8}{slow}I'm just saying it's on the twelfth.{/slow}
+it|Non devi venire per forza. {p=0.8}{slow}Dico solo che è il dodici.{/slow}
+fr|T'es pas obligé de venir. {p=0.8}{slow}Je dis juste que c'est le douze.{/slow}
+
+en|{small}...okay. bye.{/small}
+it|{small}...ok. ciao.{/small}
+fr|{small}...bon. salut.{/small}
+
+en|One new message. No sender. Just: <color=#33FFF2>'last train leaves at 00:00. platform zero. don't miss it.'</color>
+it|Un messaggio nuovo. Nessun mittente. Solo: <color=#33FFF2>'ultimo treno alle 00:00. binario zero. non perderlo.'</color>
+fr|Un nouveau message. Pas d'expéditeur. Juste : <color=#33FFF2>'dernier train à 00:00. quai zéro. ne le rate pas.'</color>
+
+en|There's no platform zero at Central Station. {p}{small}...is there?{/small}
+it|A Central Station non c'è nessun binario zero. {p}{small}...o sì?{/small}
+fr|Il n'y a pas de quai zéro à Central Station. {p}{small}...si ?{/small}
+
+en|(The front door. It's time.)
+it|(La porta d'ingresso. È ora.)
+fr|(La porte d'entrée. C'est l'heure.)
+
+en|The message is still there. 23:51. The door is that way. {p}It's not getting any closer on its own.
+it|Il messaggio è ancora lì. 23:51. La porta è da quella parte. {p}Da sola non si avvicina.
+fr|Le message est toujours là. 23:51. La porte, c'est par là. {p}Elle ne va pas se rapprocher toute seule.
+
+en|(Tab opens the handheld: messages and voicemails.)
+it|(Tab apre la console: messaggi e vocali.)
+fr|(Tab ouvre la console : messages et vocaux.)
+
+en|You look again. {p}The crack has moved. {p}{slow}It runs a little to the left of you now.{/slow}
+it|Guardi di nuovo. {p}La crepa si è spostata. {p}{slow}Adesso passa un po' più a sinistra di te.{/slow}
+fr|Tu regardes encore. {p}La fissure a bougé. {p}{slow}Elle passe un peu à gauche de toi, maintenant.{/slow}
+
+en|Like it's making room.
+it|Come se ti stesse facendo spazio.
+fr|Comme si elle te faisait de la place.
+
+en|{small}Ticket, please.{/small}
+it|{small}Biglietto, prego.{/small}
+fr|{small}Billet, s'il vous plaît.{/small}
+
+en|My pocket. The ticket home. {p}Three weeks old. Never used.
+it|La tasca. Il biglietto per casa. {p}Tre settimane. Mai usato.
+fr|Ma poche. Le billet pour la maison. {p}Trois semaines. Jamais utilisé.
+
+en|Ticket.
+it|Biglietto.
+fr|Billet.
+
+en|[Show him the ticket home]
+it|[Mostragli il biglietto per casa]
+fr|[Lui montrer le billet pour la maison]
+
+en|["I don't have one."]
+it|["Non ce l'ho."]
+fr|[« Je n'en ai pas. »]
+
+en|He looks at my pocket like he can see straight through it.
+it|Mi guarda la tasca come se ci vedesse attraverso.
+fr|Il regarde ma poche comme s'il voyait à travers.
+
+en|{quake}Click. {p}He punches it anyway.
+it|{quake}Clic. {p}Lo timbra lo stesso.
+fr|{quake}Clic. {p}Il le poinçonne quand même.
+
+en|This one's still valid. {p=0.9}{slow}They usually are.{/slow}
+it|Questo è ancora valido. {p=0.9}{slow}Di solito lo sono.{/slow}
+fr|Celui-ci est encore valable. {p=0.9}{slow}Ils le sont, en général.{/slow}
+
+en|Mind the gap. {p}{small}All of them.{/small}
+it|Attenzione al vuoto. {p}{small}A tutti quanti.{/small}
+fr|Attention à la marche. {p}{small}À toutes les marches.{/small}
+
+en|This one's still valid. {p}Don't lose it.
+it|Questo è ancora valido. {p}Non perderlo.
+fr|Celui-ci est encore valable. {p}Ne le perdez pas.
+
+en|He tips his cap. It doesn't have a train company's logo. It has a tiny zero.
+it|Si tocca il berretto. Non c'è il logo di nessuna compagnia. C'è un minuscolo zero.
+fr|Il touche sa casquette. Pas de logo de compagnie. Juste un minuscule zéro.
+
+en|Something about tonight feels scheduled. {p}And someone in a cap is watching my pocket.
+it|Stanotte sembra tutto programmato. {p}E qualcuno col berretto mi fissa la tasca.
+fr|Ce soir, tout a l'air programmé. {p}Et quelqu'un en casquette fixe ma poche.
+
+en|A conductor stands by the doors. {p}He's looking at my pocket.
+it|Un capotreno aspetta vicino alle porte. {p}Mi sta guardando la tasca.
+fr|Un contrôleur attend près des portes. {p}Il regarde ma poche.
+
+en|MIA
+it|MIA
+fr|MIA
+
+en|CONDUCTOR
+it|CAPOTRENO
+fr|CONTRÔLEUR
+
+en|HANDHELD
+it|CONSOLE
+fr|CONSOLE
+
+en|MESSAGES
+it|MESSAGGI
+fr|MESSAGES
+
+en|VOICEMAILS
+it|VOCALI
+fr|VOCAUX
+
+en|NO MESSAGES.
+it|NESSUN MESSAGGIO.
+fr|AUCUN MESSAGE.
+
+en|UP/DOWN: SCROLL   LEFT/RIGHT: TAB   TAB: CLOSE
+it|SU/GIÙ: SCORRI   SINISTRA/DESTRA: SCHEDA   TAB: CHIUDI
+fr|HAUT/BAS : DÉFILER   GAUCHE/DROITE : ONGLET   TAB : FERMER
+
+en|CONFIRM: LISTEN   LEFT/RIGHT: TAB   TAB: CLOSE
+it|CONFERMA: ASCOLTA   SINISTRA/DESTRA: SCHEDA   TAB: CHIUDI
+fr|VALIDER : ÉCOUTER   GAUCHE/DROITE : ONGLET   TAB : FERMER
