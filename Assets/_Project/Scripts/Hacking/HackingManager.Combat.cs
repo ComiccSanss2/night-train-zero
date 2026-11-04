@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Subnet.Core;
+using Subnet.Dialogue;
 using Subnet.UI;
 using TMPro;
 using UnityEngine;
@@ -166,6 +167,24 @@ namespace Subnet.Hacking
             Color accent = PatternColor(wave.pattern);
             foreach (Image b in brackets) b.color = accent;
             if (arenaGlow != null) arenaGlow.color = new Color(accent.r, accent.g, accent.b, 0.18f);
+        }
+
+        /// <summary>First fight only: how hacking works, in five short lines.</summary>
+        private IEnumerator MaybeTutorial()
+        {
+            if (StoryFlags.Has(TutorialFlag) || DialogueManager.Instance == null) yield break;
+            StoryFlags.Set(TutorialFlag);
+            bool done = false;
+            DialogueManager.Instance.PlayLines(new[]
+            {
+                "* <color=#33FFF2>HOW TO HACK SOMEONE.</color> {p}It's not a fight. It's a conversation with bullets.",
+                "* <color=#FFD84F>1. DODGE.</color> Move the heart. Every hit costs HP (the yellow bar under the arena is yours). Brushing past bullets without touching them earns bonus tokens.",
+                "* <color=#FFD84F>2. LISTEN.</color> They talk the whole time: the speech bubble, the taunts, the line after each wave. Every word is a clue about what hurts.",
+                "* <color=#FFD84F>3. UNDERSTAND.</color> After each wave, pick the memory fragment that answers them with kindness and honesty. Never the cold one, never the comfortable lie.",
+                "* Each right answer breaks one block of their <color=#FF4FD8>FIREWALL</color> (top left). Not sure? Pick <color=#B9A7FF>[Listen closer]</color> for a hint. A wrong pick just means one more wave, and that fragment disappears.",
+                "* Low on HP? Press <color=#FFD84F>F</color> to drink a potion."
+            }, null, () => done = true);
+            while (!done) yield return null;
         }
 
         private IEnumerator GiveReward(HackableObstacle target)
@@ -1186,7 +1205,8 @@ namespace Subnet.Hacking
         private static bool PotionPressed()
         {
             if (GameTime.Paused) return false;
-            bool key = Keyboard.current != null && Keyboard.current.qKey.wasPressedThisFrame;
+            // F sits in the same place on QWERTY and AZERTY keyboards.
+            bool key = Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame;
             bool pad = Gamepad.current != null && Gamepad.current.buttonNorth.wasPressedThisFrame;
             return key || pad;
         }
@@ -1240,8 +1260,8 @@ namespace Subnet.Hacking
             int total = 0;
             foreach (Inventory.ItemDef item in Inventory.Consumables()) total += Inventory.Count(item.id);
             itemHint.text = best == null
-                ? "<color=#8A8F99>" + Loc.T("[Q] ITEM — NONE LEFT") + "</color>"
-                : Loc.F("[Q] {0}", Loc.T(best.name)) + $"  <color=#FFD84F>x{total}</color>";
+                ? "<color=#8A8F99>" + Loc.T("[F] ITEM — NONE LEFT") + "</color>"
+                : Loc.F("[F] {0}", Loc.T(best.name)) + $"  <color=#FFD84F>x{total}</color>";
         }
 
         private void SetProgress(float value, string label)

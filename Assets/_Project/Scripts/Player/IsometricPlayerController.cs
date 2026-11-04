@@ -152,7 +152,7 @@ namespace Subnet.Player
                 if (actual.sqrMagnitude < planarVelocity.sqrMagnitude) planarVelocity = actual;
             }
 
-            RotateTowardsVelocity(dt);
+            RotateTowardsVelocity(dt, desiredVelocity);
             UpdateFootsteps(dt);
             UpdateAnimator();
         }
@@ -197,9 +197,11 @@ namespace Subnet.Player
             right = Vector3.Cross(Vector3.up, forward);
         }
 
-        private void RotateTowardsVelocity(float dt)
+        private void RotateTowardsVelocity(float dt, Vector3 desired)
         {
-            Vector3 flat = planarVelocity;
+            // Face where the player is pushing, not where a wall makes Leo slide:
+            // pressing "up" against a wall keeps him looking at the wall (and what's on it).
+            Vector3 flat = desired.sqrMagnitude > 0.04f ? desired : planarVelocity;
             if (flat.sqrMagnitude < 0.04f) return;
             Quaternion target = Quaternion.LookRotation(flat.normalized, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, target, turnSpeed * dt);

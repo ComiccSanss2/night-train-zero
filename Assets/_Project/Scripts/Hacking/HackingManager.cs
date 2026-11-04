@@ -64,6 +64,8 @@ namespace Subnet.Hacking
         public bool IsActive { get; private set; }
 
         private const string CorrectFlag = "__hack_fragment_ok";
+        private const string LastWrongFlag = "__hack_fragment_wrong_";
+        private const string TutorialFlag = "hack_tutorial_seen";
         private const int SliceCount = 12;
 
         private readonly List<Image> firewallSegments = new List<Image>();
@@ -193,9 +195,12 @@ namespace Subnet.Hacking
             yield return SpeakLines(target.introLines, target.speaker);
 
             int rounds = Mathf.Max(target.waves.Count, target.puzzles.Count);
+            yield return MaybeTutorial();
+
             for (int round = 0; round < rounds; round++)
             {
                 bool firstAttempt = true;
+                var eliminated = new HashSet<int>();
                 while (true)
                 {
                     if (round < target.waves.Count)
@@ -208,7 +213,7 @@ namespace Subnet.Hacking
                     if (round >= target.puzzles.Count) break;
 
                     bool correct = false;
-                    yield return RunPuzzle(target.puzzles[round], result => correct = result);
+                    yield return RunPuzzle(target.puzzles[round], eliminated, result => correct = result);
                     if (correct)
                     {
                         BreakFirewall(round);
@@ -695,7 +700,7 @@ namespace Subnet.Hacking
             spawnTimer = 0.8f;
         }
 
-        private IEnumerator RunPuzzle(HackPuzzle puzzle, Action<bool> result)
+        private IEnumerator RunPuzzle(HackPuzzle puzzle, HashSet<int> eliminated, Action<bool> result)
         {
             statusText.text = Loc.T("EMOTIONAL FIREWALL DETECTED. SELECT A MEMORY FRAGMENT.");
             SetProgress(0f, string.Empty);
@@ -713,17 +718,28 @@ namespace Subnet.Hacking
             var prompt = new DialogueNode { id = "prompt", text = puzzle.prompt };
             for (int i = 0; i < puzzle.options.Length; i++)
             {
+                if (eliminated.Contains(i)) continue; // fragments that already bounced off are gone
                 bool isCorrect = i == puzzle.correctIndex;
+                bool isAlt = i == puzzle.altCorrectIndex;
                 prompt.choices.Add(new DialogueChoice
                 {
                     text = puzzle.options[i],
-                    nextNodeId = isCorrect ? "ok" : "bad",
-                    flagToSet = isCorrect ? CorrectFlag : string.Empty
+                    nextNodeId = isCorrect ? "ok" : isAlt ? "alt" : "bad",
+                    flagToSet = isCorrect || isAlt ? CorrectFlag : LastWrongFlag + i
                 });
             }
+            // Always offer a way to think it over.
+            prompt.choices.Add(new DialogueChoice { text = "[Listen closer]", nextNodeId = "hint" });
             sequence.nodes.Add(prompt);
+            string hintText = string.IsNullOrEmpty(puzzle.hint)
+                ? "Everything they said during the fight is a clue. Which answer would actually help them, not just shut them up?"
+                : puzzle.hint;
+            sequence.nodes.Add(new DialogueNode { id = "hint", text = hintText, nextNodeId = "prompt", effect = TextEffect.None });
             sequence.nodes.Add(new DialogueNode { id = "ok", text = puzzle.correctLine, nextNodeId = DialogueSequence.EndNodeId, effect = TextEffect.Wave });
-            sequence.nodes.Add(new DialogueNode { id = "bad", text = puzzle.wrongLine, nextNodeId = DialogueSequence.EndNodeId, effect = TextEffect.Shake });
+            sequence.nodes.Add(new DialogueNode { id = "alt", text = string.IsNullOrEmpty(puzzle.altCorrectLine) ? puzzle.correctLine : puzzle.altCorrectLine, nextNodeId = DialogueSequence.EndNodeId, effect = TextEffect.Wave });
+            sequence.nodes.Add(new DialogueNode { id = "bad", text = puzzle.wrongLine, nextNodeId = "badhint", effect = TextEffect.Shake });
+            sequence.nodes.Add(new DialogueNode { id = "badhint", text = "(That fragment is gone now. One more wave, then try again.)", nextNodeId = DialogueSequence.EndNodeId });
+            for (int i = 0; i < puzzle.options.Length; i++) StoryFlags.Clear(LastWrongFlag + i);
 
             StoryFlags.Clear(CorrectFlag);
             bool done = false;
@@ -733,6 +749,11 @@ namespace Subnet.Hacking
 
             bool correct = StoryFlags.Has(CorrectFlag);
             StoryFlags.Clear(CorrectFlag);
+            for (int i = 0; i < puzzle.options.Length; i++)
+            {
+                if (StoryFlags.Has(LastWrongFlag + i)) eliminated.Add(i);
+                StoryFlags.Clear(LastWrongFlag + i);
+            }
             if (!correct)
             {
                 Play(wrongClip);
@@ -1110,17 +1131,20 @@ namespace Subnet.Hacking
             BuildCombatUI(contentRect, rowY);
 
             firewallRow = RuntimeUI.Rect("Firewall", contentRect);
-            RuntimeUI.Place(firewallRow, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 1f), new Vector2(0, rowY - 52f), new Vector2(300, 18));
+            // The ENEMY's firewall sits next to its live feed (top left), far from Leo's HP bar, so nobody mixes them up.
+            RuntimeUI.Place(firewallRow, new Vector2(0.5f, 0.5f), new Vector2(1f, 0.5f), new Vector2(-170f, 300f), new Vector2(300, 18));
+            TextMeshProUGUI firewallLabel = RuntimeUI.Text("FirewallLabel", contentRect, Loc.T("ENEMY FIREWALL"), 18, RuntimeUI.Magenta, TextAlignmentOptions.Right);
+            RuntimeUI.Place(firewallLabel.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(1f, 0f), new Vector2(-170f, 316f), new Vector2(300, 24));
             var rowLayout = firewallRow.gameObject.AddComponent<HorizontalLayoutGroup>();
             rowLayout.spacing = 8;
-            rowLayout.childAlignment = TextAnchor.MiddleCenter;
+            rowLayout.childAlignment = TextAnchor.MiddleRight;
             rowLayout.childControlWidth = false;
             rowLayout.childControlHeight = false;
             rowLayout.childForceExpandWidth = false;
             rowLayout.childForceExpandHeight = false;
 
             statusText = RuntimeUI.Text("Status", contentRect, "", 20, RuntimeUI.Lilac, TextAlignmentOptions.Center);
-            RuntimeUI.Place(statusText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 1f), new Vector2(0, rowY - 78f), new Vector2(1400, 30));
+            RuntimeUI.Place(statusText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 1f), new Vector2(0, rowY - 52f), new Vector2(1400, 30));
 
             if (crtMaterial != null)
             {

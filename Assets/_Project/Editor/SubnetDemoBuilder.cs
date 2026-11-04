@@ -108,7 +108,7 @@ namespace Subnet.EditorTools
                 Debug.Log("[Subnet] Full game built. Press Play in 00_MainMenu.");
                 EditorUtility.DisplayDialog("Night Train Zero",
                     "Full game built (6 scenes).\n\nPress Play in 00_MainMenu.\n\n" +
-                    "Move: WASD / arrows\nInteract / advance: Z, E, Enter, Space\nBack: X / Esc (hold to skip cutscenes)\n\n" +
+                    "Move: WASD / arrows\nInteract / advance: E, Enter, Space\nBack: X / Esc (hold to skip cutscenes)\n\n" +
                     "No sound? Make sure the speaker icon in the Game view toolbar isn't muted, pick your Mac's output device, then restart Unity.",
                     "OK");
             }
@@ -331,7 +331,7 @@ namespace Subnet.EditorTools
             var promptFitter = prompt.AddComponent<ContentSizeFitter>();
             promptFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
             promptFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-            TextMeshProUGUI promptText = Text(prompt.transform, "Label", "<b>Z</b>  Look", 26, Cyan, TextAlignmentOptions.Center);
+            TextMeshProUGUI promptText = Text(prompt.transform, "Label", "<b>E</b>  Look", 26, Cyan, TextAlignmentOptions.Center);
             promptText.textWrappingMode = TextWrappingModes.NoWrap;
             Set(interactor, "promptLabel", promptText);
 
@@ -1001,8 +1001,8 @@ namespace Subnet.EditorTools
             return CreateProfile(name, p =>
             {
                 var bloomFx = p.Add<Bloom>(true);
-                bloomFx.intensity.value = bloom;
-                bloomFx.threshold.value = 0.9f;
+                bloomFx.intensity.value = bloom * 0.45f;
+                bloomFx.threshold.value = 1.1f;
                 p.Add<Vignette>(true).intensity.value = vignette;
                 var color = p.Add<ColorAdjustments>(true);
                 color.saturation.value = saturation;
@@ -1232,11 +1232,14 @@ namespace Subnet.EditorTools
             return material;
         }
 
+        private const float NeonStrength = 0.4f;
+
         private static Material EmissiveMaterial(string name, Color baseColor, Color emission)
         {
             Material material = LitMaterial(name, baseColor);
             material.EnableKeyword("_EMISSION");
-            material.SetColor("_EmissionColor", emission);
+            // Playtest feedback: the neon was hurting people's eyes. Every glow in the game is toned down here.
+            material.SetColor("_EmissionColor", emission * NeonStrength);
             material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
             EditorUtility.SetDirty(material);
             return material;

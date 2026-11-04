@@ -70,8 +70,21 @@ namespace Subnet.Hacking
         public int correctIndex;
         [TextArea(2, 4)] public string correctLine = "The firewall softens.";
         [TextArea(2, 4)] public string wrongLine = "The fragment bounces off.";
+        [Tooltip("Shown when the player picks [Listen closer]. Should point at the clue without giving the answer away.")]
+        [TextArea(2, 4)] public string hint = string.Empty;
+        [Tooltip("A second answer that also works (an honest 'I don't know', for example). -1 = none.")]
+        public int altCorrectIndex = -1;
+        [TextArea(2, 4)] public string altCorrectLine = string.Empty;
 
         public HackPuzzle() { }
+
+        public HackPuzzle(string prompt, string[] options, int correctIndex, string correctLine, string wrongLine, string hint,
+            int altCorrectIndex = -1, string altCorrectLine = "") : this(prompt, options, correctIndex, correctLine, wrongLine)
+        {
+            this.hint = hint;
+            this.altCorrectIndex = altCorrectIndex;
+            this.altCorrectLine = altCorrectLine;
+        }
 
         public HackPuzzle(string prompt, string[] options, int correctIndex, string correctLine, string wrongLine)
         {

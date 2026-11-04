@@ -38,11 +38,14 @@ namespace Subnet.Interaction
         [Tooltip("Leave as soon as the player walks into this trigger (needs a trigger Collider).")]
         [SerializeField] private bool triggerOnEnter;
         [SerializeField] private Transform promptAnchor;
+        [Tooltip("The exit doesn't even show a prompt until this flag is set (e.g. train doors before the train arrives).")]
+        [SerializeField] private string interactableAfterFlag = string.Empty;
 
         private bool leaving;
         private float lockedMessageCooldown;
 
-        public bool CanInteract => !triggerOnEnter && !leaving && isActiveAndEnabled;
+        public bool CanInteract => !triggerOnEnter && !leaving && isActiveAndEnabled
+            && (string.IsNullOrEmpty(interactableAfterFlag) || StoryFlags.Has(interactableAfterFlag));
 
         public Vector3 PromptAnchor => promptAnchor != null ? promptAnchor.position : transform.position + Vector3.up * 1.2f;
 

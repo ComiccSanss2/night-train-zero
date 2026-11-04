@@ -4,6 +4,7 @@ using Subnet.Cinematics;
 using Subnet.Dialogue;
 using Subnet.Gameplay;
 using Subnet.Interaction;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -30,7 +31,7 @@ namespace Subnet.EditorTools
             Material floorMat = LitMaterial("Reality/M_Floor_Boards", new Color(0.32f, 0.25f, 0.2f));
             Material wallMat = LitMaterial("Reality/M_Wall_Peeling", new Color(0.36f, 0.38f, 0.4f));
             Material doorMat = LitMaterial("Reality/M_Door", new Color(0.18f, 0.14f, 0.12f));
-            Material windowMat = EmissiveMaterial("Reality/M_Window_Neon", new Color(0.3f, 0.2f, 0.5f), new Color(0.9f, 0.3f, 1f) * 2.2f);
+            Material windowMat = EmissiveMaterial("Reality/M_Window_Neon", new Color(0.12f, 0.14f, 0.25f), new Color(0.45f, 0.4f, 0.9f) * 1.2f);
             Material screenMat = EmissiveMaterial("Reality/M_Handheld_Screen", new Color(0.05f, 0.1f, 0.1f), Cyan * 3f);
 
             // Room shell (the camera looks toward +X/+Z, so only the far walls are visible).
@@ -55,6 +56,21 @@ namespace Subnet.EditorTools
                 L("You never used that ticket."));
 
             GameObject window = Block("Prop_Window", ctx.props, new Vector3(-0.8f, 1.45f, 2.97f), new Vector3(1.4f, 0.9f, 0.06f), windowMat, ctx.interactableLayer);
+            {
+                Material frameMat = LitMaterial("Reality/M_WindowFrame", new Color(0.82f, 0.8f, 0.74f));
+                Material curtainMat = LitMaterial("Reality/M_Curtain", new Color(0.35f, 0.3f, 0.45f));
+                Vector3 w = new Vector3(-0.8f, 1.45f, 2.93f);
+                Deco("WinFrameTop", ctx.props, w + new Vector3(0f, 0.49f, 0f), new Vector3(1.56f, 0.08f, 0.1f), frameMat);
+                Deco("WinFrameBottom", ctx.props, w + new Vector3(0f, -0.49f, 0f), new Vector3(1.56f, 0.08f, 0.1f), frameMat);
+                Deco("WinFrameL", ctx.props, w + new Vector3(-0.74f, 0f, 0f), new Vector3(0.08f, 1.06f, 0.1f), frameMat);
+                Deco("WinFrameR", ctx.props, w + new Vector3(0.74f, 0f, 0f), new Vector3(0.08f, 1.06f, 0.1f), frameMat);
+                Deco("WinBarV", ctx.props, w + new Vector3(0f, 0f, -0.01f), new Vector3(0.05f, 0.92f, 0.06f), frameMat);
+                Deco("WinBarH", ctx.props, w + new Vector3(0f, 0.05f, -0.01f), new Vector3(1.42f, 0.05f, 0.06f), frameMat);
+                Deco("WinSill", ctx.props, w + new Vector3(0f, -0.56f, -0.09f), new Vector3(1.7f, 0.06f, 0.24f), frameMat);
+                Deco("CurtainL", ctx.props, w + new Vector3(-0.95f, 0.05f, -0.08f), new Vector3(0.32f, 1.3f, 0.05f), curtainMat);
+                Deco("CurtainR", ctx.props, w + new Vector3(0.95f, 0.05f, -0.08f), new Vector3(0.32f, 1.3f, 0.05f), curtainMat);
+                Deco("CurtainRod", ctx.props, w + new Vector3(0f, 0.74f, -0.1f), new Vector3(2.3f, 0.03f, 0.03f), frameMat);
+            }
             Inspectable(window, "Window",
                 L("Central Station glows below, wet and neon. Trains come and go like thoughts you can't hold onto."),
                 L("One of the trains has no number. You blink. It's gone."), "saw_ghost_train");
@@ -137,7 +153,7 @@ namespace Subnet.EditorTools
             DialogueSequence handheldSeq = SeqAsset("Act1/Handheld_First",
                 Say(null, "Your handheld. You modded it yourself, back when you still had weekends."),
                 Say(null, "It's lying on box fourteen. The last box. The lightest, and somehow the hardest to open."),
-                Ask(null, "Three unread. {p}Two voicemails from Mia, from months ago. {p}And one new message. No sender.",
+                Ask(null, "Three unread. {p}Two voicemails from Mia, my little sister, from months ago. {p}And one new message. No sender.",
                     Opt("[Listen to Mia]", "vm", "+openness;heard_mia;heard_mia_0;heard_mia_1"),
                     Opt("[Not now]", "msg")),
                 Say(null, "VOICEMAIL  //  MIA  //  MARCH 3", "vm"),
@@ -158,8 +174,7 @@ namespace Subnet.EditorTools
 
             // Guidance after the intro.
             Event(ctx, "WakeUp", Subnet.Gameplay.StoryEvent.TriggerMode.OnStart, "!handheld_checked", 1.2f, null, null,
-                L("* (Move with WASD or the arrow keys. Look at things with Z.)",
-                  "* My handheld won't stop buzzing. It's on the last box."), null, string.Empty);
+                L("* My handheld won't stop buzzing. It's on the last box."), null, string.Empty);
             Event(ctx, "Checked", Subnet.Gameplay.StoryEvent.TriggerMode.OnFlag, "handheld_checked", 0.6f, "UNKNOWN",
                 L("platform zero. 00:00. bring the handheld."), null, null, string.Empty);
 
@@ -205,7 +220,7 @@ namespace Subnet.EditorTools
             Material trackBedMat = LitMaterial("Reality/M_TrackBed", new Color(0.12f, 0.11f, 0.11f));
             Material tileMat = LitMaterial("Reality/M_Station_Tiles", new Color(0.55f, 0.58f, 0.6f));
             Material pillarMat = LitMaterial("Reality/M_Pillar", new Color(0.4f, 0.42f, 0.45f));
-            Material boardMat = EmissiveMaterial("Reality/M_Timetable", new Color(0.05f, 0.05f, 0.05f), new Color(1f, 0.6f, 0.15f) * 1.8f);
+            Material boardMat = LitMaterial("Reality/M_Timetable", new Color(0.04f, 0.04f, 0.05f));
             Material signalMat = EmissiveMaterial("Reality/M_RedSignal", new Color(0.3f, 0f, 0f), new Color(1f, 0.1f, 0.1f) * 3f);
             Material zeroMat = EmissiveMaterial("Reality/M_ZeroSign", new Color(0.1f, 0.05f, 0.15f), Magenta * 2.5f);
             Material grayMat = LitMaterial("Reality/M_Calcified", new Color(0.55f, 0.55f, 0.55f));
@@ -245,7 +260,22 @@ namespace Subnet.EditorTools
                   "At the bottom, a line flickers that wasn't there a second ago: <color=#FF4FD8>NIGHT TRAIN ZERO - PLATFORM 0 - 00:00 - ON TIME</color>.",
                   "* On time. That makes one of us."),
                 L("NIGHT TRAIN ZERO. On time. The only thing in this city that is."), "read_timetable");
-            PointLight(board.transform, board.transform.position + new Vector3(0, 0, -0.8f), new Color(1f, 0.6f, 0.2f), 1.6f, 3f);
+            PointLight(board.transform, board.transform.position + new Vector3(0, 0, -0.8f), new Color(1f, 0.6f, 0.2f), 1.0f, 3f);
+            Deco("BoardLegL", ctx.props, new Vector3(-7.15f, 0.58f, 2.02f), new Vector3(0.07f, 1.16f, 0.07f), pillarMat);
+            Deco("BoardLegR", ctx.props, new Vector3(-5.85f, 0.58f, 2.02f), new Vector3(0.07f, 1.16f, 0.07f), pillarMat);
+            Deco("BoardFrame", ctx.props, new Vector3(-6.5f, 1.6f, 2.03f), new Vector3(1.72f, 1.02f, 0.06f), pillarMat);
+            string[] boardLines = { "DEPARTURES", "LINE 3      CANCELLED", "LINE 7      DELAYED", "LINE 9      DELAYED" };
+            for (int i = 0; i < boardLines.Length; i++)
+            {
+                TextMeshPro line = WorldSign(board.transform, boardLines[i], new Vector3(-6.5f, 1.93f - i * 0.17f, 1.94f), 180f,
+                    i == 0 ? Color.white : new Color(1f, 0.7f, 0.25f), i == 0 ? 1.3f : 1.05f);
+                line.rectTransform.sizeDelta = new Vector2(1.45f, 0.2f);
+                line.alignment = i == 0 ? TextAlignmentOptions.Center : TextAlignmentOptions.Left;
+                line.fontStyle = i == 0 ? FontStyles.Bold : FontStyles.Normal;
+            }
+            TextMeshPro zeroLine = WorldSign(board.transform, "NIGHT TRAIN ZERO   PLATF. 0   00:00", new Vector3(-6.5f, 1.25f, 1.94f), 180f, new Color(1f, 0.45f, 0.85f), 0.95f);
+            zeroLine.rectTransform.sizeDelta = new Vector2(1.45f, 0.2f);
+            zeroLine.fontStyle = FontStyles.Bold;
 
             GameObject zeroSign = Block("Prop_PlatformZero", ctx.props, new Vector3(4.5f, 2.6f, 2.0f), new Vector3(1.2f, 0.5f, 0.08f), zeroMat, ctx.interactableLayer);
             Inspectable(zeroSign, "PlatformZeroSign",
@@ -349,9 +379,10 @@ namespace Subnet.EditorTools
                 L("This one's still valid. {p}Don't lose it.", "* He tips his cap. It doesn't have a train company's logo. It has a tiny zero."), null, spkConductor, conductorSeq);
             Set(conductorTalk, "requiredFlag", "train_arrived");
 
-            Exit(doors, SubnetScene, "ch3", "ticket_punched",
+            SceneExit trainDoors = Exit(doors, SubnetScene, "ch3", "ticket_punched",
                 L("* The edge of the platform. The tracks hum below.", "* Something about tonight feels scheduled. {p}And someone in a cap is watching my pocket."),
                 null, boarding, false, null, ctx.sfx, Clip("confirmation_003"));
+            Set(trainDoors, "interactableAfterFlag", "train_arrived"); // no "train door" prompt in front of an empty track
 
             Event(ctx, "Arrive", Subnet.Gameplay.StoryEvent.TriggerMode.OnStart, string.Empty, 1.5f, "UNKNOWN",
                 L("ur here. good. check the timetable."), L("* Central Station at 23:57. Empty, except for the people who look like they've forgotten how to leave."), null, string.Empty);

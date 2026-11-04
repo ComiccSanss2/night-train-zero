@@ -23,7 +23,7 @@ namespace Subnet.Player
         [Tooltip("Height of the detection sphere center above the player's pivot.")]
         [SerializeField] private float detectionHeight = 0.6f;
         [Tooltip("Objects outside this cone (degrees, total) in front of Leo are ignored.")]
-        [Range(30f, 360f)] [SerializeField] private float facingAngle = 110f;
+        [Range(30f, 360f)] [SerializeField] private float facingAngle = 170f;
         [Tooltip("How much facing direction weighs against distance (higher = aim matters more).")]
         [SerializeField] private float angleWeight = 0.025f;
         [Tooltip("A new target must beat the current one by this score margin to take focus.")]
@@ -38,7 +38,7 @@ namespace Subnet.Player
         [SerializeField] private Canvas promptCanvas;
         [Tooltip("Optional label inside the prompt; shows the key and the target's name.")]
         [SerializeField] private TMP_Text promptLabel;
-        [SerializeField] private string keyHint = "Z";
+        [SerializeField] private string keyHint = "E";
         [SerializeField] private float promptBobAmplitude = 4f;
         [SerializeField] private float promptBobSpeed = 4f;
 
@@ -118,6 +118,8 @@ namespace Subnet.Player
                 Vector3 toCenter = hit.bounds.center - origin;
                 toCenter.y = 0f;
                 float angle = toCenter.sqrMagnitude < 0.0001f ? 0f : Vector3.Angle(transform.forward, toCenter);
+                // Long things (walls, counters, boards): what counts is the nearest part, not the far-away center.
+                if (toTarget.sqrMagnitude > 0.0001f) angle = Mathf.Min(angle, Vector3.Angle(transform.forward, toTarget));
                 if (angle > halfAngle && distance > 0.15f) continue;
 
                 float score = distance + angle * angleWeight;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Subnet.Dialogue;
 using Subnet.Gameplay;
 using Subnet.Hacking;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -33,7 +34,7 @@ namespace Subnet.EditorTools
             Material concreteDark = LitMaterial("Subnet/M_Concrete_Dark", new Color(0.3f, 0.3f, 0.34f));
             Material stone = LitMaterial("Subnet/M_StatueStone", new Color(0.58f, 0.58f, 0.6f), 0.05f);
             Material tearMat = ParticleMaterial("Subnet/M_PixelTears", new Color(0.02f, 0.02f, 0.03f, 1f));
-            Material mapMat = EmissiveMaterial("Subnet/M_ParkMap", new Color(0.1f, 0.12f, 0.15f), new Color(0.5f, 0.8f, 1f) * 1.2f);
+            Material mapMat = LitMaterial("Subnet/M_ParkMap_Paper", new Color(0.78f, 0.8f, 0.72f));
             Material lampGlass = EmissiveMaterial("Subnet/M_LampGlass", new Color(0.4f, 0.35f, 0.25f), Color.black);
             Material receiptMat = LitMaterial("Subnet/M_Receipts", new Color(0.95f, 0.95f, 0.9f));
 
@@ -56,6 +57,12 @@ namespace Subnet.EditorTools
                   "Someone scratched a note into the plastic: <color=#B9A7FF>'They gave up in order. Light their lamps in the same order, and maybe they'll remember.'</color>"),
                 L("'They gave up in order.' First, then, last."));
             Deco("MapPole", ctx.props, new Vector3(-9.5f, 0.25f, 2.25f), new Vector3(0.1f, 0.5f, 0.1f), concreteDark);
+            TextMeshPro mapTitle = WorldSign(map.transform, "CONCRETE PARK", new Vector3(-9.5f, 1.38f, 2.14f), 180f, new Color(0.15f, 0.15f, 0.2f), 1.3f);
+            mapTitle.rectTransform.sizeDelta = new Vector2(1.3f, 0.2f);
+            TextMeshPro mapHere = WorldSign(map.transform, "YOU ARE HERE", new Vector3(-9.5f, 0.75f, 2.14f), 180f, new Color(0.75f, 0.15f, 0.2f), 0.9f);
+            mapHere.rectTransform.sizeDelta = new Vector2(1.3f, 0.2f);
+            Material inkMat = LitMaterial("Subnet/M_MapInk", new Color(0.3f, 0.45f, 0.35f));
+            Deco("MapPark", ctx.props, new Vector3(-9.5f, 1.02f, 2.14f), new Vector3(0.9f, 0.4f, 0.01f), inkMat);
 
             // Three weeping statues + their lamps.
             var lamps = new Dictionary<string, PuzzleSwitch>();
@@ -236,18 +243,21 @@ namespace Subnet.EditorTools
                 },
                 new[]
                 {
-                    new HackPuzzle("A broken memory: '...the smell of ____ on hot asphalt.' Reassemble it.",
+                    new HackPuzzle("A memory with a hole in it: '...the smell of [ ? ] on hot asphalt. We ran outside on purpose and came home soaked.' What fills the hole?",
                         new[] { "[EXHAUST FUMES]", "[SUMMER RAIN]", "[BURNT COFFEE]" }, 1,
                         "The stone around her shoulders softens. 'Summer rain... We used to run through it. On purpose.'",
-                        "The fragment doesn't fit. The stone gets a little colder."),
-                    new HackPuzzle("Another piece: '...my sister laughing at ____.'",
+                        "The fragment doesn't fit. The stone gets a little colder.",
+                        "'Came home soaked.' What falls from the sky in summer and makes warm pavement smell like that?"),
+                    new HackPuzzle("Another piece: '...my little sister, laughing so hard at [ ? ]. It went round and round and never caught anything.'",
                         new[] { "[MY PRESENTATION]", "[THE EVENING NEWS]", "[A DOG CHASING ITS OWN TAIL]" }, 2,
                         "A crack runs down the stone. Inside, someone laughs, small and surprised.",
-                        "'No... she never laughed at that.' The pixels fall faster."),
-                    new HackPuzzle("The last piece. She whispers: 'I'm not broken. I'm ____.'",
+                        "'No... she never laughed at that.' The pixels fall faster.",
+                        "'Round and round, never caught anything.' Which of these spins in circles?"),
+                    new HackPuzzle("The last piece. She whispers: 'I'm not broken. I'm [ ? ].'",
                         new[] { "[OBSOLETE]", "[TIRED, AND THAT'S ALLOWED]", "[FINE. I'M FINE.]" }, 1,
                         "'...Tired. And that's allowed.' She says it twice, like she's trying it on.",
-                        "'Fine.' The word lands like another layer of concrete."),
+                        "'Fine.' The word lands like another layer of concrete.",
+                        "She's been saying 'I'm fine' for years, and it turned her to stone. Which answer is honest, and gentle with her?"),
                 },
                 L("The stone cracks open. Underneath, a person. Breathing.",
                   "Thank you. I forgot I was allowed to cry and keep going at the same time.",

@@ -133,6 +133,7 @@ namespace Subnet.EditorTools
             tmp.fontStyle = FontStyles.Bold;
             tmp.rectTransform.sizeDelta = new Vector2(6f, 1.2f);
             tmp.textWrappingMode = TextWrappingModes.NoWrap;
+            Localize(tmp);
             return tmp;
         }
 

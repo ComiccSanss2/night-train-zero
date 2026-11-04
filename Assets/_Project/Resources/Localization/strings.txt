@@ -3865,3 +3865,173 @@ fr|Tu en empoches une poignée. Sans raison. {p}(Ça ressemble à une raison.)
 en|A few tokens left at the bottom. {p}Enough for one more trip. Somewhere.
 it|Sul fondo restano pochi gettoni. {p}Abbastanza per un altro viaggio. Da qualche parte.
 fr|Il reste quelques jetons au fond. {p}Assez pour un dernier voyage. Quelque part.
+
+# ---- Playtest fixes: tutorial, hints, clearer puzzles, signs
+
+en|Three unread. {p}Two voicemails from Mia, my little sister, from months ago. {p}And one new message. No sender.
+it|Tre non letti. {p}Due messaggi in segreteria di Mia, la mia sorellina, di mesi fa. {p}E un messaggio nuovo. Nessun mittente.
+fr|Trois non lus. {p}Deux messages vocaux de Mia, ma petite sœur, d'il y a des mois. {p}Et un nouveau message. Sans expéditeur.
+
+en|DEPARTURES
+it|PARTENZE
+fr|DÉPARTS
+
+en|LINE 3      CANCELLED
+it|LINEA 3      SOPPRESSA
+fr|LIGNE 3      SUPPRIMÉE
+
+en|LINE 7      DELAYED
+it|LINEA 7      IN RITARDO
+fr|LIGNE 7      RETARDÉE
+
+en|LINE 9      DELAYED
+it|LINEA 9      IN RITARDO
+fr|LIGNE 9      RETARDÉE
+
+en|NIGHT TRAIN ZERO   PLATF. 0   00:00
+it|NIGHT TRAIN ZERO   BIN. 0   00:00
+fr|NIGHT TRAIN ZERO   QUAI 0   00:00
+
+en|CONCRETE PARK
+it|CONCRETE PARK
+fr|CONCRETE PARK
+
+en|YOU ARE HERE
+it|VOI SIETE QUI
+fr|VOUS ÊTES ICI
+
+en|ENEMY FIREWALL
+it|FIREWALL NEMICO
+fr|PARE-FEU ENNEMI
+
+en|[Listen closer]
+it|[Ascolta meglio]
+fr|[Écouter mieux]
+
+en|Everything they said during the fight is a clue. Which answer would actually help them, not just shut them up?
+it|Tutto quello che ha detto durante lo scontro è un indizio. Quale risposta lo aiuterebbe davvero, invece di zittirlo e basta?
+fr|Tout ce qu'il a dit pendant le combat est un indice. Quelle réponse l'aiderait vraiment, au lieu de juste le faire taire ?
+
+en|(That fragment is gone now. One more wave, then try again.)
+it|(Quel frammento ora è sparito. Un'altra ondata, poi riprova.)
+fr|(Ce fragment a disparu. Encore une vague, puis réessaie.)
+
+en|[F] ITEM — NONE LEFT
+it|[F] OGGETTO — FINITI
+fr|[F] OBJET — PLUS RIEN
+
+en|[F] {0}
+it|[F] {0}
+fr|[F] {0}
+
+en|<color=#33FFF2>HOW TO HACK SOMEONE.</color> {p}It's not a fight. It's a conversation with bullets.
+it|<color=#33FFF2>COME HACKERARE QUALCUNO.</color> {p}Non è una lotta. È una conversazione, con i proiettili.
+fr|<color=#33FFF2>COMMENT HACKER QUELQU'UN.</color> {p}Ce n'est pas un combat. C'est une conversation, avec des balles.
+
+en|<color=#FFD84F>1. DODGE.</color> Move the heart. Every hit costs HP (the yellow bar under the arena is yours). Brushing past bullets without touching them earns bonus tokens.
+it|<color=#FFD84F>1. SCHIVA.</color> Muovi il cuore. Ogni colpo ti toglie PV (la barra gialla sotto l'arena è la tua). Sfiorare i proiettili senza toccarli ti dà gettoni bonus.
+fr|<color=#FFD84F>1. ESQUIVE.</color> Déplace le cœur. Chaque coup te coûte des PV (la barre jaune sous l'arène, c'est la tienne). Frôler les balles sans les toucher rapporte des jetons bonus.
+
+en|<color=#FFD84F>2. LISTEN.</color> They talk the whole time: the speech bubble, the taunts, the line after each wave. Every word is a clue about what hurts.
+it|<color=#FFD84F>2. ASCOLTA.</color> Parla per tutto il tempo: il fumetto, le provocazioni, la frase dopo ogni ondata. Ogni parola è un indizio su cosa gli fa male.
+fr|<color=#FFD84F>2. ÉCOUTE.</color> Il parle tout le temps : la bulle, les piques, la phrase après chaque vague. Chaque mot est un indice sur ce qui lui fait mal.
+
+en|<color=#FFD84F>3. UNDERSTAND.</color> After each wave, pick the memory fragment that answers them with kindness and honesty. Never the cold one, never the comfortable lie.
+it|<color=#FFD84F>3. CAPISCI.</color> Dopo ogni ondata, scegli il frammento di memoria che gli risponde con gentilezza e sincerità. Mai quello freddo, mai la bugia comoda.
+fr|<color=#FFD84F>3. COMPRENDS.</color> Après chaque vague, choisis le fragment de mémoire qui lui répond avec gentillesse et honnêteté. Jamais le froid, jamais le mensonge confortable.
+
+en|Each right answer breaks one block of their <color=#FF4FD8>FIREWALL</color> (top left). Not sure? Pick <color=#B9A7FF>[Listen closer]</color> for a hint. A wrong pick just means one more wave, and that fragment disappears.
+it|Ogni risposta giusta rompe un blocco del suo <color=#FF4FD8>FIREWALL</color> (in alto a sinistra). Non sei sicuro? Scegli <color=#B9A7FF>[Ascolta meglio]</color> per un indizio. Una risposta sbagliata vuol dire solo un'altra ondata, e quel frammento sparisce.
+fr|Chaque bonne réponse casse un bloc de son <color=#FF4FD8>PARE-FEU</color> (en haut à gauche). Pas sûr ? Choisis <color=#B9A7FF>[Écouter mieux]</color> pour un indice. Une erreur, c'est juste une vague de plus, et ce fragment disparaît.
+
+en|Low on HP? Press <color=#FFD84F>F</color> to drink a potion.
+it|Pochi PV? Premi <color=#FFD84F>F</color> per bere una pozione.
+fr|Peu de PV ? Appuie sur <color=#FFD84F>F</color> pour boire une potion.
+
+en|He's drowning in work. Another task won't help him. What would remind him that stopping can feel good?
+it|Sta affogando nel lavoro. Un altro compito non lo aiuterà. Cosa gli ricorderebbe che fermarsi può fare bene?
+fr|Il se noie sous le travail. Une tâche de plus ne l'aidera pas. Qu'est-ce qui lui rappellerait que s'arrêter peut faire du bien ?
+
+en|He thinks nobody sees him. Is there anyone who notices him every single day? Think of the café outside, and the little clouds on the cups.
+it|Pensa che nessuno lo veda. C'è qualcuno che lo nota ogni singolo giorno? Pensa al bar qui fuori, e alle nuvolette sui bicchieri.
+fr|Il pense que personne ne le voit. Quelqu'un le remarque-t-il chaque jour ? Pense au café dehors, et aux petits nuages sur les gobelets.
+
+en|Not a number, not a blank. Who was he before the paperwork? Something he did just because he loved it.
+it|Non un numero, non un vuoto. Chi era prima delle scartoffie? Qualcosa che faceva solo perché gli piaceva.
+fr|Ni un chiffre, ni un vide. Qui était-il avant la paperasse ? Quelque chose qu'il faisait juste parce qu'il aimait ça.
+
+en|A memory with a hole in it: '...the smell of [ ? ] on hot asphalt. We ran outside on purpose and came home soaked.' What fills the hole?
+it|Un ricordo con un buco: '...l'odore di [ ? ] sull'asfalto caldo. Correvamo fuori apposta e tornavamo a casa fradici.' Cosa riempie il buco?
+fr|Un souvenir avec un trou : « ...l'odeur de [ ? ] sur le bitume chaud. On sortait exprès et on rentrait trempés. » Qu'est-ce qui comble le trou ?
+
+en|'Came home soaked.' What falls from the sky in summer and makes warm pavement smell like that?
+it|'Tornavamo a casa fradici.' Cosa cade dal cielo d'estate e fa profumare così l'asfalto caldo?
+fr|« On rentrait trempés. » Qu'est-ce qui tombe du ciel en été et donne cette odeur au bitume chaud ?
+
+en|Another piece: '...my little sister, laughing so hard at [ ? ]. It went round and round and never caught anything.'
+it|Un altro pezzo: '...la mia sorellina che rideva tantissimo per [ ? ]. Girava e girava e non prendeva mai niente.'
+fr|Un autre morceau : « ...ma petite sœur, qui riait tellement devant [ ? ]. Ça tournait, tournait, et ça n'attrapait jamais rien. »
+
+en|'Round and round, never caught anything.' Which of these spins in circles?
+it|'Girava e girava, non prendeva mai niente.' Quale di questi gira in tondo?
+fr|« Ça tournait, tournait, sans jamais rien attraper. » Lequel de ces choix tourne en rond ?
+
+en|The last piece. She whispers: 'I'm not broken. I'm [ ? ].'
+it|L'ultimo pezzo. Sussurra: 'Non sono rotta. Sono [ ? ].'
+fr|Le dernier morceau. Elle murmure : « Je ne suis pas cassée. Je suis [ ? ]. »
+
+en|She's been saying 'I'm fine' for years, and it turned her to stone. Which answer is honest, and gentle with her?
+it|Dice 'sto bene' da anni, ed è diventata di pietra. Quale risposta è sincera, e gentile con lei?
+fr|Elle dit « ça va » depuis des années, et ça l'a changée en pierre. Quelle réponse est honnête, et douce avec elle ?
+
+en|FILE HEADER CORRUPTED. The file asks you one thing: why did you leave home?
+it|INTESTAZIONE DEL FILE CORROTTA. Il file ti chiede una cosa sola: perché te ne sei andato di casa?
+fr|EN-TÊTE DU FICHIER CORROMPU. Le fichier te demande une seule chose : pourquoi es-tu parti de chez toi ?
+
+en|[FOR A BETTER JOB]
+it|[PER UN LAVORO MIGLIORE]
+fr|[POUR UN MEILLEUR BOULOT]
+
+en|[I'M NOT SURE ANYMORE]
+it|[NON NE SONO PIÙ SICURO]
+fr|[JE NE SAIS PLUS TROP]
+
+en|[I THOUGHT THEY'D BE BETTER OFF WITHOUT ME]
+it|[PENSAVO CHE STESSERO MEGLIO SENZA DI ME]
+fr|[JE PENSAIS QU'ILS SERAIENT MIEUX SANS MOI]
+
+en|THE ALGORITHM: 'THE OFFICIAL STORY. I APPROVE.' It's what you tell everyone. The file stays locked.
+it|L'ALGORITMO: 'LA VERSIONE UFFICIALE. APPROVO.' È quello che racconti a tutti. Il file resta bloccato.
+fr|L'ALGORITHME : « LA VERSION OFFICIELLE. J'APPROUVE. » C'est ce que tu racontes à tout le monde. Le fichier reste verrouillé.
+
+en|The Algorithm loves tidy excuses, the kind you'd put on a form. The file only opens for something true, even 'I don't know'.
+it|L'Algoritmo adora le scuse ordinate, quelle da modulo. Il file si apre solo con qualcosa di vero, anche un 'non lo so'.
+fr|L'Algorithme adore les excuses bien rangées, celles qu'on écrit sur un formulaire. Le fichier ne s'ouvre qu'avec quelque chose de vrai, même « je ne sais pas ».
+
+en|'Not sure.' The file accepts that: honesty is a key too. The header repairs itself and shows what you couldn't say. {p}You thought they'd be better off without you.
+it|'Non ne sono sicuro.' Il file lo accetta: anche la sincerità è una chiave. L'intestazione si ripara e mostra quello che non riuscivi a dire. {p}Pensavi che stessero meglio senza di te.
+fr|« Je ne sais plus. » Le fichier l'accepte : l'honnêteté est une clé aussi. L'en-tête se répare et montre ce que tu n'arrivais pas à dire. {p}Tu pensais qu'ils seraient mieux sans toi.
+
+en|A phone buzzes inside the memory. The screen reads: <color=#FF4FD8>MIA (my little sister) - 14 missed calls</color>. Who have you been avoiding?
+it|Un telefono vibra dentro il ricordo. Sullo schermo: <color=#FF4FD8>MIA (la mia sorellina) - 14 chiamate perse</color>. Chi stai evitando?
+fr|Un téléphone vibre dans le souvenir. L'écran affiche : <color=#FF4FD8>MIA (ma petite sœur) - 14 appels manqués</color>. Qui évites-tu ?
+
+en|[MIA. MY SISTER.]
+it|[MIA. MIA SORELLA.]
+fr|[MIA. MA SŒUR.]
+
+en|Look at the phone in the memory again. The name is right there on the screen.
+it|Guarda di nuovo il telefono nel ricordo. Il nome è proprio lì, sullo schermo.
+fr|Regarde encore le téléphone dans le souvenir. Le nom est écrit sur l'écran.
+
+en|Fourteen missed calls. Why haven't you called back?
+it|Quattordici chiamate perse. Perché non hai richiamato?
+fr|Quatorze appels manqués. Pourquoi tu n'as pas rappelé ?
+
+en|Nobody ever said they were mad, and you're not busy: you're on a ghost train. Think of the boxes in your apartment, piling up a little more every day.
+it|Nessuno ha mai detto di essere arrabbiato, e non sei impegnato: sei su un treno fantasma. Pensa agli scatoloni nel tuo appartamento, che si accumulano un po' di più ogni giorno.
+fr|Personne n'a jamais dit être fâché, et tu n'es pas occupé : tu es dans un train fantôme. Pense aux cartons dans ton appartement, qui s'empilent un peu plus chaque jour.
+
+en|The Algorithm wants you to call it a defect so it can delete it. What has that static in your chest been doing all night? It's been pulling you somewhere.
+it|L'Algoritmo vuole che tu lo chiami un difetto, così può cancellarlo. Cosa ha fatto tutta la notte quel rumore bianco nel tuo petto? Ti ha tirato da qualche parte.
+fr|L'Algorithme veut que tu appelles ça un défaut, pour pouvoir l'effacer. Qu'a fait ce grésillement dans ta poitrine toute la nuit ? Il t'a tiré quelque part.
