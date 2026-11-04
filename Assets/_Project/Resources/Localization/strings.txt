@@ -4221,3 +4221,53 @@ fr|Cette semaine-là, Kira livra un dernier colis, à un hôpital dans le nord.\
 en|Kira kept skating. One day she'll open that package.\nCouriers always find the address eventually.
 it|Kira continuò a pattinare. Un giorno aprirà quel pacco.\nI corrieri prima o poi trovano sempre l'indirizzo.
 fr|Kira continua à rouler. Un jour, elle ouvrira ce colis.\nLes livreurs finissent toujours par trouver l'adresse.
+
+# ---- Controls HUD
+
+en|CONTROLS
+it|COMANDI
+fr|COMMANDES
+
+en|Move
+it|Muoviti
+fr|Se déplacer
+
+en|Space
+it|Spazio
+fr|Espace
+
+en|Look, talk, next line
+it|Guarda, parla, avanti
+fr|Regarder, parler, suite
+
+en|Back, pause menu
+it|Indietro, menu di pausa
+fr|Retour, menu pause
+
+en|Handheld: messages, items
+it|Palmare: messaggi, oggetti
+fr|Console : messages, objets
+
+en|Drink a potion (in fights)
+it|Bevi una pozione (negli scontri)
+fr|Boire une potion (en combat)
+
+en|Hide this
+it|Nascondi
+fr|Masquer
+
+en|Show controls
+it|Mostra i comandi
+fr|Afficher les commandes
+
+en|move the heart
+it|muovi il cuore
+fr|déplacer le cœur
+
+en|potion
+it|pozione
+fr|potion
+
+en|confirm, next line
+it|conferma, avanti
+fr|valider, suite

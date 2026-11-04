@@ -894,6 +894,8 @@ namespace Subnet.Hacking
                 }
             }
 
+            // Keep the moving feed clear of the firewall (left) and inside the screen.
+            motionGoal.x = Mathf.Clamp(motionGoal.x, -140f, 140f);
             float follow = 1f - Mathf.Exp(-6f * dt);
             frameMotion = Vector2.Lerp(frameMotion, motionGoal, follow);
             frameTilt = Mathf.Lerp(frameTilt, tiltGoal, follow);
@@ -1132,9 +1134,9 @@ namespace Subnet.Hacking
 
             firewallRow = RuntimeUI.Rect("Firewall", contentRect);
             // The ENEMY's firewall sits next to its live feed (top left), far from Leo's HP bar, so nobody mixes them up.
-            RuntimeUI.Place(firewallRow, new Vector2(0.5f, 0.5f), new Vector2(1f, 0.5f), new Vector2(-170f, 300f), new Vector2(300, 18));
+            RuntimeUI.Place(firewallRow, new Vector2(0.5f, 0.5f), new Vector2(1f, 0.5f), new Vector2(-300f, 300f), new Vector2(300, 18));
             TextMeshProUGUI firewallLabel = RuntimeUI.Text("FirewallLabel", contentRect, Loc.T("ENEMY FIREWALL"), 18, RuntimeUI.Magenta, TextAlignmentOptions.Right);
-            RuntimeUI.Place(firewallLabel.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(1f, 0f), new Vector2(-170f, 316f), new Vector2(300, 24));
+            RuntimeUI.Place(firewallLabel.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(1f, 0f), new Vector2(-300f, 316f), new Vector2(300, 24));
             var rowLayout = firewallRow.gameObject.AddComponent<HorizontalLayoutGroup>();
             rowLayout.spacing = 8;
             rowLayout.childAlignment = TextAnchor.MiddleRight;
@@ -1144,7 +1146,12 @@ namespace Subnet.Hacking
             rowLayout.childForceExpandHeight = false;
 
             statusText = RuntimeUI.Text("Status", contentRect, "", 20, RuntimeUI.Lilac, TextAlignmentOptions.Center);
-            RuntimeUI.Place(statusText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 1f), new Vector2(0, rowY - 52f), new Vector2(1400, 30));
+            RuntimeUI.Place(statusText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 1f), new Vector2(0, rowY - 44f), new Vector2(1400, 30));
+            statusText.textWrappingMode = TextWrappingModes.NoWrap;
+            if (battleHud != null) statusText.rectTransform.SetParent(battleHud.transform, false);
+            statusText.enableAutoSizing = true;
+            statusText.fontSizeMin = 14f;
+            statusText.fontSizeMax = 20f;
 
             if (crtMaterial != null)
             {

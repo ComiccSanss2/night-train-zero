@@ -44,7 +44,8 @@ namespace Subnet.UI
             canvas = RuntimeUI.CreateCanvas("ToastCanvas", transform, 90);
             Image bg = RuntimeUI.Image("Toast", canvas.transform, new Color(0.05f, 0.03f, 0.09f, 0.92f));
             panel = bg.rectTransform;
-            RuntimeUI.Place(panel, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-24f, -24f), new Vector2(460f, 58f));
+            // Top left: the top right corner belongs to incoming text messages.
+            RuntimeUI.Place(panel, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(24f, -24f), new Vector2(460f, 58f));
             Outline outline = bg.gameObject.AddComponent<Outline>();
             outline.effectColor = new Color(1f, 0.85f, 0.3f);
             outline.effectDistance = new Vector2(3, -3);
@@ -92,7 +93,7 @@ namespace Subnet.UI
                 label.text = queue.Dequeue();
                 panel.gameObject.SetActive(true);
                 if (coinClip != null) audioSource.PlayOneShot(coinClip, 0.6f);
-                Vector2 home = new Vector2(-24f, -24f);
+                Vector2 home = new Vector2(24f, -24f);
                 for (float t = 0f; t < 0.25f; t += GameTime.UnscaledDelta)
                 {
                     panel.anchoredPosition = home + new Vector2(0f, Mathf.Lerp(80f, 0f, Easing.Evaluate(EaseType.EaseOutBack, t / 0.25f)));

@@ -135,9 +135,10 @@ namespace Subnet.Hacking
         private RawImage backdropLines;
         private Image arenaGlow;
         private readonly List<Image> brackets = new List<Image>();
+        private CanvasGroup battleHud;
         private float ghostValue = 1f;
         private float fillValue = 1f;
-        private const float HpBarWidth = 230f;
+        private const float HpBarWidth = 170f;
 
         // ================================================================== Session
 
@@ -1335,6 +1336,11 @@ namespace Subnet.Hacking
                 hpGhost.sizeDelta = new Vector2(HpBarWidth * Mathf.Max(ghostValue, fillValue), hpGhost.sizeDelta.y);
             }
             if (!waveActive && particles.Count > 0) UpdateParticles(dt);
+            if (battleHud != null)
+            {
+                bool talking = DialogueManager.Instance != null && DialogueManager.Instance.IsOpen;
+                battleHud.alpha = Mathf.MoveTowards(battleHud.alpha, talking ? 0f : 1f, dt * 6f);
+            }
         }
 
         // ================================================================== UI construction
@@ -1395,16 +1401,24 @@ namespace Subnet.Hacking
 
         private void BuildCombatUI(RectTransform contentRect, float rowY)
         {
+            // Everything under the arena lives in one group that fades out while the dialogue box / choices are up,
+            // so the choice list never sits on top of the HP row or the status line.
+            RectTransform hud = RuntimeUI.Rect("BattleHUD", contentRect);
+            RuntimeUI.Stretch(hud);
+            battleHud = hud.gameObject.AddComponent<CanvasGroup>();
+            battleHud.blocksRaycasts = false;
+            contentRect = hud;
+
             // HP row (left, under the arena): LEO   HP [██████░░]  14 / 20
             RectTransform row = RuntimeUI.Rect("HPRow", contentRect);
-            RuntimeUI.Place(row, new Vector2(0.5f, 0.5f), new Vector2(0f, 1f), new Vector2(-arenaHalf.x, rowY), new Vector2(520f, 32f));
+            RuntimeUI.Place(row, new Vector2(0.5f, 0.5f), new Vector2(0f, 1f), new Vector2(-arenaHalf.x, rowY), new Vector2(arenaHalf.x - 10f, 32f));
             TextMeshProUGUI name = RuntimeUI.Text("Name", row, "LEO", 26, Color.white, TextAlignmentOptions.MidlineLeft);
             name.fontStyle = FontStyles.Bold;
-            RuntimeUI.Place(name.rectTransform, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), Vector2.zero, new Vector2(70f, 32f));
+            RuntimeUI.Place(name.rectTransform, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), Vector2.zero, new Vector2(56f, 32f));
             TextMeshProUGUI hpLabel = RuntimeUI.Text("HP", row, "HP", 18, new Color(1f, 0.85f, 0.25f), TextAlignmentOptions.MidlineLeft);
-            RuntimeUI.Place(hpLabel.rectTransform, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), new Vector2(78f, 0f), new Vector2(40f, 32f));
+            RuntimeUI.Place(hpLabel.rectTransform, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), new Vector2(60f, 0f), new Vector2(34f, 32f));
             Image barBack = RuntimeUI.Image("HPBack", row, new Color(0.55f, 0.08f, 0.15f, 1f));
-            RuntimeUI.Place(barBack.rectTransform, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), new Vector2(112f, 0f), new Vector2(HpBarWidth, 22f));
+            RuntimeUI.Place(barBack.rectTransform, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), new Vector2(96f, 0f), new Vector2(HpBarWidth, 22f));
             Outline barOutline = barBack.gameObject.AddComponent<Outline>();
             barOutline.effectColor = new Color(0f, 0f, 0f, 0.8f);
             barOutline.effectDistance = new Vector2(2, -2);
@@ -1418,12 +1432,26 @@ namespace Subnet.Hacking
             shine.rectTransform.anchorMin = new Vector2(0f, 0.6f);
             shine.rectTransform.anchorMax = new Vector2(1f, 0.9f);
             shine.rectTransform.offsetMin = shine.rectTransform.offsetMax = Vector2.zero;
-            hpNumbers = RuntimeUI.Text("Numbers", row, "", 24, Color.white, TextAlignmentOptions.MidlineLeft);
-            RuntimeUI.Place(hpNumbers.rectTransform, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), new Vector2(112f + HpBarWidth + 14f, 0f), new Vector2(140f, 32f));
+            hpNumbers = RuntimeUI.Text("Numbers", row, "", 22, Color.white, TextAlignmentOptions.MidlineLeft);
+            hpNumbers.textWrappingMode = TextWrappingModes.NoWrap;
+            RuntimeUI.Place(hpNumbers.rectTransform, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), new Vector2(96f + HpBarWidth + 10f, 0f), new Vector2(80f, 32f));
 
             // Item hint (right, under the arena).
             itemHint = RuntimeUI.Text("ItemHint", contentRect, "", 22, Color.white, TextAlignmentOptions.MidlineRight);
-            RuntimeUI.Place(itemHint.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(1f, 1f), new Vector2(arenaHalf.x, rowY), new Vector2(460f, 32f));
+            itemHint.textWrappingMode = TextWrappingModes.NoWrap;
+            itemHint.enableAutoSizing = true;
+            itemHint.fontSizeMin = 14f;
+            itemHint.fontSizeMax = 22f;
+            // Right half under the arena only, so it can never run into the HP row on the left.
+            RuntimeUI.Place(itemHint.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(1f, 1f), new Vector2(arenaHalf.x, rowY), new Vector2(arenaHalf.x - 10f, 32f));
+
+            // Fight controls, under the title at the top.
+            TextMeshProUGUI controls = RuntimeUI.Text("FightControls", contentRect, "", 18, new Color(0.65f, 0.7f, 0.78f), TextAlignmentOptions.Center);
+            controls.textWrappingMode = TextWrappingModes.NoWrap;
+            controls.text = "<color=#33FFF2><b>WASD / ←↑→↓</b></color> " + Loc.T("move the heart")
+                + "     <color=#33FFF2><b>F</b></color> " + Loc.T("potion")
+                + "     <color=#33FFF2><b>E</b></color> " + Loc.T("confirm, next line");
+            RuntimeUI.Place(controls.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -58f), new Vector2(1400f, 26f));
 
             // Decryption progress: a thin bar on the arena's top edge + label inside the top-right corner.
             Image progressBack = RuntimeUI.Image("ProgressBack", contentRect, new Color(1f, 1f, 1f, 0.08f));
