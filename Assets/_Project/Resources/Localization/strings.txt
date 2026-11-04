@@ -4035,3 +4035,189 @@ fr|Personne n'a jamais dit être fâché, et tu n'es pas occupé : tu es dans un
 en|The Algorithm wants you to call it a defect so it can delete it. What has that static in your chest been doing all night? It's been pulling you somewhere.
 it|L'Algoritmo vuole che tu lo chiami un difetto, così può cancellarlo. Cosa ha fatto tutta la notte quel rumore bianco nel tuo petto? Ti ha tirato da qualche parte.
 fr|L'Algorithme veut que tu appelles ça un défaut, pour pouvoir l'effacer. Qu'a fait ce grésillement dans ta poitrine toute la nuit ? Il t'a tiré quelque part.
+
+# ---- Bible part 5: act V and the true ending
+
+en|There's one package in my bag nobody ever claimed. {p}{small}Maybe someday I'll be brave enough to open it.{/small}
+it|C'è un pacco nella mia borsa che nessuno ha mai ritirato. {p}{small}Magari un giorno avrò il coraggio di aprirlo.{/small}
+fr|Il y a un colis dans mon sac que personne n'a jamais réclamé. {p}{small}Un jour, j'aurai peut-être le courage de l'ouvrir.{/small}
+
+en|Hey. {p}Remember the package with no name? {p}You said we'd deliver it together.
+it|Ehi. {p}Ti ricordi il pacco senza nome? {p}Avevi detto che l'avremmo consegnato insieme.
+fr|Hé. {p}Tu te souviens du colis sans nom ? {p}Tu avais dit qu'on le livrerait ensemble.
+
+en|I think... {p}{slow}I think it was for me.{/slow}
+it|Credo... {p}{slow}credo che fosse per me.{/slow}
+fr|Je crois... {p}{slow}je crois qu'il était pour moi.{/slow}
+
+en|She opens it. Inside: a postcard, soft from being carried. A stamp from a hospital gift shop.
+it|Lo apre. Dentro: una cartolina, consumata a forza di portarla in giro. Un francobollo del negozietto di un ospedale.
+fr|Elle l'ouvre. Dedans : une carte postale, toute douce à force d'avoir été transportée. Un timbre de la boutique d'un hôpital.
+
+en|<color=#FFD84F>'To the girl who brought me mail that wasn't mine. {p}It was always mine. Thank you. {p}Stop running sometime. - Room 9'</color>
+it|<color=#FFD84F>'Alla ragazza che mi portava posta che non era mia. {p}Era sempre mia. Grazie. {p}Prima o poi smetti di correre. - Stanza 9'</color>
+fr|<color=#FFD84F>« À la fille qui m'apportait du courrier qui n'était pas pour moi. {p}Il a toujours été pour moi. Merci. {p}Arrête de courir, un jour. - Chambre 9 »</color>
+
+en|{shake}...Ha.{/shake} {p}He knew. {p}{slow}He knew the whole time.{/slow}
+it|{shake}...Ah.{/shake} {p}Lo sapeva. {p}{slow}Lo sapeva da sempre.{/slow}
+fr|{shake}...Ha.{/shake} {p}Il savait. {p}{slow}Il savait depuis le début.{/slow}
+
+en|Okay. {p}I'm going to stop running. {p}{small}After this. Right after this.{/small}
+it|Ok. {p}Smetterò di correre. {p}{small}Dopo questo. Subito dopo questo.{/small}
+fr|D'accord. {p}Je vais arrêter de courir. {p}{small}Après ça. Juste après ça.{/small}
+
+en|My handheld buzzes. {p}Not a message. {p}{slow}A call.{/slow}
+it|Il mio palmare vibra. {p}Non è un messaggio. {p}{slow}È una chiamata.{/slow}
+fr|Ma console vibre. {p}Pas un message. {p}{slow}Un appel.{/slow}
+
+en|<color=#FF4FD8>MIA</color> is calling.
+it|<color=#FF4FD8>MIA</color> sta chiamando.
+fr|<color=#FF4FD8>MIA</color> appelle.
+
+en|[Answer]
+it|[Rispondi]
+fr|[Répondre]
+
+en|[Let it ring]
+it|[Lascia squillare]
+fr|[Laisser sonner]
+
+en|It rings. And rings. {p}Then it stops.
+it|Squilla. E squilla. {p}Poi smette.
+fr|Ça sonne. Et ça sonne. {p}Puis ça s'arrête.
+
+en|{small}Hey. It's me. I don't know why I keep calling this number at midnight.{/small}
+it|{small}Ehi. Sono io. Non so perché continuo a chiamare questo numero a mezzanotte.{/small}
+fr|{small}Hé. C'est moi. Je ne sais pas pourquoi j'appelle encore ce numéro à minuit.{/small}
+
+en|{small}...Okay. Bye.{/small}
+it|{small}...Ok. Ciao.{/small}
+fr|{small}...Bon. Salut.{/small}
+
+en|...Leo?
+it|...Leo?
+fr|...Leo ?
+
+en|Oh my god. You picked up. {p}{small}You actually picked up.{/small}
+it|Oddio. Hai risposto. {p}{small}Hai risposto davvero.{/small}
+fr|Oh mon dieu. Tu as décroché. {p}{small}Tu as vraiment décroché.{/small}
+
+en|["Hi, Mia."]
+it|["Ciao, Mia."]
+fr|[« Salut, Mia. »]
+
+en|["I'm sorry I missed your recital."]
+it|["Scusa se mi sono perso il tuo saggio."]
+fr|[« Pardon d'avoir raté ton spectacle. »]
+
+en|[Say nothing. Just listen.]
+it|[Non dire niente. Ascolta e basta.]
+fr|[Ne rien dire. Juste écouter.]
+
+en|Hi. {p}{wave}Hi hi hi.{/wave} {p}Okay. Sorry. You sound tired.
+it|Ciao. {p}{wave}Ciao ciao ciao.{/wave} {p}Ok. Scusa. Hai la voce stanca.
+fr|Salut. {p}{wave}Salut salut salut.{/wave} {p}Bon. Pardon. Tu as l'air fatigué.
+
+en|...Yeah. You did. {p}I bowed to an empty chair, you know. {p}{small}I'm still mad. I'm also really, really happy you called.{/small}
+it|...Già. Te lo sei perso. {p}Ho fatto l'inchino a una sedia vuota, sai. {p}{small}Sono ancora arrabbiata. E sono anche tanto, tanto felice che hai chiamato.{/small}
+fr|...Ouais. Tu l'as raté. {p}J'ai salué une chaise vide, tu sais. {p}{small}Je suis encore fâchée. Et je suis aussi vraiment, vraiment contente que tu appelles.{/small}
+
+en|You don't have to talk. I'll talk. {p}Mom made lasagna on Sunday. Dad fell asleep during the news. {p}{slow}Normal stuff. You're missing all the normal stuff.{/slow}
+it|Non devi parlare. Parlo io. {p}La mamma domenica ha fatto le lasagne. Papà si è addormentato durante il telegiornale. {p}{slow}Cose normali. Ti stai perdendo tutte le cose normali.{/slow}
+fr|T'es pas obligé de parler. Je parle, moi. {p}Maman a fait des lasagnes dimanche. Papa s'est endormi devant les infos. {p}{slow}Des trucs normaux. Tu rates tous les trucs normaux.{/slow}
+
+en|Where are you? {p}It sounds like a train.
+it|Dove sei? {p}Sembra un treno.
+fr|T'es où ? {p}On dirait un train.
+
+en|["Somewhere weird. I'm with friends."]
+it|["In un posto strano. Sono con degli amici."]
+fr|[« Quelque part de bizarre. Je suis avec des amis. »]
+
+en|["I think I'm on my way home."]
+it|["Credo di essere sulla strada di casa."]
+fr|[« Je crois que je rentre à la maison. »]
+
+en|Friends? {p}{bounce}Leo has friends?{/bounce} {p}Tell them I said thanks. For keeping you.
+it|Amici? {p}{bounce}Leo ha degli amici?{/bounce} {p}Ringraziali da parte mia. Per averti tenuto con loro.
+fr|Des amis ? {p}{bounce}Leo a des amis ?{/bounce} {p}Dis-leur merci de ma part. De t'avoir gardé.
+
+en|{slow}...Really?{/slow} {p}I'll wait at the station. {p}{small}I'll bring a sign. A stupid one.{/small}
+it|{slow}...Davvero?{/slow} {p}Ti aspetto in stazione. {p}{small}Porto un cartello. Uno stupido.{/small}
+fr|{slow}...C'est vrai ?{/slow} {p}Je t'attendrai à la gare. {p}{small}J'apporterai une pancarte. Une débile.{/small}
+
+en|The battery's dying. {p}Leo, whatever you're doing right now... {p}{slow}don't delete anything. Okay?{/slow}
+it|La batteria sta morendo. {p}Leo, qualunque cosa tu stia facendo adesso... {p}{slow}non cancellare niente. Ok?{/slow}
+fr|La batterie va lâcher. {p}Leo, quoi que tu sois en train de faire... {p}{slow}n'efface rien. D'accord ?{/slow}
+
+en|The line goes quiet. {p}Kira is looking at me like she heard every word.
+it|La linea tace. {p}Kira mi guarda come se avesse sentito ogni parola.
+fr|La ligne se tait. {p}Kira me regarde comme si elle avait entendu chaque mot.
+
+en|{small}She sounds like you. {p}When you're not pretending.{/small}
+it|{small}Ha la tua voce. {p}Quando non fai finta.{/small}
+fr|{small}Elle te ressemble. {p}Quand tu ne fais pas semblant.{/small}
+
+en|PLATFORM 0
+it|BINARIO 0
+fr|QUAI 0
+
+en|trains here. last one. {p}get on. {p}{small}u know where i am.{/small}
+it|il treno è qui. l'ultimo. {p}sali. {p}{small}sai dove sono.{/small}
+fr|le train est là. le dernier. {p}monte. {p}{small}tu sais où je suis.{/small}
+
+en|Night Train Zero. The doors are open. {p}It's waiting for me. One last time.
+it|Night Train Zero. Le porte sono aperte. {p}Mi aspetta. Un'ultima volta.
+fr|Night Train Zero. Les portes sont ouvertes. {p}Il m'attend. Une dernière fois.
+
+en|Behind me, the Algorithm hums. It's not attacking anymore. {p}It's just watching. Like it's waiting for my answer too.
+it|Dietro di me, l'Algoritmo ronza. Non attacca più. {p}Guarda e basta. Come se aspettasse anche lui la mia risposta.
+fr|Derrière moi, l'Algorithme bourdonne. Il n'attaque plus. {p}Il regarde, c'est tout. Comme s'il attendait ma réponse, lui aussi.
+
+en|[SHOW IT MIA'S DRAWING] 'Because you think too much.'
+it|[MOSTRAGLI IL DISEGNO DI MIA] 'Perché pensi troppo.'
+fr|[LUI MONTRER LE DESSIN DE MIA] « Parce que tu penses trop. »
+
+en|Leo held up a crayon drawing. A boy with an enormous head.\nThe Algorithm looked at it for a long time.
+it|Leo sollevò un disegno a pastelli. Un bambino con una testa enorme.\nL'Algoritmo lo guardò a lungo.
+fr|Leo leva un dessin au crayon. Un garçon avec une tête énorme.\nL'Algorithme le regarda longtemps.
+
+en|'I DO NOT UNDERSTAND,' it said. 'WHY KEEP SOMETHING THAT MAKES YOU HEAVIER?'\n'Because it's mine,' Leo said. 'Because someone made it for me.'
+it|'NON CAPISCO,' disse. 'PERCHÉ TENERE QUALCOSA CHE TI RENDE PIÙ PESANTE?'\n'Perché è mio,' disse Leo. 'Perché qualcuno l'ha fatto per me.'
+fr|« JE NE COMPRENDS PAS, » dit-il. « POURQUOI GARDER QUELQUE CHOSE QUI TE REND PLUS LOURD ? »\n« Parce que c'est à moi, » dit Leo. « Parce que quelqu'un l'a fait pour moi. »
+
+en|The Algorithm went quiet.\nFor the first time since the city built it, it rested.\nAcross Subnet, the lights dimmed to something softer.
+it|L'Algoritmo tacque.\nPer la prima volta da quando la città l'aveva costruito, si riposò.\nIn tutto il Subnet, le luci si fecero più morbide.
+fr|L'Algorithme se tut.\nPour la première fois depuis que la ville l'avait construit, il se reposa.\nDans tout le Subnet, les lumières devinrent plus douces.
+
+en|Night Train Zero took Leo home.\nIn the last carriage, on the seat by the window, a cat was waiting.\n<color=#33FFF2>'saved u a seat.'</color>
+it|Night Train Zero portò Leo a casa.\nNell'ultima carrozza, sul sedile accanto al finestrino, lo aspettava un gatto.\n<color=#33FFF2>'ti ho tenuto il posto.'</color>
+fr|Night Train Zero ramena Leo chez lui.\nDans le dernier wagon, sur le siège près de la fenêtre, un chat l'attendait.\n<color=#33FFF2>« je t'ai gardé une place. »</color>
+
+en|Leo knew that cat.\nA grey kitten Mia found under a car in 2003. She named him Byte,\nbecause her big brother was 'always on the computer'.
+it|Leo conosceva quel gatto.\nUn gattino grigio che Mia aveva trovato sotto una macchina nel 2003. L'aveva chiamato Byte,\nperché il suo fratellone era 'sempre al computer'.
+fr|Leo connaissait ce chat.\nUn chaton gris que Mia avait trouvé sous une voiture en 2003. Elle l'avait appelé Byte,\nparce que son grand frère était « toujours sur l'ordinateur ».
+
+en|He used to sleep on Leo's keyboard.\nHe was the first thing Leo ever let himself forget.\nHe never forgot Leo.
+it|Dormiva sulla tastiera di Leo.\nÈ stata la prima cosa che Leo si è concesso di dimenticare.\nLui non ha mai dimenticato Leo.
+fr|Il dormait sur le clavier de Leo.\nC'est la première chose que Leo s'est permis d'oublier.\nLui n'a jamais oublié Leo.
+
+en|The train arrived at dawn.\nMia was on the platform in her pajamas, holding a sign:\n<color=#FF4FD8>WELCOME HOME, BIG HEAD</color>
+it|Il treno arrivò all'alba.\nMia era sul binario in pigiama, con un cartello:\n<color=#FF4FD8>BENTORNATO, TESTONE</color>
+fr|Le train arriva à l'aube.\nMia était sur le quai en pyjama, avec une pancarte :\n<color=#FF4FD8>BIENVENUE À LA MAISON, GROSSE TÊTE</color>
+
+en|Leo cried in front of everyone.\nIt was very inefficient.\nIt was the best morning of his life.
+it|Leo pianse davanti a tutti.\nFu molto inefficiente.\nFu la mattina più bella della sua vita.
+fr|Leo pleura devant tout le monde.\nCe fut très inefficace.\nCe fut le plus beau matin de sa vie.
+
+en|TRUE ENDING  //  THE LAST TRAIN HOME
+it|FINALE VERO  //  L'ULTIMO TRENO PER CASA
+fr|VRAIE FIN  //  LE DERNIER TRAIN POUR LA MAISON
+
+en|Kira delivered one last package that week, to a hospital up north.\nThen she took off her skates, sat down on a bench, and stayed.
+it|Quella settimana Kira consegnò un ultimo pacco, a un ospedale al nord.\nPoi si tolse i pattini, si sedette su una panchina, e restò.
+fr|Cette semaine-là, Kira livra un dernier colis, à un hôpital dans le nord.\nPuis elle enleva ses rollers, s'assit sur un banc, et resta.
+
+en|Kira kept skating. One day she'll open that package.\nCouriers always find the address eventually.
+it|Kira continuò a pattinare. Un giorno aprirà quel pacco.\nI corrieri prima o poi trovano sempre l'indirizzo.
+fr|Kira continua à rouler. Un jour, elle ouvrira ce colis.\nLes livreurs finissent toujours par trouver l'adresse.

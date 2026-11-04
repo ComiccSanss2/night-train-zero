@@ -196,6 +196,19 @@ namespace Subnet.EditorTools
                 "He called home. Mia answered on the first ring.\n'You're late,' she said.\n'I know,' he said. 'I'm on my way.'",
                 "Somewhere in Subnet, a cat's collar flickered one last message:\n<color=#33FFF2>'proud of u. idiot.'</color>");
             ending.glitchTitle = "ENDING  //  LIVING WITH GLITCHES";
+            ending.trueOption = "[SHOW IT MIA'S DRAWING] 'Because you think too much.'";
+            ending.trueEpilogue = L(
+                "Leo held up a crayon drawing. A boy with an enormous head.\nThe Algorithm looked at it for a long time.",
+                "'I DO NOT UNDERSTAND,' it said. 'WHY KEEP SOMETHING THAT MAKES YOU HEAVIER?'\n'Because it's mine,' Leo said. 'Because someone made it for me.'",
+                "The Algorithm went quiet.\nFor the first time since the city built it, it rested.\nAcross Subnet, the lights dimmed to something softer.",
+                "Night Train Zero took Leo home.\nIn the last carriage, on the seat by the window, a cat was waiting.\n<color=#33FFF2>'saved u a seat.'</color>",
+                "Leo knew that cat.\nA grey kitten Mia found under a car in 2003. She named him Byte,\nbecause her big brother was 'always on the computer'.",
+                "He used to sleep on Leo's keyboard.\nHe was the first thing Leo ever let himself forget.\nHe never forgot Leo.",
+                "The train arrived at dawn.\nMia was on the platform in her pajamas, holding a sign:\n<color=#FF4FD8>WELCOME HOME, BIG HEAD</color>",
+                "Leo cried in front of everyone.\nIt was very inefficient.\nIt was the best morning of his life.");
+            ending.trueTitle = "TRUE ENDING  //  THE LAST TRAIN HOME";
+            ending.kiraPackagePage = "Kira delivered one last package that week, to a hospital up north.\nThen she took off her skates, sat down on a bench, and stayed.";
+            ending.kiraNoPackagePage = "Kira kept skating. One day she'll open that package.\nCouriers always find the address eventually.";
             ending.credits = "NIGHT TRAIN ZERO\n\nA story about trains, cats,\nand the static we carry.\n\nMade with Unity and Kenney assets.\n\nThank you for playing.";
             EditorUtility.SetDirty(ending);
 
@@ -247,8 +260,73 @@ namespace Subnet.EditorTools
             file.betweenRoundLines = L("HEADER RESTORED. ...YOU ARE READING IT ANYWAY. INEFFICIENT.",
                 "AUDIO RECOVERED. THIS VOICE INCREASES YOUR HEART RATE. I DO NOT UNDERSTAND.",
                 "THE BOXES. FOURTEEN OF THEM. YOU PACKED SILENCE AND CALLED IT MOVING ON.");
-            UnityEventTools.AddPersistentListener(file.onResolved, ending.Begin);
             EditorUtility.SetDirty(file);
+
+            // ---------------------------------------------------------------- Act V: after the file is read
+            // 1) Kira's package (only if Leo offered to deliver it with her in the park).
+            DialogueSequence package = SeqAsset("Act5/Kira_Package",
+                OnlyIf("!kira_package_accepted", Say(spkKira, "There's one package in my bag nobody ever claimed. {p}{small}Maybe someday I'll be brave enough to open it.{/small}", "", DialogueSequence.EndNodeId, "act5_package_done")),
+                OnlyIf("kira_package_accepted", Say(spkKira, "Hey. {p}Remember the package with no name? {p}You said we'd deliver it together.")),
+                OnlyIf("kira_package_accepted", Say(spkKira, "I think... {p}{slow}I think it was for me.{/slow}")),
+                OnlyIf("kira_package_accepted", Say(null, "She opens it. Inside: a postcard, soft from being carried. A stamp from a hospital gift shop.")),
+                OnlyIf("kira_package_accepted", Say(null, "<color=#FFD84F>'To the girl who brought me mail that wasn't mine. {p}It was always mine. Thank you. {p}Stop running sometime. - Room 9'</color>")),
+                OnlyIf("kira_package_accepted", Say(spkKira, "{shake}...Ha.{/shake} {p}He knew. {p}{slow}He knew the whole time.{/slow}")),
+                OnlyIf("kira_package_accepted", Say(spkKira, "Okay. {p}I'm going to stop running. {p}{small}After this. Right after this.{/small}", "", "", "kira_package_opened;+closeness#package_open;act5_package_done")));
+            Event(ctx, "Act5_Package", StoryEvent.TriggerMode.OnFlag, "core_file_read", 2f, null, null, null, null, string.Empty, default, default, package);
+
+            // 2) The call. Mia, live, for the first time in fourteen missed calls.
+            DialogueSequence call = SeqAsset("Act5/Mia_Call",
+                Say(null, "My handheld buzzes. {p}Not a message. {p}{slow}A call.{/slow}"),
+                Ask(null, "<color=#FF4FD8>MIA</color> is calling.",
+                    Opt("[Answer]", "answer", "answered_mia"),
+                    Opt("[Let it ring]", "ring")),
+                Say(null, "It rings. And rings. {p}Then it stops.", "ring"),
+                Say(spkMia, "{small}Hey. It's me. I don't know why I keep calling this number at midnight.{/small}"),
+                Say(spkMia, "{small}...Okay. Bye.{/small}", "", DialogueSequence.EndNodeId, "act5_call_done"),
+                Say(spkMia, "...Leo?", "answer"),
+                Say(spkMia, "Oh my god. You picked up. {p}{small}You actually picked up.{/small}"),
+                Ask(null, "...",
+                    Opt("[\"Hi, Mia.\"]", "hi"),
+                    Opt("[\"I'm sorry I missed your recital.\"]", "sorry", "+openness#call_sorry"),
+                    Opt("[Say nothing. Just listen.]", "listen")),
+                Say(spkMia, "Hi. {p}{wave}Hi hi hi.{/wave} {p}Okay. Sorry. You sound tired.", "hi", "middle"),
+                Say(spkMia, "...Yeah. You did. {p}I bowed to an empty chair, you know. {p}{small}I'm still mad. I'm also really, really happy you called.{/small}", "sorry", "middle"),
+                Say(spkMia, "You don't have to talk. I'll talk. {p}Mom made lasagna on Sunday. Dad fell asleep during the news. {p}{slow}Normal stuff. You're missing all the normal stuff.{/slow}", "listen", "middle"),
+                Ask(spkMia, "Where are you? {p}It sounds like a train.",
+                    Opt("[\"Somewhere weird. I'm with friends.\"]", "friends", "+closeness#call_friends"),
+                    Opt("[\"I think I'm on my way home.\"]", "home", "+openness#call_home")),
+                Say(spkMia, "Friends? {p}{bounce}Leo has friends?{/bounce} {p}Tell them I said thanks. For keeping you.", "friends", "battery"),
+                Say(spkMia, "{slow}...Really?{/slow} {p}I'll wait at the station. {p}{small}I'll bring a sign. A stupid one.{/small}", "home", "battery"),
+                Say(spkMia, "The battery's dying. {p}Leo, whatever you're doing right now... {p}{slow}don't delete anything. Okay?{/slow}", "battery"),
+                Say(null, "The line goes quiet. {p}Kira is looking at me like she heard every word."),
+                Say(spkKira, "{small}She sounds like you. {p}When you're not pretending.{/small}", "", "", "act5_call_done"));
+            Event(ctx, "Act5_Call", StoryEvent.TriggerMode.OnFlag, "act5_package_done", 1.5f, null, null, null, null, string.Empty, default, default, call);
+
+            // 3) The last train pulls into the Core. Walking to its doors starts the ending.
+            var lastTrain = new GameObject("LastTrain");
+            lastTrain.transform.SetParent(ctx.story, false);
+            lastTrain.transform.position = new Vector3(15.5f, 0f, -4.6f);
+            Set(lastTrain.AddComponent<ShowWhenFlag>(), "flag", "act5_call_done");
+            var trainVisual = new GameObject("Visual");
+            trainVisual.transform.SetParent(lastTrain.transform, false);
+            trainVisual.transform.position = new Vector3(15.5f, 0f, -5.4f);
+            GameObject carAsset = Model("train-electric-subway-b", "train-kit");
+            if (carAsset != null) SpawnModel(carAsset, trainVisual.transform, 6f, true, 0f);
+            else Deco("Car", trainVisual.transform, new Vector3(15.5f, 1.1f, -5.4f), new Vector3(6f, 2.2f, 1.8f), monolith);
+            PointLight(trainVisual.transform, new Vector3(15.5f, 1.6f, -4.2f), Warm, 3f, 6f);
+            Material platformGlow = EmissiveMaterial("Subnet/M_LastTrain_Platform", new Color(0.2f, 0.15f, 0.1f), Warm * 1.5f);
+            Deco("PlatformLine", trainVisual.transform, new Vector3(15.5f, 0.01f, -4.2f), new Vector3(6f, 0.02f, 0.12f), platformGlow);
+            TMPro.TextMeshPro zero = WorldSign(trainVisual.transform, "PLATFORM 0", new Vector3(15.5f, 2.9f, -4.4f), 180f, Warm, 3f);
+            zero.rectTransform.sizeDelta = new Vector2(4f, 0.6f);
+
+            Event(ctx, "Act5_TrainSms", StoryEvent.TriggerMode.OnFlag, "act5_call_done", 1.2f, "BYTE",
+                L("trains here. last one. {p}get on. {p}{small}u know where i am.{/small}"), null, null, string.Empty);
+            Event(ctx, "Act5_Board", StoryEvent.TriggerMode.OnPlayerEnter, "act5_call_done", 0.1f, null, null,
+                L("* Night Train Zero. The doors are open. {p}It's waiting for me. One last time.",
+                  "* Behind me, the Algorithm hums. It's not attacking anymore. {p}It's just watching. Like it's waiting for my answer too."),
+                null, "board_last_train",
+                new Vector3(15.5f, 1f, -3.6f), new Vector3(6f, 2f, 1.6f));
+            ending.beginOnFlag = "board_last_train";
 
             Event(ctx, "Arrive", StoryEvent.TriggerMode.OnStart, string.Empty, 1.2f, "BYTE",
                 L("this is it. the core. whatever happens, im a cat, i land on my feet. u? less sure."),

@@ -19,6 +19,18 @@ namespace Subnet.Gameplay
     {
         public const string VoidFlag = "ending_void";
         public const string GlitchFlag = "ending_glitch";
+        public const string TrueFlag = "ending_true";
+
+        /// <summary>
+        /// The secret ending opens only if Leo let people in (Openness), let them stay (Closeness),
+        /// kept Mia's drawing from his old room, and answered her call.
+        /// </summary>
+        public static bool TrueEndingUnlocked =>
+            Trust.Openness >= 6 && Trust.Closeness >= 6 && Inventory.HasKey("mia_drawing") && StoryFlags.Has("answered_mia");
+
+        [Header("Start")]
+        [Tooltip("Begins by itself once this flag is set (e.g. boarding the last train). Empty = call Begin().")]
+        public string beginOnFlag = string.Empty;
 
         [Header("Choice")]
         public DialogueSpeaker algorithmSpeaker;
@@ -32,6 +44,12 @@ namespace Subnet.Gameplay
         public string voidTitle = "ENDING  //  FRICTIONLESS";
         [TextArea(2, 5)] public string[] glitchEpilogue = { };
         public string glitchTitle = "ENDING  //  LIVING WITH GLITCHES";
+        [TextArea(2, 5)] public string[] trueEpilogue = { };
+        public string trueTitle = "TRUE ENDING  //  THE LAST TRAIN HOME";
+        public string trueOption = "[SHOW IT MIA'S DRAWING]";
+        [Tooltip("Extra page for the keep / true endings, depending on whether Kira opened her package.")]
+        [TextArea(2, 5)] public string kiraPackagePage = string.Empty;
+        [TextArea(2, 5)] public string kiraNoPackagePage = string.Empty;
         [TextArea(2, 6)] public string credits = "NIGHT TRAIN ZERO\n\nThank you for playing.";
 
         [Header("Audio")]
@@ -45,6 +63,11 @@ namespace Subnet.Gameplay
         private CanvasGroup overlay;
         private TextMeshProUGUI pageText;
         private bool running;
+
+        private void Update()
+        {
+            if (!running && !string.IsNullOrEmpty(beginOnFlag) && StoryFlags.Has(beginOnFlag)) Begin();
+        }
 
         public void Begin()
         {
@@ -73,6 +96,7 @@ namespace Subnet.Gameplay
                 var sequence = ScriptableObject.CreateInstance<DialogueSequence>();
                 sequence.hideFlags = HideFlags.DontSave;
                 var node = new DialogueNode { text = choicePrompt, effect = TextEffect.Shake };
+                if (TrueEndingUnlocked) node.choices.Add(new DialogueChoice { text = trueOption, nextNodeId = DialogueSequence.EndNodeId, flagToSet = TrueFlag });
                 node.choices.Add(new DialogueChoice { text = deleteOption, nextNodeId = DialogueSequence.EndNodeId, flagToSet = VoidFlag });
                 node.choices.Add(new DialogueChoice { text = keepOption, nextNodeId = DialogueSequence.EndNodeId, flagToSet = GlitchFlag });
                 sequence.nodes.Add(node);
@@ -84,17 +108,28 @@ namespace Subnet.Gameplay
             }
 
             bool keep = !StoryFlags.Has(VoidFlag);
+            bool trueEnding = StoryFlags.Has(TrueFlag);
             if (audioSource != null && choiceClip != null) audioSource.PlayOneShot(choiceClip);
 
-            BuildOverlay(keep ? Color.black : new Color(0.92f, 0.92f, 0.95f));
+            BuildOverlay(trueEnding ? new Color(0.06f, 0.04f, 0.1f) : keep ? Color.black : new Color(0.92f, 0.92f, 0.95f));
             yield return FadeOverlay(1f, keep ? 2.5f : 3.5f);
             yield return Wait(1f);
 
-            string[] pages = keep ? glitchEpilogue : voidEpilogue;
-            foreach (string page in pages) yield return ShowPage(page, false);
-            yield return ShowPage(keep ? glitchTitle : voidTitle, true);
+            string[] pages = trueEnding ? trueEpilogue : keep ? glitchEpilogue : voidEpilogue;
+            for (int i = 0; i < pages.Length; i++)
+            {
+                yield return ShowPage(pages[i], false);
+                // Kira's page comes right before the last one.
+                if (keep && i == pages.Length - 2)
+                {
+                    string kira = StoryFlags.Has("kira_package_opened") ? kiraPackagePage : kiraNoPackagePage;
+                    if (!string.IsNullOrEmpty(kira)) yield return ShowPage(kira, false);
+                }
+            }
+            yield return ShowPage(trueEnding ? trueTitle : keep ? glitchTitle : voidTitle, true);
             yield return ShowPage(credits, true);
 
+            if (trueEnding) { PlayerPrefs.SetInt("save.trueEndingSeen", 1); PlayerPrefs.Save(); }
             SaveData.ClearCheckpoint();
             foreach (string key in unlockOnFinish) SaveData.UnlockChapter(key);
             StoryFlags.ResetAll();

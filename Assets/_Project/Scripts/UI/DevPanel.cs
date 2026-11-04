@@ -87,6 +87,14 @@ namespace Subnet.UI
             if (GUILayout.Button("+1 potion")) Inventory.Add("potion");
             if (GUILayout.Button("Full HP")) Inventory.SetHP(Inventory.MaxHP);
             GUILayout.EndHorizontal();
+            GUILayout.Label("True ending: " + (Gameplay.EndingController.TrueEndingUnlocked ? "UNLOCKED" : "locked")
+                + $"  (open {Trust.Openness}/6, close {Trust.Closeness}/6, drawing {(Inventory.HasKey("mia_drawing") ? "yes" : "no")}, call {(StoryFlags.Has("answered_mia") ? "yes" : "no")})");
+            if (GUILayout.Button("Give true-ending requirements (except the call)"))
+            {
+                while (Trust.Openness < 6) Trust.AddOpenness();
+                while (Trust.Closeness < 6) Trust.AddCloseness();
+                Inventory.Add("mia_drawing");
+            }
             if (GUILayout.Button("Reset run (flags, values, messages)")) StoryFlags.ResetAll();
             if (GUILayout.Button("Reload this scene")) { visible = false; SceneLoader.Load(SceneManager.GetActiveScene().name, null, false); }
             GUILayout.EndScrollView();
