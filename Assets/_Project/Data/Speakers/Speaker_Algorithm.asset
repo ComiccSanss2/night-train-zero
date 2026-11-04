@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135178743d8e84e03b2c773701fa7dc1, type: 3}
+  m_Name: Speaker_Algorithm
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSpeaker
+  displayName: THE ALGORITHM
+  nameColor: {r: 1, g: 0.31, b: 0.85, a: 1}
+  portrait: {fileID: 0}
+  style: 5
+  textColor: {r: 1, g: 0.5, b: 0.66, a: 1}
+  signatureEffect: 3
+  voiceBlip: {fileID: 8300000, guid: cbfdcabf6d4ba4c7d8cad39f574650f6, type: 3}
+  voiceVolume: 0.55
+  pitchRange: {x: 0.5, y: 0.6}
+  blipEveryNCharacters: 2
+  typingSpeedMultiplier: 0.65

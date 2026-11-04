@@ -1,0 +1,298 @@
+#if UNITY_EDITOR
+using Subnet.Cinematics;
+using Subnet.Dialogue;
+using Subnet.Gameplay;
+using Subnet.Hacking;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.Rendering;
+using Object = UnityEngine.Object;
+
+namespace Subnet.EditorTools
+{
+    public static partial class SubnetGameBuilder
+    {
+        // ====================================================================== 03_Subnet_Commercial (Act II)
+
+        private static void BuildSubnetScene()
+        {
+            VolumeProfile profile = LookProfile("PP_Subnet_Commercial", 15f, 1.4f, 0.3f, 0.15f, 0.25f, new Color(1f, 0.92f, 1f));
+            Ctx ctx = BeginGameplayScene(new Vector3(-14f, 0f, 0f), 90f, profile,
+                new Color(0.36f, 0.3f, 0.46f), new Color(1f, 0.72f, 0.92f), 0.6f, true);
+
+            AddSceneMusic(true);
+            ctx.removeAmbience = true;
+            ctx.ambience.masterVolume = 0.45f;
+            ctx.ambience.pad = 0.55f;
+            ctx.ambience.hum = 0.12f;
+            ctx.ambience.humFrequency = 55f;
+            ctx.ambience.crackle = 0.05f;
+            ctx.ambience.wind = 0.08f;
+            ctx.ambience.rain = 0f;
+
+            Material groundMat = LitMaterial("Subnet/M_Street_Lilac", new Color(0.52f, 0.44f, 0.72f), 0.4f);
+            Material sidewalkMat = LitMaterial("Subnet/M_Sidewalk_Pink", new Color(0.95f, 0.62f, 0.82f));
+            Material neonCyan = EmissiveMaterial("Subnet/M_Neon_Cyan", new Color(0.1f, 0.3f, 0.3f), Cyan * 3f);
+            Material neonMagenta = EmissiveMaterial("Subnet/M_Neon_Magenta", new Color(0.3f, 0.1f, 0.25f), Magenta * 3f);
+            Material staticMat = EmissiveMaterial("Subnet/M_StaticWall", new Color(0.2f, 0.1f, 0.25f), new Color(0.8f, 0.4f, 1f) * 2f);
+            Material mannequinMat = LitMaterial("Subnet/M_Mannequin", new Color(0.92f, 0.9f, 0.95f), 0.6f);
+            Material paperMat = LitMaterial("Subnet/M_Paperwork", new Color(0.96f, 0.95f, 0.9f));
+            Material stoneGray = LitMaterial("Subnet/M_Calcified_Commuter", new Color(0.62f, 0.62f, 0.6f));
+            Material clockMat = EmissiveMaterial("Subnet/M_ClockFace", new Color(0.9f, 0.9f, 0.85f), new Color(1f, 0.95f, 0.8f) * 0.8f);
+            Material handMat = LitMaterial("Subnet/M_ClockHand", new Color(0.1f, 0.1f, 0.12f));
+            Material signMat = EmissiveMaterial("Subnet/M_SaleSign", new Color(0.3f, 0.05f, 0.2f), new Color(1f, 0.4f, 0.7f) * 2.2f);
+            Material redMat = EmissiveMaterial("Subnet/M_TrafficRed", new Color(0.3f, 0f, 0f), new Color(1f, 0.15f, 0.2f) * 3f);
+            Material poleMat = LitMaterial("Subnet/M_Pole", new Color(0.3f, 0.28f, 0.38f));
+
+            // Street shell
+            Block("Street", ctx.env, new Vector3(3f, -0.1f, 0f), new Vector3(42f, 0.2f, 8.4f), groundMat, ctx.groundLayer);
+            Block("Sidewalk", ctx.env, new Vector3(3f, 0.02f, 3.7f), new Vector3(42f, 0.1f, 1.2f), sidewalkMat, ctx.groundLayer);
+            Block("BackLot", ctx.env, new Vector3(3f, -0.1f, 10f), new Vector3(42f, 0.2f, 12f), sidewalkMat, 0);
+            for (float x = -16f; x <= 22f; x += 3f)
+            {
+                Deco("LaneMark", ctx.env, new Vector3(x, 0.005f, 0f), new Vector3(1.4f, 0.01f, 0.12f), neonCyan);
+            }
+            Deco("CurbNeon", ctx.env, new Vector3(3f, 0.08f, 3.08f), new Vector3(42f, 0.04f, 0.06f), neonMagenta);
+            Block("Bound_North", ctx.env, new Vector3(3f, 1f, 4.4f), new Vector3(42f, 2f, 0.2f), null, 0);
+            Block("Bound_South", ctx.env, new Vector3(3f, 1f, -4.3f), new Vector3(42f, 2f, 0.2f), null, 0);
+            Block("Bound_West", ctx.env, new Vector3(-17f, 1f, 0f), new Vector3(0.2f, 2f, 8.6f), null, 0);
+            Block("Bound_East", ctx.env, new Vector3(23.5f, 1f, 0f), new Vector3(0.2f, 2f, 8.6f), null, 0);
+
+            // Buildings: a front row whose facades start behind the sidewalk boundary, then a skyline behind it.
+            string[] front = { "building-a", "building-b", "building-c", "building-d", "building-e", "building-f", "building-g", "building-h", "building-i", "building-j" };
+            float frontBack = BuildingRow(ctx.env, front, "commercial", -17f, 24f, 4.8f, 5.5f, 1.5f, 0.5f, 7f, 180f);
+            string[] skyline = { "building-skyscraper-a", "building-skyscraper-b", "building-skyscraper-c", "building-skyscraper-d", "building-skyscraper-e" };
+            BuildingRow(ctx.env, skyline, "commercial", -17f, 24f, frontBack + 1.5f, 11f, 3f, 1f, 9f, 180f, 8);
+
+            // Neon lights along the street
+            for (int i = 0; i < 6; i++)
+            {
+                float x = -13f + i * 6.5f;
+                PointLight(ctx.env, new Vector3(x, 2.6f, 2.6f), i % 2 == 0 ? Magenta : Cyan, 3f, 7f);
+            }
+
+            const string F = "furniture";
+
+            // Streetlamps
+            GameObject lamp = Prop(ctx, "Streetlamp", "lampSquareFloor", F, new Vector3(-11f, 0, 3.4f), 0, 2.6f, false,
+                L("A silent streetlamp. It says it's tired of telling everyone where to go.", "* Same, buddy. Same."),
+                L("It flickers once, like a shrug."), null, true, spkObject);
+            PointLight(lamp.transform, lamp.transform.position + Vector3.up * 2.5f, Cyan, 2f, 5f);
+            Prop(ctx, "Streetlamp2", "lampSquareFloor", F, new Vector3(16f, 0, 3.4f), 0, 2.6f, false, null);
+
+            // Byte the cat
+            DialogueSequence byteMeeting = SeqAsset("Act2/Byte_Meeting",
+                Say(spkByte, "Oh good. You made it. I was starting to think you'd stay on the train forever. People do that, you know."),
+                Say(null, "A cat. Talking. Its collar is a tiny holographic screen scrolling old text messages from 2003."),
+                Ask(spkByte, "Name's Byte. Before you ask: yes, I'm a cat. No, I won't explain the collar. Questions?",
+                    Opt("Where am I?", "where"),
+                    Opt("Did you send me those messages?", "msgs"),
+                    Opt("I'm dreaming, right?", "dream")),
+                Say(spkByte, "Subnet. The city under the city. Everything people throw away ends up here: dreams, habits, the version of themselves they gave up on.", "where", "cont"),
+                Say(spkByte, "Guilty. I text in lowercase. It's a whole aesthetic.", "msgs", "cont"),
+                Say(spkByte, "Sure. And I'm a lucid hallucination with excellent taste in collars. Doesn't make the static in your chest any less real.", "dream", "cont"),
+                Say(spkByte, "Look. The city's sick. Something called The Algorithm is eating feelings and calling it efficiency. And for some reason, your handheld can talk to it.", "cont"),
+                Say(spkByte, "So I'm coming with you. Not because I care. Because I'm bored. ...Mostly bored.", "", "", "met_byte"),
+                Say(null, "(BYTE joined you. Its collar will text you when you look lost.)"));
+
+            GameObject byteNpc = Character(ctx, "Byte", "animal-cat", "cube-pets", new Vector3(-9f, 0f, 1.6f), -90f, 0.45f, null, false);
+            Inspectable(byteNpc, "Byte", L("..."),
+                L("Keep walking. The interesting stuff is always behind the scariest wall.", "Also, don't pet me. ...Okay, once."),
+                "met_byte", spkByte, byteMeeting);
+            Follower(byteNpc, "met_byte", -0.6f);
+
+            // Static wall that opens after meeting Byte
+            GameObject staticWall = Block("StaticWall", ctx.props, new Vector3(-6.5f, 1.2f, 0f), new Vector3(0.3f, 2.4f, 8.4f), staticMat, ctx.interactableLayer);
+            Inspectable(staticWall, "StaticWall",
+                L("A wall of pure static. It hisses like a TV left on at 3 a.m.", "* Behind me, a cat is staring at me like I'm supposed to say hello first."),
+                L("* Still static. Still a cat staring at me."));
+            Set(staticWall.AddComponent<FlagGate>(), "openFlag", "met_byte");
+            PointLight(staticWall.transform, staticWall.transform.position + new Vector3(-0.8f, 0.5f, 0), new Color(0.8f, 0.4f, 1f), 2.5f, 5f);
+
+            // Café
+            Prop(ctx, "CafeTable", "tableRound", F, new Vector3(-3f, 0, 2.6f), 0, 0.7f, false,
+                L("A café table where nobody sits down. The chairs look relieved."),
+                L("The menu lists one item: 'A MOMENT TO YOURSELF - SOLD OUT'."));
+            Prop(ctx, "CafeChair1", "chair", F, new Vector3(-3.7f, 0, 2.6f), 90, 0.8f, false, null);
+            Prop(ctx, "CafeChair2", "chair", F, new Vector3(-2.3f, 0, 2.6f), -90, 0.8f, false, null);
+            Prop(ctx, "Parasol", "detail-parasol-a", "commercial", new Vector3(-3f, 0, 2.6f), 0, 2.2f, false, null, null, null, false);
+            Prop(ctx, "Vending", "kitchenFridgeLarge", F, new Vector3(-0.5f, 0, 3.5f), 180, 1.6f, false,
+                L("A vending machine that sells MOTIVATION in tiny cans. Out of stock. It's always out of stock."),
+                L("You press the button anyway. It dispenses a receipt that says 'MAYBE TOMORROW'."));
+
+            // Sale sign + mannequin time-loop
+            GameObject sign = Block("Prop_SaleSign", ctx.props, new Vector3(3f, 2.4f, 3.9f), new Vector3(3f, 0.7f, 0.1f), signMat, ctx.interactableLayer);
+            Inspectable(sign, "SaleSign",
+                L("A neon sign: SALE! YOUR FREE TIME, 50% OFF!", "* Terms and conditions: all of them."),
+                L("The sign blinks faster when you look at it. It knows."));
+            Vector3 plaza = new Vector3(3f, 0f, 0f);
+            string[] mannequinLines =
+            {
+                "Buy. Return. Buy. Return. If I stop walking, I'll have to ask myself what I actually wanted.",
+                "SALE! SALE! Everything must go! ...Including me, apparently.",
+                "I came here for one thing. I forgot what. So I'm buying everything, just in case.",
+                "Don't look at me. I'm not a person, I'm a lifestyle. A limited edition.",
+                "We've walked this circle four thousand times. The music never changes. The music never changes."
+            };
+            string[] mannequinModels = { "character-female-a", "character-male-a", "character-female-e", "character-male-c", "character-female-f" };
+            for (int i = 0; i < 5; i++)
+            {
+                float angle = i * 72f;
+                Vector3 pos = plaza + new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad)) * 2.3f;
+                GameObject m = Character(ctx, "Mannequin_" + i, mannequinModels[i], "mini-characters", pos, 0f, 1.05f, mannequinMat, false);
+                Inspectable(m, "Mannequin_" + i, L(mannequinLines[i]), L("The circle continues. The circle always continues."), null, spkCommuter);
+                var walker = m.AddComponent<LoopWalker>();
+                walker.Configure(plaza, 2.3f, 22f, angle);
+                EditorUtility.SetDirty(walker);
+            }
+
+            // Traffic light
+            Deco("TrafficPole", ctx.props, new Vector3(7.5f, 1.2f, 3.5f), new Vector3(0.12f, 2.4f, 0.12f), poleMat);
+            GameObject red = Block("Prop_TrafficLight", ctx.props, new Vector3(7.5f, 2.4f, 3.4f), new Vector3(0.3f, 0.3f, 0.2f), redMat, ctx.interactableLayer);
+            Inspectable(red, "TrafficLight",
+                L("A red traffic light. It whispers: 'What if you're going the wrong way? What if there is no right way?'",
+                  "It turns green. It doesn't apologize."),
+                L("Red again. It's going through something."), null, spkObject);
+
+            // Kira
+            DialogueSequence kiraMeeting = SeqAsset("Act2/Kira_Meeting",
+                Say(spkKira, "Whoa, careful! I'm on a deadline. I'm always on a deadline."),
+                Say(null, "A courier on jet-powered inline skates. Her thermal backpack is glowing and humming softly, like it's purring."),
+                Say(spkKira, "I'm Kira. I deliver care packages. Little boxes of self-esteem, addressed to people nobody sees anymore."),
+                Ask(spkKira, "Problem is, my route's blocked. Some guy turned into a wall of overtime and paperwork. You look... less busy than me. Can you help?",
+                    Opt("I'll talk to him.", "yes", "kira_trusts_leo"),
+                    Opt("Why don't YOU do it?", "why")),
+                Say(spkKira, "Because if I stop moving, I have to feel things. And I'm booked solid until, uh, forever.", "why", "after"),
+                Say(spkKira, "Really? Okay. Okay! That's... nobody ever offers.", "yes", "after"),
+                Say(spkByte, "Use the handheld, genius. It can read the source code of sad things.", "after"),
+                Say(spkKira, "The wall's at the end of the street. Don't let the clocks get in your head. They bite."));
+
+            GameObject kira = Character(ctx, "Kira", "character-female-c", "mini-characters", new Vector3(9.5f, 0f, -1.6f), -90f, 1.05f);
+            Inspectable(kira, "Kira", L("..."),
+                L("Still here! Technically on break. Don't tell my rating.", "The wall's that way. Be nice to it. It's having a rough decade."),
+                "met_kira", spkKira, kiraMeeting);
+            // Jet-skate glow under her feet.
+            Deco("SkateGlow", kira.transform, kira.transform.position + new Vector3(0, 0.03f, 0), new Vector3(0.45f, 0.03f, 0.45f), neonCyan);
+            PointLight(kira.transform, kira.transform.position + new Vector3(0, 0.8f, -0.6f), new Color(1f, 0.7f, 0.3f), 1.2f, 2.5f);
+
+            // The Wall of Overtime (Obstacle Hacking #1)
+            var wallRoot = new GameObject("Obstacle_WallOfOvertime");
+            wallRoot.transform.SetParent(ctx.story, false);
+            wallRoot.transform.position = new Vector3(14f, 0f, 0f);
+            wallRoot.layer = ctx.interactableLayer;
+            var wallCollider = wallRoot.AddComponent<BoxCollider>();
+            wallCollider.center = new Vector3(0, 1.5f, 0);
+            wallCollider.size = new Vector3(1.6f, 3f, 8.6f);
+
+            var shell = new GameObject("Shell");
+            shell.transform.SetParent(wallRoot.transform, false);
+            var rng = new System.Random(7);
+            for (int i = 0; i < 70; i++)
+            {
+                float y = (float)rng.NextDouble() * 2.8f + 0.1f;
+                float z = (float)rng.NextDouble() * 8.2f - 4.1f;
+                float x = (float)rng.NextDouble() * 0.9f - 0.45f;
+                Deco("Paper", shell.transform, wallRoot.transform.position + new Vector3(x, y, z),
+                    new Vector3(0.08f, 0.55f, 0.42f), paperMat, new Vector3((float)rng.NextDouble() * 40f - 20f, (float)rng.NextDouble() * 60f - 30f, (float)rng.NextDouble() * 360f));
+            }
+            GameObject commuter = Character(ctx, "WallCommuter", "character-male-f", "mini-characters", wallRoot.transform.position + new Vector3(-0.4f, 0, 0), -90f, 1.1f, stoneGray, false, shell.transform);
+            Object.DestroyImmediate(commuter.GetComponent<Collider>());
+            for (int i = 0; i < 4; i++)
+            {
+                var clock = new GameObject("Clock_" + i);
+                clock.transform.SetParent(shell.transform, false);
+                clock.transform.position = wallRoot.transform.position + new Vector3(-0.7f, 1.4f + (i % 2) * 1.1f, -3f + i * 2f);
+                GameObject face = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                Object.DestroyImmediate(face.GetComponent<Collider>());
+                face.transform.SetParent(clock.transform, false);
+                face.transform.localScale = new Vector3(0.7f, 0.03f, 0.7f);
+                face.transform.localRotation = Quaternion.Euler(0, 0, 90);
+                face.GetComponent<Renderer>().sharedMaterial = clockMat;
+                var hand = Deco("Hand", clock.transform, clock.transform.position + new Vector3(-0.05f, 0.12f, 0), new Vector3(0.02f, 0.28f, 0.04f), handMat);
+                hand.transform.SetParent(clock.transform, true);
+                var spinner = clock.AddComponent<Spinner>();
+                spinner.degreesPerSecond = new Vector3(i % 2 == 0 ? 90f : -140f, 0, 0);
+                spinner.bobAmplitude = 0.12f;
+            }
+            PointLight(wallRoot.transform, wallRoot.transform.position + new Vector3(-1.5f, 2f, 0), new Color(1f, 0.95f, 0.8f), 2.5f, 6f);
+
+            GameObject freed = Character(ctx, "FreedCommuter", "character-male-f", "mini-characters", new Vector3(13.2f, 0f, -2.8f), -140f, 1.05f, null, false);
+            Inspectable(freed, "FreedCommuter",
+                L("I'm going to take a lunch break. A real one. With a sandwich and everything.", "Thank you for... not fighting me. Nobody's ever not fought me."),
+                L("Did you know the sky here is pink? I never looked up before."), null, spkCommuter);
+
+            HackableObstacle wallHack = Hackable(wallRoot, "COMMUTER_0451.exe  //  'THE WALL OF OVERTIME'", spkCommuter,
+                L("Can't talk. Behind. Always behind.",
+                  "If I stop moving, the paperwork catches up. So I became the paperwork.",
+                  "* My handheld vibrates. It wants to connect to him. To read whatever he's become."),
+                new[]
+                {
+                    new HackWave(HackPattern.PaperRain, 9f, 0.9f),
+                    new HackWave(HackPattern.ClockHands, 9f, 0.9f),
+                    new HackWave(HackPattern.Crossfire, 10f, 1f),
+                },
+                new[]
+                {
+                    new HackPuzzle("His thoughts loop: 'If I stop, I fall behind.' Which memory fragment answers him?",
+                        new[] { "[DEADLINE: TOMORROW 9:00]", "[A LUNCH BREAK IN THE SUN, 2009]", "[REPLY ALL]" }, 1,
+                        "The paper wall shivers. Somewhere inside, a man remembers sunlight on a sandwich.",
+                        "The fragment bounces off. He files it under 'later'."),
+                    new HackPuzzle("The wall whispers: 'Nobody would notice if I disappeared.' Choose a fragment.",
+                        new[] { "[STATISTICALLY TRUE]", "[THE BARISTA WHO KNOWS HIS ORDER]", "[OUT OF OFFICE: FOREVER]" }, 1,
+                        "'...She always draws a little cloud on my cup.' A layer of paper peels away.",
+                        "The thought hardens into another sheet of paper."),
+                    new HackPuzzle("Last firewall: 'Who am I, if I'm not busy?'",
+                        new[] { "[PRODUCTIVITY: 87%]", "[UNKNOWN]", "[SOMEONE WHO USED TO DRAW ON NAPKINS]" }, 2,
+                        "He laughs, a small rusty sound. 'I did, didn't I? Little rockets. Little dogs.'",
+                        "'Unknown' echoes through the wall. It sounds too much like the truth he's afraid of."),
+                },
+                L("...Oh. It's lunchtime. When did it get so late?",
+                  "I think I'll sit down for a minute. Just a minute.",
+                  "* The paperwork dissolves into warm pixels. The street ahead is open."),
+                "met_kira",
+                L("* A wall of paperwork, humming with dread. Clocks tick inside it, all at different speeds.",
+                  "* That courier on the skates seemed to know what this is. I should talk to her first."),
+                "hack1_done", new[] { shell }, new[] { freed });
+            wallHack.portraitTarget = commuter.transform;
+            wallHack.portraitDistance = 2.4f;
+            wallHack.tauntLines = L("Deadline! Deadline!", "Per my last email...", "Can't stop. Won't stop. Shouldn't stop.",
+                "Circle back! Circle BACK!", "Is it Friday yet? It's never Friday.", "Let's take this offline. Forever.");
+            wallHack.betweenRoundLines = L("...A sandwich. In the sun. I forgot food could be warm.",
+                "She draws clouds on my cup. Every day. I never said thank you.");
+            EditorUtility.SetDirty(wallHack);
+
+            Event(ctx, "AfterHack1", StoryEvent.TriggerMode.OnFlag, "hack1_done", 1.5f, "BYTE",
+                L("next stop: concrete park. east. follow the cold."),
+                L("You didn't fight him. You just... listened. Is that allowed?",
+                  "{approach=kira}Here. Take one of these. Somebody should get a care package delivered to them, for once.",
+                  "* (Kira hands you a small warm box. The label says: FRAGILE. CONTENTS: YOU.)"),
+                spkKira, "got_care_package");
+            Event(ctx, "ByteHint", StoryEvent.TriggerMode.OnFlag, "met_byte", 6f, "BYTE",
+                L("the courier by the mannequins. talk to her. she knows the route."), null, null, string.Empty);
+
+            ExitZone(ctx, "Exit_ToConcretePark", new Vector3(22.3f, 1f, 0f), new Vector3(1.5f, 2f, 8.4f), ParkScene, "ch4", "hack1_done",
+                L("* The street goes on, but something's still blocking Kira's route."));
+
+            // Arrival cinematic
+            Transform points = new GameObject("CinematicPoints").transform;
+            Transform cp1 = CinematicPoint("CP_Sky", points, new Vector3(-6f, 10f, -10f), new Vector3(-10f, 0f, 2f));
+            Transform cp2 = CinematicPoint("CP_Street", points, new Vector3(-17f, 1.4f, -3.2f), new Vector3(-11f, 0.8f, 1f));
+            CinematicSequence arrival = Cinematic("Cinematic_Arrival_Subnet", ctx.story,
+                Shot("Sky", cp1, 0f, 1.5f, 34f, null, null, true, Clip("glitch_001")),
+                Shot("Street", cp2, 5f, 0.5f, 26f,
+                    L("...This isn't Central Station.",
+                      "Everything is the right shape, but the wrong color. Like a memory of a city, drawn by someone who missed it.",
+                      "Somewhere ahead, a cat is waiting. I don't know how I know that.")));
+            arrival.fadeFromBlack = true;
+            arrival.blackHoldBeforeFade = 0.8f;
+            arrival.fadeInDuration = 2.5f;
+            arrival.blendToGameplay = true;
+            arrival.blendToGameplayDuration = 2f;
+            EditorUtility.SetDirty(arrival);
+            SetIntro(ctx, arrival);
+
+            EndGameplayScene(ctx, SubnetScene);
+        }
+    }
+}
+#endif

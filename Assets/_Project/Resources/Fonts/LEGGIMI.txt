@@ -1,0 +1,6 @@
+Metti qui i file .ttf dei font (Google Fonts, gratuiti). Vengono riconosciuti dal nome:
+VT323-Regular.ttf            -> Byte
+PermanentMarker-Regular.ttf  -> Kira
+Audiowide-Regular.ttf        -> L'Algoritmo
+SpecialElite-Regular.ttf     -> nemici / oggetti parlanti
+PatrickHand-Regular.ttf      -> pensieri di Leo

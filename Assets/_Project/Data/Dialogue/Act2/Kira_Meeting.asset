@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Kira_Meeting
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Whoa, careful! I'm on a deadline. I'm always on a deadline.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: A courier on jet-powered inline skates. Her thermal backpack is glowing
+      and humming softly, like it's purring.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: I'm Kira. I deliver care packages. Little boxes of self-esteem, addressed
+      to people nobody sees anymore.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Problem is, my route's blocked. Some guy turned into a wall of overtime
+      and paperwork. You look... less busy than me. Can you help?
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: I'll talk to him.
+      nextNodeId: yes
+      flagToSet: kira_trusts_leo
+    - text: Why don't YOU do it?
+      nextNodeId: why
+      flagToSet: 
+    nextNodeId: 
+  - id: why
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Because if I stop moving, I have to feel things. And I'm booked solid until,
+      uh, forever.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: after
+  - id: yes
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Really? Okay. Okay! That's... nobody ever offers.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: after
+  - id: after
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: Use the handheld, genius. It can read the source code of sad things.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: The wall's at the end of the street. Don't let the clocks get in your head.
+      They bite.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 

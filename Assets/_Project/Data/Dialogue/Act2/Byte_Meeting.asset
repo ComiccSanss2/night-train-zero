@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Byte_Meeting
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: Oh good. You made it. I was starting to think you'd stay on the train forever.
+      People do that, you know.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: A cat. Talking. Its collar is a tiny holographic screen scrolling old text
+      messages from 2003.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: 'Name''s Byte. Before you ask: yes, I''m a cat. No, I won''t explain the
+      collar. Questions?'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: Where am I?
+      nextNodeId: where
+      flagToSet: 
+    - text: Did you send me those messages?
+      nextNodeId: msgs
+      flagToSet: 
+    - text: I'm dreaming, right?
+      nextNodeId: dream
+      flagToSet: 
+    nextNodeId: 
+  - id: where
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: 'Subnet. The city under the city. Everything people throw away ends up
+      here: dreams, habits, the version of themselves they gave up on.'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: cont
+  - id: msgs
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: Guilty. I text in lowercase. It's a whole aesthetic.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: cont
+  - id: dream
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: Sure. And I'm a lucid hallucination with excellent taste in collars. Doesn't
+      make the static in your chest any less real.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: cont
+  - id: cont
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: Look. The city's sick. Something called The Algorithm is eating feelings
+      and calling it efficiency. And for some reason, your handheld can talk to it.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: So I'm coming with you. Not because I care. Because I'm bored. ...Mostly
+      bored.
+    effect: 0
+    requiredFlag: 
+    flagToSet: met_byte
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: (BYTE joined you. Its collar will text you when you look lost.)
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 

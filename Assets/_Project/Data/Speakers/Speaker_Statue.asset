@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135178743d8e84e03b2c773701fa7dc1, type: 3}
+  m_Name: Speaker_Statue
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSpeaker
+  displayName: STATUE
+  nameColor: {r: 0.7, g: 0.7, b: 0.72, a: 1}
+  portrait: {fileID: 0}
+  style: 6
+  textColor: {r: 0.84, g: 0.86, b: 0.92, a: 1}
+  signatureEffect: 0
+  voiceBlip: {fileID: 8300000, guid: e5bb9b14d26dc458ea607a62f81454f4, type: 3}
+  voiceVolume: 0.55
+  pitchRange: {x: 0.6, y: 0.7}
+  blipEveryNCharacters: 2
+  typingSpeedMultiplier: 0.7
