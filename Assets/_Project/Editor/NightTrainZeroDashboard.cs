@@ -23,6 +23,7 @@ namespace Subnet.EditorTools
             ("02  Central Station", "02_Station"),
             ("03  Subnet: shopping district", "03_Subnet_Commercial"),
             ("04  Concrete Park", "04_ConcretePark"),
+            ("04b Ghost Line (goodbye, Byte)", "04b_GhostLine"),
             ("05  Central Core (final boss)", "05_CentralCore"),
         };
 

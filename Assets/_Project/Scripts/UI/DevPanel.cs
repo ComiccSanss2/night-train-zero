@@ -11,7 +11,7 @@ namespace Subnet.UI
     /// </summary>
     public class DevPanel : MonoBehaviour
     {
-        private static readonly string[] Chapters = { "00_MainMenu", "01_Tenement", "02_Station", "03_Subnet_Commercial", "04_ConcretePark", "05_CentralCore" };
+        private static readonly string[] Chapters = { "00_MainMenu", "01_Tenement", "02_Station", "03_Subnet_Commercial", "04_ConcretePark", "04b_GhostLine", "05_CentralCore" };
 
         // Flags a later chapter normally inherits from earlier ones, so you can start anywhere.
         private static readonly string[][] ChapterFlags =
@@ -22,6 +22,7 @@ namespace Subnet.UI
             new[] { "handheld_checked", "read_timetable", "train_arrived", "ticket_punched" },
             new[] { "handheld_checked", "met_byte", "met_kira", "hack1_done", "got_care_package" },
             new[] { "handheld_checked", "met_byte", "met_kira", "hack1_done", "got_care_package", "park_puzzle_solved", "hack2_done", "kira_joined" },
+            new[] { "handheld_checked", "met_byte", "met_kira", "hack1_done", "got_care_package", "park_puzzle_solved", "hack2_done", "kira_joined", "train_stopped", "byte_stays", "ghostline_done", "byte_gone" },
         };
 
         private bool visible;

@@ -14,6 +14,8 @@ namespace Subnet.Gameplay
     public class SilentBeat : MonoBehaviour
     {
         public const string RequestFlag = "silence_request";
+        /// <summary>Twenty seconds: after Byte stays behind.</summary>
+        public const string LongRequestFlag = "silence_long";
 
         private static SilentBeat instance;
         private float pending;
@@ -41,6 +43,11 @@ namespace Subnet.Gameplay
             {
                 StoryFlags.Clear(RequestFlag);
                 pending = Mathf.Max(pending, 4f);
+            }
+            if (StoryFlags.Has(LongRequestFlag))
+            {
+                StoryFlags.Clear(LongRequestFlag);
+                pending = Mathf.Max(pending, 20f);
             }
             if (pending <= 0f || IsHolding) return;
             // Wait for the conversation to close: the silence is what comes after the words.

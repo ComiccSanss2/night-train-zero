@@ -40,7 +40,7 @@ namespace Subnet.Gameplay
         public AudioClip pageClip;
 
         [Tooltip("Chapter keys unlocked after finishing the game.")]
-        public string[] unlockOnFinish = { "ch2", "ch3", "ch4", "ch5" };
+        public string[] unlockOnFinish = { "ch2", "ch3", "ch4", "ch5", "ch6" };
 
         private CanvasGroup overlay;
         private TextMeshProUGUI pageText;

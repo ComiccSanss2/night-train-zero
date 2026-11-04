@@ -161,7 +161,8 @@ namespace Subnet.EditorTools
                 { "MEM_02 // CENTRAL STATION", StationScene, "ch2" },
                 { "MEM_03 // SUBNET: COMMERCIAL DISTRICT", SubnetScene, "ch3" },
                 { "MEM_04 // THE CONCRETE PARK", ParkScene, "ch4" },
-                { "MEM_05 // THE CENTRAL CORE", CoreScene, "ch5" },
+                { "MEM_05 // THE GHOST LINE", GhostLineScene, "ch5" },
+                { "MEM_06 // THE CENTRAL CORE", CoreScene, "ch6" },
             };
             chapters.arraySize = chapterData.GetLength(0);
             for (int i = 0; i < chapters.arraySize; i++)

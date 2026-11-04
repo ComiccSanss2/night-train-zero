@@ -36,6 +36,9 @@ namespace Subnet.Hacking
 
         [Tooltip("Music for this fight (e.g. the final boss). Empty = the scene's fight track.")]
         public AudioClip musicOverride;
+        [Tooltip("A companion (Byte) is drawn at the edge of the screen and loses a pixel at a time as the fight goes on.")]
+        public bool fadeCompanion;
+        public string companionLabel = "byte";
 
         [Header("Requirement")]
         [Tooltip("Story flag needed before hacking. Empty = always available.")]

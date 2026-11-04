@@ -27,6 +27,8 @@ namespace Subnet.Hacking
         public HackPattern pattern = HackPattern.PaperRain;
         [Min(2f)] public float duration = 8f;
         [Range(0.5f, 2f)] public float intensity = 1f;
+        [Tooltip("Grief wave: it can't be won by dodging. Time only passes while you stand still, and hits don't hurt.")]
+        public bool surrender;
 
         public HackWave() { }
 
@@ -35,6 +37,11 @@ namespace Subnet.Hacking
             this.pattern = pattern;
             this.duration = duration;
             this.intensity = intensity;
+        }
+
+        public HackWave(HackPattern pattern, float duration, float intensity, bool surrender) : this(pattern, duration, intensity)
+        {
+            this.surrender = surrender;
         }
     }
 

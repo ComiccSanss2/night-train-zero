@@ -117,6 +117,10 @@ namespace Subnet.Hacking
 
         // Session state
         private HackableObstacle obstacle;
+        private int roundIndex;
+        private RectTransform companionRoot;
+        private readonly List<Image> companionPixels = new List<Image>();
+        private TextMeshProUGUI companionLabel;
         private Vector2 soulPosition;
         private Vector2 arenaHalf;
         private int sanity;
@@ -214,6 +218,7 @@ namespace Subnet.Hacking
                 {
                     if (round < target.waves.Count)
                     {
+                        roundIndex = round;
                         yield return RunWave(target.waves[round], firstAttempt ? 1f : 0.6f);
                     }
                     firstAttempt = false;
@@ -351,6 +356,7 @@ namespace Subnet.Hacking
             feedReady = false;
             waveActive = false;
             RestoreAnimTarget();
+            DestroyCompanion();
             arena.localRotation = Quaternion.identity;
 
             // Arena collapses to a line, then a dot.
@@ -623,21 +629,42 @@ namespace Subnet.Hacking
             spawnTimer = 0.6f;
             tauntTimer = UnityEngine.Random.Range(1.5f, 3f);
             patternAngle = UnityEngine.Random.Range(0f, 360f);
-            statusText.text = Loc.T(WaveFlavor(wave.pattern));
+            statusText.text = Loc.T(wave.surrender ? "SOME THINGS CAN'T BE DODGED." : WaveFlavor(wave.pattern));
             Play(waveStartClip);
             waveActive = true;
             AttackPulse(1f);
+            if (obstacle != null && obstacle.fadeCompanion && companionRoot == null) BuildCompanion(obstacle.companionLabel);
 
             float elapsed = 0f;
+            float running = 0f;
             while (elapsed < duration)
             {
                 float dt = Time.deltaTime;
-                elapsed += dt;
+                if (wave.surrender)
+                {
+                    // Time only moves forward while Leo stops running.
+                    bool still = GameInput.MoveVector.sqrMagnitude < 0.01f;
+                    if (still) elapsed += dt;
+                    else if ((running += dt) > 4f)
+                    {
+                        running = float.MinValue;
+                        statusText.text = Loc.T("...STOP RUNNING.");
+                    }
+                    progressText.text = Loc.F("LETTING GO  {0}%", Mathf.FloorToInt(elapsed / duration * 100f));
+                }
+                else
+                {
+                    elapsed += dt;
+                    progressText.text = Loc.F("DECRYPTING  {0}%", Mathf.FloorToInt(elapsed / duration * 100f));
+                }
 
                 UpdateSoul(dt);
                 SpawnPattern(dt);
                 UpdateBullets(dt);
-                progressText.text = Loc.F("DECRYPTING  {0}%", Mathf.FloorToInt(elapsed / duration * 100f));
+                if (companionRoot != null && obstacle != null && obstacle.waves.Count > 0)
+                {
+                    UpdateCompanion((roundIndex + elapsed / duration) / obstacle.waves.Count);
+                }
 
                 tauntTimer -= dt;
                 if (tauntTimer <= 0f)
@@ -908,6 +935,13 @@ namespace Subnet.Hacking
 
         private void Hit(Bullet b)
         {
+            if (waveActive && currentWave != null && currentWave.surrender)
+            {
+                // The grief wave doesn't hurt. It just goes through you.
+                Deactivate(b);
+                StartCoroutine(Flash(new Color(0.75f, 0.9f, 1f), 0.12f));
+                return;
+            }
             Deactivate(b);
             sanity = Mathf.Max(0, sanity - 1);
             invulnerable = invulnerabilitySeconds;
@@ -1102,6 +1136,65 @@ namespace Subnet.Hacking
         private void Play(AudioClip clip, float volume = 1f)
         {
             if (audioSource != null && clip != null) audioSource.PlayOneShot(clip, volume);
+        }
+
+        // ================================================================== Companion fading at the edge (act IV)
+
+        private static readonly string[] CatPixels =
+        {
+            "1.......1",
+            "11.....11",
+            "111111111",
+            "11.111.11",
+            "111111111",
+            ".1111111.",
+            "..1...1..",
+        };
+
+        private void BuildCompanion(string label)
+        {
+            companionRoot = RuntimeUI.Rect("Companion", canvas.transform);
+            RuntimeUI.Place(companionRoot, Vector2.zero, Vector2.zero, new Vector2(36f, 60f), new Vector2(120f, 110f));
+            const float px = 12f;
+            var order = new List<(Image img, float key)>();
+            for (int y = 0; y < CatPixels.Length; y++)
+            {
+                for (int x = 0; x < CatPixels[y].Length; x++)
+                {
+                    if (CatPixels[y][x] != '1') continue;
+                    Image pixel = RuntimeUI.Image("Px", companionRoot, new Color(0.7f, 1f, 0.8f, 0.95f));
+                    RuntimeUI.Place(pixel.rectTransform, Vector2.zero, Vector2.zero, new Vector2(x * px, (CatPixels.Length - 1 - y) * px + 22f), new Vector2(px - 1f, px - 1f));
+                    // Disappears from the outer edge inward, with a little noise.
+                    order.Add((pixel, x + UnityEngine.Random.value * 3f));
+                }
+            }
+            order.Sort((a, b) => a.key.CompareTo(b.key));
+            companionPixels.Clear();
+            foreach (var entry in order) companionPixels.Add(entry.img);
+            companionLabel = RuntimeUI.Text("Label", companionRoot, label, 18, new Color(0.7f, 1f, 0.8f), TextAlignmentOptions.BottomLeft);
+            RuntimeUI.Place(companionLabel.rectTransform, Vector2.zero, Vector2.zero, Vector2.zero, new Vector2(120f, 20f));
+        }
+
+        private void UpdateCompanion(float progress)
+        {
+            int gone = Mathf.FloorToInt(Mathf.Clamp01(progress) * companionPixels.Count);
+            for (int i = 0; i < companionPixels.Count; i++)
+            {
+                bool visible = i >= gone;
+                if (companionPixels[i].enabled != visible)
+                {
+                    companionPixels[i].enabled = visible;
+                    if (!visible) Play(grazeClip);
+                }
+            }
+            if (companionLabel != null) companionLabel.alpha = 1f - Mathf.Clamp01(progress);
+        }
+
+        private void DestroyCompanion()
+        {
+            if (companionRoot != null) Destroy(companionRoot.gameObject);
+            companionRoot = null;
+            companionPixels.Clear();
         }
 
         private static string WaveFlavor(HackPattern pattern)

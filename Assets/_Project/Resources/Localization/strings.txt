@@ -2635,3 +2635,225 @@ fr|Fontaine
 en|Conductor
 it|Capotreno
 fr|Contrôleur
+
+# ---- Bible part 3: act IV, the Ghost Line
+
+en|Mm. {p}Mm-hm. {p}No, it's fine.
+it|Mm. {p}Mm-mh. {p}No, va bene.
+fr|Mm. {p}Mm-hm. {p}Non, c'est rien.
+
+en|{slow}Do what you want, then.{/slow}
+it|{slow}Fai come vuoi, allora.{/slow}
+fr|{slow}Fais comme tu veux, alors.{/slow}
+
+en|Mom, on the phone. The last time we talked. {p}She never once said don't go.
+it|La mamma, al telefono. L'ultima volta che ci siamo parlati. {p}Non ha mai detto, neanche una volta, non partire.
+fr|Maman, au téléphone. La dernière fois qu'on s'est parlé. {p}Elle n'a jamais dit, pas une seule fois, ne pars pas.
+
+en|She's still holding the phone. {p}Waiting for the part where I say something back.
+it|Tiene ancora il telefono all'orecchio. {p}Aspetta il momento in cui le rispondo qualcosa.
+fr|Elle tient toujours le téléphone. {p}Elle attend le moment où je réponds quelque chose.
+
+en|We said we'd start a band. {p}You moved. {p}{small}I still have the drumsticks.{/small}
+it|Avevamo detto che avremmo messo su una band. {p}Tu te ne sei andato. {p}{small}Le bacchette ce le ho ancora.{/small}
+fr|On avait dit qu'on monterait un groupe. {p}T'as déménagé. {p}{small}J'ai encore les baguettes.{/small}
+
+en|Dani. High school. I never answered his last message. {p}It was a photo of the drumsticks.
+it|Dani. Il liceo. Non ho mai risposto al suo ultimo messaggio. {p}Era una foto delle bacchette.
+fr|Dani. Le lycée. Je n'ai jamais répondu à son dernier message. {p}C'était une photo des baguettes.
+
+en|The drumsticks are on his lap. He taps the seat. {p}One, two. {p}One, two.
+it|Le bacchette sono sulle sue ginocchia. Batte il tempo sul sedile. {p}Uno, due. {p}Uno, due.
+fr|Les baguettes sont sur ses genoux. Il tapote le siège. {p}Un, deux. {p}Un, deux.
+
+en|Are you coming to my recital? {p}You have to clap the loudest. {p}{bounce}Promise?{/bounce}
+it|Vieni al mio saggio? {p}Devi applaudire più forte di tutti. {p}{bounce}Promesso?{/bounce}
+fr|Tu viens à mon spectacle ? {p}Tu dois applaudir le plus fort. {p}{bounce}Promis ?{/bounce}
+
+en|Mia. Nine years old. Front teeth missing. {p}I said yes. {p}{slow}I said yes for three years.{/slow}
+it|Mia. Nove anni. Senza i denti davanti. {p}Le ho detto di sì. {p}{slow}Le ho detto di sì per tre anni.{/slow}
+fr|Mia. Neuf ans. Il lui manque les dents de devant. {p}J'ai dit oui. {p}{slow}J'ai dit oui pendant trois ans.{/slow}
+
+en|She's practicing the bow. Over and over. {p}For someone in the front row.
+it|Prova l'inchino. Ancora e ancora. {p}Per qualcuno in prima fila.
+fr|Elle répète sa révérence. Encore et encore. {p}Pour quelqu'un au premier rang.
+
+en|this train smells like old phone calls.
+it|questo treno sa di vecchie telefonate.
+fr|ce train sent les vieux coups de fil.
+
+en|dont sit there. {p}{small}some seats are taken even when theyre empty.{/small}
+it|non sederti lì. {p}{small}certi posti sono occupati anche quando sono vuoti.{/small}
+fr|assieds-toi pas là. {p}{small}y a des places prises même quand elles sont vides.{/small}
+
+en|im fine. {p}cats are always fine. {p}{small}its a whole thing.{/small}
+it|sto bene. {p}i gatti stanno sempre bene. {p}{small}è una cosa nostra.{/small}
+fr|ça va. {p}les chats vont toujours bien. {p}{small}c'est tout un truc.{/small}
+
+en|Nobody's getting off. {p}{small}I keep checking.{/small}
+it|Non scende nessuno. {p}{small}Continuo a controllare.{/small}
+fr|Personne ne descend. {p}{small}Je vérifie sans arrêt.{/small}
+
+en|Every stop is just more tunnel. {p}I hate that I'm used to it.
+it|Ogni fermata è solo altra galleria. {p}Odio esserci abituata.
+fr|Chaque arrêt, c'est juste encore du tunnel. {p}Je déteste m'y être habituée.
+
+en|leo. {p}im a hallucination with a collar. {p}this is the least weird thing ive done all night.
+it|leo. {p}sono un'allucinazione col collare. {p}è la cosa meno strana che ho fatto stanotte.
+fr|leo. {p}je suis une hallucination avec un collier. {p}c'est le truc le moins bizarre que j'ai fait de la nuit.
+
+en|["I said no."]
+it|["Ho detto di no."]
+fr|[« J'ai dit non. »]
+
+en|[...]
+it|[...]
+fr|[...]
+
+en|Leo. {p=1.2}{slow}Please.{/slow}
+it|Leo. {p=1.2}{slow}Ti prego.{/slow}
+fr|Leo. {p=1.2}{slow}S'il te plaît.{/slow}
+
+en|[Let him go]
+it|[Lascialo andare]
+fr|[Le laisser partir]
+
+en|The train stops. {p}{quake}Halfway down the tunnel.
+it|Il treno si ferma. {p}{quake}A metà galleria.
+fr|Le train s'arrête. {p}{quake}Au milieu du tunnel.
+
+en|MEMORY PURGE IN PROGRESS. {p}OLDEST FILES FIRST.
+it|CANCELLAZIONE MEMORIA IN CORSO. {p}PRIMA I FILE PIÙ VECCHI.
+fr|PURGE DE LA MÉMOIRE EN COURS. {p}LES FICHIERS LES PLUS ANCIENS D'ABORD.
+
+en|At the back of the carriage, the seats start going grey. {p}One row at a time.
+it|In fondo alla carrozza, i sedili diventano grigi. {p}Una fila alla volta.
+fr|Au fond du wagon, les sièges deviennent gris. {p}Une rangée à la fois.
+
+en|huh. {p}oldest files first.
+it|ah. {p}prima i file più vecchi.
+fr|ah. {p}les plus anciens d'abord.
+
+en|guess whos the oldest file in here. {p}{small}hint: collar.{/small}
+it|indovina chi è il file più vecchio qui dentro. {p}{small}indizio: collare.{/small}
+fr|devine qui est le plus vieux fichier ici. {p}{small}indice : collier.{/small}
+
+en|What does that... {p}Byte. {p}{shake}What does that mean.{/shake}
+it|Che vuol dire... {p}Byte. {p}{shake}Che vuol dire.{/shake}
+fr|Ça veut dire quoi... {p}Byte. {p}{shake}Ça veut dire quoi.{/shake}
+
+en|someone has to stay back and be in its way. {p}cats are {bounce}incredible{/bounce} at being in the way.
+it|qualcuno deve restare indietro e mettersi in mezzo. {p}i gatti sono {bounce}fenomenali{/bounce} a stare in mezzo.
+fr|quelqu'un doit rester derrière et lui barrer la route. {p}les chats sont {bounce}incroyables{/bounce} pour barrer la route.
+
+en|["No."]
+it|["No."]
+fr|[« Non. »]
+
+en|thanks. {p}{small}...dont make it weird.{/small}
+it|grazie. {p}{small}...non renderlo strano.{/small}
+fr|merci. {p}{small}...rends pas ça bizarre.{/small}
+
+en|{small}...I'll walk with you the rest of the way.{/small} {p}Okay? {p}Okay.
+it|{small}...Faccio il resto della strada con te.{/small} {p}Ok? {p}Ok.
+fr|{small}...Je fais le reste du chemin avec toi.{/small} {p}D'accord ? {p}D'accord.
+
+en|Byte's collar. Left on the seat. {p}The tiny screen is scrolling old texts from 2003. {p}It's still warm.
+it|Il collare di Byte. Lasciato sul sedile. {p}Il minuscolo schermo fa scorrere vecchi SMS del 2003. {p}È ancora caldo.
+fr|Le collier de Byte. Laissé sur le siège. {p}Le minuscule écran fait défiler de vieux SMS de 2003. {p}Il est encore chaud.
+
+en|still here. kinda. {p}The screen says it over and over, in lowercase.
+it|ancora qui. più o meno. {p}Lo schermo lo ripete all'infinito, in minuscolo.
+fr|encore là. un peu. {p}L'écran le répète en boucle, en minuscules.
+
+en|Behind me, Byte sits down in the aisle and faces the grey.
+it|Dietro di me, Byte si siede nel corridoio e guarda il grigio.
+fr|Derrière moi, Byte s'assoit dans l'allée, face au gris.
+
+en|Byte, from the back: {p}go. ill be loud about it.
+it|Byte, dal fondo: {p}vai. farò casino.
+fr|Byte, depuis le fond : {p}vas-y. je ferai du bruit.
+
+en|OLDEST FILES FIRST.
+it|PRIMA I FILE PIÙ VECCHI.
+fr|LES PLUS ANCIENS D'ABORD.
+
+en|The static lets go of the door.
+it|Il rumore bianco lascia andare la porta.
+fr|Le grésillement lâche la porte.
+
+en|Behind me, the aisle is empty.
+it|Dietro di me, il corridoio è vuoto.
+fr|Derrière moi, l'allée est vide.
+
+en|The door to the next carriage is sealed with static. {p}Something at the back is getting closer.
+it|La porta della carrozza successiva è sigillata dal rumore bianco. {p}Qualcosa in fondo si sta avvicinando.
+fr|La porte du wagon suivant est scellée par le grésillement. {p}Quelque chose, au fond, se rapproche.
+
+en|MEMORY_PURGE.exe  //  'OLDEST FILES FIRST'
+it|CANCELLAZIONE_MEMORIA.exe  //  'PRIMA I PIÙ VECCHI'
+fr|PURGE_MEMOIRE.exe  //  'LES PLUS ANCIENS D'ABORD'
+
+en|A CAT. HOW SENTIMENTAL.
+it|UN GATTO. CHE SENTIMENTALE.
+fr|UN CHAT. COMME C'EST SENTIMENTAL.
+
+en|HE WAS NEVER REAL.
+it|NON È MAI STATO REALE.
+fr|IL N'A JAMAIS ÉTÉ RÉEL.
+
+en|LETTING GO IS EFFICIENT.
+it|LASCIAR ANDARE È EFFICIENTE.
+fr|LÂCHER PRISE EST EFFICACE.
+
+en|YOU CANNOT OUTRUN THIS.
+it|NON PUOI SEMINARE QUESTO.
+fr|TU NE PEUX PAS FUIR ÇA.
+
+en|Somewhere behind me, a collar beeps. {p}Once.
+it|Da qualche parte dietro di me, un collare fa bip. {p}Una volta.
+fr|Quelque part derrière moi, un collier bipe. {p}Une fois.
+
+en|The collar beeps again. {p}{small}Fainter.{/small}
+it|Il collare fa di nuovo bip. {p}{small}Più debole.{/small}
+fr|Le collier bipe encore. {p}{small}Plus faiblement.{/small}
+
+en|I can't hear it anymore.
+it|Non lo sento più.
+fr|Je ne l'entends plus.
+
+en|still here. kinda. in your head. gross
+it|ancora qui. più o meno. nella tua testa. che schifo
+fr|encore là. un peu. dans ta tête. dégueu
+
+en|Night Train Zero leaves again. {p}Toward the Core.
+it|Night Train Zero riparte. {p}Verso il Core.
+fr|Night Train Zero repart. {p}Vers le Core.
+
+en|The carriage isn't empty anymore. {p}{slow}I know every one of these people.{/slow}
+it|La carrozza non è più vuota. {p}{slow}Conosco ognuna di queste persone.{/slow}
+fr|Le wagon n'est plus vide. {p}{slow}Je connais chacune de ces personnes.{/slow}
+
+en|SOME THINGS CAN'T BE DODGED.
+it|CERTE COSE NON SI POSSONO SCHIVARE.
+fr|CERTAINES CHOSES NE S'ESQUIVENT PAS.
+
+en|...STOP RUNNING.
+it|...SMETTI DI SCAPPARE.
+fr|...ARRÊTE DE FUIR.
+
+en|LETTING GO  {0}%
+it|LASCIARE ANDARE  {0}%
+fr|LÂCHER PRISE  {0}%
+
+en|MEM_05 // THE GHOST LINE
+it|MEM_05 // LA LINEA FANTASMA
+fr|MEM_05 // LA LIGNE FANTÔME
+
+en|MEM_06 // THE CENTRAL CORE
+it|MEM_06 // IL CORE CENTRALE
+fr|MEM_06 // LE CORE CENTRAL
+
+en|Collar
+it|Collare
+fr|Collier

@@ -88,7 +88,8 @@ namespace Subnet.EditorTools
                 Step("Act I: Central Station...", 0.4f, BuildStationScene, failures);
                 Step("Act II: Subnet...", 0.55f, BuildSubnetScene, failures);
                 Step("Act III: Concrete Park...", 0.7f, BuildParkScene, failures);
-                Step("Act IV: Central Core...", 0.85f, BuildCoreScene, failures);
+                Step("Act IV: the Ghost Line...", 0.8f, BuildGhostLineScene, failures);
+                Step("Act V: Central Core...", 0.9f, BuildCoreScene, failures);
                 if (failures.Count > 0)
                 {
                     EditorUtility.ClearProgressBar();
@@ -96,7 +97,7 @@ namespace Subnet.EditorTools
                         "\n\nThe other scenes are fine. Send the red Console error to fix it.", "OK");
                 }
 
-                EditorBuildSettings.scenes = new[] { MenuScene, TenementScene, StationScene, SubnetScene, ParkScene, CoreScene }
+                EditorBuildSettings.scenes = new[] { MenuScene, TenementScene, StationScene, SubnetScene, ParkScene, GhostLineScene, CoreScene }
                     .Where(s => File.Exists(ScenesFolder + s + ".unity"))
                     .Select(s => new EditorBuildSettingsScene(ScenesFolder + s + ".unity", true))
                     .ToArray();

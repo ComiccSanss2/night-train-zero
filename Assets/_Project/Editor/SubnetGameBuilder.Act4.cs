@@ -72,6 +72,8 @@ namespace Subnet.EditorTools
             Inspectable(byteNpc, "Byte_Core", L("Don't look directly at it. It's like a phone screen at 4 a.m.", "...I'm right here. You know that, right?"),
                 L("ur doing fine. dont make it weird."), null, spkByte);
             Follower(byteNpc, string.Empty, -0.6f);
+            // Act IV: Byte stayed behind on the Ghost Line. He's only in Leo's head now (and on his collar).
+            Set(byteNpc.AddComponent<HideIfFlag>(), "flag", "ghostline_done");
             GameObject kiraNpc = Character(ctx, "Kira", "character-female-c", "mini-characters", new Vector3(-13f, 0f, 1f), 90f, 1.05f, null, false);
             Inspectable(kiraNpc, "Kira_Core", L("I'm not delivering anything today. Weird. My hands don't know what to do."),
                 L("We go together. That's the whole plan."), null, spkKira);

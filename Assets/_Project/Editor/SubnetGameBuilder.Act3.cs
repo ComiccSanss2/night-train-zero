@@ -263,7 +263,7 @@ namespace Subnet.EditorTools
                   "* (KIRA joined you.)"),
                 spkKira, "kira_joined");
 
-            ExitZone(ctx, "Exit_ToCentralCore", new Vector3(13.9f, 1f, 0f), new Vector3(1f, 2f, 3.6f), CoreScene, "ch5", "hack2_done",
+            ExitZone(ctx, "Exit_ToGhostLine", new Vector3(13.9f, 1f, 0f), new Vector3(1f, 2f, 3.6f), GhostLineScene, "ch5", "hack2_done",
                 L("* Not yet."));
 
             EndGameplayScene(ctx, ParkScene);
