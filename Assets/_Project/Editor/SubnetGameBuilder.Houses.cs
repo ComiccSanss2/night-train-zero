@@ -102,6 +102,12 @@ namespace Subnet.EditorTools
             return node;
         }
 
+        private static DialogueNode WithId(string id, DialogueNode node)
+        {
+            node.id = id;
+            return node;
+        }
+
         private static void LinkDoors(HouseDoor a, HouseDoor b)
         {
             Set(a, "otherSide", b);

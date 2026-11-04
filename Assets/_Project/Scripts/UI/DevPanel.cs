@@ -89,6 +89,10 @@ namespace Subnet.UI
             GUILayout.EndHorizontal();
             GUILayout.Label("True ending: " + (Gameplay.EndingController.TrueEndingUnlocked ? "UNLOCKED" : "locked")
                 + $"  (open {Trust.Openness}/6, close {Trust.Closeness}/6, drawing {(Inventory.HasKey("mia_drawing") ? "yes" : "no")}, call {(StoryFlags.Has("answered_mia") ? "yes" : "no")})");
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("Act V: skip boss")) StoryFlags.Set("algorithm_met;core_file_read");
+            if (GUILayout.Button("Act V: show train")) StoryFlags.Set("act5_package_done;act5_call_done");
+            GUILayout.EndHorizontal();
             if (GUILayout.Button("Give true-ending requirements (except the call)"))
             {
                 while (Trust.Openness < 6) Trust.AddOpenness();
