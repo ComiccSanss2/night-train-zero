@@ -30,6 +30,16 @@ namespace Subnet.Core
             }
             if (flag.Length > 1 && flag[0] == '+')
             {
+                // "+closeness#roof_crate": raise once only, however many times this runs.
+                int hash = flag.IndexOf('#');
+                if (hash > 0)
+                {
+                    string once = "once:" + flag.Substring(hash + 1);
+                    if (flags.Contains(once)) return;
+                    flags.Add(once);
+                    Increment(flag.Substring(1, hash - 1));
+                    return;
+                }
                 Increment(flag.Substring(1));
                 return;
             }

@@ -175,7 +175,43 @@ namespace Subnet.EditorTools
                 L("Summer rain. I forgot it had a smell."), null, spkCommuter);
 
             GameObject kiraNpc = Character(ctx, "Kira", "character-female-c", "mini-characters", new Vector3(12.8f, 0f, 1.1f), -110f, 1.05f, null, false);
-            Inspectable(kiraNpc, "Kira_Park", L("Ready when you are. The Core's just ahead. I can feel it humming in my teeth."), null, null, spkKira);
+            // Bible, act III side quest "Package with no address": only offered if Leo has been close to Kira and Byte.
+            DialogueSequence packageSeq = SeqAsset("Act3/Kira_Package",
+                Say(spkKira, "Ready when you are. The Core's just ahead. {p}I can feel it humming in my {shake}teeth.{/shake}"),
+                new DialogueNode { speaker = null, text = "There's one package in her bag she keeps skipping. {p}She zips the bag before I can look.", requiredFlag = "closeness<2", nextNodeId = DialogueSequence.EndNodeId },
+                new DialogueNode { speaker = null, text = "There's one package in her bag she keeps skipping. {p}No name. No address.", requiredFlag = "closeness>=2" },
+                Ask(spkKira, "...What? {p}Oh. That one. {p}It's undeliverable. {small}Happens.{/small}",
+                    Opt("[\"Want to deliver it together?\"]", "yes", "kira_package_accepted;+closeness"),
+                    Opt("[Leave it]", "no")),
+                Say(spkKira, "{fast}Together? It's... I mean, it doesn't even have an address...{/fast}", "yes"),
+                Say(spkKira, "{p}...Actually. {p=0.8}{slow}It does.{/slow}"),
+                Say(null, "She turns it over. {p}The address is hers."),
+                Say(spkKira, "Not yet. {p}Keep walking with me and maybe I'll open it. {small}At the end.{/small}", "", DialogueSequence.EndNodeId),
+                Say(spkKira, "Yeah. {p}Some things stay in the bag.", "no"));
+            Inspectable(kiraNpc, "Kira_Park", L("..."),
+                L("Ready when you are. {p}{small}The bag's zipped. I checked twice.{/small}"), null, spkKira, packageSeq);
+
+            // ---------------------------------------------------------------- Bible, act III: the dry fountain (breathing room)
+            Vector3 fountainPos = new Vector3(0.4f, 0f, -0.9f);
+            Block("Fountain_Basin", ctx.props, fountainPos + new Vector3(0, 0.25f, 0), new Vector3(2.4f, 0.5f, 2.4f), concreteDark, 0);
+            Deco("Fountain_Dry", ctx.props, fountainPos + new Vector3(0, 0.46f, 0), new Vector3(2.0f, 0.1f, 2.0f), concrete);
+            Deco("Fountain_Column", ctx.props, fountainPos + new Vector3(0, 0.95f, 0), new Vector3(0.35f, 1.1f, 0.35f), stone);
+            Deco("Fountain_Coin", ctx.props, fountainPos + new Vector3(0.5f, 0.53f, 0.3f), new Vector3(0.09f, 0.02f, 0.09f), lampGlass);
+            GameObject fountain = Block("Prop_Fountain", ctx.props, fountainPos + new Vector3(0, 0.6f, 0), new Vector3(2.6f, 1.2f, 2.6f), null, ctx.interactableLayer);
+            DialogueSequence fountainSeq = SeqAsset("Act3/Byte_Fountain",
+                Say(null, "The fountain's been dry for years. {p}Someone left a coin in it anyway."),
+                Say(spkByte, "hey. {p}sit for a sec."),
+                Ask(spkByte, "tell me something good about home. {p}one thing. {small}dont make it a whole thing.{/small}",
+                    Opt("[Mia's crayon drawings on the fridge]", "mia", "memory_drawings"),
+                    Opt("[The bakery that opened at 5 a.m.]", "bakery", "memory_bakery"),
+                    Opt("[The last train home, all the lights off]", "train", "memory_train")),
+                Say(spkLeo, "Mia used to draw me. Always with a giant head. {p}She said it's because I think too much.", "mia", "after"),
+                Say(spkLeo, "There was a bakery under our flat. At five in the morning the whole street smelled like bread. {p}I'd pretend I was awake on purpose.", "bakery", "after"),
+                Say(spkLeo, "The last train home. Everyone asleep, every light off except the sign. {p}It felt like the city was holding its breath. {small}For me.{/small}", "train", "after"),
+                Say(null, "Byte doesn't make a joke. {p}He just listens.", "after"),
+                Say(spkByte, "{slow}ok.{/slow} {p=1.2}keep that one.", "", "", "fountain_talk;+closeness"));
+            Inspectable(fountain, "Fountain", L("..."),
+                L("The coin's still there. Nobody took it. {p}Byte is pretending not to look at me."), null, null, fountainSeq);
 
             HackableObstacle weepHack = Hackable(obstacleRoot, "WEEPING_COMMUTER.sys  //  'PETRIFIED'", spkStatue,
                 L("...",

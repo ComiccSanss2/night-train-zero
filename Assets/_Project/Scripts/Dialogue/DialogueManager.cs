@@ -596,6 +596,16 @@ namespace Subnet.Dialogue
         private static bool IsFlagConditionMet(string condition)
         {
             if (string.IsNullOrEmpty(condition)) return true;
+            // Several conditions: "met_kira;closeness>=2" (all must hold).
+            if (condition.IndexOf(';') >= 0)
+            {
+                foreach (string part in condition.Split(';')) if (!IsFlagConditionMet(part.Trim())) return false;
+                return true;
+            }
+            // Hidden values / counters: "closeness>=2", "openness<3".
+            int ge = condition.IndexOf(">="), lt = condition.IndexOf('<');
+            if (ge > 0 && int.TryParse(condition.Substring(ge + 2), out int min)) return StoryFlags.GetCount(condition.Substring(0, ge)) >= min;
+            if (lt > 0 && int.TryParse(condition.Substring(lt + 1), out int max)) return StoryFlags.GetCount(condition.Substring(0, lt)) < max;
             if (condition[0] == '!') return !StoryFlags.Has(condition.Substring(1));
             return StoryFlags.Has(condition);
         }

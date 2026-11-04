@@ -2,6 +2,7 @@
 using Subnet.Cinematics;
 using Subnet.Dialogue;
 using Subnet.Gameplay;
+using Subnet.Interaction;
 using Subnet.Hacking;
 using UnityEditor;
 using UnityEngine;
@@ -140,7 +141,27 @@ namespace Subnet.EditorTools
                 float angle = i * 72f;
                 Vector3 pos = plaza + new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad)) * 2.3f;
                 GameObject m = Character(ctx, "Mannequin_" + i, mannequinModels[i], "mini-characters", pos, 0f, 1.05f, mannequinMat, false);
-                Inspectable(m, "Mannequin_" + i, L(mannequinLines[i]), L("The circle continues. The circle always continues."), null, spkCommuter);
+                if (i == 0)
+                {
+                    // Bible, act II side quest "Lost receipt": this one keeps looking for a receipt.
+                    DialogueSequence receiptSeq = SeqAsset("Act2/Mannequin_Receipt",
+                        new DialogueNode { speaker = spkCommuter, text = "Receipt. {p}Have you seen my receipt? {p}I returned something. Without the receipt, it never happened.", requiredFlag = "!receipt_found", flagToSet = "receipt_quest" },
+                        new DialogueNode { speaker = spkCommuter, text = "{shake}It has to be somewhere.{/shake} {p}Somewhere you throw away the things you used to want.", requiredFlag = "!receipt_found", nextNodeId = DialogueSequence.EndNodeId },
+                        new DialogueNode { speaker = spkCommuter, text = "I gave it away. I remember now. {p}{wave}That's enough.{/wave}", requiredFlag = "receipt_returned", nextNodeId = DialogueSequence.EndNodeId },
+                        new DialogueNode { speaker = null, text = "(You hold out the crumpled receipt from the café bin.)" },
+                        new DialogueNode { speaker = spkCommuter, text = "RETURNED: one scarf. Hand-knitted. {p}{slow}...Hand-knitted.{/slow}" },
+                        new DialogueNode { speaker = spkCommuter, text = "I didn't return it. {p}I gave it to someone who was always cold. {p}{wave}I remember their face.{/wave}" },
+                        new DialogueNode { speaker = spkCommuter, text = "The circle stops. {p}{big}It stops.{/big}", flagToSet = "receipt_returned;+openness" },
+                        new DialogueNode { speaker = null, text = "Mia knitted me a scarf once. It had a hole by the left end. {p}She said it was a feature." },
+                        new DialogueNode { speaker = null, text = "I wore it every winter. {p}{slow}It's in box fourteen. I think.{/slow}", flagToSet = "memory_scarf" });
+                    Inspectable(m, "Mannequin_" + i, L("..."), null, null, spkCommuter, receiptSeq);
+                    var release = m.AddComponent<FlagGate>();
+                    Set(release, "openFlag", "receipt_returned");
+                }
+                else
+                {
+                    Inspectable(m, "Mannequin_" + i, L(mannequinLines[i]), L("The circle continues. The circle always continues."), null, spkCommuter);
+                }
                 var walker = m.AddComponent<LoopWalker>();
                 walker.Configure(plaza, 2.3f, 22f, angle);
                 EditorUtility.SetDirty(walker);
@@ -269,6 +290,103 @@ namespace Subnet.EditorTools
                 spkKira, "got_care_package");
             Event(ctx, "ByteHint", StoryEvent.TriggerMode.OnFlag, "met_byte", 6f, "BYTE",
                 L("the courier by the mannequins. talk to her. she knows the route."), null, null, string.Empty);
+
+            // The café bin hides the receipt.
+            Prop(ctx, "CafeBin", "trashcan", F, new Vector3(-4.3f, 0, 3.3f), 0, 0.55f, false,
+                L("A bin full of paper cups. Every single one has a little cloud drawn on it.",
+                  "* Under the cups: a crumpled receipt. <color=#FF4FD8>RETURNED: 1 SCARF, HAND-KNITTED.</color>",
+                  "* Somebody in the circle out there is looking for this."),
+                L("Just cups now. {p}Every one has a little cloud on it."), "receipt_found");
+
+            // ---------------------------------------------------------------- Bible, act II: the rooftop (breathing room)
+            // A roof high above the street, reached by a fire escape once Kira has handed over the care package.
+            Vector3 roof = new Vector3(70f, 6f, 0f);
+            Block("RoofFloor", ctx.env, roof + new Vector3(0, -0.1f, 0), new Vector3(12f, 0.2f, 8f), poleMat, ctx.groundLayer);
+            Block("RoofRail_N", ctx.env, roof + new Vector3(0, 0.45f, 4.05f), new Vector3(12f, 0.9f, 0.1f), poleMat, 0);
+            Block("RoofRail_S", ctx.env, roof + new Vector3(0, 0.45f, -4.05f), new Vector3(12f, 0.9f, 0.1f), poleMat, 0);
+            Block("RoofRail_E", ctx.env, roof + new Vector3(6.05f, 0.45f, 0), new Vector3(0.1f, 0.9f, 8f), poleMat, 0);
+            Block("RoofRail_W", ctx.env, roof + new Vector3(-6.05f, 0.45f, 0), new Vector3(0.1f, 0.9f, 8f), poleMat, 0);
+            Deco("WaterTank", ctx.env, roof + new Vector3(-4.2f, 1.1f, 2.6f), new Vector3(1.6f, 2.2f, 1.6f), stoneGray);
+            Deco("Antenna", ctx.env, roof + new Vector3(4.6f, 1.6f, 3f), new Vector3(0.08f, 3.2f, 0.08f), poleMat);
+            PointLight(ctx.env, roof + new Vector3(4.6f, 3.3f, 3f), new Color(1f, 0.2f, 0.3f), 2f, 4f);
+            for (int b = 0; b < 9; b++)
+            {
+                // The city below, all windows and signs.
+                float bx = roof.x - 16f + b * 4f;
+                float h = 6f + (b * 37 % 9);
+                Deco("Skyline_" + b, ctx.env, new Vector3(bx, roof.y - 6f + h * 0.5f, 14f + (b % 3) * 3f), new Vector3(3f, h, 3f), b % 2 == 0 ? neonCyan : neonMagenta);
+            }
+            PointLight(ctx.env, roof + new Vector3(0, 3f, 0), new Color(1f, 0.75f, 0.9f), 1.6f, 12f);
+
+            Transform roofArrival = new GameObject("RoofArrival").transform;
+            roofArrival.SetParent(ctx.story, false);
+            roofArrival.position = roof + new Vector3(-4.5f, 0.05f, -2.5f);
+            roofArrival.rotation = Quaternion.Euler(0, 45, 0);
+            Transform streetReturn = new GameObject("StreetReturn").transform;
+            streetReturn.SetParent(ctx.story, false);
+            streetReturn.position = new Vector3(14.6f, 0.05f, 2.2f);
+            streetReturn.rotation = Quaternion.Euler(0, 180, 0);
+
+            GameObject fireEscape = Block("Prop_FireEscape", ctx.props, new Vector3(14.6f, 1.6f, 3.9f), new Vector3(1.2f, 3.2f, 0.2f), poleMat, ctx.interactableLayer);
+            var up = fireEscape.AddComponent<AreaTeleport>();
+            Set(up, "destination", roofArrival);
+            Set(up, "requiredFlag", "got_care_package");
+            SetStrings(up, "lockedLines", L("* A fire escape. It goes all the way up. {p}Not yet."));
+            SetStrings(up, "leavingLines", L("* Kira's already halfway up, skates over her shoulder. {p}Byte is somehow ahead of her."));
+            Set(up, "flagOnUse", "visited_roof");
+            Set(up, "audioSource", ctx.sfx);
+            Set(up, "useClip", Clip("switch_003"));
+            GameObject ladder = Block("Prop_Ladder", ctx.props, roof + new Vector3(-5.6f, 0.8f, -3.6f), new Vector3(0.8f, 1.6f, 0.2f), poleMat, ctx.interactableLayer);
+            var down = ladder.AddComponent<AreaTeleport>();
+            Set(down, "destination", streetReturn);
+            Set(down, "audioSource", ctx.sfx);
+            Set(down, "useClip", Clip("switch_003"));
+
+            GameObject roofKira = Character(ctx, "Kira", "character-female-c", "mini-characters", roof + new Vector3(1.5f, 0, 1.2f), 200f, 1.05f, null, true);
+            roofKira.name = "NPC_Kira_Roof";
+            Inspectable(roofKira, "Kira_Roof",
+                L("No deliveries. No route. {p}Just a roof and too many lights.", "Sit anywhere. {p}{small}Or don't. Nobody's timing you up here.{/small}"),
+                L("I come up here when the route gets loud. {p}It never gets quiet. But it gets far."), null, spkKira);
+
+            // Three places to sit, three conversations (no objective, no prompt).
+            Prop(ctx, "RoofCrate", "cardboardBoxClosed", F, roof + new Vector3(-1.5f, 0, 2.6f), 15, 0.6f, true,
+                L("* You sit on the crate. Kira sits on the next one, swinging her skates.",
+                  "Fun fact: I've delivered to every building you can see from here. {p}{small}Except one.{/small}",
+                  "Don't ask which one. {p}{fast}You're going to ask. Don't ask.{/fast}"),
+                L("* The crate creaks. Kira pretends it was her."), "roof_seat_crate;+closeness#roof_seat_crate", true, spkKira);
+            Prop(ctx, "RoofLedge", "bench", F, roof + new Vector3(3.8f, 0, -2.8f), 180, 1.4f, true,
+                L("* You sit on the ledge. Byte sits next to you, tail hanging over the drop like it's nothing.",
+                  "dont look down. {p}look out. {p}{small}different thing.{/small}"),
+                L("* Byte's tail swings over the edge. {p}He is very obviously not worried. {p}You are, a little."), "roof_seat_ledge;+closeness#roof_seat_ledge", true, spkByte);
+            Prop(ctx, "RoofTank", "chair", F, roof + new Vector3(-3.2f, 0, 1.2f), 120, 0.8f, true,
+                L("* You sit under the water tank. Kira drops down next to you. Then Byte. Then nobody says anything.",
+                  "...This is nice. {p}{slow}Is it weird that this is nice?{/slow}"),
+                L("* Still nice. {p}Still a little weird."), "roof_seat_tank;+closeness#roof_seat_tank", true, spkKira);
+
+            // Stay still for 30 seconds and Kira starts talking about the hospital, in pieces.
+            DialogueSequence hospital = SeqAsset("Act2/Kira_Hospital",
+                Say(null, "Nobody moves. The signs below change color, one by one."),
+                Say(spkKira, "{small}I used to work nights at a hospital.{/small}"),
+                Say(spkKira, "Not a doctor. {p}I pushed the trolleys. Brought people their dinner. {p}Their mail."),
+                Say(spkKira, "There was this one guy. Room 9. {p}Nobody ever came. {p}So I started delivering him things that weren't for him."),
+                Say(spkKira, "Flyers. Menus. A postcard I wrote myself and signed 'your cousin'. {p}{wave}He knew. He kept it anyway.{/wave}"),
+                Say(spkKira, "And then one night room 9 was empty. {p=1}{slow}And I just... kept walking.{/slow}"),
+                Say(spkKira, "{fast}Out of the ward, out of the building, onto the skates, and I haven't stopped since, so. Ha.{/fast}"),
+                Say(spkKira, "...Sorry. {p}That's a lot of words for a roof."),
+                Say(spkByte, "{small}no it wasnt.{/small}", "", "", "+closeness"));
+            var idleZone = new GameObject("RoofStillness");
+            idleZone.transform.SetParent(ctx.story, false);
+            idleZone.transform.position = roof + new Vector3(0, 1f, 0);
+            var idleBox = idleZone.AddComponent<BoxCollider>();
+            idleBox.size = new Vector3(12f, 3f, 8f);
+            idleBox.isTrigger = true;
+            var idle = idleZone.AddComponent<IdleScene>();
+            Set(idle, "sequence", hospital);
+            Set(idle, "flagWhenPlayed", "kira_hospital_story");
+            Set(idle, "secondsOfStillness", 30f);
+
+            Event(ctx, "RoofInvite", StoryEvent.TriggerMode.OnFlag, "got_care_package", 1.2f, "KIRA",
+                L("roof. fire escape by the freed guy. come up. no reason."), null, null, string.Empty);
 
             ExitZone(ctx, "Exit_ToConcretePark", new Vector3(22.3f, 1f, 0f), new Vector3(1.5f, 2f, 8.4f), ParkScene, "ch4", "hack1_done",
                 L("* The street goes on, but something's still blocking Kira's route."));

@@ -2353,3 +2353,285 @@ fr|HAUT/BAS : DÉFILER   GAUCHE/DROITE : ONGLET   TAB : FERMER
 en|CONFIRM: LISTEN   LEFT/RIGHT: TAB   TAB: CLOSE
 it|CONFERMA: ASCOLTA   SINISTRA/DESTRA: SCHEDA   TAB: CHIUDI
 fr|VALIDER : ÉCOUTER   GAUCHE/DROITE : ONGLET   TAB : FERMER
+
+# ---- Bible part 2: lost receipt, rooftop, Kira's package, dry fountain
+
+en|Receipt. {p}Have you seen my receipt? {p}I returned something. Without the receipt, it never happened.
+it|Lo scontrino. {p}Hai visto il mio scontrino? {p}Ho restituito una cosa. Senza scontrino, non è mai successo.
+fr|Le ticket. {p}Vous avez vu mon ticket ? {p}J'ai rendu quelque chose. Sans le ticket, ça n'a jamais existé.
+
+en|{shake}It has to be somewhere.{/shake} {p}Somewhere you throw away the things you used to want.
+it|{shake}Dev'essere da qualche parte.{/shake} {p}Dove si buttano le cose che volevi una volta.
+fr|{shake}Il doit bien être quelque part.{/shake} {p}Là où on jette les choses qu'on voulait avant.
+
+en|I gave it away. I remember now. {p}{wave}That's enough.{/wave}
+it|L'ho regalata. Adesso mi ricordo. {p}{wave}Mi basta.{/wave}
+fr|Je l'ai offerte. Je m'en souviens, maintenant. {p}{wave}Ça me suffit.{/wave}
+
+en|(You hold out the crumpled receipt from the café bin.)
+it|(Gli porgi lo scontrino accartocciato del cestino del bar.)
+fr|(Tu lui tends le ticket froissé trouvé dans la poubelle du café.)
+
+en|RETURNED: one scarf. Hand-knitted. {p}{slow}...Hand-knitted.{/slow}
+it|RESO: una sciarpa. Fatta a mano. {p}{slow}...Fatta a mano.{/slow}
+fr|RETOUR : une écharpe. Tricotée main. {p}{slow}...Tricotée main.{/slow}
+
+en|I didn't return it. {p}I gave it to someone who was always cold. {p}{wave}I remember their face.{/wave}
+it|Non l'ho restituita. {p}L'ho regalata a qualcuno che aveva sempre freddo. {p}{wave}Mi ricordo la sua faccia.{/wave}
+fr|Je ne l'ai pas rendue. {p}Je l'ai offerte à quelqu'un qui avait toujours froid. {p}{wave}Je me souviens de son visage.{/wave}
+
+en|The circle stops. {p}{big}It stops.{/big}
+it|Il giro si ferma. {p}{big}Si ferma.{/big}
+fr|Le cercle s'arrête. {p}{big}Il s'arrête.{/big}
+
+en|Mia knitted me a scarf once. It had a hole by the left end. {p}She said it was a feature.
+it|Mia una volta mi ha fatto una sciarpa a maglia. Aveva un buco vicino all'estremità sinistra. {p}Diceva che era una caratteristica.
+fr|Mia m'a tricoté une écharpe, une fois. Elle avait un trou au bout gauche. {p}Elle disait que c'était voulu.
+
+en|I wore it every winter. {p}{slow}It's in box fourteen. I think.{/slow}
+it|L'ho messa ogni inverno. {p}{slow}È nello scatolone quattordici. Credo.{/slow}
+fr|Je l'ai portée tous les hivers. {p}{slow}Elle est dans le carton quatorze. Je crois.{/slow}
+
+en|A bin full of paper cups. Every single one has a little cloud drawn on it.
+it|Un cestino pieno di bicchieri di carta. Su ognuno c'è disegnata una nuvoletta.
+fr|Une poubelle pleine de gobelets en carton. Sur chacun, un petit nuage dessiné.
+
+en|Under the cups: a crumpled receipt. <color=#FF4FD8>RETURNED: 1 SCARF, HAND-KNITTED.</color>
+it|Sotto i bicchieri: uno scontrino accartocciato. <color=#FF4FD8>RESO: 1 SCIARPA, FATTA A MANO.</color>
+fr|Sous les gobelets : un ticket froissé. <color=#FF4FD8>RETOUR : 1 ÉCHARPE, TRICOTÉE MAIN.</color>
+
+en|Somebody in the circle out there is looking for this.
+it|Qualcuno in quel giro là fuori lo sta cercando.
+fr|Quelqu'un dans le cercle, dehors, cherche ça.
+
+en|Just cups now. {p}Every one has a little cloud on it.
+it|Solo bicchieri, ora. {p}Ognuno con la sua nuvoletta.
+fr|Juste des gobelets, maintenant. {p}Chacun avec son petit nuage.
+
+en|A fire escape. It goes all the way up. {p}Not yet.
+it|Una scala antincendio. Sale fino in cima. {p}Non ancora.
+fr|Un escalier de secours. Il monte jusqu'en haut. {p}Pas encore.
+
+en|Kira's already halfway up, skates over her shoulder. {p}Byte is somehow ahead of her.
+it|Kira è già a metà, coi pattini in spalla. {p}Byte, chissà come, è davanti a lei.
+fr|Kira est déjà à mi-hauteur, les rollers sur l'épaule. {p}Byte, va savoir comment, est devant elle.
+
+en|No deliveries. No route. {p}Just a roof and too many lights.
+it|Niente consegne. Niente giro. {p}Solo un tetto e troppe luci.
+fr|Pas de livraison. Pas de tournée. {p}Juste un toit et trop de lumières.
+
+en|Sit anywhere. {p}{small}Or don't. Nobody's timing you up here.{/small}
+it|Siediti dove vuoi. {p}{small}O no. Quassù nessuno ti cronometra.{/small}
+fr|Assieds-toi où tu veux. {p}{small}Ou pas. Ici, personne ne te chronomètre.{/small}
+
+en|I come up here when the route gets loud. {p}It never gets quiet. But it gets far.
+it|Vengo quassù quando il giro fa troppo rumore. {p}Non diventa mai silenzioso. Ma diventa lontano.
+fr|Je monte ici quand la tournée devient trop bruyante. {p}Ça ne devient jamais calme. Mais ça devient loin.
+
+en|You sit on the crate. Kira sits on the next one, swinging her skates.
+it|Ti siedi sulla cassa. Kira si siede su quella accanto, dondolando i pattini.
+fr|Tu t'assois sur la caisse. Kira s'assoit sur celle d'à côté, en balançant ses rollers.
+
+en|Fun fact: I've delivered to every building you can see from here. {p}{small}Except one.{/small}
+it|Curiosità: ho consegnato in ogni palazzo che vedi da qui. {p}{small}Tranne uno.{/small}
+fr|Anecdote : j'ai livré tous les immeubles que tu vois d'ici. {p}{small}Sauf un.{/small}
+
+en|Don't ask which one. {p}{fast}You're going to ask. Don't ask.{/fast}
+it|Non chiedere quale. {p}{fast}Stai per chiederlo. Non chiederlo.{/fast}
+fr|Demande pas lequel. {p}{fast}Tu vas demander. Demande pas.{/fast}
+
+en|The crate creaks. Kira pretends it was her.
+it|La cassa scricchiola. Kira fa finta che sia stata lei.
+fr|La caisse grince. Kira fait semblant que c'était elle.
+
+en|You sit on the ledge. Byte sits next to you, tail hanging over the drop like it's nothing.
+it|Ti siedi sul cornicione. Byte si siede accanto a te, la coda penzoloni sul vuoto come se niente fosse.
+fr|Tu t'assois sur le rebord. Byte s'assoit à côté de toi, la queue pendue au-dessus du vide comme si de rien n'était.
+
+en|dont look down. {p}look out. {p}{small}different thing.{/small}
+it|non guardare giù. {p}guarda lontano. {p}{small}è diverso.{/small}
+fr|regarde pas en bas. {p}regarde au loin. {p}{small}c'est pas pareil.{/small}
+
+en|Byte's tail swings over the edge. {p}He is very obviously not worried. {p}You are, a little.
+it|La coda di Byte dondola oltre il bordo. {p}Lui chiaramente non è preoccupato. {p}Tu un pochino sì.
+fr|La queue de Byte se balance au-dessus du vide. {p}Lui, clairement, ne s'inquiète pas. {p}Toi, un peu.
+
+en|You sit under the water tank. Kira drops down next to you. Then Byte. Then nobody says anything.
+it|Ti siedi sotto la cisterna. Kira si lascia cadere accanto a te. Poi Byte. Poi nessuno dice niente.
+fr|Tu t'assois sous le réservoir. Kira se laisse tomber à côté de toi. Puis Byte. Puis personne ne dit rien.
+
+en|...This is nice. {p}{slow}Is it weird that this is nice?{/slow}
+it|...È bello. {p}{slow}È strano che sia bello?{/slow}
+fr|...C'est bien. {p}{slow}C'est bizarre que ce soit bien ?{/slow}
+
+en|Still nice. {p}Still a little weird.
+it|Ancora bello. {p}Ancora un po' strano.
+fr|Toujours bien. {p}Toujours un peu bizarre.
+
+en|Nobody moves. The signs below change color, one by one.
+it|Nessuno si muove. Le insegne là sotto cambiano colore, una alla volta.
+fr|Personne ne bouge. En bas, les enseignes changent de couleur, une par une.
+
+en|{small}I used to work nights at a hospital.{/small}
+it|{small}Facevo i turni di notte in un ospedale.{/small}
+fr|{small}Avant, je bossais de nuit dans un hôpital.{/small}
+
+en|Not a doctor. {p}I pushed the trolleys. Brought people their dinner. {p}Their mail.
+it|Non ero medico. {p}Spingevo i carrelli. Portavo la cena alla gente. {p}La posta.
+fr|Pas médecin. {p}Je poussais les chariots. J'apportais les repas. {p}Le courrier.
+
+en|There was this one guy. Room 9. {p}Nobody ever came. {p}So I started delivering him things that weren't for him.
+it|C'era un tizio. Stanza 9. {p}Non veniva mai nessuno. {p}Così ho iniziato a portargli cose che non erano per lui.
+fr|Il y avait ce type. Chambre 9. {p}Personne ne venait jamais. {p}Alors j'ai commencé à lui livrer des trucs qui n'étaient pas pour lui.
+
+en|Flyers. Menus. A postcard I wrote myself and signed 'your cousin'. {p}{wave}He knew. He kept it anyway.{/wave}
+it|Volantini. Menù. Una cartolina scritta da me e firmata 'tuo cugino'. {p}{wave}Lo sapeva. L'ha tenuta lo stesso.{/wave}
+fr|Des prospectus. Des menus. Une carte postale que j'ai écrite moi-même, signée « ton cousin ». {p}{wave}Il savait. Il l'a gardée quand même.{/wave}
+
+en|And then one night room 9 was empty. {p=1}{slow}And I just... kept walking.{/slow}
+it|E poi una notte la stanza 9 era vuota. {p=1}{slow}E io ho semplicemente... continuato a camminare.{/slow}
+fr|Et puis une nuit, la chambre 9 était vide. {p=1}{slow}Et moi j'ai juste... continué à marcher.{/slow}
+
+en|{fast}Out of the ward, out of the building, onto the skates, and I haven't stopped since, so. Ha.{/fast}
+it|{fast}Fuori dal reparto, fuori dall'edificio, sui pattini, e da allora non mi sono più fermata, quindi. Ah.{/fast}
+fr|{fast}Hors du service, hors du bâtiment, sur les rollers, et je me suis jamais arrêtée depuis, donc. Ha.{/fast}
+
+en|...Sorry. {p}That's a lot of words for a roof.
+it|...Scusa. {p}Sono tante parole per un tetto.
+fr|...Pardon. {p}Ça fait beaucoup de mots pour un toit.
+
+en|{small}no it wasnt.{/small}
+it|{small}no che non lo erano.{/small}
+fr|{small}non. pas du tout.{/small}
+
+en|roof. fire escape by the freed guy. come up. no reason.
+it|tetto. scala antincendio vicino al tizio liberato. sali. nessun motivo.
+fr|toit. escalier de secours près du type libéré. monte. aucune raison.
+
+en|Ready when you are. The Core's just ahead. {p}I can feel it humming in my {shake}teeth.{/shake}
+it|Quando vuoi. Il Core è proprio qui davanti. {p}Lo sento ronzare nei {shake}denti.{/shake}
+fr|Quand tu veux. Le Core est juste devant. {p}Je le sens bourdonner dans mes {shake}dents.{/shake}
+
+en|There's one package in her bag she keeps skipping. {p}She zips the bag before I can look.
+it|Nel suo zaino c'è un pacco che salta sempre. {p}Chiude la zip prima che io possa guardare.
+fr|Dans son sac, il y a un colis qu'elle saute toujours. {p}Elle referme le sac avant que je puisse regarder.
+
+en|There's one package in her bag she keeps skipping. {p}No name. No address.
+it|Nel suo zaino c'è un pacco che salta sempre. {p}Nessun nome. Nessun indirizzo.
+fr|Dans son sac, il y a un colis qu'elle saute toujours. {p}Pas de nom. Pas d'adresse.
+
+en|...What? {p}Oh. That one. {p}It's undeliverable. {small}Happens.{/small}
+it|...Che c'è? {p}Ah. Quello. {p}È impossibile da consegnare. {small}Capita.{/small}
+fr|...Quoi ? {p}Ah. Celui-là. {p}Il est impossible à livrer. {small}Ça arrive.{/small}
+
+en|["Want to deliver it together?"]
+it|["Vuoi consegnarlo insieme?"]
+fr|[« On le livre ensemble ? »]
+
+en|[Leave it]
+it|[Lascia stare]
+fr|[Laisser tomber]
+
+en|{fast}Together? It's... I mean, it doesn't even have an address...{/fast}
+it|{fast}Insieme? È che... cioè, non ha neanche un indirizzo...{/fast}
+fr|{fast}Ensemble ? C'est... enfin, il a même pas d'adresse...{/fast}
+
+en|{p}...Actually. {p=0.8}{slow}It does.{/slow}
+it|{p}...In realtà. {p=0.8}{slow}Ce l'ha.{/slow}
+fr|{p}...En fait. {p=0.8}{slow}Si, il en a une.{/slow}
+
+en|She turns it over. {p}The address is hers.
+it|Lo gira. {p}L'indirizzo è il suo.
+fr|Elle le retourne. {p}L'adresse, c'est la sienne.
+
+en|Not yet. {p}Keep walking with me and maybe I'll open it. {small}At the end.{/small}
+it|Non ancora. {p}Continua a camminare con me e forse lo apro. {small}Alla fine.{/small}
+fr|Pas encore. {p}Continue de marcher avec moi et peut-être que je l'ouvrirai. {small}À la fin.{/small}
+
+en|Yeah. {p}Some things stay in the bag.
+it|Già. {p}Certe cose restano nello zaino.
+fr|Ouais. {p}Il y a des choses qui restent dans le sac.
+
+en|Ready when you are. {p}{small}The bag's zipped. I checked twice.{/small}
+it|Quando vuoi. {p}{small}Lo zaino è chiuso. Ho controllato due volte.{/small}
+fr|Quand tu veux. {p}{small}Le sac est fermé. J'ai vérifié deux fois.{/small}
+
+en|The fountain's been dry for years. {p}Someone left a coin in it anyway.
+it|La fontana è asciutta da anni. {p}Qualcuno ci ha lasciato una moneta lo stesso.
+fr|La fontaine est à sec depuis des années. {p}Quelqu'un y a laissé une pièce quand même.
+
+en|hey. {p}sit for a sec.
+it|ehi. {p}siediti un attimo.
+fr|hé. {p}assieds-toi une seconde.
+
+en|tell me something good about home. {p}one thing. {small}dont make it a whole thing.{/small}
+it|dimmi una cosa bella di casa. {p}una sola. {small}non farne un romanzo.{/small}
+fr|dis-moi un truc bien de chez toi. {p}un seul. {small}fais pas tout un roman.{/small}
+
+en|[Mia's crayon drawings on the fridge]
+it|[I disegni a pastello di Mia sul frigo]
+fr|[Les dessins au crayon de Mia sur le frigo]
+
+en|[The bakery that opened at 5 a.m.]
+it|[Il forno che apriva alle 5]
+fr|[La boulangerie qui ouvrait à 5 h]
+
+en|[The last train home, all the lights off]
+it|[L'ultimo treno per casa, tutte le luci spente]
+fr|[Le dernier train pour la maison, toutes lumières éteintes]
+
+en|Mia used to draw me. Always with a giant head. {p}She said it's because I think too much.
+it|Mia mi disegnava sempre. Con una testa gigante. {p}Diceva che è perché penso troppo.
+fr|Mia me dessinait. Toujours avec une tête énorme. {p}Elle disait que c'est parce que je pense trop.
+
+en|There was a bakery under our flat. At five in the morning the whole street smelled like bread. {p}I'd pretend I was awake on purpose.
+it|Sotto casa c'era un forno. Alle cinque di mattina tutta la via sapeva di pane. {p}Io facevo finta di essere sveglio apposta.
+fr|Il y avait une boulangerie sous notre appart. À cinq heures du matin, toute la rue sentait le pain. {p}Je faisais semblant d'être réveillé exprès.
+
+en|The last train home. Everyone asleep, every light off except the sign. {p}It felt like the city was holding its breath. {small}For me.{/small}
+it|L'ultimo treno per casa. Tutti addormentati, ogni luce spenta tranne l'insegna. {p}Sembrava che la città trattenesse il fiato. {small}Per me.{/small}
+fr|Le dernier train pour la maison. Tout le monde endormi, toutes les lumières éteintes sauf le panneau. {p}On aurait dit que la ville retenait son souffle. {small}Pour moi.{/small}
+
+en|Byte doesn't make a joke. {p}He just listens.
+it|Byte non fa battute. {p}Ascolta e basta.
+fr|Byte ne fait pas de blague. {p}Il écoute, c'est tout.
+
+en|{slow}ok.{/slow} {p=1.2}keep that one.
+it|{slow}ok.{/slow} {p=1.2}tienitela stretta.
+fr|{slow}ok.{/slow} {p=1.2}garde celui-là.
+
+en|The coin's still there. Nobody took it. {p}Byte is pretending not to look at me.
+it|La moneta è ancora lì. Nessuno l'ha presa. {p}Byte fa finta di non guardarmi.
+fr|La pièce est toujours là. Personne ne l'a prise. {p}Byte fait semblant de ne pas me regarder.
+
+en|Cafe Bin
+it|Cestino del bar
+fr|Poubelle du café
+
+en|Fire Escape
+it|Scala antincendio
+fr|Escalier de secours
+
+en|Ladder
+it|Scaletta
+fr|Échelle
+
+en|Roof Crate
+it|Cassa
+fr|Caisse
+
+en|Roof Ledge
+it|Cornicione
+fr|Rebord
+
+en|Roof Tank
+it|Cisterna
+fr|Réservoir
+
+en|Fountain
+it|Fontana
+fr|Fontaine
+
+en|Conductor
+it|Capotreno
+fr|Contrôleur
