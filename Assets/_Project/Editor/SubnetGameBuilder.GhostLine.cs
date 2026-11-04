@@ -154,9 +154,9 @@ namespace Subnet.EditorTools
                   "OLDEST FILES FIRST."),
                 new[]
                 {
-                    new HackWave(HackPattern.Crossfire, 9f, 1.3f),
-                    new HackWave(HackPattern.Spiral, 9f, 1.4f),
-                    new HackWave(HackPattern.Aimed, 9f, 1.6f),
+                    new HackWave(HackPattern.Walls, 9f, 1.05f),
+                    new HackWave(HackPattern.Spiral, 9f, 1.25f),
+                    new HackWave(HackPattern.Aimed, 9f, 1.35f),
                     new HackWave(HackPattern.Ripple, 10f, 1.3f, true),
                 },
                 new HackPuzzle[0],

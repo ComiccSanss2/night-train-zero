@@ -88,8 +88,39 @@ namespace Subnet.Player
             }
         }
 
+        private bool scripted;
+
+        /// <summary>
+        /// Walks Leo to a point on his own (door entrances), ignoring colliders. Plays the walk animation.
+        /// </summary>
+        public System.Collections.IEnumerator ScriptedWalk(Vector3 target, float speed = 2.2f)
+        {
+            scripted = true;
+            controller.enabled = false;
+            planarVelocity = Vector3.zero;
+            Vector3 start = transform.position;
+            target.y = start.y;
+            FaceTowards(target);
+            float duration = Mathf.Max(0.05f, Vector3.Distance(start, target) / Mathf.Max(0.1f, speed));
+            float stride = 0f;
+            for (float t = 0f; t < duration; t += Time.deltaTime)
+            {
+                Vector3 previous = transform.position;
+                transform.position = Vector3.Lerp(start, target, t / duration);
+                if (hasSpeedParameter) animator.SetFloat(speedParameterHash, 0.75f, 0.05f, Time.deltaTime);
+                stride += Vector3.Distance(previous, transform.position);
+                if (strideLength > 0f && stride >= strideLength) { stride -= strideLength; onFootstep?.Invoke(); }
+                yield return null;
+            }
+            transform.position = target;
+            if (hasSpeedParameter) animator.SetFloat(speedParameterHash, 0f);
+            controller.enabled = true;
+            scripted = false;
+        }
+
         private void Update()
         {
+            if (scripted) return;
             float dt = Time.deltaTime;
             Vector3 desiredVelocity = ComputeDesiredVelocity();
 

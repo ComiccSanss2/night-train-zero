@@ -35,6 +35,12 @@ namespace Subnet.Audio
 
         public bool InFight { get; private set; }
 
+        /// <summary>The city-channel clip currently playing (null if none).</summary>
+        public AudioClip CurrentCityClip => city != null && city.isPlaying ? city.clip : null;
+
+        // Where each city track was when it was swapped out (shop music → back to the street, resumed).
+        private readonly System.Collections.Generic.Dictionary<AudioClip, float> resumeTimes = new System.Collections.Generic.Dictionary<AudioClip, float>();
+
         /// <summary>Returns the director, creating it on first use.</summary>
         public static MusicDirector Ensure()
         {
@@ -96,8 +102,9 @@ namespace Subnet.Audio
                 if (!InFight) FadeCity(1f, fadeSeconds, 22000f);
                 return;
             }
+            if (city.clip != null && city.isPlaying) resumeTimes[city.clip] = city.time;
             city.clip = clip;
-            city.time = 0f;
+            city.time = resumeTimes.TryGetValue(clip, out float resume) && resume < clip.length - 1f ? resume : 0f;
             city.Play();
             cityGain = 0f;
             cityFilter.cutoffFrequency = 22000f;

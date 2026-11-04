@@ -205,10 +205,10 @@ namespace Subnet.EditorTools
                   "* My handheld trembles. If I want to understand this file, I have to read it myself."),
                 new[]
                 {
-                    new HackWave(HackPattern.Aimed, 9f, 1.1f),
-                    new HackWave(HackPattern.Spiral, 9f, 1.1f),
-                    new HackWave(HackPattern.Crossfire, 9f, 1.2f),
-                    new HackWave(HackPattern.Ripple, 10f, 1.2f),
+                    new HackWave(HackPattern.Lasers, 9f, 1f),
+                    new HackWave(HackPattern.Homing, 9f, 1.05f),
+                    new HackWave(HackPattern.Serpent, 9f, 1.1f),
+                    new HackWave(HackPattern.Fireworks, 10f, 1.15f),
                 },
                 new[]
                 {

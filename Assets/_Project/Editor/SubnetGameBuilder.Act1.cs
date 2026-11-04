@@ -65,6 +65,10 @@ namespace Subnet.EditorTools
             Prop(ctx, "Laptop", "laptop", F, new Vector3(0.6f, Top(desk), 2.5f), 180, 0.42f, true,
                 L("Your laptop. Seventeen unread emails. The subject lines all sound like sighs.", "* The desk under it wobbles when you think too hard. You assembled it with the wrong screws."),
                 L("Closing the lid doesn't make them go away. But it helps."));
+            Prop(ctx, "TokenJar", "glass", "food", new Vector3(1.05f, Top(desk), 2.5f), 0, 0.18f, false,
+                L("A jar of old metro tokens. Mia and I used to collect them. {p}The city stopped taking them years ago.",
+                  "* You pocket a handful. No reason. {p}(It feels like a reason.)"),
+                L("A few tokens left at the bottom. {p}Enough for one more trip. Somewhere."), "$6#token_jar");
             Prop(ctx, "Plant", "pottedPlant", F, new Vector3(1.6f, 0, 2.6f), 0, 0.8f, false,
                 L("A plant from the corner shop. The tag says 'impossible to kill.' It's taking that as a challenge."),
                 L("You water it. It doesn't thank you. Fair."));

@@ -17,7 +17,23 @@ namespace Subnet.Hacking
         /// <summary>Doubts aimed straight at you.</summary>
         Aimed,
         /// <summary>Rings of tears / static.</summary>
-        Ripple
+        Ripple,
+        /// <summary>Telegraphed scan-line beams. Read the warning, find the safe cell.</summary>
+        Lasers,
+        /// <summary>Flowers that open, slow down, and burst into petals.</summary>
+        Bloom,
+        /// <summary>Sine-wave data serpents swimming across the arena.</summary>
+        Serpent,
+        /// <summary>Shells rise, burst, and rain sparks with gravity.</summary>
+        Fireworks,
+        /// <summary>Closing doors: walls with a gap sliding across.</summary>
+        Walls,
+        /// <summary>Seekers that chase you for a while, leaving trails.</summary>
+        Homing,
+        /// <summary>Rings that circle you, close in, then explode outward.</summary>
+        Orbit,
+        /// <summary>Rush hour: a lane lights up, then a train tears through it.</summary>
+        TrainRush
     }
 
     /// <summary>One evasion phase.</summary>

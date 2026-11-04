@@ -81,6 +81,12 @@ namespace Subnet.UI
             if (GUILayout.Button("Set") && !string.IsNullOrWhiteSpace(flagInput)) { StoryFlags.Set(flagInput.Trim()); flagInput = string.Empty; }
             GUILayout.EndHorizontal();
             if (GUILayout.Button("Give the handheld (Tab menu)")) StoryFlags.Set("handheld_checked");
+            GUILayout.Label($"Tokens: {Inventory.Tokens}   HP: {Inventory.HP}/{Inventory.MaxHP}");
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("+10 tokens")) Inventory.AddTokens(10);
+            if (GUILayout.Button("+1 potion")) Inventory.Add("potion");
+            if (GUILayout.Button("Full HP")) Inventory.SetHP(Inventory.MaxHP);
+            GUILayout.EndHorizontal();
             if (GUILayout.Button("Reset run (flags, values, messages)")) StoryFlags.ResetAll();
             if (GUILayout.Button("Reload this scene")) { visible = false; SceneLoader.Load(SceneManager.GetActiveScene().name, null, false); }
             GUILayout.EndScrollView();

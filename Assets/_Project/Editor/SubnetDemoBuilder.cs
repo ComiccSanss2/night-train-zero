@@ -75,6 +75,7 @@ namespace Subnet.EditorTools
             ConfigureMusicImport("firewall");
             ConfigureMusicImport("scrapeyard-aster");
             ConfigureMusicImport("freedom");
+            ConfigureMusicImport("funkygameost");
 
             try
             {
@@ -1443,6 +1444,15 @@ namespace Subnet.EditorTools
             SerializedProperty p = Find(so, target, field);
             if (p == null) return;
             p.boolValue = value;
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        private static void Set(Object target, string field, Vector3 value)
+        {
+            var so = new SerializedObject(target);
+            SerializedProperty p = Find(so, target, field);
+            if (p == null) return;
+            p.vector3Value = value;
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 

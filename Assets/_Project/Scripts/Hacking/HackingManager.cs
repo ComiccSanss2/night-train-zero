@@ -25,7 +25,7 @@ namespace Subnet.Hacking
     ///  • Fight → overworld: arena collapses, bands sweep out, warm flash, city music opens back up in sync.
     /// The UI is built at runtime; one instance per gameplay scene.
     /// </summary>
-    public class HackingManager : MonoBehaviour
+    public partial class HackingManager : MonoBehaviour
     {
         public static HackingManager Instance { get; private set; }
 
@@ -34,7 +34,6 @@ namespace Subnet.Hacking
         [SerializeField] private float arenaCenterY = -20f;
         [SerializeField] private float soulSpeed = 290f;
         [SerializeField] private float soulRadius = 8f;
-        [SerializeField] private int maxSanity = 5;
         [SerializeField] private float invulnerabilitySeconds = 1.1f;
         [SerializeField] private float grazeDistance = 14f;
 
@@ -67,19 +66,6 @@ namespace Subnet.Hacking
         private const string CorrectFlag = "__hack_fragment_ok";
         private const int SliceCount = 12;
 
-        private class Bullet
-        {
-            public RectTransform rect;
-            public Image image;
-            public Vector2 position;
-            public Vector2 velocity;
-            public float radius;
-            public float spin;
-            public bool active;
-            public bool grazed;
-        }
-
-        private readonly List<Bullet> bullets = new List<Bullet>();
         private readonly List<Image> firewallSegments = new List<Image>();
         private readonly List<RectTransform> slices = new List<RectTransform>();
 
@@ -95,8 +81,6 @@ namespace Subnet.Hacking
         private RectTransform firewallRow;
         private TextMeshProUGUI titleText;
         private TextMeshProUGUI statusText;
-        private TextMeshProUGUI sanityText;
-        private TextMeshProUGUI progressText;
         private RectTransform portraitFrame;
         private RawImage portraitImage;
         private Image portraitFlash;
@@ -123,7 +107,6 @@ namespace Subnet.Hacking
         private TextMeshProUGUI companionLabel;
         private Vector2 soulPosition;
         private Vector2 arenaHalf;
-        private int sanity;
         private float invulnerable;
         private float arenaShake;
         private float portraitShake;
@@ -196,10 +179,9 @@ namespace Subnet.Hacking
 
             titleText.text = string.Empty;
             statusText.text = string.Empty;
-            progressText.text = string.Empty;
+            SetProgress(0f, string.Empty);
             BuildFirewall(Mathf.Max(1, target.puzzles.Count));
-            sanity = maxSanity;
-            RefreshSanity();
+            BeginCombatSession();
             soul.gameObject.SetActive(false);
             HideBubbleImmediate();
 
@@ -247,6 +229,7 @@ namespace Subnet.Hacking
             StartCoroutine(Flash(new Color(1f, 0.85f, 0.6f), 0.8f));
             StartCoroutine(PortraitHit(new Color(1f, 0.9f, 0.7f), 0.6f));
             yield return Wait(0.6f);
+            yield return GiveReward(target);
             yield return SpeakLines(target.resolutionLines, target.speaker);
 
             HideBubbleImmediate();
@@ -631,6 +614,8 @@ namespace Subnet.Hacking
             patternAngle = UnityEngine.Random.Range(0f, 360f);
             statusText.text = Loc.T(wave.surrender ? "SOME THINGS CAN'T BE DODGED." : WaveFlavor(wave.pattern));
             Play(waveStartClip);
+            BeginWavePattern(wave);
+            StartCoroutine(WaveBanner(wave.surrender ? "LET GO" : WaveName(wave.pattern)));
             waveActive = true;
             AttackPulse(1f);
             if (obstacle != null && obstacle.fadeCompanion && companionRoot == null) BuildCompanion(obstacle.companionLabel);
@@ -650,17 +635,21 @@ namespace Subnet.Hacking
                         running = float.MinValue;
                         statusText.text = Loc.T("...STOP RUNNING.");
                     }
-                    progressText.text = Loc.F("LETTING GO  {0}%", Mathf.FloorToInt(elapsed / duration * 100f));
+                    SetProgress(elapsed / duration, Loc.F("LETTING GO  {0}%", Mathf.FloorToInt(elapsed / duration * 100f)));
                 }
                 else
                 {
                     elapsed += dt;
-                    progressText.text = Loc.F("DECRYPTING  {0}%", Mathf.FloorToInt(elapsed / duration * 100f));
+                    SetProgress(elapsed / duration, Loc.F("DECRYPTING  {0}%", Mathf.FloorToInt(elapsed / duration * 100f)));
                 }
 
                 UpdateSoul(dt);
+                wavePhase = elapsed / duration;
                 SpawnPattern(dt);
                 UpdateBullets(dt);
+                UpdateLasers(dt);
+                UpdateScheduled(dt);
+                UpdateCombatExtras(dt);
                 if (companionRoot != null && obstacle != null && obstacle.waves.Count > 0)
                 {
                     UpdateCompanion((roundIndex + elapsed / duration) / obstacle.waves.Count);
@@ -673,7 +662,7 @@ namespace Subnet.Hacking
                     Taunt();
                 }
 
-                if (sanity <= 0)
+                if (Inventory.HP <= 0)
                 {
                     yield return Reconnect();
                     elapsed = 0f;
@@ -684,7 +673,7 @@ namespace Subnet.Hacking
             waveActive = false;
             ClearBullets();
             HideBubbleImmediate();
-            progressText.text = Loc.T("DECRYPTED  100%");
+            SetProgress(1f, Loc.T("DECRYPTED  100%"));
         }
 
         private IEnumerator Reconnect()
@@ -693,12 +682,14 @@ namespace Subnet.Hacking
             HideBubbleImmediate();
             soul.gameObject.SetActive(false);
             Play(disconnectClip);
-            statusText.text = Loc.T("SANITY DEPLETED. TAKING A BREATH... RECONNECTING.");
+            statusText.text = Loc.T("HP DEPLETED. TAKING A BREATH... RECONNECTING.");
+            reconnects++;
             StartCoroutine(Flash(RuntimeUI.Magenta, 0.5f));
             yield return Wait(1.4f);
-            sanity = maxSanity;
-            RefreshSanity();
+            Inventory.SetHP(Inventory.MaxHP);
+            RefreshHP(true);
             ResetSoul();
+            BeginWavePattern(currentWave);
             soul.gameObject.SetActive(true);
             statusText.text = Loc.T(WaveFlavor(currentWave.pattern));
             spawnTimer = 0.8f;
@@ -707,7 +698,7 @@ namespace Subnet.Hacking
         private IEnumerator RunPuzzle(HackPuzzle puzzle, Action<bool> result)
         {
             statusText.text = Loc.T("EMOTIONAL FIREWALL DETECTED. SELECT A MEMORY FRAGMENT.");
-            progressText.text = string.Empty;
+            SetProgress(0f, string.Empty);
             soul.gameObject.SetActive(false);
 
             DialogueManager dialogue = DialogueManager.Instance;
@@ -778,190 +769,6 @@ namespace Subnet.Hacking
             }
         }
 
-        private void SpawnPattern(float dt)
-        {
-            spawnTimer -= dt;
-            if (spawnTimer > 0f) return;
-
-            float k = currentWave.intensity;
-            Color paper = new Color(0.95f, 0.93f, 0.88f);
-            AttackPulse(currentWave.pattern == HackPattern.Ripple || currentWave.pattern == HackPattern.Aimed ? 1f : 0.55f);
-            switch (currentWave.pattern)
-            {
-                case HackPattern.PaperRain:
-                {
-                    spawnTimer = 0.2f / k;
-                    Vector2 p = new Vector2(UnityEngine.Random.Range(-arenaHalf.x, arenaHalf.x), arenaHalf.y + 20f);
-                    Vector2 v = new Vector2(UnityEngine.Random.Range(-35f, 35f), -UnityEngine.Random.Range(150f, 240f) * k);
-                    Spawn(p, v, new Vector2(16, 22), 9f, paper, UnityEngine.Random.Range(-200f, 200f), 0f);
-                    break;
-                }
-                case HackPattern.ClockHands:
-                {
-                    spawnTimer = 0.5f / k;
-                    patternAngle += 27f;
-                    for (int i = 0; i < 3; i++)
-                    {
-                        float a = (patternAngle + i * 120f) * Mathf.Deg2Rad;
-                        Vector2 dir = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
-                        Spawn(Vector2.zero, dir * (175f * k), new Vector2(6, 26), 7f, RuntimeUI.Cyan, 0f, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f);
-                    }
-                    Play(tickClip, 0.35f);
-                    break;
-                }
-                case HackPattern.Crossfire:
-                {
-                    spawnTimer = 0.36f / k;
-                    bool fromLeft = UnityEngine.Random.value < 0.5f;
-                    float y = UnityEngine.Random.Range(-arenaHalf.y + 12f, arenaHalf.y - 12f);
-                    Vector2 p = new Vector2(fromLeft ? -arenaHalf.x - 20f : arenaHalf.x + 20f, y);
-                    Spawn(p, new Vector2(fromLeft ? 230f : -230f, 0f) * k, new Vector2(26, 12), 7f, RuntimeUI.Magenta, 0f, 0f);
-                    break;
-                }
-                case HackPattern.Spiral:
-                {
-                    spawnTimer = 0.085f / k;
-                    patternAngle += 19f;
-                    for (int arm = 0; arm < 2; arm++)
-                    {
-                        float a = (patternAngle + arm * 180f) * Mathf.Deg2Rad;
-                        Vector2 dir = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
-                        Spawn(Vector2.zero, dir * (150f * k), new Vector2(12, 12), 6f, RuntimeUI.Lilac, 90f, 45f);
-                    }
-                    break;
-                }
-                case HackPattern.Aimed:
-                {
-                    spawnTimer = 0.55f / k;
-                    Vector2 p = RandomEdgePoint();
-                    Vector2 dir = (soulPosition - p).normalized;
-                    Spawn(p, dir * (250f * k), new Vector2(14, 14), 7f, new Color(1f, 0.35f, 0.4f), 180f, 0f);
-                    break;
-                }
-                case HackPattern.Ripple:
-                {
-                    spawnTimer = 1.15f / k;
-                    Vector2 origin = Vector2.zero;
-                    for (int attempt = 0; attempt < 10; attempt++)
-                    {
-                        origin = new Vector2(UnityEngine.Random.Range(-arenaHalf.x * 0.8f, arenaHalf.x * 0.8f), UnityEngine.Random.Range(-arenaHalf.y * 0.8f, arenaHalf.y * 0.8f));
-                        if ((origin - soulPosition).magnitude > 170f) break;
-                    }
-                    const int count = 12;
-                    float offset = UnityEngine.Random.Range(0f, 30f);
-                    for (int i = 0; i < count; i++)
-                    {
-                        float a = (offset + i * 360f / count) * Mathf.Deg2Rad;
-                        Vector2 dir = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
-                        Spawn(origin, dir * (140f * k), new Vector2(12, 12), 6f, new Color(0.15f, 0.15f, 0.18f), 0f, 45f);
-                    }
-                    Play(tickClip, 0.25f);
-                    break;
-                }
-            }
-        }
-
-        private Vector2 RandomEdgePoint()
-        {
-            switch (UnityEngine.Random.Range(0, 4))
-            {
-                case 0: return new Vector2(UnityEngine.Random.Range(-arenaHalf.x, arenaHalf.x), arenaHalf.y + 15f);
-                case 1: return new Vector2(UnityEngine.Random.Range(-arenaHalf.x, arenaHalf.x), -arenaHalf.y - 15f);
-                case 2: return new Vector2(-arenaHalf.x - 15f, UnityEngine.Random.Range(-arenaHalf.y, arenaHalf.y));
-                default: return new Vector2(arenaHalf.x + 15f, UnityEngine.Random.Range(-arenaHalf.y, arenaHalf.y));
-            }
-        }
-
-        private void Spawn(Vector2 position, Vector2 velocity, Vector2 size, float radius, Color color, float spin, float rotation)
-        {
-            Bullet bullet = null;
-            foreach (Bullet b in bullets)
-            {
-                if (!b.active) { bullet = b; break; }
-            }
-            if (bullet == null)
-            {
-                Image image = RuntimeUI.Image("Thought", arena, Color.white);
-                image.rectTransform.anchorMin = image.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-                bullet = new Bullet { rect = image.rectTransform, image = image };
-                bullets.Add(bullet);
-            }
-
-            bullet.active = true;
-            bullet.grazed = false;
-            bullet.position = position;
-            bullet.velocity = velocity;
-            bullet.radius = radius;
-            bullet.spin = spin;
-            bullet.image.color = color;
-            bullet.rect.sizeDelta = size;
-            bullet.rect.localRotation = Quaternion.Euler(0f, 0f, rotation);
-            bullet.rect.anchoredPosition = position;
-            bullet.rect.gameObject.SetActive(true);
-            soul.SetAsLastSibling();
-        }
-
-        private void UpdateBullets(float dt)
-        {
-            const float margin = 50f;
-            foreach (Bullet b in bullets)
-            {
-                if (!b.active) continue;
-
-                b.position += b.velocity * dt;
-                b.rect.anchoredPosition = b.position;
-                if (b.spin != 0f) b.rect.Rotate(0f, 0f, b.spin * dt);
-
-                if (Mathf.Abs(b.position.x) > arenaHalf.x + margin || Mathf.Abs(b.position.y) > arenaHalf.y + margin)
-                {
-                    Deactivate(b);
-                    continue;
-                }
-                if (Mathf.Abs(b.position.x) > arenaHalf.x || Mathf.Abs(b.position.y) > arenaHalf.y) continue;
-
-                float distance = (b.position - soulPosition).magnitude;
-                if (distance < b.radius + soulRadius)
-                {
-                    if (invulnerable <= 0f) Hit(b);
-                }
-                else if (!b.grazed && distance < b.radius + soulRadius + grazeDistance)
-                {
-                    b.grazed = true;
-                    Play(grazeClip, 0.25f);
-                    Shake(0.06f);
-                }
-            }
-        }
-
-        private void Hit(Bullet b)
-        {
-            if (waveActive && currentWave != null && currentWave.surrender)
-            {
-                // The grief wave doesn't hurt. It just goes through you.
-                Deactivate(b);
-                StartCoroutine(Flash(new Color(0.75f, 0.9f, 1f), 0.12f));
-                return;
-            }
-            Deactivate(b);
-            sanity = Mathf.Max(0, sanity - 1);
-            invulnerable = invulnerabilitySeconds;
-            RefreshSanity();
-            Play(hitClip);
-            Shake(0.35f);
-            StartCoroutine(Flash(new Color(1f, 0.2f, 0.35f), 0.25f));
-        }
-
-        private static void Deactivate(Bullet b)
-        {
-            b.active = false;
-            b.rect.gameObject.SetActive(false);
-        }
-
-        private void ClearBullets()
-        {
-            foreach (Bullet b in bullets) Deactivate(b);
-        }
-
         // ================================================================== Feedback
 
         private void BreakFirewall(int index)
@@ -999,6 +806,7 @@ namespace Subnet.Hacking
             float dt = GameTime.UnscaledDelta;
             float t = GameTime.UnscaledTime;
             attackPulse = Mathf.MoveTowards(attackPulse, 0f, dt * 3.5f);
+            UpdateDecor(dt);
 
             // Per-pattern choreography of the feed (and sometimes the whole arena).
             Vector2 motionGoal = Vector2.zero;
@@ -1030,6 +838,37 @@ namespace Subnet.Hacking
                     case HackPattern.Ripple:
                         beatGoal = 1f + Mathf.Pow(Mathf.Abs(Mathf.Sin(t * 2.6f)), 8f) * 0.12f; // heartbeat
                         driftGoal = new Vector2(0f, Mathf.Sin(t * 1.1f) * 14f);
+                        break;
+                    case HackPattern.Lasers:
+                        tiltGoal = Mathf.Sin(t * 8f) * 2f;
+                        beatGoal = 1f + Mathf.Abs(Mathf.Sin(t * 4f)) * 0.05f;
+                        break;
+                    case HackPattern.Bloom:
+                        motionGoal = new Vector2(Mathf.Sin(t * 1.4f) * 120f, Mathf.Abs(Mathf.Sin(t * 2.8f)) * 20f);
+                        beatGoal = 1f + Mathf.Sin(t * 2.8f) * 0.05f;
+                        break;
+                    case HackPattern.Serpent:
+                        motionGoal = new Vector2(Mathf.Sin(t * 0.9f) * 220f, Mathf.Sin(t * 3.6f) * 18f);
+                        tiltGoal = Mathf.Cos(t * 3.6f) * 6f;
+                        break;
+                    case HackPattern.Fireworks:
+                        motionGoal = new Vector2(0f, Mathf.Abs(Mathf.Sin(t * 3f)) * 26f);
+                        arenaTiltGoal = Mathf.Sin(t * 0.6f) * 2f;
+                        break;
+                    case HackPattern.Walls:
+                        driftGoal = new Vector2(Mathf.Sin(t * 0.7f) * 20f, 0f);
+                        tiltGoal = Mathf.Round(Mathf.Sin(t * 2f)) * 4f;
+                        break;
+                    case HackPattern.Homing:
+                        motionGoal = new Vector2(Mathf.Clamp(soulPosition.x * 0.6f, -200f, 200f), Mathf.Sin(t * 2f) * 12f);
+                        break;
+                    case HackPattern.Orbit:
+                        motionGoal = new Vector2(Mathf.Cos(t * 1.6f) * 110f, Mathf.Sin(t * 1.6f) * 30f);
+                        arenaTiltGoal = Mathf.Sin(t * 0.5f) * 5f;
+                        break;
+                    case HackPattern.TrainRush:
+                        driftGoal = new Vector2(Mathf.Sin(t * 13f) * 3f, Mathf.Sin(t * 17f) * 2f); // rumbling tracks
+                        motionGoal = new Vector2(Mathf.Sin(t * 0.8f) * 160f, 0f);
                         break;
                 }
             }
@@ -1127,12 +966,6 @@ namespace Subnet.Hacking
             for (float t = 0f; t < seconds; t += GameTime.UnscaledDelta) yield return null;
         }
 
-        private void RefreshSanity()
-        {
-            sanityText.text = Loc.T("SANITY") + "  " + new string('#', sanity) + new string('-', Mathf.Max(0, maxSanity - sanity));
-            sanityText.color = sanity <= 1 ? RuntimeUI.Magenta : RuntimeUI.Cyan;
-        }
-
         private void Play(AudioClip clip, float volume = 1f)
         {
             if (audioSource != null && clip != null) audioSource.PlayOneShot(clip, volume);
@@ -1195,20 +1028,6 @@ namespace Subnet.Hacking
             if (companionRoot != null) Destroy(companionRoot.gameObject);
             companionRoot = null;
             companionPixels.Clear();
-        }
-
-        private static string WaveFlavor(HackPattern pattern)
-        {
-            switch (pattern)
-            {
-                case HackPattern.PaperRain: return "INCOMING: UNREAD PAPERWORK. DODGE.";
-                case HackPattern.ClockHands: return "INCOMING: TICKING CLOCK HANDS. DON'T LOOK AT THE TIME.";
-                case HackPattern.Crossfire: return "INCOMING: NOTIFICATIONS FROM BOTH SIDES.";
-                case HackPattern.Spiral: return "INCOMING: A LOOPING THOUGHT. IT KEEPS COMING BACK.";
-                case HackPattern.Aimed: return "INCOMING: DOUBTS. THEY KNOW WHERE YOU ARE.";
-                case HackPattern.Ripple: return "INCOMING: RIPPLES OF STATIC.";
-                default: return "INCOMING.";
-            }
         }
 
         // ================================================================== UI construction
@@ -1280,20 +1099,18 @@ namespace Subnet.Hacking
             outline.effectDistance = new Vector2(3, -3);
             arena.gameObject.AddComponent<RectMask2D>();
 
+            BuildArenaDecor(contentRect, arenaImage);
             soulImage = RuntimeUI.Image("Soul", arena, RuntimeUI.Magenta);
+            soulImage.sprite = HackSprites.Get(HackSprites.Shape.Heart);
             soul = soulImage.rectTransform;
             soul.anchorMin = soul.anchorMax = new Vector2(0.5f, 0.5f);
-            soul.sizeDelta = new Vector2(18, 18);
-            soul.localRotation = Quaternion.Euler(0, 0, 45);
+            soul.sizeDelta = new Vector2(24, 24);
 
             float rowY = arenaCenterY - arenaHalf.y - 14f;
-            sanityText = RuntimeUI.Text("Sanity", contentRect, "", 22, RuntimeUI.Cyan, TextAlignmentOptions.Left);
-            RuntimeUI.Place(sanityText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0f, 1f), new Vector2(-arenaHalf.x, rowY), new Vector2(260, 30));
-            progressText = RuntimeUI.Text("Progress", contentRect, "", 22, RuntimeUI.Dim, TextAlignmentOptions.Right);
-            RuntimeUI.Place(progressText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(1f, 1f), new Vector2(arenaHalf.x, rowY), new Vector2(260, 30));
+            BuildCombatUI(contentRect, rowY);
 
             firewallRow = RuntimeUI.Rect("Firewall", contentRect);
-            RuntimeUI.Place(firewallRow, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 1f), new Vector2(0, rowY - 4f), new Vector2(300, 18));
+            RuntimeUI.Place(firewallRow, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 1f), new Vector2(0, rowY - 52f), new Vector2(300, 18));
             var rowLayout = firewallRow.gameObject.AddComponent<HorizontalLayoutGroup>();
             rowLayout.spacing = 8;
             rowLayout.childAlignment = TextAnchor.MiddleCenter;
@@ -1303,7 +1120,7 @@ namespace Subnet.Hacking
             rowLayout.childForceExpandHeight = false;
 
             statusText = RuntimeUI.Text("Status", contentRect, "", 20, RuntimeUI.Lilac, TextAlignmentOptions.Center);
-            RuntimeUI.Place(statusText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 1f), new Vector2(0, rowY - 30f), new Vector2(1400, 30));
+            RuntimeUI.Place(statusText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 1f), new Vector2(0, rowY - 78f), new Vector2(1400, 30));
 
             if (crtMaterial != null)
             {
@@ -1356,7 +1173,8 @@ namespace Subnet.Hacking
             for (int i = 0; i < segments; i++)
             {
                 Image segment = RuntimeUI.Image("Segment", firewallRow, RuntimeUI.Magenta);
-                segment.rectTransform.sizeDelta = new Vector2(60, 14);
+                segment.sprite = HackSprites.Get(HackSprites.Shape.Rounded);
+                segment.rectTransform.sizeDelta = new Vector2(70, 16);
                 firewallSegments.Add(segment);
             }
         }

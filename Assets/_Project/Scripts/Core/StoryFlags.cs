@@ -28,6 +28,16 @@ namespace Subnet.Core
                 foreach (string part in flag.Split(';')) Set(part.Trim());
                 return;
             }
+            // "$5#piggy_bank", "give:potion#fridge": once only, like "+key#tag".
+            int onceAt = flag.IndexOf('#');
+            if (onceAt > 0 && flag[0] != '+')
+            {
+                string once = "once:" + flag.Substring(onceAt + 1);
+                if (flags.Contains(once)) return;
+                flags.Add(once);
+                flag = flag.Substring(0, onceAt);
+            }
+            if (Inventory.TryHandleFlag(flag)) return;
             if (flag.Length > 1 && flag[0] == '+')
             {
                 // "+closeness#roof_crate": raise once only, however many times this runs.
@@ -64,6 +74,12 @@ namespace Subnet.Core
             int value = GetCount(key) + 1;
             counters[key] = value;
             return value;
+        }
+
+        /// <summary>Overwrites a counter (inventory, HP).</summary>
+        public static void SetCount(string key, int value)
+        {
+            if (!string.IsNullOrEmpty(key)) counters[key] = value;
         }
 
         private const string PrefFlags = "save.flags";

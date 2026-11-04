@@ -3135,3 +3135,733 @@ fr|...ok. {p}{small}alors on marche plus lentement. pour que t'y arrives pas d'u
 en|Byte bumps his head against my ankle. {p}Once. {p}Like it was an accident.
 it|Byte mi dà una testata alla caviglia. {p}Una volta. {p}Come se fosse un caso.
 fr|Byte me donne un coup de tête dans la cheville. {p}Une fois. {p}Comme si c'était un accident.
+
+# ---- Bible part 4: inventory, tokens, shop, houses, new fights
+
+en|Fizzy Potion
+it|Pozione Frizzante
+fr|Potion Pétillante
+
+en|Pink, carbonated, slightly radioactive. Heals 8 HP.
+it|Rosa, gassata, leggermente radioattiva. Cura 8 PV.
+fr|Rose, gazeuse, légèrement radioactive. Soigne 8 PV.
+
+en|Neon Elixir
+it|Elisir al Neon
+fr|Élixir Néon
+
+en|Tastes like the first day of summer break. Heals all HP.
+it|Sa di primo giorno delle vacanze estive. Cura tutti i PV.
+fr|A le goût du premier jour des grandes vacances. Soigne tous les PV.
+
+en|Cup Ramen
+it|Ramen Istantaneo
+fr|Ramen Instantané
+
+en|Three minutes of hope. Heals 5 HP.
+it|Tre minuti di speranza. Cura 5 PV.
+fr|Trois minutes d'espoir. Soigne 5 PV.
+
+en|Voicemail Tape
+it|Nastro della Segreteria
+fr|Cassette du Répondeur
+
+en|Found in apartment 0451. A little girl sings happy birthday to a dad who never came home in time.
+it|Trovato nell'appartamento 0451. Una bambina canta tanti auguri a un papà che non tornava mai in tempo.
+fr|Trouvée dans l'appartement 0451. Une petite fille chante joyeux anniversaire à un papa qui ne rentrait jamais à temps.
+
+en|Mia's Drawing
+it|Il Disegno di Mia
+fr|Le Dessin de Mia
+
+en|Leo with an enormous head. 'BECAUSE YOU THINK TOO MUCH' written underneath in purple crayon.
+it|Leo con una testa enorme. Sotto, a pastello viola: 'PERCHÉ PENSI TROPPO'.
+fr|Leo avec une tête énorme. En dessous, au crayon violet : 'PARCE QUE TU PENSES TROP'.
+
+en|Dani's Drumsticks
+it|Le Bacchette di Dani
+fr|Les Baguettes de Dani
+
+en|The tape on them is still sticky. One, two. One, two.
+it|Il nastro sopra è ancora appiccicoso. Uno, due. Uno, due.
+fr|Le scotch dessus colle encore. Un, deux. Un, deux.
+
+en|Plush Cat
+it|Gatto di Peluche
+fr|Chat en Peluche
+
+en|Won from a claw machine. Looks exactly like Byte. Byte denies everything.
+it|Vinto a una macchinetta con la pinza. È identico a Byte. Byte nega tutto.
+fr|Gagné à une machine à pince. Le portrait craché de Byte. Byte nie tout.
+
+en|First Payslip
+it|Prima Busta Paga
+fr|Première Fiche de Paie
+
+en|Leo's first salary, folded into a tiny square. 'Send Mia something' scribbled on the back. He never did.
+it|Il primo stipendio di Leo, piegato in un quadratino. Sul retro: 'Manda qualcosa a Mia'. Non l'ha mai fatto.
+fr|Le premier salaire de Leo, plié en tout petit carré. Au dos : 'Envoyer un truc à Mia'. Il ne l'a jamais fait.
+
+en|+{0} TOKENS
+it|+{0} GETTONI
+fr|+{0} JETONS
+
+en|KEY ITEM: {0}
+it|OGGETTO CHIAVE: {0}
+fr|OBJET CLÉ : {0}
+
+en|GOT: {0}
+it|OTTENUTO: {0}
+fr|OBTENU : {0}
+
+en|GOT: {0} x{1}
+it|OTTENUTO: {0} x{1}
+fr|OBTENU : {0} x{1}
+
+en|HP RESTORED
+it|PV RIPRISTINATI
+fr|PV RESTAURÉS
+
+en|ITEMS
+it|OGGETTI
+fr|OBJETS
+
+en|TOKENS
+it|GETTONI
+fr|JETONS
+
+en|NO ITEMS. TOKENS BUY POTIONS AT THE NEON MART.
+it|NESSUN OGGETTO. COI GETTONI COMPRI POZIONI AL NEON MART.
+fr|AUCUN OBJET. LES JETONS ACHÈTENT DES POTIONS AU NEON MART.
+
+en|KEY ITEMS
+it|OGGETTI CHIAVE
+fr|OBJETS CLÉS
+
+en|CONFIRM: USE   LEFT/RIGHT: TAB   TAB: CLOSE
+it|CONFERMA: USA   SINISTRA/DESTRA: SCHEDA   TAB: CHIUDI
+fr|VALIDER : UTILISER   GAUCHE/DROITE : ONGLET   TAB : FERMER
+
+en|YOU'RE ALREADY AT FULL HP.
+it|HAI GIÀ TUTTI I PV.
+fr|TU AS DÉJÀ TOUS TES PV.
+
+en|YOU DRINK THE {0}. HP {1}/{2}.
+it|BEVI {0}. PV {1}/{2}.
+fr|TU BOIS {0}. PV {1}/{2}.
+
+en|HP DEPLETED. TAKING A BREATH... RECONNECTING.
+it|PV ESAURITI. UN RESPIRO... RICONNESSIONE.
+fr|PV ÉPUISÉS. ON RESPIRE... RECONNEXION.
+
+en|FLAWLESS LINK. REWARD: +{0} TOKENS
+it|CONNESSIONE PERFETTA. RICOMPENSA: +{0} GETTONI
+fr|LIAISON PARFAITE. RÉCOMPENSE : +{0} JETONS
+
+en|REWARD: +{0} TOKENS
+it|RICOMPENSA: +{0} GETTONI
+fr|RÉCOMPENSE : +{0} JETONS
+
+en|NO ITEMS
+it|NIENTE OGGETTI
+fr|AUCUN OBJET
+
+en|HP FULL
+it|PV PIENI
+fr|PV AU MAX
+
+en|* YOU DRINK THE {0}.
+it|* BEVI {0}.
+fr|* TU BOIS {0}.
+
+en|[Q] ITEM — NONE LEFT
+it|[Q] OGGETTO — FINITI
+fr|[Q] OBJET — PLUS RIEN
+
+en|[Q] {0}
+it|[Q] {0}
+fr|[Q] {0}
+
+en|LET GO
+it|LASCIA ANDARE
+fr|LÂCHE PRISE
+
+en|PAPER STORM
+it|TEMPESTA DI CARTE
+fr|TEMPÊTE DE PAPIERS
+
+en|OVERTIME CLOCK
+it|OROLOGIO DEGLI STRAORDINARI
+fr|L'HORLOGE DES HEURES SUP
+
+en|NOTIFICATION HELL
+it|INFERNO DI NOTIFICHE
+fr|L'ENFER DES NOTIFS
+
+en|THOUGHT LOOP
+it|PENSIERO IN LOOP
+fr|PENSÉE EN BOUCLE
+
+en|SELF-DOUBT
+it|INSICUREZZA
+fr|DOUTE DE SOI
+
+en|RIPPLES
+it|ONDE
+fr|ONDES
+
+en|SCAN LINES
+it|LINEE DI SCANSIONE
+fr|LIGNES DE SCAN
+
+en|BLOOM
+it|FIORITURA
+fr|ÉCLOSION
+
+en|DATA SERPENTS
+it|SERPENTI DI DATI
+fr|SERPENTS DE DONNÉES
+
+en|LAST SUMMER'S FIREWORKS
+it|I FUOCHI DELL'ULTIMA ESTATE
+fr|LES FEUX DU DERNIER ÉTÉ
+
+en|CLOSING DOORS
+it|PORTE CHE SI CHIUDONO
+fr|PORTES QUI SE FERMENT
+
+en|SEEKERS
+it|INSEGUITORI
+fr|TRAQUEURS
+
+en|CLOSING IN
+it|SI STRINGE
+fr|ÇA SE RESSERRE
+
+en|RUSH HOUR
+it|ORA DI PUNTA
+fr|HEURE DE POINTE
+
+en|SCANNING... READ THE WARNING LINES.
+it|SCANSIONE... LEGGI LE LINEE DI AVVISO.
+fr|SCAN EN COURS... LIS LES LIGNES D'ALERTE.
+
+en|SOMETHING IS OPENING. GIVE IT ROOM.
+it|QUALCOSA SI STA APRENDO. DALLE SPAZIO.
+fr|QUELQUE CHOSE S'OUVRE. LAISSE-LUI DE LA PLACE.
+
+en|DATA STREAMS. FOLLOW THE WAVE, NOT THE HEAD.
+it|FLUSSI DI DATI. SEGUI L'ONDA, NON LA TESTA.
+fr|FLUX DE DONNÉES. SUIS LA VAGUE, PAS LA TÊTE.
+
+en|WHAT GOES UP COMES DOWN IN PIECES.
+it|QUELLO CHE SALE, SCENDE A PEZZI.
+fr|CE QUI MONTE RETOMBE EN MORCEAUX.
+
+en|THE DOORS ARE CLOSING. FIND THE GAP.
+it|LE PORTE SI CHIUDONO. TROVA IL VARCO.
+fr|LES PORTES SE FERMENT. TROUVE LA BRÈCHE.
+
+en|THEY FOLLOW YOU. KEEP MOVING.
+it|TI SEGUONO. CONTINUA A MUOVERTI.
+fr|ILS TE SUIVENT. BOUGE SANS ARRÊT.
+
+en|IT'S CIRCLING. LOOK FOR THE OPENING.
+it|TI GIRA INTORNO. CERCA L'APERTURA.
+fr|ÇA TOURNE AUTOUR. CHERCHE L'OUVERTURE.
+
+en|WATCH THE LANES. TRAINS DON'T STOP.
+it|GUARDA LE CORSIE. I TRENI NON SI FERMANO.
+fr|SURVEILLE LES VOIES. LES TRAINS NE S'ARRÊTENT PAS.
+
+en|NEON MART  //  OPEN 24/7
+it|NEON MART  //  APERTO 24/7
+fr|NEON MART  //  OUVERT 24/7
+
+en|First time? Have a welcome bonus. {p}{small}Corporate makes me say that. I mean it, though.{/small}
+it|Prima volta? Ecco un bonus di benvenuto. {p}{small}L'azienda mi obbliga a dirlo. Però lo penso davvero.{/small}
+fr|Première fois ? Tiens, un bonus de bienvenue. {p}{small}La direction m'oblige à le dire. Mais je le pense.{/small}
+
+en|Pleasure doing business. {p}{small}Don't drink it all at once.{/small}
+it|È stato un piacere. {p}{small}Non berla tutta d'un fiato.{/small}
+fr|Un plaisir de faire affaire. {p}{small}Bois pas tout d'un coup.{/small}
+
+en|Good choice. {p}I'd say that to anyone, but this time I mean it.
+it|Ottima scelta. {p}Lo direi a chiunque, ma stavolta lo penso.
+fr|Bon choix. {p}Je le dirais à n'importe qui, mais là je le pense.
+
+en|Ka-ching. {p}{small}I'm legally required to say ka-ching.{/small}
+it|Ka-ching. {p}{small}Per legge devo dire ka-ching.{/small}
+fr|Ka-tching. {p}{small}La loi m'oblige à dire ka-tching.{/small}
+
+en|Stay hydrated out there. {p}It's a dangerous city for feelings.
+it|Bevi tanto, là fuori. {p}È una città pericolosa per i sentimenti.
+fr|Hydrate-toi, dehors. {p}C'est une ville dangereuse pour les sentiments.
+
+en|You're a little short. {p}{small}Happens to the best of us. Happens to me every month.{/small}
+it|Ti manca qualcosina. {p}{small}Succede ai migliori. A me succede ogni mese.{/small}
+fr|Il te manque un peu. {p}{small}Ça arrive aux meilleurs. Moi, tous les mois.{/small}
+
+en|Not enough tokens. {p}Win a few fights. Check under couch cushions.
+it|Gettoni insufficienti. {p}Vinci qualche scontro. Controlla sotto i cuscini del divano.
+fr|Pas assez de jetons. {p}Gagne quelques combats. Regarde sous les coussins du canapé.
+
+en|What'll it be?
+it|Cosa ti do?
+fr|Qu'est-ce que je te sers ?
+
+en|Come back anytime. {p}{small}I'm always here. That's kind of the problem.{/small}
+it|Torna quando vuoi. {p}{small}Sono sempre qui. È un po' quello il problema.{/small}
+fr|Reviens quand tu veux. {p}{small}Je suis toujours là. C'est un peu ça, le problème.{/small}
+
+en|OWNED
+it|POSSEDUTI
+fr|POSSÉDÉS
+
+en|LEAVE
+it|ESCI
+fr|SORTIR
+
+en|Back to the street.
+it|Torna in strada.
+fr|Retour dans la rue.
+
+en|UP/DOWN: CHOOSE   CONFIRM: BUY   CANCEL: LEAVE
+it|SU/GIÙ: SCEGLI   CONFERMA: COMPRA   ANNULLA: ESCI
+fr|HAUT/BAS : CHOISIR   VALIDER : ACHETER   ANNULER : SORTIR
+
+en|NEON MART
+it|NEON MART
+fr|NEON MART
+
+en|APARTMENT 0451
+it|APPARTAMENTO 0451
+fr|APPARTEMENT 0451
+
+en|LEO'S ROOM
+it|LA CAMERA DI LEO
+fr|LA CHAMBRE DE LEO
+
+en|SUNNY
+it|SUNNY
+fr|SUNNY
+
+en|Welcome to NEON MART! {p}Open 24/7. {p}{small}Mostly the 7.{/small}
+it|Benvenuto al NEON MART! {p}Aperto 24/7. {p}{small}Soprattutto il 7.{/small}
+fr|Bienvenue au NEON MART ! {p}Ouvert 24h/24, 7j/7. {p}{small}Surtout le 7.{/small}
+
+en|I'm Sunny. Night shift. {p}{slow}Every shift is the night shift down here.{/slow}
+it|Sono Sunny. Turno di notte. {p}{slow}Quaggiù ogni turno è il turno di notte.{/slow}
+fr|Moi c'est Sunny. Équipe de nuit. {p}{slow}Ici, toutes les équipes sont de nuit.{/slow}
+
+en|We take metro tokens. {p}You get them by calming down angry feelings. {p}{small}Gently. Don't punch the feelings.{/small}
+it|Accettiamo gettoni della metro. {p}Li ottieni calmando sentimenti arrabbiati. {p}{small}Con delicatezza. Non prendere a pugni i sentimenti.{/small}
+fr|On accepte les jetons de métro. {p}Tu les gagnes en calmant des sentiments en colère. {p}{small}Doucement. On ne frappe pas les sentiments.{/small}
+
+en|Fun fact: I've never seen the sun. {p}My parents named me Sunny anyway. {p}{wave}Optimists.{/wave}
+it|Curiosità: non ho mai visto il sole. {p}I miei mi hanno chiamata Sunny lo stesso. {p}{wave}Ottimisti.{/wave}
+fr|Anecdote : je n'ai jamais vu le soleil. {p}Mes parents m'ont appelée Sunny quand même. {p}{wave}Des optimistes.{/wave}
+
+en|Oh hey, it's you! {p}My favorite customer. {p}{small}My only customer, but still.{/small}
+it|Oh, ciao, sei tu! {p}Il mio cliente preferito. {p}{small}L'unico, ma comunque.{/small}
+fr|Oh, salut, c'est toi ! {p}Mon client préféré. {p}{small}Mon seul client, mais quand même.{/small}
+
+en|If you see a cat with a screen on his collar, tell him he still owes me for a can of tuna.
+it|Se vedi un gatto con uno schermo sul collare, digli che mi deve ancora una scatoletta di tonno.
+fr|Si tu vois un chat avec un écran sur son collier, dis-lui qu'il me doit encore une boîte de thon.
+
+en|A claw machine full of plush cats. {p}One of them looks a LOT like Byte. {p}Play for 2 tokens?
+it|Una macchinetta con la pinza piena di gatti di peluche. {p}Uno somiglia TANTISSIMO a Byte. {p}Giochi per 2 gettoni?
+fr|Une machine à pince pleine de chats en peluche. {p}L'un d'eux ressemble BEAUCOUP à Byte. {p}Jouer pour 2 jetons ?
+
+en|[Play  ◊2]
+it|[Gioca  ◊2]
+fr|[Jouer  ◊2]
+
+en|[Leave]
+it|[Lascia stare]
+fr|[Laisser tomber]
+
+en|The claw wobbles down. {p}{shake}Grabs...{/shake}
+it|La pinza scende traballando. {p}{shake}Afferra...{/shake}
+fr|La pince descend en tremblant. {p}{shake}Attrape...{/shake}
+
+en|You pat your pockets. {p}Not enough tokens.
+it|Ti tasti le tasche. {p}Gettoni insufficienti.
+fr|Tu tâtes tes poches. {p}Pas assez de jetons.
+
+en|...air. {p}It grabbed air. Very confidently.
+it|...aria. {p}Ha afferrato l'aria. Con grande sicurezza.
+fr|...du vide. {p}Elle a attrapé du vide. Avec beaucoup d'assurance.
+
+en|A Cup Ramen?! {p}That wasn't even in there.
+it|Un ramen istantaneo?! {p}Non c'era nemmeno, lì dentro.
+fr|Un ramen instantané ?! {p}Il n'y en avait même pas dedans.
+
+en|A Fizzy Potion rolls into the chute. {p}{bounce}Nice.{/bounce}
+it|Una Pozione Frizzante rotola nello scivolo. {p}{bounce}Forte.{/bounce}
+fr|Une Potion Pétillante roule dans la trappe. {p}{bounce}Sympa.{/bounce}
+
+en|The Byte-looking plush! It wobbles... {p}and drops into the chute!
+it|Il peluche che sembra Byte! Traballa... {p}e cade nello scivolo!
+fr|La peluche qui ressemble à Byte ! Elle vacille... {p}et tombe dans la trappe !
+
+en|The claw grabs the Byte-looking plush. It wobbles... {p}{bounce}and drops it in the chute!{/bounce} {p}Byte pretends not to see.
+it|La pinza afferra il peluche che sembra Byte. Traballa... {p}{bounce}e lo lascia cadere nello scivolo!{/bounce} {p}Byte fa finta di non vedere.
+fr|La pince attrape la peluche qui ressemble à Byte. Elle vacille... {p}{bounce}et la lâche dans la trappe !{/bounce} {p}Byte fait semblant de ne rien voir.
+
+en|The claw grabs a handful of tokens instead. {p}Not bad.
+it|La pinza invece afferra una manciata di gettoni. {p}Niente male.
+fr|La pince attrape une poignée de jetons à la place. {p}Pas mal.
+
+en|A vending machine. Every slot is Cup Ramen. {p}Buy one for 3 tokens?
+it|Un distributore. Ogni scomparto è ramen istantaneo. {p}Ne compri uno per 3 gettoni?
+fr|Un distributeur. Chaque case contient un ramen instantané. {p}En acheter un pour 3 jetons ?
+
+en|[Buy  ◊3]
+it|[Compra  ◊3]
+fr|[Acheter  ◊3]
+
+en|Not enough tokens. {p}The machine hums sympathetically.
+it|Gettoni insufficienti. {p}La macchina ronza comprensiva.
+fr|Pas assez de jetons. {p}La machine bourdonne avec compassion.
+
+en|Clunk. {p}A Cup Ramen tumbles out. Somehow it's already warm.
+it|Clunk. {p}Esce un ramen istantaneo. Chissà come, è già caldo.
+fr|Clonk. {p}Un ramen instantané tombe. Allez savoir comment, il est déjà chaud.
+
+en|You don't have enough tokens.
+it|Non hai abbastanza gettoni.
+fr|Tu n'as pas assez de jetons.
+
+en|Play? It costs 2 tokens.
+it|Giochi? Costa 2 gettoni.
+fr|Jouer ? Ça coûte 2 jetons.
+
+en|NIGHT RUNNER. {p}HIGH SCORES:
+it|NIGHT RUNNER. {p}PUNTEGGI MIGLIORI:
+fr|NIGHT RUNNER. {p}MEILLEURS SCORES :
+
+en|1. MIA ..... 99,850 {p}2. LEO ..... 99,840 {p}3. AAA ..... 00,010
+it|1. MIA ..... 99.850 {p}2. LEO ..... 99.840 {p}3. AAA ..... 00.010
+fr|1. MIA ..... 99 850 {p}2. LEO ..... 99 840 {p}3. AAA ..... 00 010
+
+en|Mia beat my score the summer before I left. {p}I said I'd win it back. {p}{slow}I never played again.{/slow}
+it|Mia ha battuto il mio record l'estate prima che partissi. {p}Le ho detto che me lo sarei ripreso. {p}{slow}Non ho più giocato.{/slow}
+fr|Mia a battu mon record l'été avant mon départ. {p}J'ai dit que je le reprendrais. {p}{slow}Je n'ai plus jamais joué.{/slow}
+
+en|The screen loops: INSERT COIN. INSERT COIN. {p}{small}Someday.{/small}
+it|Lo schermo ripete: INSERIRE GETTONE. INSERIRE GETTONE. {p}{small}Un giorno.{/small}
+fr|L'écran tourne en boucle : INSÉREZ UNE PIÈCE. INSÉREZ UNE PIÈCE. {p}{small}Un jour.{/small}
+
+en|A dance machine. The arrows blink at you, expectantly.
+it|Una macchina da ballo. Le frecce lampeggiano, in attesa.
+fr|Une machine de danse. Les flèches clignotent, pleines d'attente.
+
+en|You do one (1) step.
+it|Fai un (1) passo.
+fr|Tu fais un (1) pas.
+
+en|{bounce}i saw that.{/bounce} {p}{small}im telling everyone.{/small}
+it|{bounce}ho visto.{/bounce} {p}{small}lo dico a tutti.{/small}
+fr|{bounce}j'ai vu.{/bounce} {p}{small}je vais le dire à tout le monde.{/small}
+
+en|The machine still remembers your one step. {p}It gave you a B.
+it|La macchina si ricorda ancora il tuo passo. {p}Ti ha dato una B.
+fr|La machine se souvient encore de ton pas. {p}Elle t'a mis un B.
+
+en|Rows of Fizzy Potions, glowing pink. {p}A handwritten sign: DON'T SHAKE. (WE MEAN IT.)
+it|File di Pozioni Frizzanti, rosa fosforescente. {p}Un cartello scritto a mano: NON AGITARE. (SUL SERIO.)
+fr|Des rangées de Potions Pétillantes, d'un rose lumineux. {p}Un panneau écrit à la main : NE PAS SECOUER. (ON EST SÉRIEUX.)
+
+en|One of the potions is fizzing angrily. You leave it alone.
+it|Una delle pozioni frizza arrabbiata. La lasci stare.
+fr|Une des potions pétille avec colère. Tu la laisses tranquille.
+
+en|A single bed, made so tight you could bounce a coin off it. {p}It doesn't look slept in. {p}{slow}It looks waited in.{/slow}
+it|Un letto singolo, rifatto così stretto che ci rimbalzerebbe una moneta. {p}Non sembra che ci abbia dormito nessuno. {p}{slow}Sembra che ci abbia aspettato qualcuno.{/slow}
+fr|Un lit simple, fait si serré qu'une pièce rebondirait dessus. {p}On dirait que personne n'y a dormi. {p}{slow}On dirait que quelqu'un y a attendu.{/slow}
+
+en|The pillow still has the fold from the shop.
+it|Il cuscino ha ancora la piega del negozio.
+fr|L'oreiller a encore le pli du magasin.
+
+en|His computer is still on. 2,341 unread emails.
+it|Il suo computer è ancora acceso. 2.341 email non lette.
+fr|Son ordinateur est encore allumé. 2 341 e-mails non lus.
+
+en|The oldest one is from his daughter. {p}Subject: <color=#FF4FD8>are you coming saturday?</color>
+it|La più vecchia è di sua figlia. {p}Oggetto: <color=#FF4FD8>vieni sabato?</color>
+fr|Le plus ancien vient de sa fille. {p}Objet : <color=#FF4FD8>tu viens samedi ?</color>
+
+en|You don't open it. {p}It isn't yours to open.
+it|Non la apri. {p}Non spetta a te aprirla.
+fr|Tu ne l'ouvres pas. {p}Ce n'est pas à toi de l'ouvrir.
+
+en|A photo on the fridge: him and a little girl with a gap-toothed grin, at the beach.
+it|Una foto sul frigo: lui e una bambina col sorriso sdentato, al mare.
+fr|Une photo sur le frigo : lui et une petite fille au sourire édenté, à la plage.
+
+en|He's wearing a tie. {p}At the beach.
+it|Lui porta la cravatta. {p}Al mare.
+fr|Il porte une cravate. {p}À la plage.
+
+en|The magnet holding the photo is shaped like a sun.
+it|La calamita che tiene la foto ha la forma di un sole.
+fr|L'aimant qui tient la photo a la forme d'un soleil.
+
+en|A birthday cake, untouched. <color=#FF4FD8>HAPPY BIRTHDAY DAD</color> in wobbly icing.
+it|Una torta di compleanno, intatta. <color=#FF4FD8>BUON COMPLEANNO PAPÀ</color> scritto con la glassa tremolante.
+fr|Un gâteau d'anniversaire, intact. <color=#FF4FD8>JOYEUX ANNIVERSAIRE PAPA</color> en glaçage tremblant.
+
+en|The candles were never lit.
+it|Le candeline non sono mai state accese.
+fr|Les bougies n'ont jamais été allumées.
+
+en|There's a lighter next to it. {p}Still in the packaging.
+it|Accanto c'è un accendino. {p}Ancora nella confezione.
+fr|Il y a un briquet à côté. {p}Encore dans son emballage.
+
+en|A jar of metro tokens labelled <color=#FFD84F>VACATION</color>. {p}It's been filling up for eleven years.
+it|Un barattolo di gettoni della metro con l'etichetta <color=#FFD84F>VACANZE</color>. {p}Si sta riempiendo da undici anni.
+fr|Un bocal de jetons de métro étiqueté <color=#FFD84F>VACANCES</color>. {p}Il se remplit depuis onze ans.
+
+en|You take a few. {p}He'd want somebody to go somewhere.
+it|Ne prendi qualcuno. {p}Vorrebbe che qualcuno andasse da qualche parte.
+fr|Tu en prends quelques-uns. {p}Il voudrait que quelqu'un parte quelque part.
+
+en|The jar says VACATION. {p}You hope he uses the rest.
+it|Il barattolo dice VACANZE. {p}Speri che usi il resto.
+fr|Le bocal dit VACANCES. {p}Tu espères qu'il utilisera le reste.
+
+en|A calendar. Every single day says <color=#FF4FD8>OT</color>.
+it|Un calendario. Ogni singolo giorno dice <color=#FF4FD8>STRAORD.</color>
+fr|Un calendrier. Chaque jour indique <color=#FF4FD8>H. SUP</color>.
+
+en|Except one Saturday, circled in red. {p}It just says: <color=#FFD84F>HER BIRTHDAY</color>.
+it|Tranne un sabato, cerchiato di rosso. {p}C'è scritto solo: <color=#FFD84F>IL SUO COMPLEANNO</color>.
+fr|Sauf un samedi, entouré en rouge. {p}Il y a juste écrit : <color=#FFD84F>SON ANNIVERSAIRE</color>.
+
+en|The circle is drawn three times. Like he was afraid it would fade.
+it|Il cerchio è ripassato tre volte. Come se avesse paura che sbiadisse.
+fr|Le cercle est tracé trois fois. Comme s'il avait peur qu'il s'efface.
+
+en|One coat. One umbrella. One pair of shoes by the door. {p}One of everything.
+it|Un cappotto. Un ombrello. Un paio di scarpe vicino alla porta. {p}Uno di tutto.
+fr|Un manteau. Un parapluie. Une paire de chaussures près de la porte. {p}Un seul de chaque chose.
+
+en|One of everything.
+it|Uno di tutto.
+fr|Un seul de chaque chose.
+
+en|An answering machine. A tiny red light blinks. {p}<color=#FF4FD8>1 NEW MESSAGE.</color>
+it|Una segreteria telefonica. Una lucina rossa lampeggia. {p}<color=#FF4FD8>1 NUOVO MESSAGGIO.</color>
+fr|Un répondeur. Une petite lumière rouge clignote. {p}<color=#FF4FD8>1 NOUVEAU MESSAGE.</color>
+
+en|You press play.
+it|Premi play.
+fr|Tu appuies sur lecture.
+
+en|{small}'Hi daddy! It's me! Mom says you're working late again.'{/small}
+it|{small}'Ciao papà! Sono io! La mamma dice che lavori fino a tardi un'altra volta.'{/small}
+fr|{small}'Coucou papa ! C'est moi ! Maman dit que tu travailles tard encore.'{/small}
+
+en|{wave}'Happy birthday to youuu... happy birthday to youuu...'{/wave}
+it|{wave}'Tanti auguri a teee... tanti auguri a teee...'{/wave}
+fr|{wave}'Joyeux anniversaiiire... joyeux anniversaiiire...'{/wave}
+
+en|{small}'...Okay. Bye. I saved you the piece with the most frosting.'{/small}
+it|{small}'...Ok. Ciao. Ti ho tenuto la fetta con più glassa.'{/small}
+fr|{small}'...Bon. Salut. Je t'ai gardé la part avec le plus de glaçage.'{/small}
+
+en|...He needs to hear this. {p}Not from a machine. {p}{slow}From her.{/slow}
+it|...Deve sentirlo. {p}Non da una macchina. {p}{slow}Da lei.{/slow}
+fr|...Il doit entendre ça. {p}Pas par une machine. {p}{slow}Par elle.{/slow}
+
+en|take the tape. {p}{small}hes right outside. sitting on a curb, probably.{/small}
+it|prendi il nastro. {p}{small}è qui fuori. seduto su un marciapiede, probabilmente.{/small}
+fr|prends la cassette. {p}{small}il est juste dehors. assis sur un trottoir, sûrement.{/small}
+
+en|(You got the VOICEMAIL TAPE.)
+it|(Hai ottenuto il NASTRO DELLA SEGRETERIA.)
+fr|(Tu as obtenu la CASSETTE DU RÉPONDEUR.)
+
+en|The tape is gone. The red light has stopped blinking.
+it|Il nastro non c'è più. La luce rossa ha smesso di lampeggiare.
+fr|La cassette n'est plus là. La lumière rouge a cessé de clignoter.
+
+en|My place is just down the street. 0451. {p}Go in, if you want. The door's open. {p}{small}I haven't been home in... I don't know.{/small}
+it|Casa mia è in fondo alla strada. 0451. {p}Entra, se vuoi. La porta è aperta. {p}{small}Non torno a casa da... non lo so.{/small}
+fr|Chez moi, c'est au bout de la rue. 0451. {p}Entre, si tu veux. La porte est ouverte. {p}{small}Je ne suis pas rentré depuis... je ne sais pas.{/small}
+
+en|You hand him the tape. He listens. {p}Then he listens again.
+it|Gli dai il nastro. Lo ascolta. {p}Poi lo ascolta di nuovo.
+fr|Tu lui tends la cassette. Il l'écoute. {p}Puis il l'écoute encore.
+
+en|The third time, he sits down on the curb and laughs. Then cries. Then laughs.
+it|La terza volta si siede sul marciapiede e ride. Poi piange. Poi ride.
+fr|La troisième fois, il s'assoit sur le trottoir et rit. Puis pleure. Puis rit.
+
+en|...The piece with the most frosting. {p}{slow}She saved me the piece with the most frosting.{/slow}
+it|...La fetta con più glassa. {p}{slow}Mi ha tenuto la fetta con più glassa.{/slow}
+fr|...La part avec le plus de glaçage. {p}{slow}Elle m'a gardé la part avec le plus de glaçage.{/slow}
+
+en|I'm going home. {p}Saturday isn't over yet.
+it|Torno a casa. {p}Il sabato non è ancora finito.
+fr|Je rentre chez moi. {p}Samedi n'est pas encore fini.
+
+en|{small}Here. From the vacation jar. {p}You need a vacation more than I do.{/small}
+it|{small}Tieni. Dal barattolo delle vacanze. {p}Ne hai più bisogno tu di me.{/small}
+fr|{small}Tiens. Du bocal des vacances. {p}Tu en as plus besoin que moi.{/small}
+
+en|A note on the door: BACK IN 5 MINUTES.
+it|Un biglietto sulla porta: TORNO TRA 5 MINUTI.
+fr|Un mot sur la porte : DE RETOUR DANS 5 MINUTES.
+
+en|The note is dated 1998.
+it|Il biglietto è datato 1998.
+fr|Le mot est daté de 1998.
+
+en|This door. {p}The scratch at knee height, where I kicked it every morning for twelve years.
+it|Questa porta. {p}Il graffio all'altezza del ginocchio, dove la prendevo a calci ogni mattina per dodici anni.
+fr|Cette porte. {p}L'éraflure à hauteur de genou, là où je la frappais du pied chaque matin pendant douze ans.
+
+en|{slow}...That's my house.{/slow}
+it|{slow}...È casa mia.{/slow}
+fr|{slow}...C'est ma maison.{/slow}
+
+en|Outside the window it's always six p.m., in summer.
+it|Fuori dalla finestra sono sempre le sei di sera, d'estate.
+fr|Derrière la fenêtre, il est toujours dix-huit heures, en été.
+
+en|The street smells like bread from the bakery downstairs. {p}{slow}I'd forgotten that smell.{/slow}
+it|La strada sa di pane, dal forno qui sotto. {p}{slow}Mi ero scordato quell'odore.{/slow}
+fr|La rue sent le pain de la boulangerie d'en bas. {p}{slow}J'avais oublié cette odeur.{/slow}
+
+en|Somebody's riding a bike past. Bell, bell. {p}Gone.
+it|Passa qualcuno in bici. Drin, drin. {p}Andato.
+fr|Quelqu'un passe à vélo. Dring, dring. {p}Parti.
+
+en|Your old bed. The blanket with the rockets on it.
+it|Il tuo vecchio letto. La coperta coi razzi.
+fr|Ton vieux lit. La couverture avec les fusées.
+
+en|You lie down for a second. Just a second.
+it|Ti sdrai per un secondo. Solo un secondo.
+fr|Tu t'allonges une seconde. Juste une seconde.
+
+en|You feel rested. <color=#FFD84F>(HP fully restored.)</color>
+it|Ti senti riposato. <color=#FFD84F>(PV completamente ripristinati.)</color>
+fr|Tu te sens reposé. <color=#FFD84F>(PV entièrement restaurés.)</color>
+
+en|You lie down again. The ceiling still has glow-in-the-dark stars. {p}<color=#FFD84F>(HP fully restored.)</color>
+it|Ti sdrai di nuovo. Sul soffitto ci sono ancora le stelline fosforescenti. {p}<color=#FFD84F>(PV completamente ripristinati.)</color>
+fr|Tu t'allonges encore. Le plafond a toujours ses étoiles phosphorescentes. {p}<color=#FFD84F>(PV entièrement restaurés.)</color>
+
+en|Mr. Bear. One eye. {p}He's seen things.
+it|Il Signor Orso. Un occhio solo. {p}Ne ha viste tante.
+fr|Monsieur Ours. Un seul œil. {p}Il en a vu, des choses.
+
+en|Mr. Bear judges you gently.
+it|Il Signor Orso ti giudica con dolcezza.
+fr|Monsieur Ours te juge avec douceur.
+
+en|A drawing taped to the desk. A stick figure with an enormous head.
+it|Un disegno attaccato alla scrivania. Un omino stilizzato con una testa enorme.
+fr|Un dessin scotché sur le bureau. Un bonhomme bâton avec une tête énorme.
+
+en|<color=#B9A7FF>LEO</color>, in purple crayon. And under it: <color=#B9A7FF>BECAUSE YOU THINK TOO MUCH.</color>
+it|<color=#B9A7FF>LEO</color>, a pastello viola. E sotto: <color=#B9A7FF>PERCHÉ PENSI TROPPO.</color>
+fr|<color=#B9A7FF>LEO</color>, au crayon violet. Et en dessous : <color=#B9A7FF>PARCE QUE TU PENSES TROP.</color>
+
+en|Oh my god. {p}{bounce}The head.{/bounce} {p}She nailed it.
+it|Oddio. {p}{bounce}La testa.{/bounce} {p}Ci ha preso in pieno.
+fr|Oh mon dieu. {p}{bounce}La tête.{/bounce} {p}Elle a tout compris.
+
+en|accurate. {p}{small}keep it. some things you dont throw away.{/small}
+it|preciso. {p}{small}tienilo. certe cose non si buttano.{/small}
+fr|fidèle. {p}{small}garde-le. y a des trucs qu'on jette pas.{/small}
+
+en|(You got MIA'S DRAWING.)
+it|(Hai ottenuto IL DISEGNO DI MIA.)
+fr|(Tu as obtenu LE DESSIN DE MIA.)
+
+en|The tape on the corners has gone yellow. {p}The crayon hasn't.
+it|Lo scotch agli angoli è ingiallito. {p}Il pastello no.
+fr|Le scotch aux coins a jauni. {p}Pas le crayon.
+
+en|Two drumsticks, held together with tape. {p}Dani's.
+it|Due bacchette, tenute insieme col nastro. {p}Di Dani.
+fr|Deux baguettes, tenues ensemble avec du scotch. {p}Celles de Dani.
+
+en|We were going to start a band. He wrote the name on the tape in silver marker: <color=#33FFF2>NIGHT TRAIN</color>.
+it|Dovevamo mettere su una band. Ha scritto il nome sul nastro col pennarello argento: <color=#33FFF2>NIGHT TRAIN</color>.
+fr|On devait monter un groupe. Il a écrit le nom sur le scotch au feutre argenté : <color=#33FFF2>NIGHT TRAIN</color>.
+
+en|You take them. They still feel like a promise. {p}(You got DANI'S DRUMSTICKS.)
+it|Le prendi. Sembrano ancora una promessa. {p}(Hai ottenuto LE BACCHETTE DI DANI.)
+fr|Tu les prends. Elles ont encore le goût d'une promesse. {p}(Tu as obtenu LES BAGUETTES DE DANI.)
+
+en|The shelf has a clean spot where they used to be.
+it|Sullo scaffale c'è un punto pulito dove stavano.
+fr|L'étagère a une trace propre là où elles étaient.
+
+en|Your piggy bank. {p}Shake, shake.
+it|Il tuo salvadanaio. {p}Scuoti, scuoti.
+fr|Ta tirelire. {p}Secoue, secoue.
+
+en|Metro tokens. You used to save them to visit Grandma.
+it|Gettoni della metro. Li mettevi da parte per andare dalla nonna.
+fr|Des jetons de métro. Tu les économisais pour aller voir Mamie.
+
+en|(You take the tokens. Grandma would approve.)
+it|(Prendi i gettoni. La nonna approverebbe.)
+fr|(Tu prends les jetons. Mamie approuverait.)
+
+en|Empty. It sounds lonely when you shake it.
+it|Vuoto. Scuotendolo, suona solo.
+fr|Vide. Elle sonne seule quand on la secoue.
+
+en|A box with <color=#FF4FD8>FOR MIA</color> written on it in my handwriting.
+it|Una scatola con scritto <color=#FF4FD8>PER MIA</color>, con la mia calligrafia.
+fr|Une boîte avec <color=#FF4FD8>POUR MIA</color> écrit dessus, de ma main.
+
+en|Inside: my first payslip, folded into a tiny square. On the back: 'send Mia something nice'.
+it|Dentro: la mia prima busta paga, piegata in un quadratino. Sul retro: 'manda a Mia qualcosa di carino'.
+fr|Dedans : ma première fiche de paie, pliée en tout petit carré. Au dos : 'envoyer un truc sympa à Mia'.
+
+en|{slow}I never did.{/slow}
+it|{slow}Non l'ho mai fatto.{/slow}
+fr|{slow}Je ne l'ai jamais fait.{/slow}
+
+en|(You got the FIRST PAYSLIP.)
+it|(Hai ottenuto la PRIMA BUSTA PAGA.)
+fr|(Tu as obtenu la PREMIÈRE FICHE DE PAIE.)
+
+en|The box is empty now. It still says FOR MIA.
+it|Ora la scatola è vuota. C'è ancora scritto PER MIA.
+fr|La boîte est vide maintenant. Elle dit toujours POUR MIA.
+
+en|My old console. The save file is still there.
+it|La mia vecchia console. Il salvataggio c'è ancora.
+fr|Ma vieille console. La sauvegarde est toujours là.
+
+en|NIGHT RUNNER — LEO — 99,840. {p}Second place. {p}{slow}Always second place to her.{/slow}
+it|NIGHT RUNNER — LEO — 99.840. {p}Secondo posto. {p}{slow}Sempre secondo, dopo di lei.{/slow}
+fr|NIGHT RUNNER — LEO — 99 840. {p}Deuxième place. {p}{slow}Toujours deuxième, derrière elle.{/slow}
+
+en|The TV hums the way only old TVs hum.
+it|La TV ronza come ronzano solo le vecchie TV.
+fr|La télé bourdonne comme seules les vieilles télés bourdonnent.
+
+en|A jar of old metro tokens. Mia and I used to collect them. {p}The city stopped taking them years ago.
+it|Un barattolo di vecchi gettoni della metro. Io e Mia li collezionavamo. {p}La città ha smesso di accettarli anni fa.
+fr|Un bocal de vieux jetons de métro. Mia et moi, on les collectionnait. {p}La ville ne les accepte plus depuis des années.
+
+en|You pocket a handful. No reason. {p}(It feels like a reason.)
+it|Ne intaschi una manciata. Senza motivo. {p}(Sembra un motivo.)
+fr|Tu en empoches une poignée. Sans raison. {p}(Ça ressemble à une raison.)
+
+en|A few tokens left at the bottom. {p}Enough for one more trip. Somewhere.
+it|Sul fondo restano pochi gettoni. {p}Abbastanza per un altro viaggio. Da qualche parte.
+fr|Il reste quelques jetons au fond. {p}Assez pour un dernier voyage. Quelque part.

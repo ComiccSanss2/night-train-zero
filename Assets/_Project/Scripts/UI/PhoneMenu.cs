@@ -52,7 +52,7 @@ namespace Subnet.UI
         private TextMeshProUGUI body;
         private TextMeshProUGUI hint;
         private AudioSource audioSource;
-        private int tab;      // 0 = messages, 1 = voicemails
+        private int tab;      // 0 = messages, 1 = voicemails, 2 = items
         private int cursor;
         private int openedFrame;
         private float navTimer;
@@ -124,13 +124,14 @@ namespace Subnet.UI
             else if (navTimer <= 0f)
             {
                 navTimer = 0.22f;
-                if (Mathf.Abs(move.x) > Mathf.Abs(move.y)) { tab = move.x > 0 ? 1 : 0; cursor = 0; }
+                if (Mathf.Abs(move.x) > Mathf.Abs(move.y)) { tab = Mathf.Clamp(tab + (move.x > 0 ? 1 : -1), 0, 2); cursor = 0; }
                 else cursor += move.y > 0 ? -1 : 1;
                 Play(moveClip);
                 Refresh();
             }
 
             if (tab == 1 && Time.frameCount != openedFrame && GameInput.SubmitPressed) PlayVoicemail(Mathf.Clamp(cursor, 0, Voicemails.Length - 1));
+            if (tab == 2 && Time.frameCount != openedFrame && GameInput.SubmitPressed) UseItem();
         }
 
         private void Open()
@@ -193,11 +194,37 @@ namespace Subnet.UI
             return mia;
         }
 
+        private void UseItem()
+        {
+            List<Inventory.ItemDef> usable = Inventory.Consumables();
+            if (cursor < 0 || cursor >= usable.Count) return;
+            if (Inventory.HP >= Inventory.MaxHP) { itemNote = Loc.T("YOU'RE ALREADY AT FULL HP."); Refresh(); return; }
+            Inventory.Use(usable[cursor].id);
+            Play(confirmClip);
+            itemNote = Loc.F("YOU DRINK THE {0}. HP {1}/{2}.", Loc.T(usable[cursor].name).ToUpperInvariant(), Inventory.HP, Inventory.MaxHP);
+            Refresh();
+        }
+
+        private string itemNote = string.Empty;
+
+        private static string HpBar(int hp, int max, int width)
+        {
+            int filled = Mathf.RoundToInt(hp / (float)max * width);
+            string color = hp <= max / 4 ? "#FF4F6E" : "#FFD84F";
+            return $"<color={color}>" + new string('█', filled) + "</color><color=#3A2F45>" + new string('█', width - filled) + "</color>";
+        }
+
         private void Refresh()
         {
             header.text = Loc.T("HANDHELD") + "   <color=#8A8F99>" + System.DateTime.Now.ToString("HH:mm") + "</color>";
-            string a = Loc.T("MESSAGES"), b = Loc.T("VOICEMAILS");
-            tabs.text = tab == 0 ? $"<color=#33FFF2>[ {a} ]</color>   {b}" : $"{a}   <color=#33FFF2>[ {b} ]</color>";
+            string[] names = { Loc.T("MESSAGES"), Loc.T("VOICEMAILS"), Loc.T("ITEMS") };
+            var tabLine = new StringBuilder();
+            for (int i = 0; i < names.Length; i++)
+            {
+                tabLine.Append(i == tab ? $"<color=#33FFF2>[ {names[i]} ]</color>" : names[i]).Append("   ");
+            }
+            tabs.text = tabLine.ToString();
+            body.fontSize = tab == 2 ? 21 : 26;
             var sb = new StringBuilder();
             if (tab == 0)
             {
@@ -213,6 +240,33 @@ namespace Subnet.UI
                       .Append(TextFX.Strip(Loc.T(log[i].text))).Append("\n");
                 }
                 hint.text = Loc.T("UP/DOWN: SCROLL   LEFT/RIGHT: TAB   TAB: CLOSE");
+            }
+            else if (tab == 2)
+            {
+                sb.Append("<color=#FFD84F>◊ ").Append(Inventory.Tokens).Append(' ').Append(Loc.T("TOKENS")).Append("</color>      ")
+                  .Append("HP ").Append(HpBar(Inventory.HP, Inventory.MaxHP, 20)).Append("  ").Append(Inventory.HP).Append('/').Append(Inventory.MaxHP).Append("\n\n");
+                List<Inventory.ItemDef> usable = Inventory.Consumables();
+                cursor = Mathf.Clamp(cursor, 0, Mathf.Max(0, usable.Count - 1));
+                if (usable.Count == 0) sb.Append("<color=#8A8F99>").Append(Loc.T("NO ITEMS. TOKENS BUY POTIONS AT THE NEON MART.")).Append("</color>\n");
+                for (int i = 0; i < usable.Count; i++)
+                {
+                    sb.Append(i == cursor ? "<color=#FF4FD8>> </color>" : "  ")
+                      .Append(Loc.T(usable[i].name)).Append("  <color=#8A8F99>x").Append(Inventory.Count(usable[i].id)).Append("</color>");
+                    if (i == cursor) sb.Append("\n    <size=80%><color=#B9A7FF>").Append(Loc.T(usable[i].description)).Append("</color></size>");
+                    sb.Append("\n");
+                }
+                List<Inventory.ItemDef> keys = Inventory.KeyItems();
+                if (keys.Count > 0)
+                {
+                    sb.Append("\n<color=#33FFF2>").Append(Loc.T("KEY ITEMS")).Append("</color>\n");
+                    foreach (Inventory.ItemDef key in keys)
+                    {
+                        sb.Append("  » ").Append(Loc.T(key.name)).Append("\n    <size=75%><color=#8A8F99>").Append(Loc.T(key.description)).Append("</color></size>\n");
+                    }
+                }
+                if (!string.IsNullOrEmpty(itemNote)) sb.Append("\n<color=#FFD84F>").Append(itemNote).Append("</color>");
+                itemNote = string.Empty;
+                hint.text = Loc.T("CONFIRM: USE   LEFT/RIGHT: TAB   TAB: CLOSE");
             }
             else
             {

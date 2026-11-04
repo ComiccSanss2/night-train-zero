@@ -249,7 +249,8 @@ namespace Subnet.EditorTools
 
             GameObject freed = Character(ctx, "FreedCommuter", "character-male-f", "mini-characters", new Vector3(13.2f, 0f, -2.8f), -140f, 1.05f, null, false);
             Inspectable(freed, "FreedCommuter",
-                L("I'm going to take a lunch break. A real one. With a sandwich and everything.", "Thank you for... not fighting me. Nobody's ever not fought me."),
+                L("I'm going to take a lunch break. A real one. With a sandwich and everything.", "Thank you for... not fighting me. Nobody's ever not fought me.",
+                  "My place is just down the street. 0451. {p}Go in, if you want. The door's open. {p}{small}I haven't been home in... I don't know.{/small}"),
                 L("Did you know the sky here is pink? I never looked up before."), null, spkCommuter);
 
             HackableObstacle wallHack = Hackable(wallRoot, "COMMUTER_0451.exe  //  'THE WALL OF OVERTIME'", spkCommuter,
@@ -260,7 +261,7 @@ namespace Subnet.EditorTools
                 {
                     new HackWave(HackPattern.PaperRain, 9f, 0.9f),
                     new HackWave(HackPattern.ClockHands, 9f, 0.9f),
-                    new HackWave(HackPattern.Crossfire, 10f, 1f),
+                    new HackWave(HackPattern.TrainRush, 10f, 1f),
                 },
                 new[]
                 {
@@ -408,6 +409,21 @@ namespace Subnet.EditorTools
                 Say(spkByte, "anyway. {p}stay close. this district bites. {p}{small}not me. i nibble.{/small}", "end", "", "+closeness#walk_byte"));
             Event(ctx, "WalkByte", StoryEvent.TriggerMode.OnPlayerEnter, "met_byte", 0.2f, null, null, null, null, "walk_byte",
                 new Vector3(0f, 1f, 0f), new Vector3(1f, 2f, 9f), walkByte);
+
+            // ---------------------------------------------------------------- Buildings you can enter
+            BuildNeonMart(ctx, new Vector3(5.8f, 0f, 4.72f), LitMaterial("Houses/M_Facade_Mart", new Color(0.24f, 0.12f, 0.34f)));
+            BuildApartment0451(ctx, new Vector3(18.8f, 0f, 4.72f), LitMaterial("Houses/M_Facade_0451", new Color(0.4f, 0.42f, 0.46f)));
+            LockedDoor(ctx, "BackIn5", new Vector3(-12.6f, 0f, 4.72f), 180f, LitMaterial("Houses/M_Door_Closed", new Color(0.5f, 0.2f, 0.3f)), Magenta,
+                LitMaterial("Houses/M_Facade_Closed", new Color(0.3f, 0.2f, 0.35f)),
+                L("* A note on the door: BACK IN 5 MINUTES.", "* The note is dated 1998."));
+            Event(ctx, "GiveTape", StoryEvent.TriggerMode.OnPlayerEnter, "key.voicemail_tape", 0.1f, null, null,
+                L("* You hand him the tape. He listens. {p}Then he listens again.",
+                  "* The third time, he sits down on the curb and laughs. Then cries. Then laughs.",
+                  "...The piece with the most frosting. {p}{slow}She saved me the piece with the most frosting.{/slow}",
+                  "I'm going home. {p}Saturday isn't over yet.",
+                  "{small}Here. From the vacation jar. {p}You need a vacation more than I do.{/small}"),
+                spkCommuter, "gave_tape;+openness#gave_tape;$6#gave_tape_tokens",
+                new Vector3(13.2f, 1f, -2.8f), new Vector3(3.2f, 2f, 3.2f));
 
             ExitZone(ctx, "Exit_ToConcretePark", new Vector3(22.3f, 1f, 0f), new Vector3(1.5f, 2f, 8.4f), ParkScene, "ch4", "hack1_done",
                 L("* The street goes on, but something's still blocking Kira's route."));

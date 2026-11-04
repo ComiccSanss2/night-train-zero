@@ -231,8 +231,8 @@ namespace Subnet.EditorTools
                 new[]
                 {
                     new HackWave(HackPattern.Ripple, 9f, 1f),
-                    new HackWave(HackPattern.Spiral, 9f, 1f),
-                    new HackWave(HackPattern.Aimed, 10f, 1f),
+                    new HackWave(HackPattern.Bloom, 9f, 1f),
+                    new HackWave(HackPattern.Orbit, 10f, 1f),
                 },
                 new[]
                 {
@@ -285,6 +285,9 @@ namespace Subnet.EditorTools
                 Say(null, "Byte bumps his head against my ankle. {p}Once. {p}Like it was an accident.", "end", "", "+closeness#walk_park"));
             Event(ctx, "WalkPark", StoryEvent.TriggerMode.OnPlayerEnter, string.Empty, 0.2f, null, null, null, null, "walk_park",
                 new Vector3(-6f, 1f, 0f), new Vector3(1f, 2f, 14.4f), walkPark);
+
+            // Leo's childhood home, sitting in the park like it was always here.
+            BuildLeosRoom(ctx, new Vector3(-11.8f, 0f, 6.95f), LitMaterial("Houses/M_Facade_Home", new Color(0.85f, 0.8f, 0.7f)));
 
             ExitZone(ctx, "Exit_ToGhostLine", new Vector3(13.9f, 1f, 0f), new Vector3(1f, 2f, 3.6f), GhostLineScene, "ch5", "hack2_done",
                 L("* Not yet."));
