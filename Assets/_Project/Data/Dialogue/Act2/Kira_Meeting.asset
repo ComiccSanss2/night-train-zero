@@ -50,7 +50,7 @@ MonoBehaviour:
     choices:
     - text: I'll talk to him.
       nextNodeId: yes
-      flagToSet: kira_trusts_leo
+      flagToSet: kira_trusts_leo;+closeness
     - text: Why don't YOU do it?
       nextNodeId: why
       flagToSet: 

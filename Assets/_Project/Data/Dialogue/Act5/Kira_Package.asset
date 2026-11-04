@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Kira_Package
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: There's one package in my bag nobody ever claimed. {p}{small}Maybe someday
+      I'll be brave enough to open it.{/small}
+    effect: 0
+    requiredFlag: '!kira_package_accepted'
+    flagToSet: act5_package_done
+    choices: []
+    nextNodeId: END
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Hey. {p}Remember the package with no name? {p}You said we'd deliver it
+      together.
+    effect: 0
+    requiredFlag: kira_package_accepted
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: I think... {p}{slow}I think it was for me.{/slow}
+    effect: 0
+    requiredFlag: kira_package_accepted
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: 'She opens it. Inside: a postcard, soft from being carried. A stamp from
+      a hospital gift shop.'
+    effect: 0
+    requiredFlag: kira_package_accepted
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: <color=#FFD84F>'To the girl who brought me mail that wasn't mine. {p}It
+      was always mine. Thank you. {p}Stop running sometime. - Room 9'</color>
+    effect: 0
+    requiredFlag: kira_package_accepted
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: '{shake}...Ha.{/shake} {p}He knew. {p}{slow}He knew the whole time.{/slow}'
+    effect: 0
+    requiredFlag: kira_package_accepted
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Okay. {p}I'm going to stop running. {p}{small}After this. Right after this.{/small}
+    effect: 0
+    requiredFlag: kira_package_accepted
+    flagToSet: kira_package_opened;+closeness#package_open;act5_package_done
+    choices: []
+    nextNodeId: 

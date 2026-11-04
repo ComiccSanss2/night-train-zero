@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Carriage_Talk
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Okay, nobody panic, but every single person in here is looking at you.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: theyre not looking. {p}theyre waiting. {p}{small}different thing.{/small}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 759cf262cfc184cd88c287d6915f9b34, type: 2}
+    text: I know them. {p}{slow}All of them.{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: ...Do you want to talk to them?
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '["Not yet."]'
+      nextNodeId: talk
+      flagToSet: 
+    - text: '["I don''t know what I''d say."]'
+      nextNodeId: talk
+      flagToSet: +openness#carriage_open
+    nextNodeId: 
+  - id: talk
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: you dont have to say anything. {p}thats kind of the point of a train. {p}{small}you
+      just sit next to stuff.{/small}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Byte. {p}That was almost wise.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: '{shake}take it back.{/shake}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: For a second, the three of us laugh. {p}{wave}In an empty carriage full
+      of people.{/wave}
+    effect: 0
+    requiredFlag: 
+    flagToSet: +closeness#carriage_laugh
+    choices: []
+    nextNodeId: 

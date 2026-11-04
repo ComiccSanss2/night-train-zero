@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Conductor
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 11400000, guid: 882a881ef3ff424479f7d3495c6f890b, type: 2}
+    text: '{small}Ticket, please.{/small}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: My pocket. The ticket home. {p}Three weeks old. Never used.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 882a881ef3ff424479f7d3495c6f890b, type: 2}
+    text: Ticket.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '[Show him the ticket home]'
+      nextNodeId: punch
+      flagToSet: +openness
+    - text: '["I don''t have one."]'
+      nextNodeId: lie
+      flagToSet: 
+    nextNodeId: 
+  - id: lie
+    speaker: {fileID: 0}
+    text: He looks at my pocket like he can see straight through it.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: punch
+    speaker: {fileID: 0}
+    text: '{quake}Click. {p}He punches it anyway.'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 882a881ef3ff424479f7d3495c6f890b, type: 2}
+    text: This one's still valid. {p=0.9}{slow}They usually are.{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: ticket_punched
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 882a881ef3ff424479f7d3495c6f890b, type: 2}
+    text: Mind the gap. {p}{small}All of them.{/small}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135178743d8e84e03b2c773701fa7dc1, type: 3}
+  m_Name: Speaker_ByteTrue
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSpeaker
+  displayName: BYTE
+  nameColor: {r: 0.65, g: 1, b: 0.78, a: 1}
+  portrait: {fileID: 0}
+  style: 0
+  textColor: {r: 0.9, g: 1, b: 0.94, a: 1}
+  signatureEffect: 0
+  voiceBlip: {fileID: 8300000, guid: 88bb5293d68ac4b35a57168b51cd393d, type: 3}
+  voiceVolume: 0.55
+  pitchRange: {x: 1.2, y: 1.3}
+  blipEveryNCharacters: 2
+  typingSpeedMultiplier: 0.55

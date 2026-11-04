@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Kira_Hospital
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 0}
+    text: Nobody moves. The signs below change color, one by one.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: '{small}I used to work nights at a hospital.{/small}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Not a doctor. {p}I pushed the trolleys. Brought people their dinner. {p}Their
+      mail.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: There was this one guy. Room 9. {p}Nobody ever came. {p}So I started delivering
+      him things that weren't for him.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Flyers. Menus. A postcard I wrote myself and signed 'your cousin'. {p}{wave}He
+      knew. He kept it anyway.{/wave}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: And then one night room 9 was empty. {p=1}{slow}And I just... kept walking.{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: '{fast}Out of the ward, out of the building, onto the skates, and I haven''t
+      stopped since, so. Ha.{/fast}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: ...Sorry. {p}That's a lot of words for a roof.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: '{small}no it wasnt.{/small}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: +closeness
+    choices: []
+    nextNodeId: 

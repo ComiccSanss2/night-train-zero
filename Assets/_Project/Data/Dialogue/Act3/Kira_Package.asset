@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Kira_Package
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Ready when you are. The Core's just ahead. {p}I can feel it humming in
+      my {shake}teeth.{/shake}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: There's one package in her bag she keeps skipping. {p}She zips the bag
+      before I can look.
+    effect: 0
+    requiredFlag: closeness<2
+    flagToSet: 
+    choices: []
+    nextNodeId: END
+  - id: 
+    speaker: {fileID: 0}
+    text: There's one package in her bag she keeps skipping. {p}No name. No address.
+    effect: 0
+    requiredFlag: closeness>=2
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: ...What? {p}Oh. That one. {p}It's undeliverable. {small}Happens.{/small}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '["Want to deliver it together?"]'
+      nextNodeId: yes
+      flagToSet: kira_package_accepted;+closeness
+    - text: '[Leave it]'
+      nextNodeId: no
+      flagToSet: 
+    nextNodeId: 
+  - id: yes
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: '{fast}Together? It''s... I mean, it doesn''t even have an address...{/fast}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: '{p}...Actually. {p=0.8}{slow}It does.{/slow}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: She turns it over. {p}The address is hers.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Not yet. {p}Keep walking with me and maybe I'll open it. {small}At the
+      end.{/small}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: END
+  - id: no
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Yeah. {p}Some things stay in the bag.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 

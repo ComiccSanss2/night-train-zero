@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Kira_After
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 0}
+    text: Kira sits down on the seat next to the collar. {p}After a while, so do
+      I.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: He sat down like it was nothing. {p}{slow}Like he was saving us seats.{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: ...
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '["He made the joke so I''d say yes faster."]'
+      nextNodeId: joke
+      flagToSet: +openness#after_joke
+    - text: '[Say nothing]'
+      nextNodeId: quiet
+      flagToSet: 
+    nextNodeId: 
+  - id: joke
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Yeah. {p}He was... {p}{slow}he was really good at that.{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: hospital
+  - id: quiet
+    speaker: {fileID: 0}
+    text: I don't say anything. Kira doesn't make me.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: It's okay. {p}I'll talk. You can just... be here.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: hospital
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: At the hospital, when someone left, we weren't allowed to stop. {p}Next
+      room. Next tray.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: So I'm going to do the thing I never did. {p}{slow}I'm going to stop for
+      a minute.{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: The tunnel lights go by. {p}Nobody counts them.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Tell me one thing he said that made you laugh. {p}{small}Even a stupid
+      one.{/small}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '[''cats are incredible at being in the way.'']'
+      nextNodeId: laugh
+      flagToSet: 
+    - text: '[''dont pet me. ...ok. once.'']'
+      nextNodeId: laugh
+      flagToSet: 
+    - text: '[''i type in lowercase. its a lifestyle.'']'
+      nextNodeId: laugh
+      flagToSet: 
+    nextNodeId: 
+  - id: laugh
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: '{bounce}Ha.{/bounce} {p}...yeah. {p}{wave}That''s him.{/wave}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: Okay. {p}We keep going. {p}{small}Together. That part's not optional.{/small}
+    effect: 0
+    requiredFlag: 
+    flagToSet: kira_after;+closeness#kira_after
+    choices: []
+    nextNodeId: 

@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Mannequin_Receipt
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 11400000, guid: 50a023390a3de4aea83c75a001b5ebd7, type: 2}
+    text: Receipt. {p}Have you seen my receipt? {p}I returned something. Without
+      the receipt, it never happened.
+    effect: 0
+    requiredFlag: '!receipt_found'
+    flagToSet: receipt_quest
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 50a023390a3de4aea83c75a001b5ebd7, type: 2}
+    text: '{shake}It has to be somewhere.{/shake} {p}Somewhere you throw away the
+      things you used to want.'
+    effect: 0
+    requiredFlag: '!receipt_found'
+    flagToSet: 
+    choices: []
+    nextNodeId: END
+  - id: 
+    speaker: {fileID: 11400000, guid: 50a023390a3de4aea83c75a001b5ebd7, type: 2}
+    text: I gave it away. I remember now. {p}{wave}That's enough.{/wave}
+    effect: 0
+    requiredFlag: receipt_returned
+    flagToSet: 
+    choices: []
+    nextNodeId: END
+  - id: 
+    speaker: {fileID: 0}
+    text: "(You hold out the crumpled receipt from the caf\xE9 bin.)"
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 50a023390a3de4aea83c75a001b5ebd7, type: 2}
+    text: 'RETURNED: one scarf. Hand-knitted. {p}{slow}...Hand-knitted.{/slow}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 50a023390a3de4aea83c75a001b5ebd7, type: 2}
+    text: I didn't return it. {p}I gave it to someone who was always cold. {p}{wave}I
+      remember their face.{/wave}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 50a023390a3de4aea83c75a001b5ebd7, type: 2}
+    text: The circle stops. {p}{big}It stops.{/big}
+    effect: 0
+    requiredFlag: 
+    flagToSet: receipt_returned;+openness
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: Mia knitted me a scarf once. It had a hole by the left end. {p}She said
+      it was a feature.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: I wore it every winter. {p}{slow}It's in box fourteen. I think.{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: memory_scarf
+    choices: []
+    nextNodeId: 

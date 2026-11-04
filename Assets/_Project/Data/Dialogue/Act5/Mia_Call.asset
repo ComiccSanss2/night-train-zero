@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Mia_Call
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 0}
+    text: My handheld buzzes. {p}Not a message. {p}{slow}A call.{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: <color=#FF4FD8>MIA</color> is calling.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '[Answer]'
+      nextNodeId: answer
+      flagToSet: answered_mia
+    - text: '[Let it ring]'
+      nextNodeId: ring
+      flagToSet: 
+    nextNodeId: 
+  - id: ring
+    speaker: {fileID: 0}
+    text: It rings. And rings. {p}Then it stops.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: '{small}Hey. It''s me. I don''t know why I keep calling this number at
+      midnight.{/small}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: '{small}...Okay. Bye.{/small}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: act5_call_done
+    choices: []
+    nextNodeId: END
+  - id: answer
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: ...Leo?
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: Oh my god. You picked up. {p}{small}You actually picked up.{/small}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: ...
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '["Hi, Mia."]'
+      nextNodeId: hi
+      flagToSet: 
+    - text: '["I''m sorry I missed your recital."]'
+      nextNodeId: sorry
+      flagToSet: +openness#call_sorry
+    - text: '[Say nothing. Just listen.]'
+      nextNodeId: listen
+      flagToSet: 
+    nextNodeId: 
+  - id: hi
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: Hi. {p}{wave}Hi hi hi.{/wave} {p}Okay. Sorry. You sound tired.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: middle
+  - id: sorry
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: ...Yeah. You did. {p}I bowed to an empty chair, you know. {p}{small}I'm
+      still mad. I'm also really, really happy you called.{/small}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: middle
+  - id: listen
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: You don't have to talk. I'll talk. {p}Mom made lasagna on Sunday. Dad fell
+      asleep during the news. {p}{slow}Normal stuff. You're missing all the normal
+      stuff.{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: middle
+  - id: middle
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: Where are you? {p}It sounds like a train.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '["Somewhere weird. I''m with friends."]'
+      nextNodeId: friends
+      flagToSet: +closeness#call_friends
+    - text: '["I think I''m on my way home."]'
+      nextNodeId: home
+      flagToSet: +openness#call_home
+    nextNodeId: 
+  - id: friends
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: Friends? {p}{bounce}Leo has friends?{/bounce} {p}Tell them I said thanks.
+      For keeping you.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: battery
+  - id: home
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: '{slow}...Really?{/slow} {p}I''ll wait at the station. {p}{small}I''ll
+      bring a sign. A stupid one.{/small}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: battery
+  - id: battery
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: The battery's dying. {p}Leo, whatever you're doing right now... {p}{slow}don't
+      delete anything. Okay?{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: The line goes quiet. {p}Kira is looking at me like she heard every word.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: '{small}She sounds like you. {p}When you''re not pretending.{/small}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: act5_call_done
+    choices: []
+    nextNodeId: 

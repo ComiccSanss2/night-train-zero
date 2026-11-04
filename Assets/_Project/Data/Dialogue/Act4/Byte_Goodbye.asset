@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Byte_Goodbye
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 0}
+    text: The train stops. {p}{quake}Halfway down the tunnel.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 5e5025d89b1fb4739baa98f9dfeeada6, type: 2}
+    text: MEMORY PURGE IN PROGRESS. {p}OLDEST FILES FIRST.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: At the back of the carriage, the seats start going grey. {p}One row at
+      a time.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: huh. {p}oldest files first.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: 'guess whos the oldest file in here. {p}{small}hint: collar.{/small}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: What does that... {p}Byte. {p}{shake}What does that mean.{/shake}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: someone has to stay back and be in its way. {p}cats are {bounce}incredible{/bounce}
+      at being in the way.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '["No."]'
+      nextNodeId: no1
+      flagToSet: +closeness#byte_no1
+    - text: '[...]'
+      nextNodeId: let
+      flagToSet: 
+    nextNodeId: 
+  - id: no1
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: leo. {p}im a hallucination with a collar. {p}this is the least weird thing
+      ive done all night.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '["I said no."]'
+      nextNodeId: no2
+      flagToSet: +closeness#byte_no2
+    - text: '[...]'
+      nextNodeId: let
+      flagToSet: 
+    nextNodeId: 
+  - id: no2
+    speaker: {fileID: 11400000, guid: 02bb2046015fd2b419a84a28aae1ffb9, type: 2}
+    text: Leo. {p=1.2}{slow}Please.{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '[Let him go]'
+      nextNodeId: let
+      flagToSet: 
+    nextNodeId: 
+  - id: let
+    speaker: {fileID: 11400000, guid: 5728d75f900e24ef693e529c50a8886e, type: 2}
+    text: thanks. {p}{small}...dont make it weird.{/small}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: d3c4f6749e13c4609beb77b4ac184875, type: 2}
+    text: '{small}...I''ll walk with you the rest of the way.{/small} {p}Okay? {p}Okay.'
+    effect: 0
+    requiredFlag: 
+    flagToSet: byte_stays
+    choices: []
+    nextNodeId: 

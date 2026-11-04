@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956438e35c9c445858a54f2138f8dbb5, type: 3}
+  m_Name: Handheld_First
+  m_EditorClassIdentifier: Assembly-CSharp::Subnet.Dialogue.DialogueSequence
+  startNodeId: 
+  nodes:
+  - id: 
+    speaker: {fileID: 0}
+    text: Your handheld. You modded it yourself, back when you still had weekends.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: It's lying on box fourteen. The last box. The lightest, and somehow the
+      hardest to open.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: Three unread. {p}Two voicemails from Mia, my little sister, from months
+      ago. {p}And one new message. No sender.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices:
+    - text: '[Listen to Mia]'
+      nextNodeId: vm
+      flagToSet: +openness;heard_mia;heard_mia_0;heard_mia_1
+    - text: '[Not now]'
+      nextNodeId: msg
+      flagToSet: 
+    nextNodeId: 
+  - id: vm
+    speaker: {fileID: 0}
+    text: VOICEMAIL  //  MIA  //  MARCH 3
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: Leo? It's me. Mom says you got the job. {p}That's... {p}that's huge.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: Call me back, okay? {p}I want to hear you say it. {wave}With your stupid
+      proud voice.{/wave}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: VOICEMAIL  //  MIA  //  MAY 28
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: Hey. It's me again. {p}The recital's on the twelfth.
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: You don't have to come. {p=0.8}{slow}I'm just saying it's on the twelfth.{/slow}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 11400000, guid: edab5270ed943d44eb00905acc109630, type: 2}
+    text: '{small}...okay. bye.{/small}'
+    effect: 0
+    requiredFlag: 
+    flagToSet: silence_request
+    choices: []
+    nextNodeId: 
+  - id: msg
+    speaker: {fileID: 0}
+    text: 'One new message. No sender. Just: <color=#33FFF2>''last train leaves at
+      00:00. platform zero. don''t miss it.''</color>'
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: There's no platform zero at Central Station. {p}{small}...is there?{/small}
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
+  - id: 
+    speaker: {fileID: 0}
+    text: (The front door. It's time.)
+    effect: 0
+    requiredFlag: 
+    flagToSet: 
+    choices: []
+    nextNodeId: 
