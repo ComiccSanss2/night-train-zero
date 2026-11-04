@@ -162,7 +162,7 @@ namespace Subnet.Interaction
 
             // 5) Fade in while stepping out (the walk starts this frame, so Leo is never "inside" the wall); the door closes behind.
             Coroutine stepOut = controller != null ? StartCoroutine(controller.ScriptedWalk(otherSide.Doorstep, 2.0f)) : null;
-            if (fader != null) StartCoroutine(fader.FadeTo(0f, 0.55f));
+            if (fader != null) fader.FadeTo(0f, 0.55f);
             if (stepOut != null) yield return stepOut;
             otherSide.Play(otherSide.closeClip != null ? otherSide.closeClip : closeClip);
             yield return Swing(otherSide, false, 0.35f);
