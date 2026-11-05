@@ -467,7 +467,8 @@ namespace Subnet.Hacking
                 bounds = renderers[0].bounds;
                 foreach (Renderer r in renderers) bounds.Encapsulate(r.bounds);
             }
-            Vector3 focus = bounds.center;
+            // Frame a little above the middle: faces and heads are at the top of these bodies.
+            Vector3 focus = bounds.center + Vector3.up * (bounds.extents.y * 0.25f);
 
             animTarget = focusTransform;
             animBaseScale = focusTransform.localScale;
@@ -480,10 +481,17 @@ namespace Subnet.Hacking
             dir.y = 0f;
             if (dir.sqrMagnitude < 0.01f) dir = Vector3.back;
             dir.Normalize();
-            float distance = Mathf.Max(target.portraitDistance, bounds.extents.magnitude * 1.6f);
+            // Far enough that the whole body fits the (narrow) feed lens, head to toe.
+            float fit = bounds.size.y * 1.15f / (2f * Mathf.Tan(portraitFov * 0.5f * Mathf.Deg2Rad));
+            float distance = Mathf.Max(target.portraitDistance, fit);
             portraitCamera.transform.position = focus + dir * distance + Vector3.up * (0.25f * distance);
             portraitCamera.transform.LookAt(focus);
             portraitCamera.fieldOfView = portraitFov;
+            // Clip away anything standing between the lens and the enemy (a gate, a wall, a train seat):
+            // the feed only ever shows the enemy, never the back of a concrete barrier.
+            float camToFocus = Vector3.Distance(portraitCamera.transform.position, focus);
+            portraitCamera.nearClipPlane = Mathf.Max(0.05f, camToFocus - bounds.extents.magnitude - 0.4f);
+            portraitCamera.farClipPlane = camToFocus + 40f;
             portraitCamera.enabled = true;
         }
 
@@ -816,6 +824,23 @@ namespace Subnet.Hacking
 
         private void Update()
         {
+#if UNITY_EDITOR
+            // Editor check: F9 saves what the enemy feed camera sees to Logs/portrait.png.
+            if (portraitTexture != null && UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.f9Key.wasPressedThisFrame)
+            {
+                RenderTexture prev = RenderTexture.active;
+                RenderTexture.active = portraitTexture;
+                var shot = new Texture2D(portraitTexture.width, portraitTexture.height, TextureFormat.RGB24, false);
+                shot.ReadPixels(new Rect(0, 0, portraitTexture.width, portraitTexture.height), 0, 0);
+                shot.Apply();
+                RenderTexture.active = prev;
+                string dir = System.IO.Path.Combine(Application.dataPath, "..", "Logs");
+                System.IO.Directory.CreateDirectory(dir);
+                System.IO.File.WriteAllBytes(System.IO.Path.Combine(dir, "portrait.png"), shot.EncodeToPNG());
+                Destroy(shot);
+                Debug.Log("[Hack] Feed saved. cam " + (portraitCamera != null ? portraitCamera.transform.position + " near " + portraitCamera.nearClipPlane : "none"));
+            }
+#endif
             if (canvas == null || !canvas.enabled) return;
             float dt = GameTime.UnscaledDelta;
             float t = GameTime.UnscaledTime;
@@ -1088,7 +1113,13 @@ namespace Subnet.Hacking
             RuntimeUI.Stretch(portraitFlash.rectTransform, 6, 6, 6, 6);
             feedLabel = RuntimeUI.Text("FeedLabel", portraitFrame, Loc.T("SOURCE FEED  [LIVE]"), 16, RuntimeUI.Magenta, TextAlignmentOptions.Left);
             feedLabel.textWrappingMode = TextWrappingModes.NoWrap;
-            RuntimeUI.Place(feedLabel.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 0f), new Vector2(0, 4), new Vector2(400, 22));
+            // Inside the feed, top-left (above it, it collided with the controls hint).
+            RuntimeUI.Place(feedLabel.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(12, -10), new Vector2(246, 20));
+            feedLabel.enableAutoSizing = true;
+            feedLabel.fontSizeMin = 9f;
+            feedLabel.fontSizeMax = 14f;
+            feedLabel.outlineWidth = 0.25f;
+            feedLabel.outlineColor = new Color32(5, 3, 10, 255);
             BuildFeedFx();
 
             // Speech bubble to the right of the feed

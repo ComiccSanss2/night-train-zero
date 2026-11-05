@@ -50,7 +50,18 @@ namespace Subnet.EditorTools
             var holder = new GameObject("Enemy_" + name.Replace("Enemy_", string.Empty));
             holder.transform.SetParent(parent, false);
             holder.transform.position = worldPos;
-            GameObject model = SpawnModel(asset, holder.transform, height, false, 0f);
+            // Keep the FBX root's own rotation (axis conversion): overwriting it laid the Weeper on its side.
+            var model = (GameObject)PrefabUtility.InstantiatePrefab(asset);
+            model.transform.SetParent(holder.transform, false);
+            model.transform.localPosition = Vector3.zero;
+            model.transform.localRotation = asset.transform.localRotation;
+            model.transform.localScale = Vector3.one;
+            Bounds mb = WorldBounds(model);
+            if (mb.size.y > 0.0001f) model.transform.localScale = Vector3.one * (height / mb.size.y);
+            mb = WorldBounds(model);
+            model.transform.position += new Vector3(worldPos.x - mb.center.x, worldPos.y - mb.min.y, worldPos.z - mb.center.z);
+            if (Vector3.Dot(model.transform.up, Vector3.up) < 0.5f && Vector3.Dot(model.transform.forward, Vector3.up) > 0.5f)
+                ReportLine($"enemy {name}: root is tilted (up {model.transform.up})");
 
             // Each model has a "FacePoint" empty two metres in front of its face. Turn the holder so that point
             // lies in the 'yaw' direction, nudged 30 degrees toward the isometric camera so we see the face, not a profile.

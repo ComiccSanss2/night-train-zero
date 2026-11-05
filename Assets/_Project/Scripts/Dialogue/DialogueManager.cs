@@ -91,7 +91,7 @@ namespace Subnet.Dialogue
         public static event Action<string, string> StageDirection;
 
         private static readonly System.Text.RegularExpressions.Regex StageTag =
-            new System.Text.RegularExpressions.Regex(@"\{(approach|beside)=([a-z]+)\}");
+            new System.Text.RegularExpressions.Regex(@"\{(approach|beside|cam|emote|sit)=([a-z]+)\}");
 
         /// <summary>The world object that started the current conversation (an NPC, a prop...). May be null.</summary>
         public Transform CurrentSource { get; private set; }

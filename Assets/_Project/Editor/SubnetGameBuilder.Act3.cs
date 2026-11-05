@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using Subnet.Audio;
 using System.Collections.Generic;
+using System.Linq;
 using Subnet.Dialogue;
 using Subnet.Gameplay;
 using Subnet.Interaction;
@@ -58,13 +59,28 @@ namespace Subnet.EditorTools
                 L("A park map. YOU ARE HERE, it says, with an arrow pointing at a lonely dot.",
                   "Someone scratched a note into the plastic: <color=#B9A7FF>'They gave up in order. Light their lamps in the same order, and maybe they'll remember.'</color>"),
                 L("'They gave up in order.' First, then, last."));
+            ReadableSign(map, Subnet.UI.SignBoard.Layout.ParkMap, new Vector3(-9.5f, 1.2f, 0.95f), new Vector3(-9.5f, 1.0f, 2.2f));
             Deco("MapPole", ctx.props, new Vector3(-9.5f, 0.25f, 2.25f), new Vector3(0.1f, 0.5f, 0.1f), concreteDark);
-            TextMeshPro mapTitle = WorldSign(map.transform, "CONCRETE PARK", new Vector3(-9.5f, 1.38f, 2.14f), 180f, new Color(0.15f, 0.15f, 0.2f), 1.3f);
-            mapTitle.rectTransform.sizeDelta = new Vector2(1.3f, 0.2f);
-            TextMeshPro mapHere = WorldSign(map.transform, "YOU ARE HERE", new Vector3(-9.5f, 0.75f, 2.14f), 180f, new Color(0.75f, 0.15f, 0.2f), 0.9f);
-            mapHere.rectTransform.sizeDelta = new Vector2(1.3f, 0.2f);
+            TextMeshPro mapTitle = WorldSign(ctx.props, "CONCRETE PARK", new Vector3(-9.5f, 1.38f, 2.14f), 180f, new Color(0.15f, 0.15f, 0.2f), 1.3f);
+            mapTitle.rectTransform.sizeDelta = new Vector2(1.25f, 0.16f);
+            FitText(mapTitle);
+            TextMeshPro mapHere = WorldSign(ctx.props, "YOU ARE HERE", new Vector3(-9.5f, 0.75f, 2.14f), 180f, new Color(0.75f, 0.15f, 0.2f), 0.9f);
+            mapHere.rectTransform.sizeDelta = new Vector2(0.5f, 0.08f);
+            mapHere.transform.position = new Vector3(-9.85f, 0.86f, 2.14f);
+            FitText(mapHere);
             Material inkMat = LitMaterial("Subnet/M_MapInk", new Color(0.3f, 0.45f, 0.35f));
-            Deco("MapPark", ctx.props, new Vector3(-9.5f, 1.02f, 2.14f), new Vector3(0.9f, 0.4f, 0.01f), inkMat);
+            // A tiny version of the real layout (the full map opens when you read it).
+            Material mapConcrete = LitMaterial("Subnet/M_MapConcrete", new Color(0.62f, 0.63f, 0.6f));
+            Material mapDot = EmissiveMaterial("Subnet/M_MapDot", new Color(0.5f, 0.35f, 0.1f), new Color(1f, 0.75f, 0.3f) * 0.8f);
+            Material mapHereMat = EmissiveMaterial("Subnet/M_MapHere", new Color(0.6f, 0.1f, 0.12f), new Color(1f, 0.2f, 0.25f) * 1.2f);
+            Vector3 mapCenter = new Vector3(-9.5f, 1.04f, 2.14f);
+            Vector3 MapPoint(float x, float z) => mapCenter + new Vector3(Mathf.InverseLerp(-14.5f, 15f, x) * 1.1f - 0.55f, Mathf.InverseLerp(-7.5f, 7.5f, z) * 0.5f - 0.25f, 0f);
+            Deco("MapPlaza", ctx.props, (MapPoint(-14.3f, -7.3f) + MapPoint(8.8f, 7.3f)) * 0.5f, new Vector3(0.86f, 0.49f, 0.01f), mapConcrete);
+            Deco("MapCorridor", ctx.props, (MapPoint(8.8f, -1.9f) + MapPoint(14.6f, 1.9f)) * 0.5f, new Vector3(0.22f, 0.13f, 0.01f), mapConcrete);
+            Deco("MapWallN", ctx.props, MapPoint(-2.75f, 7.3f) - new Vector3(0, 0, 0.003f), new Vector3(0.86f, 0.02f, 0.012f), inkMat);
+            foreach (Vector3 sp in new[] { new Vector3(-5f, 0f, 3.6f), new Vector3(0f, 0f, 4.6f), new Vector3(5f, 0f, 3.6f) })
+                Deco("MapStatue", ctx.props, MapPoint(sp.x, sp.z) - new Vector3(0, 0, 0.004f), new Vector3(0.035f, 0.035f, 0.012f), mapDot);
+            Deco("MapHere", ctx.props, MapPoint(-9.5f, 1.6f) - new Vector3(0, 0, 0.005f), new Vector3(0.04f, 0.04f, 0.014f), mapHereMat);
 
             // Three weeping statues + their lamps.
             var lamps = new Dictionary<string, PuzzleSwitch>();
@@ -94,11 +110,17 @@ namespace Subnet.EditorTools
                 if (anim != null) anim.enabled = false; // frozen in place
                 PixelTears(holder.transform, s.pos + new Vector3(0, 1.45f, -0.1f), tearMat, 10f);
 
-                GameObject lamp = Prop(ctx, "Lamp_" + s.key, "lampSquareFloor", "furniture", s.pos + new Vector3(1.1f, 0f, -1.5f), 0, 1.8f, false, null);
-                lamp.layer = ctx.interactableLayer;
-                Light light = PointLight(lamp.transform, lamp.transform.position + Vector3.up * 1.7f, new Color(1f, 0.82f, 0.55f), 2.5f, 4.5f);
+                GameObject lamp = LampPost(ctx, "Lamp_" + s.key, s.pos + new Vector3(1.1f, 0f, -1.5f), 2.2f, new Color(1f, 0.82f, 0.55f), 225f);
+                Light light = lamp.GetComponentInChildren<Light>();
                 var sw = lamp.AddComponent<PuzzleSwitch>();
                 Set(sw, "switchLight", light);
+                Transform glassT = lamp.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "LampGlass");
+                if (glassT != null)
+                {
+                    Renderer glassR = glassT.GetComponent<Renderer>();
+                    glassR.sharedMaterial = lampGlass;
+                    Set(sw, "glowRenderer", glassR);
+                }
                 lamps[s.key] = sw;
             }
 
@@ -130,12 +152,13 @@ namespace Subnet.EditorTools
 
             // Props
             const string F = "furniture";
-            Prop(ctx, "Bench", "bench", F, new Vector3(-7f, 0f, -3.5f), 0, 1.6f, true,
+            Prop(ctx, "Bench", "bench", F, new Vector3(-7f, 0f, -3.5f), 0, 1.15f, true,
                 L("A concrete bench. Someone carved 'I WAS HERE' into it, then, underneath, smaller: 'I think.'"),
                 L("I WAS HERE. I think."));
-            Prop(ctx, "Bench2", "bench", F, new Vector3(3f, 0f, -4f), 0, 1.6f, true,
+            GameObject parkBench = Prop(ctx, "Bench2", "bench", F, new Vector3(3f, 0f, -4f), 0, 1.15f, true,
                 L("A bench facing nothing. The best kind of bench, honestly."),
                 L("You sit. Nothing happens. It's nice."));
+            BenchSeat(parkBench, 180f);
             Prop(ctx, "Planter", "pottedPlant", F, new Vector3(-2.5f, 0f, -1.5f), 0, 2f, false,
                 L("A concrete planter. The tree inside is made of rebar. It's doing its best."),
                 L("A single real leaf has grown on one of the iron branches. Don't tell anyone."));
@@ -272,7 +295,7 @@ namespace Subnet.EditorTools
                 "park_puzzle_solved", L("* Sealed behind concrete."), "hack2_done", new[] { shell }, new[] { freed, kiraNpc });
             weepHack.portraitTarget = weeper.transform;
             EnemyAura(obstacleRoot, shell.transform, new Vector3(-0.3f, 0f, 0f), 1.3f, 2.6f, new Color(0.55f, 0.7f, 1f), "Weeper");
-            weepHack.portraitDistance = 2.2f;
+            weepHack.portraitDistance = 3.6f;
             weepHack.tauntLines = L("Don't look at me.", "I'm fine. I'm FINE.", "Statues don't cry.",
                 "Everyone else is coping. Why can't I?", "Go away... no, wait.", "It's just concrete in my eyes.");
             weepHack.betweenRoundLines = L("...We ran through the rain on purpose. Mom was so mad. We were so happy.",

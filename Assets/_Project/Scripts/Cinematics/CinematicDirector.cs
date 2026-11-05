@@ -412,6 +412,13 @@ namespace Subnet.Cinematics
 
         // ------------------------------------------------------------------ Letterbox
 
+        /// <summary>Cinema bars for a framed dialogue moment (ignored while a cutscene owns them).</summary>
+        public void DialogueLetterbox(bool show)
+        {
+            if (IsPlaying) return;
+            SetLetterbox(show, false);
+        }
+
         private void SetLetterbox(bool show, bool instant)
         {
             if (topBar == null || bottomBar == null) return;

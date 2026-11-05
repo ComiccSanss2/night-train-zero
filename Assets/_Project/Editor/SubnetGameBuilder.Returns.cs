@@ -58,7 +58,7 @@ namespace Subnet.EditorTools
             LinkDoors(outside, inside);
             AddStemZone(ctx, "LostAndFound", c + new Vector3(0f, 1f, 0f), new Vector3(7.5f, 4f, 5.5f), StemMix.Interior);
 
-            GameObject owner = Character(ctx, "LostOwner", "character-male-b", "mini-characters", c + new Vector3(1.4f, 0f, 1.1f), 200f, 1.0f, null, true);
+            GameObject owner = Character(ctx, "LostOwner", "character-male-a", "mini-characters", c + new Vector3(2.7f, 0f, 1.5f), 215f, 1.0f, null, true);
             DialogueSequence ownerSeq = SeqAsset("Houses/LostAndFound_Owner",
                 Say(spkUnknown, "Oh! A customer. {p}Sorry, sorry. I only stepped out for five minutes."),
                 Say(null, "The calendar behind him says 1998. Every page."),
@@ -79,8 +79,14 @@ namespace Subnet.EditorTools
             Prop(ctx, "LostBoxes", "cardboardBoxClosed", F, c + new Vector3(3f, 0f, -1.2f), 20f, 0.7f, true,
                 L("A box labelled <color=#FFD84F>THINGS PEOPLE MEANT TO SAY</color>. {p}It's very heavy.", "* You don't open it. {p}Some of them might be yours."),
                 L("* Still heavy."));
-            Prop(ctx, "LostDesk", "desk", F, c + new Vector3(1.6f, 0f, 2.0f), 180f, 0.8f, false,
+            Prop(ctx, "LostDesk", "desk", F, c + new Vector3(1.6f, 0f, 1.2f), 180f, 0.9f, false,
                 L("A ledger. Every line says: <color=#FFD84F>CLAIMED</color>. {p}The handwriting is very patient."), L("* CLAIMED. CLAIMED. CLAIMED."));
+            Prop(ctx, "LostShelf", "bookcaseOpen", F, c + new Vector3(-0.2f, 0f, 2.2f), 180f, 1.9f, false,
+                L("Shelves of lost things. A single glove. A kite. A phone, still ringing very quietly.",
+                  "* A jar labelled <color=#FFD84F>SECOND CHANCES</color>. It's almost empty."),
+                L("* The phone has stopped ringing. Somebody must have picked up."));
+            Prop(ctx, "LostRug", "rugRectangle", F, c + new Vector3(0.4f, 0f, 0.2f), 0f, 2.6f, true, null, null, null, false);
+            Prop(ctx, "LostLamp", "lampRoundFloor", F, c + new Vector3(3f, 0f, 2.1f), 0f, 1.6f, false, null);
             GameObject calendar = Block("Prop_Calendar1998", ctx.props, new Vector3(c.x + 3.48f, 1.55f, c.z + 0.6f), new Vector3(0.04f, 0.7f, 0.55f), paper, ctx.interactableLayer);
             Inspectable(calendar, "Calendar1998",
                 L("A calendar from 1998. One day is circled: the day he stepped out.", "* Next to it, in pencil: <color=#FF4FD8>back in 5</color>."),

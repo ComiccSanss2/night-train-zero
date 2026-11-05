@@ -76,11 +76,10 @@ namespace Subnet.EditorTools
             const string F = "furniture";
 
             // Streetlamps
-            GameObject lamp = Prop(ctx, "Streetlamp", "lampSquareFloor", F, new Vector3(-11f, 0, 3.4f), 0, 2.6f, false,
+            LampPost(ctx, "Streetlamp", new Vector3(-10.4f, 0, 3.45f), 3.4f, Cyan, 180f,
                 L("A silent streetlamp. It says it's tired of telling everyone where to go.", "* Same, buddy. Same."),
-                L("It flickers once, like a shrug."), null, true, spkObject);
-            PointLight(lamp.transform, lamp.transform.position + Vector3.up * 2.5f, Cyan, 2f, 5f);
-            Prop(ctx, "Streetlamp2", "lampSquareFloor", F, new Vector3(16f, 0, 3.4f), 0, 2.6f, false, null);
+                L("It flickers once, like a shrug."), spkObject);
+            LampPost(ctx, "Streetlamp2", new Vector3(15.9f, 0, 3.45f), 3.4f, new Color(1f, 0.6f, 0.85f), 180f);
 
             // Byte the cat
             DialogueSequence byteMeeting = SeqAsset("Act2/Byte_Meeting",
@@ -324,28 +323,13 @@ namespace Subnet.EditorTools
             // ---------------------------------------------------------------- Bible, act II: the rooftop (breathing room)
             // A roof high above the street, reached by a fire escape once Kira has handed over the care package.
             Vector3 roof = new Vector3(70f, 6f, 0f);
-            Block("RoofFloor", ctx.env, roof + new Vector3(0, -0.1f, 0), new Vector3(12f, 0.2f, 8f), poleMat, ctx.groundLayer);
-            Block("RoofRail_N", ctx.env, roof + new Vector3(0, 0.45f, 4.05f), new Vector3(12f, 0.9f, 0.1f), poleMat, 0);
-            Block("RoofRail_S", ctx.env, roof + new Vector3(0, 0.45f, -4.05f), new Vector3(12f, 0.9f, 0.1f), poleMat, 0);
-            Block("RoofRail_E", ctx.env, roof + new Vector3(6.05f, 0.45f, 0), new Vector3(0.1f, 0.9f, 8f), poleMat, 0);
-            Block("RoofRail_W", ctx.env, roof + new Vector3(-6.05f, 0.45f, 0), new Vector3(0.1f, 0.9f, 8f), poleMat, 0);
-            Deco("WaterTank", ctx.env, roof + new Vector3(-4.2f, 1.1f, 2.6f), new Vector3(1.6f, 2.2f, 1.6f), stoneGray);
-            Deco("Antenna", ctx.env, roof + new Vector3(4.6f, 1.6f, 3f), new Vector3(0.08f, 3.2f, 0.08f), poleMat);
-            PointLight(ctx.env, roof + new Vector3(4.6f, 3.3f, 3f), new Color(1f, 0.2f, 0.3f), 2f, 4f);
-            for (int b = 0; b < 9; b++)
-            {
-                // The city below, all windows and signs.
-                float bx = roof.x - 16f + b * 4f;
-                float h = 6f + (b * 37 % 9);
-                Deco("Skyline_" + b, ctx.env, new Vector3(bx, roof.y - 6f + h * 0.5f, 14f + (b % 3) * 3f), new Vector3(3f, h, 3f), b % 2 == 0 ? neonCyan : neonMagenta);
-            }
-            PointLight(ctx.env, roof + new Vector3(0, 3f, 0), new Color(1f, 0.75f, 0.9f), 1.6f, 12f);
+            BuildRoofSet(ctx, roof);
             AddStemZone(ctx, "Roof", roof + new Vector3(0f, 1f, 0f), new Vector3(13f, 6f, 9f), StemMix.Quiet);
 
             Transform roofArrival = new GameObject("RoofArrival").transform;
             roofArrival.SetParent(ctx.story, false);
-            roofArrival.position = roof + new Vector3(-4.5f, 0.05f, -2.5f);
-            roofArrival.rotation = Quaternion.Euler(0, 45, 0);
+            roofArrival.position = roof + new Vector3(-2.9f, 0.05f, -2.6f);
+            roofArrival.rotation = Quaternion.Euler(0, 70, 0);
             Transform streetReturn = new GameObject("StreetReturn").transform;
             streetReturn.SetParent(ctx.story, false);
             streetReturn.position = new Vector3(14.6f, 0.05f, 2.2f);
@@ -360,44 +344,32 @@ namespace Subnet.EditorTools
             Set(up, "flagOnUse", "visited_roof");
             Set(up, "audioSource", ctx.sfx);
             Set(up, "useClip", Clip("switch_003"));
-            GameObject ladder = Block("Prop_Ladder", ctx.props, roof + new Vector3(-5.6f, 0.8f, -3.6f), new Vector3(0.8f, 1.6f, 0.2f), poleMat, ctx.interactableLayer);
+            GameObject ladder = Block("Prop_Ladder", ctx.props, roof + new Vector3(-3.5f, 0.9f, -2.6f), new Vector3(0.15f, 1.8f, 0.9f), null, ctx.interactableLayer);
             var down = ladder.AddComponent<AreaTeleport>();
             Set(down, "destination", streetReturn);
             Set(down, "audioSource", ctx.sfx);
             Set(down, "useClip", Clip("switch_003"));
 
-            GameObject roofKira = Character(ctx, "Kira", "character-female-c", "mini-characters", roof + new Vector3(1.5f, 0, 1.2f), 200f, 1.05f, null, true);
+            GameObject roofKira = Character(ctx, "Kira", "character-female-c", "mini-characters", roof + new Vector3(1.4f, 0, 0.2f), 200f, 1.05f, null, true);
             roofKira.name = "NPC_Kira_Roof";
             Inspectable(roofKira, "Kira_Roof",
                 L("No deliveries. No route. {p}Just a roof and too many lights.", "Sit anywhere. {p}{small}Or don't. Nobody's timing you up here.{/small}"),
                 L("I come up here when the route gets loud. {p}It never gets quiet. But it gets far."), null, spkKira);
 
-            // Three places to sit, three conversations (no objective, no prompt).
-            Prop(ctx, "RoofCrate", "cardboardBoxClosed", F, roof + new Vector3(-1.5f, 0, 2.6f), 15, 0.6f, true,
-                L("* You sit on the crate. Kira sits on the next one, swinging her skates.",
-                  "Fun fact: I've delivered to every building you can see from here. {p}{small}Except one.{/small}",
-                  "Don't ask which one. {p}{fast}You're going to ask. Don't ask.{/fast}"),
-                L("* The crate creaks. Kira pretends it was her."), "roof_seat_crate;+closeness#roof_seat_crate", true, spkKira);
-            Prop(ctx, "RoofLedge", "bench", F, roof + new Vector3(3.8f, 0, -2.8f), 180, 1.4f, true,
-                L("* You sit on the ledge. Byte sits next to you, tail hanging over the drop like it's nothing.",
-                  "dont look down. {p}look out. {p}{small}different thing.{/small}"),
-                L("* Byte's tail swings over the edge. {p}He is very obviously not worried. {p}You are, a little."), "roof_seat_ledge;+closeness#roof_seat_ledge", true, spkByte);
-            Prop(ctx, "RoofTank", "chair", F, roof + new Vector3(-3.2f, 0, 1.2f), 120, 0.8f, true,
-                L("* You sit under the water tank. Kira drops down next to you. Then Byte. Then nobody says anything.",
-                  "...This is nice. {p}{slow}Is it weird that this is nice?{/slow}"),
-                L("* Still nice. {p}Still a little weird."), "roof_seat_tank;+closeness#roof_seat_tank", true, spkKira);
+            // Three places to sit, three conversations (no objective, no prompt). Everyone sits for real.
+            BuildRoofSeats(ctx, roof);
 
             // Stay still for 30 seconds and Kira starts talking about the hospital, in pieces.
             DialogueSequence hospital = SeqAsset("Act2/Kira_Hospital",
                 Say(null, "Nobody moves. The signs below change color, one by one."),
-                Say(spkKira, "{small}I used to work nights at a hospital.{/small}"),
+                Say(spkKira, "{cam=kira}{small}I used to work nights at a hospital.{/small}"),
                 Say(spkKira, "Not a doctor. {p}I pushed the trolleys. Brought people their dinner. {p}Their mail."),
                 Say(spkKira, "There was this one guy. Room 9. {p}Nobody ever came. {p}So I started delivering him things that weren't for him."),
                 Say(spkKira, "Flyers. Menus. A postcard I wrote myself and signed 'your cousin'. {p}{wave}He knew. He kept it anyway.{/wave}"),
-                Say(spkKira, "And then one night room 9 was empty. {p=1}{slow}And I just... kept walking.{/slow}"),
+                Say(spkKira, "{cam=close}And then one night room 9 was empty. {p=1}{slow}And I just... kept walking.{/slow}"),
                 Say(spkKira, "{fast}Out of the ward, out of the building, onto the skates, and I haven't stopped since, so. Ha.{/fast}"),
-                Say(spkKira, "...Sorry. {p}That's a lot of words for a roof."),
-                Say(spkByte, "{small}no it wasnt.{/small}", "", "", "+closeness"));
+                Say(spkKira, "{cam=two}...Sorry. {p}That's a lot of words for a roof."),
+                Say(spkByte, "{cam=byte}{small}no it wasnt.{/small}", "", "", "+closeness"));
             var idleZone = new GameObject("RoofStillness");
             idleZone.transform.SetParent(ctx.story, false);
             idleZone.transform.position = roof + new Vector3(0, 1f, 0);
@@ -424,10 +396,13 @@ namespace Subnet.EditorTools
                 new Vector3(0f, 1f, 0f), new Vector3(1f, 2f, 9f), walkByte);
 
             // ---------------------------------------------------------------- Buildings you can enter
-            BuildNeonMart(ctx, new Vector3(5.8f, 0f, 4.72f), LitMaterial("Houses/M_Facade_Mart", new Color(0.24f, 0.12f, 0.34f)));
-            BuildApartment0451(ctx, new Vector3(18.8f, 0f, 4.72f), LitMaterial("Houses/M_Facade_0451", new Color(0.4f, 0.42f, 0.46f)));
+            Storefront(ctx, 5.8f, 4.8f, LitMaterial("Houses/M_Facade_Mart", new Color(0.36f, 0.2f, 0.46f)), new Color(1f, 0.45f, 0.8f), 6.6f);
+            BuildNeonMart(ctx, new Vector3(5.8f, 0f, 4.72f), null);
+            Storefront(ctx, 18.8f, 4.8f, LitMaterial("Houses/M_Facade_0451", new Color(0.5f, 0.52f, 0.58f)), new Color(0.55f, 0.7f, 1f), 7.8f);
+            BuildApartment0451(ctx, new Vector3(18.8f, 0f, 4.72f), null);
+            Storefront(ctx, -12.6f, 4.8f, LitMaterial("Houses/M_Facade_Closed", new Color(0.42f, 0.3f, 0.45f)), new Color(1f, 0.78f, 0.45f), 6.2f);
             HouseDoor backIn5 = LockedDoor(ctx, "BackIn5", new Vector3(-12.6f, 0f, 4.72f), 180f, LitMaterial("Houses/M_Door_Closed", new Color(0.5f, 0.2f, 0.3f)), Magenta,
-                LitMaterial("Houses/M_Facade_Closed", new Color(0.3f, 0.2f, 0.35f)),
+                null,
                 L("* A note on the door: BACK IN 5 MINUTES.", "* The note is dated 1998."));
             DoorNote(backIn5, "BACK IN\n5 MINUTES", "!back_subnet");
             BuildLostAndFound(ctx, backIn5);

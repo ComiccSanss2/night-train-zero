@@ -54,6 +54,8 @@ namespace Subnet.EditorTools
                 Block("Seat", ctx.props, new Vector3(x, 0.24f, 1.5f), new Vector3(1.6f, 0.48f, 0.6f), seatMat, 0);
                 Deco("SeatBack", ctx.props, new Vector3(x, 0.75f, 1.78f), new Vector3(1.6f, 0.6f, 0.12f), seatMat);
                 seats.Add(new Vector3(x, 0.5f, 1.5f));
+                SeatAnchorAt(ctx, new Vector3(x - 0.4f, 0f, 1.42f), 180f, 0.48f);
+                SeatAnchorAt(ctx, new Vector3(x + 0.4f, 0f, 1.42f), 180f, 0.48f);
             }
 
             // ---------------------------------------------------------------- The passengers: Leo's silences
@@ -109,14 +111,14 @@ namespace Subnet.EditorTools
                 Say(spkAlgorithm, "MEMORY PURGE IN PROGRESS. {p}OLDEST FILES FIRST."),
                 Say(null, "At the back of the carriage, the seats start going grey. {p}One row at a time."),
                 Say(spkByte, "huh. {p}oldest files first."),
-                Say(spkByte, "guess whos the oldest file in here. {p}{small}hint: collar.{/small}"),
-                Say(spkKira, "What does that... {p}Byte. {p}{shake}What does that mean.{/shake}"),
+                Say(spkByte, "{cam=byte}guess whos the oldest file in here. {p}{small}hint: collar.{/small}"),
+                Say(spkKira, "{cam=kira}What does that... {p}Byte. {p}{shake}What does that mean.{/shake}"),
                 Ask(spkByte, "someone has to stay back and be in its way. {p}cats are {bounce}incredible{/bounce} at being in the way.",
                     Opt("[\"No.\"]", "no1", "+closeness#byte_no1"),
                     Opt("[...]", "let")),
                 askTwo,
                 askThree,
-                Say(spkByte, "thanks. {p}{small}...dont make it weird.{/small}", "let"),
+                Say(spkByte, "{cam=byte}{emote=yes}thanks. {p}{small}...dont make it weird.{/small}", "let"),
                 Say(spkKira, "{small}...I'll walk with you the rest of the way.{/small} {p}Okay? {p}Okay.", "", "", "byte_stays"));
             Event(ctx, "TrainStops", StoryEvent.TriggerMode.OnPlayerEnter, string.Empty, 0.2f, null, null, null, null, "train_stopped",
                 new Vector3(6.8f, 1f, 0f), new Vector3(1f, 2f, 3.6f), goodbye);
@@ -130,7 +132,7 @@ namespace Subnet.EditorTools
                     Opt("[\"I don't know what I'd say.\"]", "talk", "+openness#carriage_open")),
                 Say(spkByte, "you dont have to say anything. {p}thats kind of the point of a train. {p}{small}you just sit next to stuff.{/small}", "talk"),
                 Say(spkKira, "Byte. {p}That was almost wise."),
-                Say(spkByte, "{shake}take it back.{/shake}"),
+                Say(spkByte, "{emote=no}{shake}take it back.{/shake}"),
                 Say(null, "For a second, the three of us laugh. {p}{wave}In an empty carriage full of people.{/wave}", "", "", "+closeness#carriage_laugh"));
             Event(ctx, "CarriageTalk", StoryEvent.TriggerMode.OnPlayerEnter, string.Empty, 0.2f, null, null, null, null, "carriage_talk",
                 new Vector3(-2.4f, 1f, 0f), new Vector3(1f, 2f, 3.6f), carriageTalk);
@@ -143,7 +145,7 @@ namespace Subnet.EditorTools
             GameObject purge = Block("PurgeStatic", doorRoot.transform, doorRoot.transform.position + new Vector3(0f, 1.3f, 0f), new Vector3(0.4f, 2.6f, 3.6f), staticMat, ctx.interactableLayer);
             PixelTears(purge.transform, doorRoot.transform.position + new Vector3(0f, 2.2f, 0f), staticMat, 25f);
             // The purge itself: an old CRT with one eye, tape for a cloak and erasers for hands, floating in front of the seal.
-            GameObject purgeBody = EnemyModel("Enemy_Purge", doorRoot.transform, doorRoot.transform.position + new Vector3(-1.1f, 0f, 0f), 2.7f, -90f);
+            GameObject purgeBody = EnemyModel("Enemy_Purge", doorRoot.transform, doorRoot.transform.position + new Vector3(-1.1f, 0f, 0f), 2.15f, -90f);
             if (purgeBody == null) purgeBody = purge;
 
             GameObject collar = Block("Prop_Collar", ctx.props, seats[0] + new Vector3(0.2f, 0.03f, -0.05f), new Vector3(0.28f, 0.05f, 0.18f), collarMat, ctx.interactableLayer);
@@ -183,8 +185,8 @@ namespace Subnet.EditorTools
 
             // After: twenty seconds of total silence. Then the collar on the seat vibrates.
             DialogueSequence kiraAfter = SeqAsset("Act4/Kira_After",
-                Say(null, "Kira sits down on the seat next to the collar. {p}After a while, so do I."),
-                Say(spkKira, "He sat down like it was nothing. {p}{slow}Like he was saving us seats.{/slow}"),
+                Say(null, "{sit=kira}{sit=leo}Kira sits down on the seat next to the collar. {p}After a while, so do I."),
+                Say(spkKira, "{cam=two}He sat down like it was nothing. {p}{slow}Like he was saving us seats.{/slow}"),
                 Ask(null, "...",
                     Opt("[\"He made the joke so I'd say yes faster.\"]", "joke", "+openness#after_joke"),
                     Opt("[Say nothing]", "quiet")),
@@ -192,7 +194,7 @@ namespace Subnet.EditorTools
                 Say(null, "I don't say anything. Kira doesn't make me.", "quiet"),
                 Say(spkKira, "It's okay. {p}I'll talk. You can just... be here."),
                 Say(spkKira, "At the hospital, when someone left, we weren't allowed to stop. {p}Next room. Next tray.", "hospital"),
-                Say(spkKira, "So I'm going to do the thing I never did. {p}{slow}I'm going to stop for a minute.{/slow}"),
+                Say(spkKira, "{cam=kira}So I'm going to do the thing I never did. {p}{slow}I'm going to stop for a minute.{/slow}"),
                 Say(null, "The tunnel lights go by. {p}Nobody counts them."),
                 Ask(spkKira, "Tell me one thing he said that made you laugh. {p}{small}Even a stupid one.{/small}",
                     Opt("['cats are incredible at being in the way.']", "laugh"),

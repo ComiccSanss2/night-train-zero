@@ -113,7 +113,7 @@ namespace Subnet.Dialogue
         private static bool TryHandleTag(string tag, int visible, Dictionary<Kind, int> open, Parsed result, StringBuilder sb)
         {
             // Stage directions are read by the DialogueDirector from the key; never displayed.
-            if (tag.StartsWith("approach=") || tag.StartsWith("beside=")) return true;
+            if (tag.StartsWith("approach=") || tag.StartsWith("beside=") || tag.StartsWith("cam=") || tag.StartsWith("emote=") || tag.StartsWith("sit=")) return true;
             if (tag == "quake")
             {
                 result.cues.Add(new Cue { index = visible, quake = true });

@@ -43,6 +43,13 @@ namespace Subnet.Dialogue
         private readonly Dictionary<DialogueActor, Staging> staging = new Dictionary<DialogueActor, Staging>();
         private readonly Dictionary<Transform, Quaternion> originalFacing = new Dictionary<Transform, Quaternion>();
         private bool wasOpen;
+        private bool framed;
+
+        /// <summary>
+        /// People who are sitting (or otherwise posed) keep their facing: the director won't turn them toward
+        /// whoever talks. Filled by SitSpot.
+        /// </summary>
+        public static readonly HashSet<Transform> Frozen = new HashSet<Transform>();
 
         private void Awake()
         {
@@ -109,6 +116,15 @@ namespace Subnet.Dialogue
 
         private void HandleStage(string verb, string id)
         {
+            if (verb == "cam") { Frame(id); return; }
+            if (verb == "sit") { SitDown(id); return; }
+            if (verb == "emote")
+            {
+                // The current speaker (or Leo, for his own lines and thoughts) acts it out.
+                Transform who = speakerBody != null ? speakerBody : Leo;
+                Gameplay.CharacterPose.Emote(who, id);
+                return;
+            }
             DialogueActor actor = FindActor(id);
             if (actor == null || Leo == null) return;
             switch (verb)
@@ -139,6 +155,8 @@ namespace Subnet.Dialogue
 
         private void HandleEmphasis(float strength)
         {
+            // Big words land a little harder while the camera is framing a moment.
+            if (framed && IsometricCameraRig.Main != null) IsometricCameraRig.Main.AddTrauma(Mathf.Clamp(0.08f * strength, 0.04f, 0.18f));
             if (speakerBody != null && speakerBody.TryGetComponent(out DialogueActor actor)) actor.Emphasize(strength * 2f);
         }
 
@@ -161,7 +179,7 @@ namespace Subnet.Dialogue
 
             // 1. Who does Leo look at?
             Transform leoLook = speakerBody != null ? speakerBody : lastOther;
-            if (leoLook != null && leoLook != Leo) TurnTowards(Leo, leoLook.position, leoTurnSpeed * dt, 0f);
+            if (leoLook != null && leoLook != Leo && !Frozen.Contains(Leo)) TurnTowards(Leo, leoLook.position, leoTurnSpeed * dt, 0f);
 
             // 2. Everyone involved reacts.
             foreach (DialogueActor actor in DialogueActor.All)
@@ -207,6 +225,7 @@ namespace Subnet.Dialogue
         private void UpdateActor(DialogueActor actor, float dt)
         {
             Transform t = actor.transform;
+            if (Frozen.Contains(t)) return;
             staging.TryGetValue(actor, out Staging s);
             Mode mode = s != null ? s.mode : Mode.Free;
 
@@ -293,6 +312,202 @@ namespace Subnet.Dialogue
             lastOther = null;
             leoSpeaking = false;
             if (IsometricCameraRig.Main != null) IsometricCameraRig.Main.SetDialogueFocus(null);
+            if (seated.Count > 0) StandEveryone();
+            if (framed)
+            {
+                framed = false;
+                if (IsometricCameraRig.Main != null) IsometricCameraRig.Main.ClearShot();
+                if (Cinematics.CinematicDirector.Instance != null) Cinematics.CinematicDirector.Instance.DialogueLetterbox(false);
+            }
+        }
+
+        // ------------------------------------------------------------------ Sitting ({sit=...})
+
+        private class Seated
+        {
+            public Transform body;
+            public Gameplay.SeatAnchor seat;
+            public Vector3 position;
+            public Quaternion rotation;
+            public Gameplay.CompanionFollower follower;
+        }
+
+        private readonly List<Seated> seated = new List<Seated>();
+
+        /// <summary>{sit=kira} / {sit=leo} / {sit=byte}: that character sits on the nearest free seat until the talk ends.</summary>
+        private void SitDown(string id)
+        {
+            Transform who = id == "leo" ? Leo : (FindActor(id) != null ? FindActor(id).transform : null);
+            if (who == null) return;
+            foreach (Seated s in seated) if (s.body == who) return;
+            Gameplay.SeatAnchor seat = Gameplay.SeatAnchor.Nearest(who.position, 6f);
+            if (seat == null) return;
+            var entry = new Seated { body = who, seat = seat, position = who.position, rotation = who.rotation, follower = who.GetComponent<Gameplay.CompanionFollower>() };
+            seat.occupant = who;
+            if (entry.follower != null) entry.follower.enabled = false;
+            var controller = who.GetComponent<Player.IsometricPlayerController>();
+            if (controller != null) controller.enabled = false;
+            var cc = who.GetComponent<CharacterController>();
+            if (cc != null) cc.enabled = false;
+
+            bool person = Gameplay.CharacterPose.HasParameter(who.GetComponentInChildren<Animator>(), "Sit");
+            float hip = person ? Height(who) * 0.3f : 0f;
+            who.SetPositionAndRotation(seat.transform.position + Vector3.up * (seat.seatHeight - hip), seat.transform.rotation);
+            Gameplay.CharacterPose.SetSitting(who, true);
+            Frozen.Add(who);
+            seated.Add(entry);
+        }
+
+        private void StandEveryone()
+        {
+            foreach (Seated s in seated)
+            {
+                if (s.body == null) continue;
+                Gameplay.CharacterPose.SetSitting(s.body, false);
+                Frozen.Remove(s.body);
+                if (s.seat != null) s.seat.occupant = null;
+                // Stand up in front of the seat, not back where they were (they did walk over to sit).
+                Vector3 front = s.seat != null ? s.seat.transform.position + s.seat.transform.forward * 0.55f : s.position;
+                front.y = s.position.y;
+                s.body.SetPositionAndRotation(front, s.seat != null ? s.seat.transform.rotation : s.rotation);
+                var cc = s.body.GetComponent<CharacterController>();
+                if (cc != null) cc.enabled = true;
+                var controller = s.body.GetComponent<Player.IsometricPlayerController>();
+                if (controller != null) controller.enabled = true;
+                if (s.follower != null) s.follower.enabled = true;
+            }
+            seated.Clear();
+        }
+
+        // ------------------------------------------------------------------ Framing ({cam=...})
+
+        /// <summary>
+        /// {cam=close}: close-up on whoever talks. {cam=leo} / {cam=kira} / {cam=byte}: close-up on them.
+        /// {cam=two}: Leo and the person he's talking with. {cam=off}: back to the isometric camera.
+        /// Framed moments get cinema bars; they end with the conversation.
+        /// </summary>
+        private void Frame(string id)
+        {
+            IsometricCameraRig rig = IsometricCameraRig.Main;
+            if (rig == null || Leo == null) return;
+            if (id == "off")
+            {
+                framed = false;
+                rig.ClearShot();
+                if (Cinematics.CinematicDirector.Instance != null) Cinematics.CinematicDirector.Instance.DialogueLetterbox(false);
+                return;
+            }
+
+            Vector3 pos, look;
+            float fov;
+            if (id == "two")
+            {
+                Transform other = speakerBody != null ? speakerBody : lastOther;
+                if (other == null) other = manager.CurrentSource;
+                if (other == null) { CloseUp(Leo, out pos, out look, out fov); }
+                else TwoShot(Leo, other, out pos, out look, out fov);
+            }
+            else
+            {
+                Transform who = id == "close" ? (speakerBody != null ? speakerBody : Leo)
+                    : id == "leo" ? Leo
+                    : (FindActor(id) != null ? FindActor(id).transform : (speakerBody != null ? speakerBody : Leo));
+                CloseUp(who, out pos, out look, out fov);
+            }
+            rig.SetShot(pos, look, fov);
+            framed = true;
+            if (Cinematics.CinematicDirector.Instance != null) Cinematics.CinematicDirector.Instance.DialogueLetterbox(true);
+        }
+
+        private static float Height(Transform t)
+        {
+            float top = t.position.y + 1f;
+            bool any = false;
+            foreach (Renderer r in t.GetComponentsInChildren<Renderer>())
+            {
+                if (r is ParticleSystemRenderer) continue;
+                top = any ? Mathf.Max(top, r.bounds.max.y) : r.bounds.max.y;
+                any = true;
+            }
+            return Mathf.Max(0.3f, top - t.position.y);
+        }
+
+        /// <summary>The way the isometric camera looks, flattened (so framed shots stay on the same side of the scene).</summary>
+        private static Vector3 CameraBack()
+        {
+            Transform cam = IsometricCameraRig.Main != null ? IsometricCameraRig.Main.transform : null;
+            Vector3 back = cam != null ? -cam.forward : new Vector3(-0.7f, 0f, -0.7f);
+            back.y = 0f;
+            return back.sqrMagnitude > 0.001f ? back.normalized : Vector3.back;
+        }
+
+        private static void CloseUp(Transform who, out Vector3 pos, out Vector3 look, out float fov)
+        {
+            float h = Height(who);
+            Vector3 head = who.position + Vector3.up * (h * 0.8f);
+            Vector3 front = who.forward;
+            front.y = 0f;
+            if (front.sqrMagnitude < 0.01f) front = CameraBack();
+            front.Normalize();
+            float distance = 1.7f + h * 1.1f;
+            look = head - Vector3.up * (h * 0.05f);
+            fov = 32f;
+
+            // Try angles around the face, preferring the camera's side, and keep the first one where nobody
+            // stands between the lens and the face (the listener's head used to fill the shot).
+            float side = Vector3.Dot(Vector3.Cross(Vector3.up, front), CameraBack()) >= 0f ? 1f : -1f;
+            float[] angles = { 35f * side, -35f * side, 60f * side, -60f * side, 15f * side, 90f * side, 0f };
+            pos = head + (front * 0.6f + CameraBack() * 0.4f).normalized * distance + Vector3.up * (0.2f + h * 0.15f);
+            foreach (float a in angles)
+            {
+                Vector3 dir = Quaternion.Euler(0f, a, 0f) * front;
+                Vector3 candidate = head + dir * distance + Vector3.up * (0.2f + h * 0.15f);
+                if (!Blocked(who, candidate, head)) { pos = candidate; return; }
+            }
+        }
+
+        /// <summary>Is another character (or a wall) between the camera and the face?</summary>
+        private static bool Blocked(Transform subject, Vector3 from, Vector3 to)
+        {
+            var bodies = new List<Transform>();
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null) bodies.Add(player.transform);
+            foreach (DialogueActor actor in Object.FindObjectsByType<DialogueActor>(FindObjectsSortMode.None)) bodies.Add(actor.transform);
+            foreach (Transform b in bodies)
+            {
+                if (b == null || b == subject || b.IsChildOf(subject) || subject.IsChildOf(b)) continue;
+                float bh = Height(b);
+                for (float k = 0.35f; k <= 0.95f; k += 0.3f)
+                {
+                    Vector3 p = b.position + Vector3.up * (bh * k);
+                    Vector3 seg = to - from;
+                    float t = Mathf.Clamp01(Vector3.Dot(p - from, seg) / Mathf.Max(0.0001f, seg.sqrMagnitude));
+                    if (t > 0.02f && t < 0.95f && (from + seg * t - p).magnitude < 0.35f + bh * 0.15f) return true;
+                }
+            }
+            // Walls and props (ignore characters' own colliders, handled above).
+            foreach (RaycastHit hit in Physics.RaycastAll(to, (from - to).normalized, (from - to).magnitude, ~0, QueryTriggerInteraction.Ignore))
+            {
+                if (hit.collider.transform.IsChildOf(subject)) continue;
+                if (hit.collider.GetComponentInParent<DialogueActor>() != null || hit.collider.CompareTag("Player")) continue;
+                if (hit.distance > 0.3f) return true;
+            }
+            return false;
+        }
+
+        private static void TwoShot(Transform a, Transform b, out Vector3 pos, out Vector3 look, out float fov)
+        {
+            float h = Mathf.Max(Height(a), Height(b));
+            Vector3 mid = (a.position + b.position) * 0.5f + Vector3.up * (h * 0.6f);
+            Vector3 axis = b.position - a.position;
+            axis.y = 0f;
+            if (axis.sqrMagnitude < 0.01f) axis = Vector3.right;
+            Vector3 perp = Vector3.Cross(Vector3.up, axis.normalized);
+            if (Vector3.Dot(perp, CameraBack()) < 0f) perp = -perp;
+            float distance = Mathf.Max(2.4f, axis.magnitude * 1.5f + 1.2f);
+            pos = mid + (perp * 0.85f + CameraBack() * 0.15f).normalized * distance + Vector3.up * (0.5f + h * 0.3f);
+            look = mid;
+            fov = 34f;
         }
 
         // NPCs who asked to go back to their pose turn back after the talk.

@@ -47,9 +47,12 @@ namespace Subnet.Hacking
             root.localPosition = center;
 
             // Floor ring: a flat disc with a darker inner disc (reads as a glyph circle from the iso camera).
-            ring = Disc("Ring", radius, 0.02f, auraMaterial).transform;
-            Transform inner = Disc("Inner", radius * 0.82f, 0.025f, innerMaterial != null ? innerMaterial : auraMaterial).transform;
-            inner.SetParent(ring, true);
+            // The ring is an empty pivot: the discs are its children, so pulsing it never stretches them
+            // (scaling the disc itself turned it into a 2 m tall cylinder hiding the enemy).
+            ring = new GameObject("Ring").transform;
+            ring.SetParent(root, false);
+            Disc("Outer", radius, 0.02f, auraMaterial).transform.SetParent(ring, false);
+            Disc("Inner", radius * 0.82f, 0.025f, innerMaterial != null ? innerMaterial : auraMaterial).transform.SetParent(ring, false);
 
             shards = new Transform[6];
             for (int i = 0; i < shards.Length; i++)

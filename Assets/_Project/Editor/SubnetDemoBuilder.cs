@@ -117,6 +117,7 @@ namespace Subnet.EditorTools
             finally
             {
                 EditorUtility.ClearProgressBar();
+                WriteReport();
             }
         }
 
@@ -551,7 +552,7 @@ namespace Subnet.EditorTools
                 foreach (ModelImporterClipAnimation clip in clips)
                 {
                     string n = clip.name.ToLowerInvariant();
-                    if ((n.Contains("idle") || n.Contains("walk") || n.Contains("sprint") || n.Contains("run")) && !clip.loopTime)
+                    if ((n.Contains("idle") || n.Contains("walk") || n.Contains("sprint") || n.Contains("run") || n == "sit") && !clip.loopTime)
                     {
                         clip.loopTime = true;
                         changed = true;
@@ -582,8 +583,69 @@ namespace Subnet.EditorTools
             tree.useAutomaticThresholds = false;
             if (idle != null) tree.AddChild(idle, 0f);
             if (walk != null) tree.AddChild(walk, 1f);
+            AddPoseStates(controller, all);
             EditorUtility.SetDirty(controller);
             return controller;
+        }
+
+        /// <summary>
+        /// Sitting (bool "Sit") and emotes (triggers "Emote_yes", "Emote_no", "Emote_dance", "Emote_pick", "Emote_eat")
+        /// on top of the locomotion tree. People: sit / emote-yes / emote-no / pick-up. Cube pets: gesture-positive /
+        /// gesture-negative / dance / eat.
+        /// </summary>
+        private static void AddPoseStates(AnimatorController controller, AnimationClip[] clips)
+        {
+            AnimatorStateMachine sm = controller.layers[0].stateMachine;
+            AnimatorState locomotion = sm.defaultState;
+            AnimationClip Find(params string[] names)
+            {
+                foreach (string n in names)
+                {
+                    AnimationClip c = clips.FirstOrDefault(x => x.name.ToLowerInvariant() == n);
+                    if (c != null) return c;
+                }
+                return null;
+            }
+
+            AnimationClip sit = Find("sit");
+            if (sit != null)
+            {
+                controller.AddParameter("Sit", AnimatorControllerParameterType.Bool);
+                AnimatorState sitState = sm.AddState("Sit");
+                sitState.motion = sit;
+                AnimatorStateTransition down = locomotion.AddTransition(sitState);
+                down.hasExitTime = false;
+                down.duration = 0.25f;
+                down.AddCondition(AnimatorConditionMode.If, 0f, "Sit");
+                AnimatorStateTransition up = sitState.AddTransition(locomotion);
+                up.hasExitTime = false;
+                up.duration = 0.3f;
+                up.AddCondition(AnimatorConditionMode.IfNot, 0f, "Sit");
+            }
+
+            (string trigger, AnimationClip clip)[] emotes =
+            {
+                ("Emote_yes", Find("emote-yes", "gesture-positive")),
+                ("Emote_no", Find("emote-no", "gesture-negative")),
+                ("Emote_dance", Find("dance", "emote-yes")),
+                ("Emote_pick", Find("pick-up", "interact-right")),
+                ("Emote_eat", Find("eat")),
+            };
+            foreach ((string trigger, AnimationClip clip) in emotes)
+            {
+                if (clip == null) continue;
+                controller.AddParameter(trigger, AnimatorControllerParameterType.Trigger);
+                AnimatorState state = sm.AddState(trigger);
+                state.motion = clip;
+                AnimatorStateTransition into = locomotion.AddTransition(state);
+                into.hasExitTime = false;
+                into.duration = 0.12f;
+                into.AddCondition(AnimatorConditionMode.If, 0f, trigger);
+                AnimatorStateTransition back = state.AddTransition(locomotion);
+                back.hasExitTime = true;
+                back.exitTime = 0.9f;
+                back.duration = 0.2f;
+            }
         }
 
         // ====================================================================== Props
@@ -1348,6 +1410,7 @@ namespace Subnet.EditorTools
                 return AssetDatabase.LoadAssetAtPath<GameObject>(path);
             }
             Debug.LogWarning($"[Subnet] Model not found: {name} ({folderHint}). Using a placeholder.");
+            ReportLine($"missing model: {name} ({folderHint})");
             return null;
         }
 

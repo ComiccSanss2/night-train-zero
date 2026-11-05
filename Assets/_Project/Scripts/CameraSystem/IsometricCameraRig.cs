@@ -62,6 +62,34 @@ namespace Subnet.CameraSystem
 
         private float focusTarget;
 
+        // ------------------------------------------------------------------ Framed shots (sitting, big moments)
+        private Vector3 shotPosition;
+        private Vector3 shotLook;
+        private float shotFov = 30f;
+        private float shotTarget;
+        private float shotBlend;
+        private float shotAge;
+        private bool fovTouched;
+
+        /// <summary>True while a framed shot is showing (or blending).</summary>
+        public bool InShot => shotBlend > 0f;
+
+        /// <summary>
+        /// Leaves the isometric angle for a framed shot (a close-up, two people on a bench). Blends over ~1 s
+        /// and keeps drifting in very slowly, so a long line feels like the camera is leaning in to listen.
+        /// </summary>
+        public void SetShot(Vector3 position, Vector3 lookAt, float fov = 30f)
+        {
+            if (shotTarget <= 0f || (position - shotPosition).sqrMagnitude > 0.04f) shotAge = 0f;
+            shotPosition = position;
+            shotLook = lookAt;
+            shotFov = fov;
+            shotTarget = 1f;
+        }
+
+        /// <summary>Back to the isometric follow camera.</summary>
+        public void ClearShot() => shotTarget = 0f;
+
         public Transform Target
         {
             get => target;
@@ -142,6 +170,31 @@ namespace Subnet.CameraSystem
 
             Quaternion rotation = Quaternion.Euler(pitch, yaw, 0f);
             Vector3 position = focusPoint - rotation * Vector3.forward * (distance * currentZoom);
+
+            // Framed shot on top of the follow pose.
+            shotBlend = Mathf.MoveTowards(shotBlend, shotTarget, dt / 0.9f);
+            if (shotBlend > 0f)
+            {
+                shotAge += dt;
+                float k = Easing.Evaluate(EaseType.EaseInOutCubic, shotBlend);
+                Vector3 toLook = shotLook - shotPosition;
+                Vector3 drift = toLook.normalized * Mathf.Min(0.3f, shotAge * 0.035f);
+                Vector3 shotPos = shotPosition + drift;
+                position = Vector3.Lerp(position, shotPos, k);
+                // Aim a little below the subject so faces sit in the upper part of the frame, clear of the dialogue box.
+                Quaternion aim = Quaternion.LookRotation(shotLook - shotPos, Vector3.up) * Quaternion.Euler(shotFov * 0.2f, 0f, 0f);
+                rotation = Quaternion.Slerp(rotation, aim, k);
+                if (cam != null && !cam.orthographic)
+                {
+                    cam.fieldOfView = Mathf.Lerp(fieldOfView, shotFov, k);
+                    fovTouched = true;
+                }
+            }
+            else if (fovTouched && cam != null && !cam.orthographic)
+            {
+                cam.fieldOfView = fieldOfView;
+                fovTouched = false;
+            }
 
             // Trauma² shake: perceptually smoother than linear.
             if (trauma > 0f)

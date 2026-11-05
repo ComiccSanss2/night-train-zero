@@ -261,21 +261,24 @@ namespace Subnet.EditorTools
                   "At the bottom, a line flickers that wasn't there a second ago: <color=#FF4FD8>NIGHT TRAIN ZERO - PLATFORM 0 - 00:00 - ON TIME</color>.",
                   "* On time. That makes one of us."),
                 L("NIGHT TRAIN ZERO. On time. The only thing in this city that is."), "read_timetable");
+            ReadableSign(board, Subnet.UI.SignBoard.Layout.Departures, new Vector3(-6.5f, 1.7f, 0.35f), new Vector3(-6.5f, 1.6f, 2.0f));
             PointLight(board.transform, board.transform.position + new Vector3(0, 0, -0.8f), new Color(1f, 0.6f, 0.2f), 1.0f, 3f);
             Deco("BoardLegL", ctx.props, new Vector3(-7.15f, 0.58f, 2.02f), new Vector3(0.07f, 1.16f, 0.07f), pillarMat);
             Deco("BoardLegR", ctx.props, new Vector3(-5.85f, 0.58f, 2.02f), new Vector3(0.07f, 1.16f, 0.07f), pillarMat);
             Deco("BoardFrame", ctx.props, new Vector3(-6.5f, 1.6f, 2.03f), new Vector3(1.72f, 1.02f, 0.06f), pillarMat);
-            string[] boardLines = { "DEPARTURES", "LINE 3      CANCELLED", "LINE 7      DELAYED", "LINE 9      DELAYED" };
+            string[] boardLines = { "DEPARTURES", "LINE 3   CANCELLED", "LINE 7   DELAYED", "LINE 9   DELAYED" };
             for (int i = 0; i < boardLines.Length; i++)
             {
-                TextMeshPro line = WorldSign(board.transform, boardLines[i], new Vector3(-6.5f, 1.93f - i * 0.17f, 1.94f), 180f,
+                TextMeshPro line = WorldSign(ctx.props, boardLines[i], new Vector3(-6.5f, 1.93f - i * 0.17f, 1.94f), 180f,
                     i == 0 ? Color.white : new Color(1f, 0.7f, 0.25f), i == 0 ? 1.3f : 1.05f);
-                line.rectTransform.sizeDelta = new Vector2(1.45f, 0.2f);
+                line.rectTransform.sizeDelta = new Vector2(1.42f, 0.17f);
+                FitText(line);
                 line.alignment = i == 0 ? TextAlignmentOptions.Center : TextAlignmentOptions.Left;
                 line.fontStyle = i == 0 ? FontStyles.Bold : FontStyles.Normal;
             }
-            TextMeshPro zeroLine = WorldSign(board.transform, "NIGHT TRAIN ZERO   PLATF. 0   00:00", new Vector3(-6.5f, 1.25f, 1.94f), 180f, new Color(1f, 0.45f, 0.85f), 0.95f);
-            zeroLine.rectTransform.sizeDelta = new Vector2(1.45f, 0.2f);
+            TextMeshPro zeroLine = WorldSign(ctx.props, "NIGHT TRAIN ZERO   PLATF. 0   00:00", new Vector3(-6.5f, 1.25f, 1.94f), 180f, new Color(1f, 0.45f, 0.85f), 0.95f);
+            zeroLine.rectTransform.sizeDelta = new Vector2(1.42f, 0.17f);
+            FitText(zeroLine);
             zeroLine.fontStyle = FontStyles.Bold;
 
             GameObject zeroSign = Block("Prop_PlatformZero", ctx.props, new Vector3(4.5f, 2.6f, 2.0f), new Vector3(1.2f, 0.5f, 0.08f), zeroMat, ctx.interactableLayer);
@@ -293,19 +296,19 @@ namespace Subnet.EditorTools
             PointLight(signal.transform, signal.transform.position + new Vector3(0, 0, -0.4f), Color.red, 1.2f, 2.5f);
 
             const string F = "furniture";
-            Prop(ctx, "Bench1", "bench", F, new Vector3(-3f, 0, 1.6f), 0, 1.6f, true,
+            GameObject stationBench = Prop(ctx, "Bench1", "bench", F, new Vector3(-3f, 0, 1.6f), 0, 1.15f, true,
                 L("A station bench. Designed with armrests in the middle so nobody can lie down. Even the furniture is tired of you."),
                 L("You sit for a second. The bench sighs. Or maybe you do."));
-            Prop(ctx, "Bench2", "bench", F, new Vector3(7.5f, 0, 1.6f), 0, 1.6f, true,
+            BenchSeat(stationBench, 180f);
+            Prop(ctx, "Bench2", "bench", F, new Vector3(7.5f, 0, 1.6f), 0, 1.15f, true,
                 L("Someone left a coffee cup here. It's still warm. It smells like overdue deadlines and mornings you wish never arrived."),
                 L("The cup is cold now. Time moves, even here."));
             Prop(ctx, "Trash", "trashcan", F, new Vector3(1.5f, 0, 2.2f), 0, 0.6f, false,
                 L("A trash can full of unread free newspapers. Every headline says EVERYTHING IS FINE in a slightly bigger font."),
                 L("EVERYTHING IS FINE. EVERYTHING IS FINE."));
-            GameObject lampA = Prop(ctx, "StationLamp", "lampSquareFloor", F, new Vector3(-8.5f, 0, 2.2f), 0, 2.4f, false,
+            LampPost(ctx, "StationLamp", new Vector3(-8.5f, 0, 2.2f), 3f, new Color(0.8f, 0.9f, 1f), 180f,
                 L("A silent lamp post. It says it's tired of telling everyone where to go."),
-                L("It still points nowhere in particular. Respect."), null, true, spkObject);
-            PointLight(lampA.transform, lampA.transform.position + Vector3.up * 2.3f, new Color(0.8f, 0.9f, 1f), 2f, 6f);
+                L("It still points nowhere in particular. Respect."), spkObject);
             Prop(ctx, "Stairs", "stairs", F, new Vector3(-12.0f, 0, -1.5f), 90, 1.2f, false,
                 L("The stairs back up to the street. Home is up there. The boxes are waiting.", "* They can wait."),
                 L("* Not going back. Not tonight."));

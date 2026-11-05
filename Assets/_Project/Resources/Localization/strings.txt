@@ -2432,10 +2432,12 @@ en|You sit on the crate. Kira sits on the next one, swinging her skates.
 it|Ti siedi sulla cassa. Kira si siede su quella accanto, dondolando i pattini.
 fr|Tu t'assois sur la caisse. Kira s'assoit sur celle d'à côté, en balançant ses rollers.
 
+id|{cam=kira}Fun fact: I've delivered to every building you can see from here. {p}{small}Except one.{/small}
 en|Fun fact: I've delivered to every building you can see from here. {p}{small}Except one.{/small}
 it|Curiosità: ho consegnato in ogni palazzo che vedi da qui. {p}{small}Tranne uno.{/small}
 fr|Anecdote : j'ai livré tous les immeubles que tu vois d'ici. {p}{small}Sauf un.{/small}
 
+id|{emote=no}Don't ask which one. {p}{fast}You're going to ask. Don't ask.{/fast}
 en|Don't ask which one. {p}{fast}You're going to ask. Don't ask.{/fast}
 it|Non chiedere quale. {p}{fast}Stai per chiederlo. Non chiederlo.{/fast}
 fr|Demande pas lequel. {p}{fast}Tu vas demander. Demande pas.{/fast}
@@ -2448,6 +2450,7 @@ en|You sit on the ledge. Byte sits next to you, tail hanging over the drop like 
 it|Ti siedi sul cornicione. Byte si siede accanto a te, la coda penzoloni sul vuoto come se niente fosse.
 fr|Tu t'assois sur le rebord. Byte s'assoit à côté de toi, la queue pendue au-dessus du vide comme si de rien n'était.
 
+id|{cam=byte}dont look down. {p}look out. {p}{small}different thing.{/small}
 en|dont look down. {p}look out. {p}{small}different thing.{/small}
 it|non guardare giù. {p}guarda lontano. {p}{small}è diverso.{/small}
 fr|regarde pas en bas. {p}regarde au loin. {p}{small}c'est pas pareil.{/small}
@@ -2460,6 +2463,7 @@ en|You sit under the water tank. Kira drops down next to you. Then Byte. Then no
 it|Ti siedi sotto la cisterna. Kira si lascia cadere accanto a te. Poi Byte. Poi nessuno dice niente.
 fr|Tu t'assois sous le réservoir. Kira se laisse tomber à côté de toi. Puis Byte. Puis personne ne dit rien.
 
+id|{cam=two}...This is nice. {p}{slow}Is it weird that this is nice?{/slow}
 en|...This is nice. {p}{slow}Is it weird that this is nice?{/slow}
 it|...È bello. {p}{slow}È strano che sia bello?{/slow}
 fr|...C'est bien. {p}{slow}C'est bizarre que ce soit bien ?{/slow}
@@ -2472,6 +2476,7 @@ en|Nobody moves. The signs below change color, one by one.
 it|Nessuno si muove. Le insegne là sotto cambiano colore, una alla volta.
 fr|Personne ne bouge. En bas, les enseignes changent de couleur, une par une.
 
+id|{cam=kira}{small}I used to work nights at a hospital.{/small}
 en|{small}I used to work nights at a hospital.{/small}
 it|{small}Facevo i turni di notte in un ospedale.{/small}
 fr|{small}Avant, je bossais de nuit dans un hôpital.{/small}
@@ -2488,6 +2493,7 @@ en|Flyers. Menus. A postcard I wrote myself and signed 'your cousin'. {p}{wave}H
 it|Volantini. Menù. Una cartolina scritta da me e firmata 'tuo cugino'. {p}{wave}Lo sapeva. L'ha tenuta lo stesso.{/wave}
 fr|Des prospectus. Des menus. Une carte postale que j'ai écrite moi-même, signée « ton cousin ». {p}{wave}Il savait. Il l'a gardée quand même.{/wave}
 
+id|{cam=close}And then one night room 9 was empty. {p=1}{slow}And I just... kept walking.{/slow}
 en|And then one night room 9 was empty. {p=1}{slow}And I just... kept walking.{/slow}
 it|E poi una notte la stanza 9 era vuota. {p=1}{slow}E io ho semplicemente... continuato a camminare.{/slow}
 fr|Et puis une nuit, la chambre 9 était vide. {p=1}{slow}Et moi j'ai juste... continué à marcher.{/slow}
@@ -2496,10 +2502,12 @@ en|{fast}Out of the ward, out of the building, onto the skates, and I haven't st
 it|{fast}Fuori dal reparto, fuori dall'edificio, sui pattini, e da allora non mi sono più fermata, quindi. Ah.{/fast}
 fr|{fast}Hors du service, hors du bâtiment, sur les rollers, et je me suis jamais arrêtée depuis, donc. Ha.{/fast}
 
+id|{cam=two}...Sorry. {p}That's a lot of words for a roof.
 en|...Sorry. {p}That's a lot of words for a roof.
 it|...Scusa. {p}Sono tante parole per un tetto.
 fr|...Pardon. {p}Ça fait beaucoup de mots pour un toit.
 
+id|{cam=byte}{small}no it wasnt.{/small}
 en|{small}no it wasnt.{/small}
 it|{small}no che non lo erano.{/small}
 fr|{small}non. pas du tout.{/small}
@@ -2734,10 +2742,12 @@ en|huh. {p}oldest files first.
 it|ah. {p}prima i file più vecchi.
 fr|ah. {p}les plus anciens d'abord.
 
+id|{cam=byte}guess whos the oldest file in here. {p}{small}hint: collar.{/small}
 en|guess whos the oldest file in here. {p}{small}hint: collar.{/small}
 it|indovina chi è il file più vecchio qui dentro. {p}{small}indizio: collare.{/small}
 fr|devine qui est le plus vieux fichier ici. {p}{small}indice : collier.{/small}
 
+id|{cam=kira}What does that... {p}Byte. {p}{shake}What does that mean.{/shake}
 en|What does that... {p}Byte. {p}{shake}What does that mean.{/shake}
 it|Che vuol dire... {p}Byte. {p}{shake}Che vuol dire.{/shake}
 fr|Ça veut dire quoi... {p}Byte. {p}{shake}Ça veut dire quoi.{/shake}
@@ -2750,6 +2760,7 @@ en|["No."]
 it|["No."]
 fr|[« Non. »]
 
+id|{cam=byte}{emote=yes}thanks. {p}{small}...dont make it weird.{/small}
 en|thanks. {p}{small}...dont make it weird.{/small}
 it|grazie. {p}{small}...non renderlo strano.{/small}
 fr|merci. {p}{small}...rends pas ça bizarre.{/small}
@@ -3004,6 +3015,7 @@ en|Byte. {p}That was almost wise.
 it|Byte. {p}Era quasi saggio.
 fr|Byte. {p}C'était presque sage.
 
+id|{emote=no}{shake}take it back.{/shake}
 en|{shake}take it back.{/shake}
 it|{shake}ritiralo.{/shake}
 fr|{shake}retire ça.{/shake}
@@ -3012,10 +3024,12 @@ en|For a second, the three of us laugh. {p}{wave}In an empty carriage full of pe
 it|Per un attimo, ridiamo tutti e tre. {p}{wave}In una carrozza vuota piena di gente.{/wave}
 fr|Un instant, on rit tous les trois. {p}{wave}Dans un wagon vide plein de monde.{/wave}
 
+id|{sit=kira}{sit=leo}Kira sits down on the seat next to the collar. {p}After a while, so do I.
 en|Kira sits down on the seat next to the collar. {p}After a while, so do I.
 it|Kira si siede accanto al collare. {p}Dopo un po', anch'io.
 fr|Kira s'assoit à côté du collier. {p}Au bout d'un moment, moi aussi.
 
+id|{cam=two}He sat down like it was nothing. {p}{slow}Like he was saving us seats.{/slow}
 en|He sat down like it was nothing. {p}{slow}Like he was saving us seats.{/slow}
 it|Si è seduto come se niente fosse. {p}{slow}Come se ci stesse tenendo il posto.{/slow}
 fr|Il s'est assis comme si de rien n'était. {p}{slow}Comme s'il nous gardait des places.{/slow}
@@ -3044,6 +3058,7 @@ en|At the hospital, when someone left, we weren't allowed to stop. {p}Next room.
 it|In ospedale, quando qualcuno se ne andava, non potevamo fermarci. {p}Stanza dopo. Vassoio dopo.
 fr|À l'hôpital, quand quelqu'un partait, on n'avait pas le droit de s'arrêter. {p}Chambre suivante. Plateau suivant.
 
+id|{cam=kira}So I'm going to do the thing I never did. {p}{slow}I'm going to stop for a minute.{/slow}
 en|So I'm going to do the thing I never did. {p}{slow}I'm going to stop for a minute.{/slow}
 it|Quindi faccio quello che non ho mai fatto. {p}{slow}Mi fermo un minuto.{/slow}
 fr|Alors je vais faire ce que j'ai jamais fait. {p}{slow}Je vais m'arrêter une minute.{/slow}
@@ -4046,6 +4061,7 @@ en|Hey. {p}Remember the package with no name? {p}You said we'd deliver it togeth
 it|Ehi. {p}Ti ricordi il pacco senza nome? {p}Avevi detto che l'avremmo consegnato insieme.
 fr|Hé. {p}Tu te souviens du colis sans nom ? {p}Tu avais dit qu'on le livrerait ensemble.
 
+id|{cam=kira}I think... {p}{slow}I think it was for me.{/slow}
 en|I think... {p}{slow}I think it was for me.{/slow}
 it|Credo... {p}{slow}credo che fosse per me.{/slow}
 fr|Je crois... {p}{slow}je crois qu'il était pour moi.{/slow}
@@ -4062,10 +4078,12 @@ en|{shake}...Ha.{/shake} {p}He knew. {p}{slow}He knew the whole time.{/slow}
 it|{shake}...Ah.{/shake} {p}Lo sapeva. {p}{slow}Lo sapeva da sempre.{/slow}
 fr|{shake}...Ha.{/shake} {p}Il savait. {p}{slow}Il savait depuis le début.{/slow}
 
+id|{cam=two}{emote=yes}Okay. {p}I'm going to stop running. {p}{small}After this. Right after this.{/small}
 en|Okay. {p}I'm going to stop running. {p}{small}After this. Right after this.{/small}
 it|Ok. {p}Smetterò di correre. {p}{small}Dopo questo. Subito dopo questo.{/small}
 fr|D'accord. {p}Je vais arrêter de courir. {p}{small}Après ça. Juste après ça.{/small}
 
+id|{cam=leo}My handheld buzzes. {p}Not a message. {p}{slow}A call.{/slow}
 en|My handheld buzzes. {p}Not a message. {p}{slow}A call.{/slow}
 it|Il mio palmare vibra. {p}Non è un messaggio. {p}{slow}È una chiamata.{/slow}
 fr|Ma console vibre. {p}Pas un message. {p}{slow}Un appel.{/slow}
@@ -4094,6 +4112,7 @@ en|{small}...Okay. Bye.{/small}
 it|{small}...Ok. Ciao.{/small}
 fr|{small}...Bon. Salut.{/small}
 
+id|{cam=leo}...Leo?
 en|...Leo?
 it|...Leo?
 fr|...Leo ?
@@ -4154,6 +4173,7 @@ en|The line goes quiet. {p}Kira is looking at me like she heard every word.
 it|La linea tace. {p}Kira mi guarda come se avesse sentito ogni parola.
 fr|La ligne se tait. {p}Kira me regarde comme si elle avait entendu chaque mot.
 
+id|{cam=kira}{small}She sounds like you. {p}When you're not pretending.{/small}
 en|{small}She sounds like you. {p}When you're not pretending.{/small}
 it|{small}Ha la tua voce. {p}Quando non fai finta.{/small}
 fr|{small}Elle te ressemble. {p}Quand tu ne fais pas semblant.{/small}
@@ -4497,3 +4517,103 @@ fr|La boutique « DE RETOUR DANS 5 MINUTES » a les lumières allumées.
 en|Back the way we came. {p}Some things only show up on the way back.
 it|Torniamo da dove siamo venuti. {p}Certe cose si vedono solo al ritorno.
 fr|On revient sur nos pas. {p}Certaines choses n'apparaissent qu'au retour.
+
+en|TIME
+it|ORA
+fr|HEURE
+
+en|DESTINATION
+it|DESTINAZIONE
+fr|DESTINATION
+
+en|PLAT.
+it|BIN.
+fr|QUAI
+
+en|STATUS
+it|STATO
+fr|ÉTAT
+
+en|LINE 3  OUTER RING
+it|LINEA 3  CIRCONVALLAZIONE
+fr|LIGNE 3  PÉRIPHÉRIQUE
+
+en|LINE 7  HARBOUR
+it|LINEA 7  PORTO
+fr|LIGNE 7  PORT
+
+en|LINE 9  NORTH HILLS
+it|LINEA 9  COLLINE NORD
+fr|LIGNE 9  COLLINES NORD
+
+en|CANCELLED
+it|CANCELLATO
+fr|ANNULÉ
+
+en|DELAYED
+it|IN RITARDO
+fr|RETARDÉ
+
+en|DELAYED INDEF.
+it|RITARDO INDEF.
+fr|RETARD INDÉF.
+
+en|NIGHT TRAIN ZERO
+it|NIGHT TRAIN ZERO
+fr|NIGHT TRAIN ZERO
+
+en|ON TIME
+it|IN ORARIO
+fr|À L'HEURE
+
+en|Please enjoy responsibly.
+it|Divertirsi con moderazione.
+fr|À apprécier avec modération.
+
+en|LAMPS
+it|LAMPIONI
+fr|LAMPADAIRES
+
+en|SEALED
+it|SIGILLATO
+fr|SCELLÉ
+
+en|CORRIDOR
+it|CORRIDOIO
+fr|COULOIR
+
+en|SUBNET STREET
+it|STRADA DI SUBNET
+fr|RUE DE SUBNET
+
+en|They gave up in order. Light their lamps in the same order.
+it|Si sono arresi in ordine. Accendi i lampioni nello stesso ordine.
+fr|Ils ont abandonné dans l'ordre. Allume leurs lampadaires dans le même ordre.
+
+en|Shelves of lost things. A single glove. A kite. A phone, still ringing very quietly.
+it|Scaffali di cose perse. Un guanto spaiato. Un aquilone. Un telefono che squilla ancora, pianissimo.
+fr|Des étagères de choses perdues. Un gant tout seul. Un cerf-volant. Un téléphone qui sonne encore, tout doucement.
+
+en|A jar labelled <color=#FFD84F>SECOND CHANCES</color>. It's almost empty.
+it|Un barattolo con scritto <color=#FFD84F>SECONDE OCCASIONI</color>. È quasi vuoto.
+fr|Un bocal étiqueté <color=#FFD84F>DEUXIÈMES CHANCES</color>. Il est presque vide.
+
+en|The phone has stopped ringing. Somebody must have picked up.
+it|Il telefono ha smesso di squillare. Qualcuno deve aver risposto.
+fr|Le téléphone a arrêté de sonner. Quelqu'un a dû décrocher.
+
+en|BENCHES
+it|PANCHINE
+fr|BANCS
+
+en|LINE 3   CANCELLED
+it|LINEA 3   SOPPRESSO
+fr|LIGNE 3   ANNULÉ
+
+en|LINE 7   DELAYED
+it|LINEA 7   IN RITARDO
+fr|LIGNE 7   RETARDÉ
+
+en|LINE 9   DELAYED
+it|LINEA 9   IN RITARDO
+fr|LIGNE 9   RETARDÉ

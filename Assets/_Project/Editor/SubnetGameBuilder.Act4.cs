@@ -273,23 +273,23 @@ namespace Subnet.EditorTools
             DialogueSequence package = SeqAsset("Act5/Kira_Package",
                 OnlyIf("!kira_package_accepted", Say(spkKira, "There's one package in my bag nobody ever claimed. {p}{small}Maybe someday I'll be brave enough to open it.{/small}", "", DialogueSequence.EndNodeId, "act5_package_done")),
                 OnlyIf("kira_package_accepted", Say(spkKira, "Hey. {p}Remember the package with no name? {p}You said we'd deliver it together.")),
-                OnlyIf("kira_package_accepted", Say(spkKira, "I think... {p}{slow}I think it was for me.{/slow}")),
+                OnlyIf("kira_package_accepted", Say(spkKira, "{cam=kira}I think... {p}{slow}I think it was for me.{/slow}")),
                 OnlyIf("kira_package_accepted", Say(null, "She opens it. Inside: a postcard, soft from being carried. A stamp from a hospital gift shop.")),
                 OnlyIf("kira_package_accepted", Say(null, "<color=#FFD84F>'To the girl who brought me mail that wasn't mine. {p}It was always mine. Thank you. {p}Stop running sometime. - Room 9'</color>")),
                 OnlyIf("kira_package_accepted", Say(spkKira, "{shake}...Ha.{/shake} {p}He knew. {p}{slow}He knew the whole time.{/slow}")),
-                OnlyIf("kira_package_accepted", Say(spkKira, "Okay. {p}I'm going to stop running. {p}{small}After this. Right after this.{/small}", "", "", "kira_package_opened;+closeness#package_open;act5_package_done")));
+                OnlyIf("kira_package_accepted", Say(spkKira, "{cam=two}{emote=yes}Okay. {p}I'm going to stop running. {p}{small}After this. Right after this.{/small}", "", "", "kira_package_opened;+closeness#package_open;act5_package_done")));
             Event(ctx, "Act5_Package", StoryEvent.TriggerMode.OnFlag, "core_file_read", 2f, null, null, null, null, string.Empty, default, default, package);
 
             // 2) The call. Mia, live, for the first time in fourteen missed calls.
             DialogueSequence call = SeqAsset("Act5/Mia_Call",
-                Say(null, "My handheld buzzes. {p}Not a message. {p}{slow}A call.{/slow}"),
+                Say(null, "{cam=leo}My handheld buzzes. {p}Not a message. {p}{slow}A call.{/slow}"),
                 Ask(null, "<color=#FF4FD8>MIA</color> is calling.",
                     Opt("[Answer]", "answer", "answered_mia"),
                     Opt("[Let it ring]", "ring")),
                 Say(null, "It rings. And rings. {p}Then it stops.", "ring"),
                 Say(spkMia, "{small}Hey. It's me. I don't know why I keep calling this number at midnight.{/small}"),
                 Say(spkMia, "{small}...Okay. Bye.{/small}", "", DialogueSequence.EndNodeId, "act5_call_done"),
-                Say(spkMia, "...Leo?", "answer"),
+                Say(spkMia, "{cam=leo}...Leo?", "answer"),
                 Say(spkMia, "Oh my god. You picked up. {p}{small}You actually picked up.{/small}"),
                 Ask(null, "...",
                     Opt("[\"Hi, Mia.\"]", "hi"),
@@ -305,7 +305,7 @@ namespace Subnet.EditorTools
                 Say(spkMia, "{slow}...Really?{/slow} {p}I'll wait at the station. {p}{small}I'll bring a sign. A stupid one.{/small}", "home", "battery"),
                 Say(spkMia, "The battery's dying. {p}Leo, whatever you're doing right now... {p}{slow}don't delete anything. Okay?{/slow}", "battery"),
                 Say(null, "The line goes quiet. {p}Kira is looking at me like she heard every word."),
-                Say(spkKira, "{small}She sounds like you. {p}When you're not pretending.{/small}", "", "", "act5_call_done"));
+                Say(spkKira, "{cam=kira}{small}She sounds like you. {p}When you're not pretending.{/small}", "", "", "act5_call_done"));
             Event(ctx, "Act5_Call", StoryEvent.TriggerMode.OnFlag, "act5_package_done", 1.5f, null, null, null, null, string.Empty, default, default, call);
 
             // 3) The last train pulls into the Core. Walking to its doors starts the ending.

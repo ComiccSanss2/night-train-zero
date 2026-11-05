@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System.Linq;
 using Subnet.Audio;
 using Subnet.Dialogue;
 using Subnet.Gameplay;
@@ -136,6 +137,65 @@ namespace Subnet.EditorTools
             SetStrings(door, "lockedLines", lines);
             Set(door, "requiredFlag", "__never");
             return door;
+        }
+
+        /// <summary>
+        /// The street front of a building you can enter. The stock city models already have their own (fake) doors,
+        /// so an enterable door never lines up with them: the model under the door is removed and replaced by a
+        /// storefront built around the real door — shop windows, upper floors, cornice — filling the gap exactly
+        /// between the neighbours.
+        /// </summary>
+        private static void Storefront(Ctx ctx, float doorX, float frontZ, Material facade, Color glow, float height)
+        {
+            var front = ctx.env.Cast<Transform>().Where(t => t.name.StartsWith("Building_")).ToList();
+            foreach (Transform b in front)
+            {
+                Bounds bb = WorldBounds(b.gameObject);
+                if (bb.min.z > frontZ + 1.5f) continue; // skyline row
+                if (bb.max.x > doorX - 1.5f && bb.min.x < doorX + 1.5f) UnityEngine.Object.DestroyImmediate(b.gameObject);
+            }
+            float left = doorX - 3.4f, right = doorX + 3.4f;
+            foreach (Transform b in ctx.env.Cast<Transform>().Where(t => t.name.StartsWith("Building_")))
+            {
+                Bounds bb = WorldBounds(b.gameObject);
+                if (bb.min.z > frontZ + 1.5f) continue;
+                if (bb.max.x <= doorX && bb.max.x > left) left = bb.max.x;
+                if (bb.min.x >= doorX && bb.min.x < right) right = bb.min.x;
+            }
+            float width = right - left, cx = (left + right) * 0.5f, depth = 6f;
+            Material band = LitMaterial("Houses/M_StoreBand", new Color(0.13f, 0.11f, 0.17f));
+            Material frame = LitMaterial("Houses/M_StoreFrame", new Color(0.2f, 0.18f, 0.24f));
+            Material glass = EmissiveMaterial("Houses/M_StoreGlass_" + facade.name, new Color(0.15f, 0.12f, 0.12f), glow * 0.9f);
+            Material dimGlass = EmissiveMaterial("Houses/M_UpperGlass", new Color(0.12f, 0.14f, 0.2f), new Color(0.35f, 0.45f, 0.7f) * 0.5f);
+            Block("Storefront_" + doorX, ctx.env, new Vector3(cx, height * 0.5f, frontZ + 0.08f + depth * 0.5f), new Vector3(width, height, depth), facade, 0);
+            Deco("StoreBand", ctx.env, new Vector3(cx, 1.5f, frontZ + 0.06f), new Vector3(width, 3f, 0.04f), band);
+            Deco("StoreCornice", ctx.env, new Vector3(cx, height + 0.08f, frontZ + 0.02f), new Vector3(width + 0.1f, 0.2f, 0.3f), frame);
+            Deco("StoreLedge", ctx.env, new Vector3(cx, 3.05f, frontZ - 0.02f), new Vector3(width, 0.12f, 0.2f), frame);
+            // Shop windows either side of the door, when there's room.
+            float room = width * 0.5f - 0.95f;
+            if (room > 0.5f)
+            {
+                float w = Mathf.Min(1.5f, room - 0.2f);
+                foreach (float side in new[] { -1f, 1f })
+                {
+                    float x = doorX + side * (0.75f + 0.15f + w * 0.5f);
+                    Deco("ShopWindowFrame", ctx.env, new Vector3(x, 1.3f, frontZ + 0.03f), new Vector3(w + 0.12f, 1.5f, 0.04f), frame);
+                    Deco("ShopWindow", ctx.env, new Vector3(x, 1.3f, frontZ + 0.01f), new Vector3(w, 1.36f, 0.03f), glass);
+                }
+            }
+            // Upper floors.
+            int cols = Mathf.Max(1, Mathf.FloorToInt((width - 0.6f) / 1.3f));
+            for (int floor = 0; floor < 2; floor++)
+            {
+                float y = 3.9f + floor * 1.5f;
+                if (y + 0.6f > height) break;
+                for (int i = 0; i < cols; i++)
+                {
+                    float x = cx - (cols - 1) * 0.65f + i * 1.3f;
+                    Deco("UpperFrame", ctx.env, new Vector3(x, y, frontZ + 0.03f), new Vector3(0.82f, 0.95f, 0.04f), frame);
+                    Deco("UpperWindow", ctx.env, new Vector3(x, y, frontZ + 0.01f), new Vector3(0.7f, 0.82f, 0.03f), (i + floor) % 3 == 0 ? glass : dimGlass);
+                }
+            }
         }
 
         /// <summary>A paper note taped to a door leaf (moves with the door when it rattles).</summary>
