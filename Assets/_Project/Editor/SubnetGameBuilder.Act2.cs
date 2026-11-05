@@ -227,13 +227,18 @@ namespace Subnet.EditorTools
                 Deco("Paper", shell.transform, wallRoot.transform.position + new Vector3(x, y, z),
                     new Vector3(0.08f, 0.55f, 0.42f), paperMat, new Vector3((float)rng.NextDouble() * 40f - 20f, (float)rng.NextDouble() * 60f - 30f, (float)rng.NextDouble() * 360f));
             }
-            GameObject commuter = Character(ctx, "WallCommuter", "character-male-f", "mini-characters", wallRoot.transform.position + new Vector3(-0.4f, 0, 0), -90f, 1.1f, stoneGray, false, shell.transform);
-            Object.DestroyImmediate(commuter.GetComponent<Collider>());
+            // The commuter himself: a paper golem with a clock for a head, stepping out of the wall.
+            GameObject commuter = EnemyModel("Enemy_Commuter", shell.transform, wallRoot.transform.position + new Vector3(-0.75f, 0f, 0f), 3.1f, -90f);
+            if (commuter == null)
+            {
+                commuter = Character(ctx, "WallCommuter", "character-male-f", "mini-characters", wallRoot.transform.position + new Vector3(-0.4f, 0, 0), -90f, 1.1f, stoneGray, false, shell.transform);
+                Object.DestroyImmediate(commuter.GetComponent<Collider>());
+            }
             for (int i = 0; i < 4; i++)
             {
                 var clock = new GameObject("Clock_" + i);
                 clock.transform.SetParent(shell.transform, false);
-                clock.transform.position = wallRoot.transform.position + new Vector3(-0.7f, 1.4f + (i % 2) * 1.1f, -3f + i * 2f);
+                clock.transform.position = wallRoot.transform.position + new Vector3(-0.7f, 1.4f + (i % 2) * 1.1f, i < 2 ? -3.8f + i * 1.4f : 2.4f + (i - 2) * 1.4f);
                 GameObject face = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
                 Object.DestroyImmediate(face.GetComponent<Collider>());
                 face.transform.SetParent(clock.transform, false);

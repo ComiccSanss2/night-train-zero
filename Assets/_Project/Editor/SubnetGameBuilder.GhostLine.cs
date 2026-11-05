@@ -142,6 +142,9 @@ namespace Subnet.EditorTools
             doorRoot.layer = ctx.interactableLayer;
             GameObject purge = Block("PurgeStatic", doorRoot.transform, doorRoot.transform.position + new Vector3(0f, 1.3f, 0f), new Vector3(0.4f, 2.6f, 3.6f), staticMat, ctx.interactableLayer);
             PixelTears(purge.transform, doorRoot.transform.position + new Vector3(0f, 2.2f, 0f), staticMat, 25f);
+            // The purge itself: an old CRT with one eye, tape for a cloak and erasers for hands, floating in front of the seal.
+            GameObject purgeBody = EnemyModel("Enemy_Purge", doorRoot.transform, doorRoot.transform.position + new Vector3(-1.1f, 0f, 0f), 2.7f, -90f);
+            if (purgeBody == null) purgeBody = purge;
 
             GameObject collar = Block("Prop_Collar", ctx.props, seats[0] + new Vector3(0.2f, 0.03f, -0.05f), new Vector3(0.28f, 0.05f, 0.18f), collarMat, ctx.interactableLayer);
             Inspectable(collar, "Collar",
@@ -165,9 +168,9 @@ namespace Subnet.EditorTools
                   "* Behind me, the aisle is empty."),
                 "byte_stays",
                 L("* The door to the next carriage is sealed with static. {p}Something at the back is getting closer."),
-                "ghostline_done", new[] { purge, byteNpc }, new[] { collar });
-            griefHack.portraitTarget = purge.transform;
-            EnemyAura(doorRoot, purge.transform, new Vector3(-0.6f, 0f, 0f), 1.4f, 3.2f, new Color(0.85f, 0.85f, 0.95f), "Purge");
+                "ghostline_done", purgeBody != purge ? new[] { purge, byteNpc, purgeBody } : new[] { purge, byteNpc }, new[] { collar });
+            griefHack.portraitTarget = purgeBody.transform;
+            EnemyAura(doorRoot, purgeBody.transform, new Vector3(-0.6f, 0f, 0f), 1.4f, 3.2f, new Color(0.85f, 0.85f, 0.95f), "Purge");
             griefHack.portraitDistance = 3.2f;
             griefHack.fadeCompanion = true;
             griefHack.musicOverride = Clip("truth"); // the song for losing Byte

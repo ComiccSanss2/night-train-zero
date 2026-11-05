@@ -169,11 +169,16 @@ namespace Subnet.EditorTools
             col.size = new Vector3(1.2f, 2f, 3.8f);
             var shell = new GameObject("StoneShell");
             shell.transform.SetParent(obstacleRoot.transform, false);
-            GameObject weeper = Character(ctx, "Weeper", "character-female-d", "mini-characters", obstacleRoot.transform.position, -90f, 1.1f, stone, false, shell.transform);
-            Object.DestroyImmediate(weeper.GetComponent<Collider>());
-            Animator weeperAnim = weeper.GetComponentInChildren<Animator>();
-            if (weeperAnim != null) weeperAnim.enabled = false;
-            PixelTears(shell.transform, obstacleRoot.transform.position + new Vector3(-0.1f, 0.95f, 0), tearMat, 30f);
+            // A kneeling stone statue, face in its hands, crying light into a pool.
+            GameObject weeper = EnemyModel("Enemy_Weeper", shell.transform, obstacleRoot.transform.position + new Vector3(-0.1f, 0f, 0f), 2.1f, -90f);
+            if (weeper == null)
+            {
+                weeper = Character(ctx, "Weeper", "character-female-d", "mini-characters", obstacleRoot.transform.position, -90f, 1.1f, stone, false, shell.transform);
+                Object.DestroyImmediate(weeper.GetComponent<Collider>());
+                Animator weeperAnim = weeper.GetComponentInChildren<Animator>();
+                if (weeperAnim != null) weeperAnim.enabled = false;
+                PixelTears(shell.transform, obstacleRoot.transform.position + new Vector3(-0.1f, 0.95f, 0), tearMat, 30f);
+            }
             for (int i = 0; i < 6; i++)
             {
                 Deco("Rubble", shell.transform, obstacleRoot.transform.position + new Vector3(Random.Range(-0.6f, 0.6f), 0.1f, Random.Range(-1.6f, 1.6f)),

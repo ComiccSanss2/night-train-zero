@@ -87,7 +87,10 @@ namespace Subnet.EditorTools
             algoSpin.degreesPerSecond = new Vector3(0, 25, 0);
             algoSpin.bobAmplitude = 0.4f;
             algoSpin.bobSpeed = 0.8f;
-            Deco("Core", algorithm.transform, algorithm.transform.position, new Vector3(1.6f, 1.6f, 1.6f), algoCore, new Vector3(45, 45, 0));
+            // The hand-made model: a split crystal with an eye, three counter-rotating rings of cubes, notification cards.
+            GameObject algoModel = EnemyModel("Enemy_Algorithm", algorithm.transform, new Vector3(14.5f, 0.4f, 0f), 5.4f, -90f);
+            if (algoModel != null) algoSpin.degreesPerSecond = Vector3.zero; // the model animates itself
+            else Deco("Core", algorithm.transform, algorithm.transform.position, new Vector3(1.6f, 1.6f, 1.6f), algoCore, new Vector3(45, 45, 0));
             var ring = new GameObject("Ring");
             ring.transform.SetParent(algorithm.transform, false);
             ring.transform.localRotation = Quaternion.Euler(70, 0, 0);
@@ -99,6 +102,7 @@ namespace Subnet.EditorTools
             }
             ring.AddComponent<Spinner>().degreesPerSecond = new Vector3(0, 80, 0);
             ring.GetComponent<Spinner>().bobAmplitude = 0f;
+            if (algoModel != null) Object.DestroyImmediate(ring);
             PointLight(algorithm.transform, algorithm.transform.position, Magenta, 8f, 16f);
             var algoActor = algorithm.AddComponent<DialogueActor>();
             algoActor.speaker = spkAlgorithm;
