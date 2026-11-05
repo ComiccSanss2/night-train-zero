@@ -96,6 +96,44 @@ namespace Subnet.EditorTools
             return holder;
         }
 
+        /// <summary>
+        /// Freezes a character in one frame of one of its own animations (a statue): samples the clip onto the
+        /// model, then switches the Animator off so the pose is saved in the scene.
+        /// </summary>
+        private static void PoseStatue(GameObject characterRoot, string modelName, string hint, string clipName, float at = 0.5f)
+        {
+            GameObject asset = Model(modelName, hint);
+            if (asset == null) return;
+            AnimationClip clip = AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(asset)).OfType<AnimationClip>()
+                .FirstOrDefault(c => c.name.ToLowerInvariant() == clipName);
+            Animator animator = characterRoot.GetComponentInChildren<Animator>();
+            if (clip == null || animator == null) return;
+            clip.SampleAnimation(animator.gameObject, clip.length * at);
+            animator.enabled = false;
+        }
+
+        /// <summary>
+        /// The Weeper is the commuter herself, turned to stone (the same woman you free afterwards): the hand-made
+        /// statue figure is swapped for her model in stone, kneeling on the Blender pedestal among the falling tears.
+        /// </summary>
+        private static void WeeperIsHer(Ctx ctx, GameObject weeper, Material stone, Material tearMat)
+        {
+            if (weeper == null) return;
+            Transform figure = FindDeep(weeper.transform, "Figure");
+            if (figure != null) figure.gameObject.SetActive(false);
+            Transform top = FindDeep(weeper.transform, "PedestalTop");
+            Renderer topR = top != null ? top.GetComponentInChildren<Renderer>() : null;
+            Bounds all = WorldBounds(weeper);
+            float topY = topR != null ? topR.bounds.max.y : all.min.y + 0.45f;
+            Vector3 c = topR != null ? topR.bounds.center : all.center;
+            GameObject her = Character(ctx, "WeeperStone", "character-female-d", "mini-characters", new Vector3(c.x, topY - 0.02f, c.z), -120f, 1.25f, stone, false, weeper.transform);
+            Object.DestroyImmediate(her.GetComponent<Collider>());
+            her.transform.rotation = Quaternion.Euler(0f, -120f, 0f);
+            PoseStatue(her, "character-female-d", "mini-characters", "crouch", 0.6f);
+            Bounds hb = WorldBounds(her);
+            PixelTears(weeper.transform, new Vector3(hb.center.x, hb.max.y - hb.size.y * 0.3f, hb.center.z), tearMat, 26f);
+        }
+
         private static Transform FindDeep(Transform t, string childName)
         {
             if (t.name == childName) return t;

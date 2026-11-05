@@ -106,11 +106,8 @@ namespace Subnet.Core
         /// <summary>Scales every sound-effect source (music is handled by the MusicDirector).</summary>
         public static void ApplySfxToScene()
         {
-            foreach (AudioSource source in Object.FindObjectsByType<AudioSource>(FindObjectsInactive.Include, FindObjectsSortMode.None))
-            {
-                if (source.GetComponentInParent<Subnet.Audio.MusicDirector>() != null) continue;
-                source.volume = SfxVolume;
-            }
+            // Every source is scaled continuously by AudioVolumes (it keeps each sound's own level).
+            AudioVolumes.Refresh();
         }
 
         public static bool Fullscreen
@@ -125,12 +122,11 @@ namespace Subnet.Core
         /// </summary>
         public static void ApplyAudio(AudioMixer mixer)
         {
-            if (mixer == null)
-            {
-                AudioListener.volume = MasterVolume;
-                ApplySfxToScene();
-                return;
-            }
+            // Always drive the listener and the per-source scaling: the sources aren't routed through a mixer,
+            // so setting only the mixer (as the main menu did) changed nothing.
+            AudioListener.volume = MasterVolume;
+            ApplySfxToScene();
+            if (mixer == null) return;
 
             mixer.SetFloat(MixerMaster, LinearToDecibels(MasterVolume));
             mixer.SetFloat(MixerMusic, LinearToDecibels(MusicVolume));

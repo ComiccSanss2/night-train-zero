@@ -38,6 +38,12 @@ namespace Subnet.Gameplay
             if (HasParameter(animator, "Sit"))
             {
                 animator.SetBool(SitId, sitting);
+                // Snap straight into the pose (no half-second blend), so the body can be placed on the seat right away.
+                if (sitting && animator.HasState(0, SitId))
+                {
+                    animator.Play(SitId, 0, 0.5f);
+                    animator.Update(0f);
+                }
                 return;
             }
 

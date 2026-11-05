@@ -113,13 +113,13 @@ namespace Subnet.EditorTools
             // Arrival of The Algorithm
             Transform points = new GameObject("CinematicPoints").transform;
             Transform cp1 = CinematicPoint("CP_Algo_Wide", points, new Vector3(-0.5f, 2.6f, -5.5f), new Vector3(13f, 3f, 0f));
-            Transform cp2 = CinematicPoint("CP_Algo_Close", points, new Vector3(9.5f, 3.6f, -4.2f), new Vector3(14.5f, 3.2f, 0f));
+            Transform cp2 = CinematicPoint("CP_Algo_Close", points, new Vector3(7.6f, 3.4f, -6.6f), new Vector3(14.5f, 3.0f, 0f));
             Transform cp3 = CinematicPoint("CP_MemoryFile", points, new Vector3(6.3f, 1.7f, -2.6f), new Vector3(9f, 1.1f, 0f));
             CinematicSequence arrival = Cinematic("Cinematic_AlgorithmArrival", ctx.story,
                 Shot("Wide", cp1, 2.5f, 0.3f, 30f,
                     L("WELCOME, LEO.", "YOUR EMOTIONAL LATENCY IS UNACCEPTABLE. YOU CARRY THREE YEARS OF UNSENT REPLIES."),
                     spkAlgorithm, false, Clip("glitch_004"), 0.5f),
-                Shot("Close", cp2, 3f, 0.3f, 22f,
+                Shot("Close", cp2, 3f, 0.3f, 34f,
                     L("I AM WHAT THIS CITY BUILT SO IT WOULD STOP FEELING TIRED. I REMOVE THE FRICTION.",
                       "NO MORE MISSING HOME. NO MORE STATIC. NO MORE ANYTHING."),
                     spkAlgorithm, false, Clip("glitch_002"), 0.35f),

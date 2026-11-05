@@ -76,6 +76,15 @@ namespace Subnet.Audio
             if (!source.isPlaying) source.Play();
         }
 
+        // The SFX slider, copied on the main thread for the audio thread (rain, wind and hum follow it live).
+        private volatile float settingsScale = 1f;
+
+        private void Update()
+        {
+            settingsScale = Core.GameSettings.SfxVolume;
+            if (source != null && source.volume != 1f) source.volume = 1f;
+        }
+
         private void Restart()
         {
             sampleRate = AudioSettings.outputSampleRate > 0 ? AudioSettings.outputSampleRate : 48000;
@@ -141,7 +150,7 @@ namespace Subnet.Audio
                 // Global fade-in.
                 if (fade < 1f) fade = Mathf.Min(1f, fade + fadeStep);
 
-                float sample = (rainSignal + windSignal + humSignal + padSignal + crackleSignal) * masterVolume * fade;
+                float sample = (rainSignal + windSignal + humSignal + padSignal + crackleSignal) * masterVolume * settingsScale * fade;
                 sample = sample / (1f + Mathf.Abs(sample)); // soft clip
 
                 for (int c = 0; c < channels; c++) data[i * channels + c] = sample;

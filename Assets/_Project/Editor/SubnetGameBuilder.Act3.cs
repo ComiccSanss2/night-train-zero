@@ -195,6 +195,7 @@ namespace Subnet.EditorTools
             shell.transform.SetParent(obstacleRoot.transform, false);
             // A kneeling stone statue, face in its hands, crying light into a pool.
             GameObject weeper = EnemyModel("Enemy_Weeper", shell.transform, obstacleRoot.transform.position + new Vector3(-0.1f, 0f, 0f), 2.1f, -90f);
+            WeeperIsHer(ctx, weeper, stone, tearMat);
             if (weeper == null)
             {
                 weeper = Character(ctx, "Weeper", "character-female-d", "mini-characters", obstacleRoot.transform.position, -90f, 1.1f, stone, false, shell.transform);

@@ -247,6 +247,73 @@ namespace Subnet.Dialogue
             battleSkin = on;
         }
 
+        // ------------------------------------------------------------------ Cinema skin (letterbox)
+
+        private bool cinemaSkin;
+        private Vector2 cinemaSavedMin, cinemaSavedMax;
+        private Color cinemaSavedColor;
+        private TextAlignmentOptions cinemaSavedAlign;
+        private bool cinemaSavedAuto;
+        private float cinemaSavedMinSize, cinemaSavedMaxSize;
+        private Vector4 cinemaSavedMargin;
+        private Vector3 cinemaSavedPlateScale;
+
+        /// <summary>
+        /// While the cinema bars are up, the dialogue becomes subtitles inside the bottom bar: no panel over the
+        /// picture, centred text, the speaker's name just above. The frame stays clear for the characters.
+        /// </summary>
+        public void SetCinematicSkin(bool on, float barHeight)
+        {
+            if (boxTransform == null || bodyText == null || cinemaSkin == on) return;
+            Image box = boxTransform.GetComponent<Image>();
+            Outline outline = boxTransform.GetComponent<Outline>();
+            if (on)
+            {
+                cinemaSavedMin = boxTransform.offsetMin;
+                cinemaSavedMax = boxTransform.offsetMax;
+                if (box != null) { cinemaSavedColor = box.color; box.color = new Color(0f, 0f, 0f, 0f); }
+                if (outline != null) outline.enabled = false;
+                cinemaSavedAlign = bodyText.alignment;
+                cinemaSavedAuto = bodyText.enableAutoSizing;
+                cinemaSavedMinSize = bodyText.fontSizeMin;
+                cinemaSavedMaxSize = bodyText.fontSizeMax;
+                cinemaSavedMargin = bodyText.margin;
+                boxTransform.offsetMin = new Vector2(260f, 6f);
+                boxTransform.offsetMax = new Vector2(-260f, Mathf.Max(90f, barHeight - 6f));
+                bodyText.alignment = TextAlignmentOptions.Center;
+                bodyText.enableAutoSizing = true;
+                bodyText.fontSizeMin = 20f;
+                bodyText.fontSizeMax = 32f;
+                RectTransform br = bodyText.rectTransform;
+                cinemaSavedMargin = new Vector4(br.offsetMin.x, br.offsetMin.y, br.offsetMax.x, br.offsetMax.y);
+                br.offsetMin = new Vector2(20f, 8f);
+                br.offsetMax = new Vector2(-20f, -8f);
+                if (namePlate != null)
+                {
+                    cinemaSavedPlateScale = namePlate.transform.localScale;
+                    namePlate.transform.localScale = cinemaSavedPlateScale * 0.7f;
+                }
+            }
+            else
+            {
+                boxTransform.offsetMin = cinemaSavedMin;
+                boxTransform.offsetMax = cinemaSavedMax;
+                if (box != null) box.color = cinemaSavedColor;
+                if (outline != null) outline.enabled = true;
+                bodyText.alignment = cinemaSavedAlign;
+                bodyText.enableAutoSizing = cinemaSavedAuto;
+                bodyText.fontSizeMin = cinemaSavedMinSize;
+                bodyText.fontSizeMax = cinemaSavedMaxSize;
+                RectTransform br = bodyText.rectTransform;
+                br.offsetMin = new Vector2(cinemaSavedMargin.x, cinemaSavedMargin.y);
+                br.offsetMax = new Vector2(cinemaSavedMargin.z, cinemaSavedMargin.w);
+                if (namePlate != null) namePlate.transform.localScale = cinemaSavedPlateScale;
+            }
+            boxBasePosition = boxTransform.anchoredPosition;
+            if (advanceIndicator != null) indicatorBasePosition = advanceIndicator.anchoredPosition;
+            cinemaSkin = on;
+        }
+
         /// <summary>Called by DialogueChoiceButton on mouse hover.</summary>
         public void HighlightChoice(int index)
         {

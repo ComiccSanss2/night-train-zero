@@ -90,6 +90,46 @@ namespace Subnet.CameraSystem
         /// <summary>Back to the isometric follow camera.</summary>
         public void ClearShot() => shotTarget = 0f;
 
+        /// <summary>World box around a character's visible meshes (particles ignored).</summary>
+        public static Bounds BodyBounds(Transform body)
+        {
+            bool any = false;
+            Bounds b = new Bounds(body.position + Vector3.up * 0.5f, Vector3.one * 0.5f);
+            foreach (Renderer r in body.GetComponentsInChildren<Renderer>())
+            {
+                if (r is ParticleSystemRenderer || !r.enabled) continue;
+                if (!any) { b = r.bounds; any = true; } else b.Encapsulate(r.bounds);
+            }
+            return b;
+        }
+
+        /// <summary>Share of the screen height left between the cinema bars (dialogue sits inside the bottom bar).</summary>
+        public const float FramedHeight = 0.72f;
+
+        /// <summary>
+        /// Frames <paramref name="subject"/> (a box around the characters) seen along <paramref name="viewDirection"/>:
+        /// close enough to feel intimate, far enough that nobody's head or feet get cut by the bars.
+        /// </summary>
+        public void FrameBounds(Bounds subject, Vector3 viewDirection, float fov = 30f, float margin = 1.12f)
+        {
+            Camera c = cam != null ? cam : GetComponent<Camera>();
+            float aspect = c != null ? c.aspect : 16f / 9f;
+            Vector3 dir = viewDirection.sqrMagnitude > 0.0001f ? viewDirection.normalized : transform.forward;
+            Vector3 right = Vector3.Cross(Vector3.up, dir).normalized;
+            if (right.sqrMagnitude < 0.01f) right = Vector3.right;
+            Vector3 up = Vector3.Cross(dir, right).normalized;
+            Vector3 e = subject.extents;
+            // Half-size of the box as seen by the camera.
+            float halfW = Mathf.Abs(right.x) * e.x + Mathf.Abs(right.y) * e.y + Mathf.Abs(right.z) * e.z;
+            float halfH = Mathf.Abs(up.x) * e.x + Mathf.Abs(up.y) * e.y + Mathf.Abs(up.z) * e.z;
+            float halfD = Mathf.Abs(dir.x) * e.x + Mathf.Abs(dir.y) * e.y + Mathf.Abs(dir.z) * e.z;
+            float tanV = Mathf.Tan(fov * 0.5f * Mathf.Deg2Rad);
+            float distV = halfH * margin / (tanV * FramedHeight);
+            float distH = halfW * margin / (tanV * aspect * 0.92f);
+            float distance = Mathf.Max(distV, distH, 1.2f) + halfD;
+            SetShot(subject.center - dir * distance, subject.center, fov);
+        }
+
         public Transform Target
         {
             get => target;
@@ -178,11 +218,11 @@ namespace Subnet.CameraSystem
                 shotAge += dt;
                 float k = Easing.Evaluate(EaseType.EaseInOutCubic, shotBlend);
                 Vector3 toLook = shotLook - shotPosition;
-                Vector3 drift = toLook.normalized * Mathf.Min(0.3f, shotAge * 0.035f);
+                Vector3 drift = toLook.normalized * Mathf.Min(0.15f, shotAge * 0.02f);
                 Vector3 shotPos = shotPosition + drift;
                 position = Vector3.Lerp(position, shotPos, k);
                 // Aim a little below the subject so faces sit in the upper part of the frame, clear of the dialogue box.
-                Quaternion aim = Quaternion.LookRotation(shotLook - shotPos, Vector3.up) * Quaternion.Euler(shotFov * 0.2f, 0f, 0f);
+                Quaternion aim = Quaternion.LookRotation(shotLook - shotPos, Vector3.up);
                 rotation = Quaternion.Slerp(rotation, aim, k);
                 if (cam != null && !cam.orthographic)
                 {

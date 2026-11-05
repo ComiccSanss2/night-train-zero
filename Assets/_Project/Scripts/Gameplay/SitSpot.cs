@@ -23,6 +23,9 @@ namespace Subnet.Gameplay
         [Tooltip("Actor ids (kira, byte) and where each sits.")]
         [SerializeField] private string[] sitterIds = { };
         [SerializeField] private Transform[] sitterSeats = { };
+        [Tooltip("Height of the seat surface for Leo / each sitter (world y). Bodies are lowered/raised onto it.")]
+        [SerializeField] private float leoSurface = float.NaN;
+        [SerializeField] private float[] sitterSurfaces = { };
         [Header("Camera")]
         [SerializeField] private Transform shotPoint;
         [SerializeField] private Transform shotLook;
@@ -35,6 +38,7 @@ namespace Subnet.Gameplay
             public Quaternion rotation;
             public CompanionFollower follower;
             public bool followerWasEnabled;
+            public float surface = float.NaN;
         }
 
         private readonly List<Sitter> sitters = new List<Sitter>();
@@ -84,7 +88,8 @@ namespace Subnet.Gameplay
             {
                 DialogueActor actor = Nearest(sitterIds[i]);
                 if (actor == null || sitterSeats[i] == null) continue;
-                var s = new Sitter { body = actor.transform, position = actor.transform.position, rotation = actor.transform.rotation };
+                var s = new Sitter { body = actor.transform, position = actor.transform.position, rotation = actor.transform.rotation,
+                    surface = i < sitterSurfaces.Length ? sitterSurfaces[i] : float.NaN };
                 s.follower = actor.GetComponent<CompanionFollower>();
                 if (s.follower != null) { s.followerWasEnabled = s.follower.enabled; s.follower.enabled = false; }
                 Place(actor.transform, sitterSeats[i]);
@@ -93,8 +98,26 @@ namespace Subnet.Gameplay
                 sitters.Add(s);
             }
 
+            // Let the sit pose settle for a frame, then put every bottom exactly on the seat (no sinking through
+            // benches, no floating), then frame everyone who sat down, whole, between the bars.
+            yield return null;
+            if (leo != null && !float.IsNaN(leoSurface)) SnapOnto(leo, leoSurface);
+            foreach (Sitter st in sitters) if (!float.IsNaN(st.surface)) SnapOnto(st.body, st.surface);
             IsometricCameraRig rig = IsometricCameraRig.Main;
-            if (rig != null && shotPoint != null && shotLook != null) rig.SetShot(shotPoint.position, shotLook.position, shotFov);
+            if (rig != null)
+            {
+                bool any = false;
+                Bounds group = default;
+                if (leo != null) { group = IsometricCameraRig.BodyBounds(leo); any = true; }
+                foreach (Sitter s in sitters)
+                {
+                    Bounds b = IsometricCameraRig.BodyBounds(s.body);
+                    if (!any) { group = b; any = true; } else group.Encapsulate(b);
+                }
+                Vector3 view = shotPoint != null && shotLook != null ? shotLook.position - shotPoint.position : rig.transform.forward;
+                if (any) rig.FrameBounds(group, view, shotFov);
+                else if (shotPoint != null && shotLook != null) rig.SetShot(shotPoint.position, shotLook.position, shotFov);
+            }
             if (CinematicDirector.Instance != null) CinematicDirector.Instance.DialogueLetterbox(true);
             if (fader != null) yield return fader.FadeTo(0f, 0.35f);
         }
@@ -137,6 +160,14 @@ namespace Subnet.Gameplay
             sitters.Clear();
             if (IsometricCameraRig.Main != null) IsometricCameraRig.Main.ClearShot();
             if (CinematicDirector.Instance != null) CinematicDirector.Instance.DialogueLetterbox(false);
+        }
+
+        /// <summary>Moves a seated body vertically so its lowest point rests on the seat surface.</summary>
+        public static void SnapOnto(Transform body, float surfaceY)
+        {
+            if (body == null) return;
+            Bounds b = IsometricCameraRig.BodyBounds(body);
+            body.position += Vector3.up * (surfaceY + 0.01f - b.min.y);
         }
 
         /// <summary>Leo's controller would apply gravity and push him off the seat: switch it off while seated.</summary>

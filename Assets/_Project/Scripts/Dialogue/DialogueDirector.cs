@@ -356,6 +356,13 @@ namespace Subnet.Dialogue
             Gameplay.CharacterPose.SetSitting(who, true);
             Frozen.Add(who);
             seated.Add(entry);
+            StartCoroutine(SnapNextFrame(who, seat.transform.position.y + seat.seatHeight));
+        }
+
+        private System.Collections.IEnumerator SnapNextFrame(Transform who, float surface)
+        {
+            yield return null; // the sit pose is applied by the animator first
+            if (who != null && Frozen.Contains(who)) Gameplay.SitSpot.SnapOnto(who, surface);
         }
 
         private void StandEveryone()
@@ -400,12 +407,20 @@ namespace Subnet.Dialogue
 
             Vector3 pos, look;
             float fov;
+            Bounds subject;
+            float margin;
             if (id == "two")
             {
                 Transform other = speakerBody != null ? speakerBody : lastOther;
                 if (other == null) other = manager.CurrentSource;
-                if (other == null) { CloseUp(Leo, out pos, out look, out fov); }
-                else TwoShot(Leo, other, out pos, out look, out fov);
+                if (other == null) { CloseUp(Leo, out pos, out look, out fov); subject = Chest(Leo); margin = 1.3f; }
+                else
+                {
+                    TwoShot(Leo, other, out pos, out look, out fov);
+                    subject = IsometricCameraRig.BodyBounds(Leo);
+                    subject.Encapsulate(IsometricCameraRig.BodyBounds(other));
+                    margin = 1.12f;
+                }
             }
             else
             {
@@ -413,8 +428,12 @@ namespace Subnet.Dialogue
                     : id == "leo" ? Leo
                     : (FindActor(id) != null ? FindActor(id).transform : (speakerBody != null ? speakerBody : Leo));
                 CloseUp(who, out pos, out look, out fov);
+                subject = Chest(who);
+                margin = 1.3f;
             }
-            rig.SetShot(pos, look, fov);
+            // The angle comes from CloseUp/TwoShot (they pick a side nobody blocks); the distance is fitted so the
+            // whole face/body stays inside the frame between the cinema bars.
+            rig.FrameBounds(subject, look - pos, fov, margin);
             framed = true;
             if (Cinematics.CinematicDirector.Instance != null) Cinematics.CinematicDirector.Instance.DialogueLetterbox(true);
         }
@@ -467,6 +486,16 @@ namespace Subnet.Dialogue
         }
 
         /// <summary>Is another character (or a wall) between the camera and the face?</summary>
+        /// <summary>Head and shoulders: the top 60% of a body.</summary>
+        private static Bounds Chest(Transform who)
+        {
+            Bounds b = IsometricCameraRig.BodyBounds(who);
+            Vector3 min = b.min, max = b.max;
+            min.y = max.y - b.size.y * 0.6f;
+            b.SetMinMax(min, max);
+            return b;
+        }
+
         private static bool Blocked(Transform subject, Vector3 from, Vector3 to)
         {
             var bodies = new List<Transform>();

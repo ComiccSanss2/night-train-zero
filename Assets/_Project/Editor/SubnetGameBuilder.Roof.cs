@@ -140,6 +140,13 @@ namespace Subnet.EditorTools
                 else { ids.Add(s.id); others.Add(t); }
             }
             SetStrings(spot, "sitterIds", ids.ToArray());
+            var surfaces = new List<float>();
+            foreach (Sitter st in seats) if (st.id == "leo") Set(spot, "leoSurface", st.seat.y); else surfaces.Add(st.seat.y);
+            var sso = new SerializedObject(spot);
+            SerializedProperty sp = sso.FindProperty("sitterSurfaces");
+            sp.arraySize = surfaces.Count;
+            for (int i = 0; i < surfaces.Count; i++) sp.GetArrayElementAtIndex(i).floatValue = surfaces[i];
+            sso.ApplyModifiedPropertiesWithoutUndo();
             var so = new SerializedObject(spot);
             SerializedProperty list = so.FindProperty("sitterSeats");
             list.arraySize = others.Count;
@@ -169,11 +176,41 @@ namespace Subnet.EditorTools
             Vector3 front = r * Vector3.forward, side = r * Vector3.right;
             float seatY = b.min.y + b.size.y * seatHeightFraction;
             Vector3 c = new Vector3(b.center.x, seatY, b.center.z) + front * 0.05f;
+            // Find the real seat surface: cast down onto the mesh just in front of the backrest.
+            float? hit = SeatSurface(model.gameObject, new Vector3(c.x, b.max.y + 0.5f, c.z) + front * 0.08f, b.size.y + 1f);
+            if (hit.HasValue && hit.Value > b.min.y + 0.1f && hit.Value < b.max.y - 0.05f)
+            {
+                seatY = hit.Value;
+                c.y = seatY;
+                ReportLine($"seat {prop.name}: surface at {seatY - b.min.y:F2} m (bench height {b.size.y:F2})");
+            }
             var seats = new List<Sitter> { new Sitter { id = "leo", seat = c - side * (companions.Length > 0 ? 0.3f : 0f), yaw = yaw } };
             for (int i = 0; i < companions.Length; i++)
                 seats.Add(new Sitter { id = companions[i], seat = c + side * (0.35f + i * 0.4f) + Vector3.up * (companions[i] == "byte" ? 0f : 0f), yaw = yaw });
             Vector3 camPos = c + front * 2.6f + side * 0.9f + Vector3.up * 0.9f;
             SitHere(prop, seats.ToArray(), camPos, c + Vector3.up * 0.35f);
+        }
+
+        /// <summary>Raycasts the model's own meshes (temporary colliders) to find the top of the seat.</summary>
+        private static float? SeatSurface(GameObject model, Vector3 from, float length)
+        {
+            var temp = new List<MeshCollider>();
+            foreach (MeshFilter mf in model.GetComponentsInChildren<MeshFilter>())
+            {
+                if (mf.sharedMesh == null) continue;
+                var mc = mf.gameObject.AddComponent<MeshCollider>();
+                mc.sharedMesh = mf.sharedMesh;
+                temp.Add(mc);
+            }
+            Physics.SyncTransforms();
+            float? best = null;
+            foreach (RaycastHit h in Physics.RaycastAll(from, Vector3.down, length, ~0, QueryTriggerInteraction.Collide))
+            {
+                if (!(h.collider is MeshCollider m) || !temp.Contains(m)) continue;
+                if (!best.HasValue || h.point.y > best.Value) best = h.point.y;
+            }
+            foreach (MeshCollider mc in temp) Object.DestroyImmediate(mc);
+            return best;
         }
 
         /// <summary>A seat characters can be told to sit on mid-dialogue with {sit=kira}.</summary>

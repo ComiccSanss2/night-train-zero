@@ -106,6 +106,8 @@ namespace Subnet.EditorTools
                     .ToArray();
 
                 AssetDatabase.SaveAssets();
+                // Layout check shots (Logs/shots.txt → Logs/shots/*.png), so the result can be reviewed remotely.
+                try { ShotCapture.CaptureSilently(); } catch (Exception e) { Debug.LogWarning("[Shots] " + e.Message); }
                 EditorSceneManager.OpenScene(ScenesFolder + MenuScene + ".unity", OpenSceneMode.Single);
                 Debug.Log("[Subnet] Full game built. Press Play in 00_MainMenu.");
                 EditorUtility.DisplayDialog("Night Train Zero",

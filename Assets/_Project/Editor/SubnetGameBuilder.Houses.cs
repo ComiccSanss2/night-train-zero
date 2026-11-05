@@ -307,7 +307,7 @@ namespace Subnet.EditorTools
             {
                 for (int z = 0; z < 4; z++)
                 {
-                    if ((x + z) % 2 == 0) Deco("MartTile", ctx.env, c + new Vector3(-4f + x * 2f, 0.005f, -2.6f + z * 1.75f), new Vector3(1f, 0.01f, 0.87f), tile);
+                    if ((x + z) % 2 == 0) Deco("MartTile", ctx.env, c + new Vector3(-4f + x * 2f, 0.025f, -2.6f + z * 1.75f), new Vector3(1f, 0.02f, 0.87f), tile);
                 }
             }
             Deco("NeonStripN", ctx.env, new Vector3(c.x, 2.5f, north - 0.02f), new Vector3(9.6f, 0.06f, 0.03f), neonPink);
