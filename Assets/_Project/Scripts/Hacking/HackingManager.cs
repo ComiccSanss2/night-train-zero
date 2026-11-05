@@ -128,6 +128,7 @@ namespace Subnet.Hacking
         private float attackPulse;
         private float lastPulseTime;
         private bool waveActive;
+        private bool defeated;
         private bool feedReady;
         private Vector2 frameMotion;
         private float frameTilt;
@@ -188,7 +189,9 @@ namespace Subnet.Hacking
             HideBubbleImmediate();
 
             MusicDirector.Ensure().EnterFight(target.musicOverride != null ? target.musicOverride : fightMusic);
+            defeated = false;
             yield return TransitionIn(target);
+            if (DialogueManager.Instance != null) DialogueManager.Instance.SetBattleSkin(true);
 
             StartCoroutine(TypeTitle(Loc.F("LINK ESTABLISHED  //  {0}", Loc.T(target.encounterTitle))));
             statusText.text = Loc.T("CONNECTED TO PSYCHOLOGICAL SOURCE CODE.");
@@ -207,13 +210,19 @@ namespace Subnet.Hacking
                     {
                         roundIndex = round;
                         yield return RunWave(target.waves[round], firstAttempt ? 1f : 0.6f);
+                        if (defeated)
+                        {
+                            // Game over: back to the overworld in front of the obstacle, which stays until beaten.
+                            yield return GameOver();
+                            yield break;
+                        }
                     }
                     firstAttempt = false;
 
                     if (round >= target.puzzles.Count) break;
 
                     bool correct = false;
-                    yield return RunPuzzle(target.puzzles[round], eliminated, result => correct = result);
+                    yield return RunFragments(target.puzzles[round], eliminated, result => correct = result);
                     if (correct)
                     {
                         BreakFirewall(round);
@@ -239,6 +248,7 @@ namespace Subnet.Hacking
 
             HideBubbleImmediate();
             Play(disconnectClip);
+            if (DialogueManager.Instance != null) DialogueManager.Instance.SetBattleSkin(false);
             MusicDirector.Ensure().ExitFight();
             yield return TransitionOut();
             ClearBullets();
@@ -669,8 +679,9 @@ namespace Subnet.Hacking
 
                 if (Inventory.HP <= 0)
                 {
-                    yield return Reconnect();
-                    elapsed = 0f;
+                    defeated = true;
+                    waveActive = false;
+                    yield break;
                 }
                 yield return null;
             }
@@ -679,25 +690,6 @@ namespace Subnet.Hacking
             ClearBullets();
             HideBubbleImmediate();
             SetProgress(1f, Loc.T("DECRYPTED  100%"));
-        }
-
-        private IEnumerator Reconnect()
-        {
-            ClearBullets();
-            HideBubbleImmediate();
-            soul.gameObject.SetActive(false);
-            Play(disconnectClip);
-            statusText.text = Loc.T("HP DEPLETED. TAKING A BREATH... RECONNECTING.");
-            reconnects++;
-            StartCoroutine(Flash(RuntimeUI.Magenta, 0.5f));
-            yield return Wait(1.4f);
-            Inventory.SetHP(Inventory.MaxHP);
-            RefreshHP(true);
-            ResetSoul();
-            BeginWavePattern(currentWave);
-            soul.gameObject.SetActive(true);
-            statusText.text = Loc.T(WaveFlavor(currentWave.pattern));
-            spawnTimer = 0.8f;
         }
 
         private IEnumerator RunPuzzle(HackPuzzle puzzle, HashSet<int> eliminated, Action<bool> result)
@@ -1093,8 +1085,10 @@ namespace Subnet.Hacking
             }
             portraitFlash = RuntimeUI.Image("FeedFlash", portraitFrame, Color.clear);
             RuntimeUI.Stretch(portraitFlash.rectTransform, 6, 6, 6, 6);
-            TextMeshProUGUI feedLabel = RuntimeUI.Text("FeedLabel", portraitFrame, Loc.T("SOURCE FEED  [LIVE]"), 16, RuntimeUI.Magenta, TextAlignmentOptions.Left);
-            RuntimeUI.Place(feedLabel.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 0f), new Vector2(0, 4), new Vector2(270, 22));
+            feedLabel = RuntimeUI.Text("FeedLabel", portraitFrame, Loc.T("SOURCE FEED  [LIVE]"), 16, RuntimeUI.Magenta, TextAlignmentOptions.Left);
+            feedLabel.textWrappingMode = TextWrappingModes.NoWrap;
+            RuntimeUI.Place(feedLabel.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 0f), new Vector2(0, 4), new Vector2(400, 22));
+            BuildFeedFx();
 
             // Speech bubble to the right of the feed
             Image bubbleImage = RuntimeUI.Image("Bubble", contentRect, Color.white);

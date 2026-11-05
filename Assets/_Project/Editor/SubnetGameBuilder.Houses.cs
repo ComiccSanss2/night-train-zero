@@ -96,6 +96,21 @@ namespace Subnet.EditorTools
             return door;
         }
 
+        /// <summary>Overworld enemy dressing: glyph ring, orbiting shards, glitching name tag, twitching body.</summary>
+        private static void EnemyAura(GameObject root, Transform body, Vector3 localCenter, float radius, float tagHeight, Color color, string key)
+        {
+            var presence = root.AddComponent<Subnet.Hacking.EnemyPresence>();
+            Set(presence, "obstacle", root.GetComponent<Subnet.Hacking.HackableObstacle>());
+            Set(presence, "body", body);
+            Set(presence, "auraMaterial", EmissiveMaterial("Enemies/M_Aura_" + key, color * 0.3f, color * 2.2f));
+            Set(presence, "innerMaterial", LitMaterial("Enemies/M_AuraInner", new Color(0.03f, 0.02f, 0.05f)));
+            Set(presence, "color", color);
+            Set(presence, "center", localCenter);
+            Set(presence, "radius", radius);
+            Set(presence, "tagHeight", tagHeight);
+            Set(presence, "font", font);
+        }
+
         private static DialogueNode OnlyIf(string flag, DialogueNode node)
         {
             node.requiredFlag = flag;
@@ -390,6 +405,7 @@ namespace Subnet.EditorTools
             PointLight(machine.transform, machine.transform.position + new Vector3(0f, 0.3f, -0.3f), new Color(1f, 0.2f, 0.3f), 0.8f, 1.5f);
 
             PointLight(ctx.env, c + new Vector3(-1f, 2.5f, 0f), new Color(0.8f, 0.85f, 1f), 1.4f, 7f);
+            AddStemZone(ctx, "Apt0451", c + new Vector3(0f, 1f, 0f), new Vector3(9f, 5f, 7f), StemMix.Interior);
             PointLight(ctx.env, c + new Vector3(2.8f, 2.2f, 1.5f), new Color(1f, 0.8f, 0.6f), 0.9f, 4f);
         }
 
@@ -481,6 +497,7 @@ namespace Subnet.EditorTools
             Prop(ctx, "HomeRug", "rugRound", F, c + new Vector3(0.4f, 0.01f, 0f), 0f, 0.05f, false, null, null, null, false);
 
             PointLight(ctx.env, c + new Vector3(-0.5f, 2.4f, 0f), new Color(1f, 0.85f, 0.65f), 1.5f, 6f);
+            AddStemZone(ctx, "LeoHome", c + new Vector3(0f, 1f, 0f), new Vector3(8f, 5f, 6.5f), StemMix.Home);
         }
     }
 }

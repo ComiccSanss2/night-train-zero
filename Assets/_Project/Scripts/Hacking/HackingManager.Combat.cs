@@ -136,6 +136,12 @@ namespace Subnet.Hacking
         private Image arenaGlow;
         private readonly List<Image> brackets = new List<Image>();
         private CanvasGroup battleHud;
+        private TextMeshProUGUI feedLabel;
+        private RawImage feedRed;
+        private RawImage feedCyan;
+        private RawImage feedScan;
+        private Image recDot;
+        private string feedName = string.Empty;
         private float ghostValue = 1f;
         private float fillValue = 1f;
         private const float HpBarWidth = 170f;
@@ -144,6 +150,10 @@ namespace Subnet.Hacking
 
         private void BeginCombatSession()
         {
+            // The live feed is labelled with who you're talking to: "COMMUTER_0451.exe  ● LIVE".
+            string title = obstacle != null ? Loc.T(obstacle.encounterTitle) : string.Empty;
+            int cut = title.IndexOf("//", StringComparison.Ordinal);
+            feedName = (cut > 0 ? title.Substring(0, cut) : title).Trim();
             reconnects = 0;
             grazes = 0;
             if (Inventory.HP <= 0) Inventory.SetHP(Inventory.MaxHP);
@@ -938,6 +948,7 @@ namespace Subnet.Hacking
         {
             if (waveActive && currentWave != null && currentWave.surrender) return;
             Inventory.SetHP(Inventory.HP - amount);
+            reconnects++; // counts hits: zero means a flawless link
             invulnerable = invulnerabilitySeconds;
             RefreshHP(false);
             Play(hitClip);
@@ -1330,6 +1341,26 @@ namespace Subnet.Hacking
                 b.color = c;
             }
             if (arenaGlow != null) arenaGlow.rectTransform.localScale = Vector3.one * (1f + attackPulse * 0.04f);
+            if (feedRed != null)
+            {
+                // Chromatic split: always a hint of it, a big jump whenever the enemy attacks or gets hit.
+                float glitch = Mathf.Max(attackPulse * 0.8f, portraitShake);
+                float offset = 2f + glitch * 14f;
+                feedRed.texture = feedCyan.texture = portraitImage.texture;
+                feedRed.rectTransform.anchoredPosition = new Vector2(-offset, Random.Range(-1f, 1f) * glitch * 4f);
+                feedCyan.rectTransform.anchoredPosition = new Vector2(offset, 0f);
+                feedRed.color = new Color(1f, 0.2f, 0.3f, 0.08f + glitch * 0.35f);
+                feedCyan.color = new Color(0.2f, 1f, 1f, 0.08f + glitch * 0.35f);
+                Rect uv = feedScan.uvRect;
+                uv.y = Mathf.Repeat(uv.y - dt * 0.6f, 1f);
+                feedScan.uvRect = uv;
+                recDot.enabled = Mathf.Repeat(t, 1.2f) < 0.7f;
+                if (feedLabel != null)
+                {
+                    string live = Loc.T("LIVE");
+                    feedLabel.text = string.IsNullOrEmpty(feedName) ? Loc.T("SOURCE FEED  [LIVE]") : feedName + "   <color=#FF4F6E>●</color> " + live;
+                }
+            }
             if (hpGhost != null)
             {
                 ghostValue = Mathf.MoveTowards(ghostValue, fillValue, dt * (ghostValue > fillValue ? 0.5f : 5f));
@@ -1338,7 +1369,7 @@ namespace Subnet.Hacking
             if (!waveActive && particles.Count > 0) UpdateParticles(dt);
             if (battleHud != null)
             {
-                bool talking = DialogueManager.Instance != null && DialogueManager.Instance.IsOpen;
+                bool talking = (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) || fragmentsOpen || gameOverOpen;
                 battleHud.alpha = Mathf.MoveTowards(battleHud.alpha, talking ? 0f : 1f, dt * 6f);
             }
         }
@@ -1397,6 +1428,48 @@ namespace Subnet.Hacking
             bannerText.outlineColor = new Color32(255, 79, 216, 255);
             RuntimeUI.Place(bannerText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, arenaCenterY), new Vector2(1400f, 90f));
             bannerText.gameObject.SetActive(false);
+        }
+
+        /// <summary>Live-feed dressing: RGB-split ghosts that jump on every attack, CRT scanlines, a blinking REC dot, corner brackets.</summary>
+        private void BuildFeedFx()
+        {
+            RectTransform feed = portraitImage.rectTransform;
+            feedRed = MakeGhost("FeedRed", new Color(1f, 0.2f, 0.3f, 0f));
+            feedCyan = MakeGhost("FeedCyan", new Color(0.2f, 1f, 1f, 0f));
+
+            var scanRect = RuntimeUI.Rect("FeedScan", portraitFrame);
+            RuntimeUI.Stretch(scanRect, 6, 6, 6, 6);
+            feedScan = scanRect.gameObject.AddComponent<RawImage>();
+            feedScan.texture = HackSprites.Scanlines();
+            feedScan.uvRect = new Rect(0f, 0f, 1f, 86f);
+            feedScan.raycastTarget = false;
+
+            recDot = RuntimeUI.Image("Rec", portraitFrame, new Color(1f, 0.25f, 0.3f));
+            recDot.sprite = HackSprites.Get(Shape.Circle);
+            RuntimeUI.Place(recDot.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-14f, -14f), new Vector2(14f, 14f));
+
+            Vector2[] corners = { new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 0), new Vector2(1, 0) };
+            foreach (Vector2 c in corners)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    Image bar = RuntimeUI.Image("FeedCorner", portraitFrame, RuntimeUI.Cyan);
+                    Vector2 size = i == 0 ? new Vector2(30f, 4f) : new Vector2(4f, 30f);
+                    Vector2 pivot = new Vector2(c.x, c.y);
+                    RuntimeUI.Place(bar.rectTransform, c, pivot, new Vector2(c.x > 0 ? 8f : -8f, c.y > 0 ? 8f : -8f), size);
+                }
+            }
+            portraitFlash.transform.SetAsLastSibling();
+        }
+
+        private RawImage MakeGhost(string name, Color color)
+        {
+            var rect = RuntimeUI.Rect(name, portraitFrame);
+            RuntimeUI.Stretch(rect, 6, 6, 6, 6);
+            RawImage ghost = rect.gameObject.AddComponent<RawImage>();
+            ghost.color = color;
+            ghost.raycastTarget = false;
+            return ghost;
         }
 
         private void BuildCombatUI(RectTransform contentRect, float rowY)

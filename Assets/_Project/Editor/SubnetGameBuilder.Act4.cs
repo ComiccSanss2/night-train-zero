@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using Subnet.Audio;
 using Subnet.Cinematics;
 using Subnet.Dialogue;
 using Subnet.Gameplay;
@@ -20,7 +21,7 @@ namespace Subnet.EditorTools
             Ctx ctx = BeginGameplayScene(new Vector3(-12f, 0f, 0f), 90f, profile,
                 new Color(0.08f, 0.06f, 0.14f), new Color(0.6f, 0.4f, 0.9f), 0.3f, false);
 
-            AddSceneMusic(true);
+            AddSceneMusic(true, StemMix.Core);
             ctx.removeAmbience = true;
             ctx.ambience.masterVolume = 0.5f;
             ctx.ambience.hum = 0.55f;
@@ -253,6 +254,7 @@ namespace Subnet.EditorTools
                 L("* A floating box behind a wall of light. Something tells me to face whatever's at the end of this room first."),
                 "core_file_read", new GameObject[0]);
             file.portraitTarget = algorithm.transform;
+            EnemyAura(fileRoot, null, new Vector3(-0.4f, 0f, 0f), 1.6f, 2.9f, Magenta, "MemoryFile");
             file.musicOverride = Clip("freedom"); // final boss theme
             file.portraitDistance = 7f;
             file.tauntLines = L("FRICTION DETECTED.", "WHY DO YOU KEEP IT?", "DELETING IS EASIER.",

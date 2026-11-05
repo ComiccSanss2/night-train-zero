@@ -11,8 +11,24 @@ namespace Subnet.Audio
     /// - Fight track: fades in with an opening filter sweep; ends with a "tape stop" (pitch dive + muffle).
     /// - All levels follow SYSTEM CONFIG → MUSIC volume.
     /// </summary>
+    /// <summary>How the Scrapeyard stems are balanced in a given place.</summary>
+    public enum StemMix { Street, Quiet, Park, Core, Ghost, Interior, Home, Station }
+
     public class MusicDirector : MonoBehaviour
     {
+        // Stem order: chords, bass, drums, lead, arp, cello, white noise. Last value: low-pass cutoff (Hz).
+        private static readonly float[][] Mixes =
+        {
+            new[] { 1f, 1f, 1f, 1f, 1f, 0.8f, 0.25f, 22000f },      // Street: the whole song
+            new[] { 0.9f, 0f, 0f, 0.35f, 0.8f, 1f, 0.2f, 22000f },   // Quiet: rooftop, breathing room
+            new[] { 0.9f, 0.7f, 0.35f, 0.5f, 0.4f, 1f, 0.3f, 12000f }, // Park: melancholy, drums far away
+            new[] { 0.25f, 1f, 0.9f, 0.2f, 1f, 0.3f, 0.7f, 22000f }, // Core: tense, static-heavy
+            new[] { 0.6f, 0f, 0f, 0f, 0.3f, 1f, 0.6f, 6000f },       // Ghost Line: strings and hiss
+            new[] { 0.7f, 0.4f, 0f, 0f, 0f, 0.9f, 0.4f, 900f },      // Interior: the street heard through walls
+            new[] { 0.8f, 0f, 0f, 0.3f, 0.6f, 0.7f, 0f, 3500f },     // Home: a music box version
+            new[] { 0.6f, 0f, 0f, 0f, 0.25f, 0.8f, 0.5f, 4000f },    // Station: echoing, far away
+        };
+        private const int StemCount = 7;
         private static MusicDirector instance;
 
         public static MusicDirector Instance => instance;
@@ -87,8 +103,132 @@ namespace Subnet.Audio
         private void Update()
         {
             float music = GameSettings.MusicVolume;
-            city.volume = cityLevel * cityGain * music;
+            float dt = Time.unscaledDeltaTime;
+            overrideMute = Mathf.MoveTowards(overrideMute, overrideActive ? 0f : 1f, dt / 0.9f);
+            city.volume = cityLevel * cityGain * music * overrideMute;
             fight.volume = fightLevel * fightGain * music;
+            if (overrideSource != null) overrideSource.volume = cityLevel * overrideGain * music * (InFight ? 0f : 1f);
+            if (overrideSource != null)
+            {
+                overrideGain = Mathf.MoveTowards(overrideGain, overrideActive ? 1f : 0f, dt / 0.9f);
+                if (!overrideActive && overrideGain <= 0f && overrideSource.isPlaying) overrideSource.Stop();
+            }
+            UpdateStems(dt, music);
+        }
+
+        // ================================================================== Stems (adaptive city music)
+
+        private AudioSource[] stems;
+        private AudioLowPassFilter[] stemFilters;
+        private readonly float[] stemLevels = new float[StemCount];
+        private float stemCutoff = 22000f;
+        private bool stemsActive;
+        private StemMix baseMix = StemMix.Street;
+        private readonly System.Collections.Generic.List<StemMix> mixStack = new System.Collections.Generic.List<StemMix>();
+
+        public bool StemsPlaying => stemsActive;
+
+        /// <summary>
+        /// Plays the city song as separate stems, all in sync, mixed for this place. If the same stems are
+        /// already playing (walking from one Subnet scene to the next), they keep going and only the mix moves.
+        /// </summary>
+        public void PlayStems(AudioClip[] clips, StemMix mix, float fadeSeconds = 2.5f)
+        {
+            if (clips == null || clips.Length < StemCount) return;
+            EnsureStemSources();
+            baseMix = mix;
+            mixStack.Clear();
+            bool same = stemsActive;
+            for (int i = 0; i < StemCount && same; i++) same = stems[i].clip == clips[i] && stems[i].isPlaying;
+            if (!same)
+            {
+                if (city.isPlaying) { resumeTimes[city.clip] = city.time; city.Stop(); }
+                double start = AudioSettings.dspTime + 0.2;
+                for (int i = 0; i < StemCount; i++)
+                {
+                    stems[i].Stop();
+                    stems[i].clip = clips[i];
+                    stems[i].time = 0f;
+                    if (clips[i] != null) stems[i].PlayScheduled(start);
+                    stemLevels[i] = 0f;
+                }
+                stemsActive = true;
+            }
+            stemsStopPending = false;
+            if (!InFight) FadeCity(1f, fadeSeconds, 22000f);
+        }
+
+        private bool stemsStopPending;
+
+        public void StopStems()
+        {
+            if (!stemsActive) return;
+            stemsActive = false;
+            foreach (AudioSource s in stems) s.Stop();
+        }
+
+        /// <summary>A place inside the scene (rooftop, an apartment) changes the balance while Leo is in it.</summary>
+        public void PushMix(StemMix mix) => mixStack.Add(mix);
+
+        public void PopMix(StemMix mix)
+        {
+            int i = mixStack.LastIndexOf(mix);
+            if (i >= 0) mixStack.RemoveAt(i);
+        }
+
+        private void EnsureStemSources()
+        {
+            if (stems != null) return;
+            stems = new AudioSource[StemCount];
+            stemFilters = new AudioLowPassFilter[StemCount];
+            for (int i = 0; i < StemCount; i++) stems[i] = CreateChannel("Stem_" + i, out stemFilters[i]);
+        }
+
+        private void UpdateStems(float dt, float music)
+        {
+            if (!stemsActive || stems == null) return;
+            if (stemsStopPending && cityGain <= 0.001f) { stemsStopPending = false; StopStems(); return; }
+            float[] mix = Mixes[(int)(mixStack.Count > 0 ? mixStack[mixStack.Count - 1] : baseMix)];
+            bool talking = Subnet.Dialogue.DialogueManager.Instance != null && Subnet.Dialogue.DialogueManager.Instance.IsOpen;
+            stemCutoff = Mathf.Exp(Mathf.MoveTowards(Mathf.Log(stemCutoff), Mathf.Log(mix[StemCount]), dt * 2.5f));
+            float cutoff = Mathf.Min(stemCutoff, cityFilter.cutoffFrequency);
+            for (int i = 0; i < StemCount; i++)
+            {
+                float target = mix[i];
+                // While someone talks, the busy parts step back so the words come first.
+                if (talking && (i == 2 || i == 3)) target *= 0.45f;
+                else if (talking && i == 4) target *= 0.7f;
+                stemLevels[i] = Mathf.MoveTowards(stemLevels[i], target, dt / 1.6f);
+                stems[i].volume = cityLevel * cityGain * music * overrideMute * stemLevels[i];
+                stemFilters[i].cutoffFrequency = cutoff;
+            }
+        }
+
+        // ================================================================== Override (a room with its own song)
+
+        private AudioSource overrideSource;
+        private bool overrideActive;
+        private float overrideGain;
+        private float overrideMute = 1f;
+
+        /// <summary>The shop's song takes over; the city keeps running silently underneath, in sync.</summary>
+        public void PushOverride(AudioClip clip)
+        {
+            if (clip == null) return;
+            if (overrideSource == null) overrideSource = CreateChannel("Override", out _);
+            if (overrideSource.clip != clip || !overrideSource.isPlaying)
+            {
+                overrideSource.clip = clip;
+                overrideSource.time = resumeTimes.TryGetValue(clip, out float t) && t < clip.length - 1f ? t : 0f;
+                overrideSource.Play();
+            }
+            overrideActive = true;
+        }
+
+        public void PopOverride()
+        {
+            if (overrideSource != null && overrideSource.clip != null) resumeTimes[overrideSource.clip] = overrideSource.time;
+            overrideActive = false;
         }
 
         // ================================================================== City
@@ -97,6 +237,7 @@ namespace Subnet.Audio
         public void PlayCity(AudioClip clip, float fadeSeconds = 2.5f)
         {
             if (clip == null) return;
+            if (stemsActive) StopStems();
             if (city.clip == clip && city.isPlaying)
             {
                 if (!InFight) FadeCity(1f, fadeSeconds, 22000f);
@@ -114,6 +255,12 @@ namespace Subnet.Audio
         /// <summary>Fades the city track out and stops it.</summary>
         public void StopCity(float fadeSeconds = 2f)
         {
+            if (stemsActive)
+            {
+                stemsStopPending = true;
+                FadeCity(0f, fadeSeconds, 22000f);
+                return;
+            }
             if (!city.isPlaying) return;
             if (cityRoutine != null) StopCoroutine(cityRoutine);
             cityRoutine = StartCoroutine(FadeChannel(city, cityFilter, () => cityGain, v => cityGain = v, 0f, fadeSeconds, 22000f, true));
@@ -211,6 +358,11 @@ namespace Subnet.Audio
             // AudioSettings.Reset stops every source: restart what should be playing.
             if (city.clip != null && cityGain > 0f) city.Play();
             if (InFight && fight.clip != null) fight.Play();
+            if (stemsActive)
+            {
+                double start = AudioSettings.dspTime + 0.2;
+                foreach (AudioSource stem in stems) if (stem.clip != null) stem.PlayScheduled(start);
+            }
         }
     }
 }

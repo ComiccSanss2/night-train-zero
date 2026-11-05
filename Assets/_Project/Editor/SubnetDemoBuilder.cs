@@ -76,6 +76,8 @@ namespace Subnet.EditorTools
             ConfigureMusicImport("scrapeyard-aster");
             ConfigureMusicImport("freedom");
             ConfigureMusicImport("funkygameost");
+            ConfigureMusicImport("truth");
+            foreach (string stem in StemNames) ConfigureStemImport(stem);
 
             try
             {
@@ -1361,6 +1363,21 @@ namespace Subnet.EditorTools
             foreach (Transform child in go.transform) SetLayerRecursive(child.gameObject, layer);
         }
 
+        private static void ConfigureStemImport(string stem)
+        {
+            AudioClip clip = StemClip(stem);
+            if (clip == null) return;
+            if (!(AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(clip)) is AudioImporter importer)) return;
+            AudioImporterSampleSettings settings = importer.defaultSampleSettings;
+            if (settings.loadType == AudioClipLoadType.Streaming && settings.compressionFormat == AudioCompressionFormat.Vorbis) return;
+            settings.loadType = AudioClipLoadType.Streaming;
+            settings.compressionFormat = AudioCompressionFormat.Vorbis;
+            settings.quality = 0.7f;
+            importer.defaultSampleSettings = settings;
+            importer.loadInBackground = true;
+            importer.SaveAndReimport();
+        }
+
         /// <summary>Long music files: stream from disk (no 20 MB in memory), Vorbis compressed.</summary>
         private static void ConfigureMusicImport(string clipName)
         {
@@ -1380,14 +1397,45 @@ namespace Subnet.EditorTools
         }
 
         /// <summary>City track (continues across scenes) or silence; also registers the fight track.</summary>
-        private static void AddSceneMusic(bool cityMusic)
+        private static readonly string[] StemNames = { "chords", "bass", "drums", "lead", "Arp", "Cello", "White Noise" };
+
+        /// <summary>A clip from the Scrapeyard stems folder (names like "bass" are too generic to search everywhere).</summary>
+        private static AudioClip StemClip(string name)
+        {
+            foreach (string guid in AssetDatabase.FindAssets(name + " t:AudioClip"))
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                if (!path.Contains("Scrapeyard stems") || Path.GetFileNameWithoutExtension(path) != name) continue;
+                return AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+            }
+            Debug.LogWarning("[Subnet] Stem not found: " + name + " (Assets/Assets/Scrapeyard stems). Using the full track.");
+            return null;
+        }
+
+        private static void AddSceneMusic(bool cityMusic, StemMix mix = StemMix.Street)
         {
             var go = new GameObject("SceneMusic");
             var music = go.AddComponent<SceneMusic>();
             music.mode = cityMusic ? SceneMusic.Mode.City : SceneMusic.Mode.Silence;
             music.cityTrack = Clip("scrapeyard-aster");
             music.fightTrack = Clip("firewall");
+            var stems = new AudioClip[StemNames.Length];
+            bool all = true;
+            for (int i = 0; i < stems.Length; i++) { stems[i] = StemClip(StemNames[i]); all &= stems[i] != null; }
+            music.cityStems = all ? stems : new AudioClip[0];
+            music.stemMix = mix;
             EditorUtility.SetDirty(music);
+        }
+
+        /// <summary>A zone inside the scene that rebalances the stems while Leo is in it.</summary>
+        private static void AddStemZone(Ctx ctx, string name, Vector3 center, Vector3 size, StemMix mix)
+        {
+            var go = new GameObject("StemZone_" + name);
+            go.transform.SetParent(ctx.story, false);
+            go.transform.position = center;
+            var zone = go.AddComponent<StemZone>();
+            Set(zone, "mix", (int)mix);
+            Set(zone, "size", size);
         }
 
         private static int LayerOr(string name, int fallback)

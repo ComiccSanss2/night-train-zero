@@ -204,6 +204,49 @@ namespace Subnet.Dialogue
             Finish(invokeCallback);
         }
 
+        private bool battleSkin;
+        private Color skinBoxColor;
+        private Color skinOutlineColor;
+        private Image skinStripe;
+
+        /// <summary>
+        /// During fights the box changes look: darker, a magenta border and a cyan scan stripe,
+        /// so narration inside a battle reads as part of the battle screen.
+        /// </summary>
+        public void SetBattleSkin(bool on)
+        {
+            if (boxTransform == null || battleSkin == on) return;
+            Image box = boxTransform.GetComponent<Image>();
+            Outline outline = boxTransform.GetComponent<Outline>();
+            if (on)
+            {
+                if (box != null) { skinBoxColor = box.color; box.color = new Color(0.04f, 0.015f, 0.08f, 0.97f); }
+                if (outline != null) { skinOutlineColor = outline.effectColor; outline.effectColor = new Color(1f, 0.31f, 0.85f); outline.effectDistance = new Vector2(4, -4); }
+                if (skinStripe == null)
+                {
+                    var go = new GameObject("BattleStripe", typeof(RectTransform));
+                    go.transform.SetParent(boxTransform, false);
+                    skinStripe = go.AddComponent<Image>();
+                    skinStripe.raycastTarget = false;
+                    skinStripe.color = new Color(0.2f, 1f, 0.95f, 0.8f);
+                    RectTransform r = skinStripe.rectTransform;
+                    r.anchorMin = new Vector2(0f, 1f);
+                    r.anchorMax = new Vector2(1f, 1f);
+                    r.pivot = new Vector2(0.5f, 1f);
+                    r.sizeDelta = new Vector2(-24f, 3f);
+                    r.anchoredPosition = new Vector2(0f, -8f);
+                }
+                skinStripe.gameObject.SetActive(true);
+            }
+            else
+            {
+                if (box != null) box.color = skinBoxColor;
+                if (outline != null) { outline.effectColor = skinOutlineColor; outline.effectDistance = new Vector2(3, -3); }
+                if (skinStripe != null) skinStripe.gameObject.SetActive(false);
+            }
+            battleSkin = on;
+        }
+
         /// <summary>Called by DialogueChoiceButton on mouse hover.</summary>
         public void HighlightChoice(int index)
         {

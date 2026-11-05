@@ -15,7 +15,6 @@ namespace Subnet.Audio
 
         private Transform player;
         private bool inside;
-        private AudioClip previous;
 
         private void Start()
         {
@@ -37,13 +36,14 @@ namespace Subnet.Audio
             bool now = Contains(player.position);
             if (now == inside) return;
             inside = now;
-            if (inside)
-            {
-                previous = director.CurrentCityClip != track ? director.CurrentCityClip : previous;
-                director.PlayCity(track, fadeIn);
-            }
-            else if (previous != null) director.PlayCity(previous, fadeOut);
-            else director.StopCity(fadeOut);
+            if (inside) director.PushOverride(track);
+            else director.PopOverride();
+        }
+
+        private void OnDisable()
+        {
+            if (inside && MusicDirector.Instance != null) MusicDirector.Instance.PopOverride();
+            inside = false;
         }
 
         private void OnDrawGizmosSelected()

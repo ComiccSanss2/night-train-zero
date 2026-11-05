@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using Subnet.Audio;
 using Subnet.Cinematics;
 using Subnet.Dialogue;
 using Subnet.Gameplay;
@@ -289,6 +290,7 @@ namespace Subnet.EditorTools
                   "* That courier on the skates seemed to know what this is. I should talk to her first."),
                 "hack1_done", new[] { shell }, new[] { freed });
             wallHack.portraitTarget = commuter.transform;
+            EnemyAura(wallRoot, shell.transform, new Vector3(-0.8f, 0f, 0f), 1.5f, 3.6f, new Color(1f, 0.85f, 0.5f), "Commuter");
             wallHack.portraitDistance = 2.4f;
             wallHack.tauntLines = L("Deadline! Deadline!", "Per my last email...", "Can't stop. Won't stop. Shouldn't stop.",
                 "Circle back! Circle BACK!", "Is it Friday yet? It's never Friday.", "Let's take this offline. Forever.");
@@ -331,6 +333,7 @@ namespace Subnet.EditorTools
                 Deco("Skyline_" + b, ctx.env, new Vector3(bx, roof.y - 6f + h * 0.5f, 14f + (b % 3) * 3f), new Vector3(3f, h, 3f), b % 2 == 0 ? neonCyan : neonMagenta);
             }
             PointLight(ctx.env, roof + new Vector3(0, 3f, 0), new Color(1f, 0.75f, 0.9f), 1.6f, 12f);
+            AddStemZone(ctx, "Roof", roof + new Vector3(0f, 1f, 0f), new Vector3(13f, 6f, 9f), StemMix.Quiet);
 
             Transform roofArrival = new GameObject("RoofArrival").transform;
             roofArrival.SetParent(ctx.story, false);

@@ -103,6 +103,22 @@ namespace Subnet.Hacking
             return grid;
         }
 
+        private static Texture2D scan;
+
+        /// <summary>Horizontal CRT scanlines (1 dark row in 3).</summary>
+        public static Texture2D Scanlines()
+        {
+            if (scan != null) return scan;
+            scan = new Texture2D(2, 3, TextureFormat.RGBA32, false) { name = "HackScan", wrapMode = TextureWrapMode.Repeat, filterMode = FilterMode.Point };
+            var pixels = new Color32[6];
+            for (int y = 0; y < 3; y++)
+                for (int x = 0; x < 2; x++)
+                    pixels[y * 2 + x] = y == 0 ? new Color32(0, 0, 0, 150) : new Color32(255, 255, 255, 10);
+            scan.SetPixels32(pixels);
+            scan.Apply(false, true);
+            return scan;
+        }
+
         /// <summary>Tileable diagonal speed-lines (for the full-screen backdrop).</summary>
         public static Texture2D Lines()
         {

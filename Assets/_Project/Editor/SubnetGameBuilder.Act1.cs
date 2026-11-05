@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using Subnet.Audio;
 using System.Collections.Generic;
 using Subnet.Cinematics;
 using Subnet.Dialogue;
@@ -207,7 +208,7 @@ namespace Subnet.EditorTools
             Ctx ctx = BeginGameplayScene(new Vector3(-10.5f, 0f, -0.5f), 90f, profile,
                 new Color(0.1f, 0.12f, 0.16f), new Color(0.5f, 0.58f, 0.72f), 0.35f, false);
 
-            AddSceneMusic(true);
+            AddSceneMusic(true, StemMix.Station);
             ctx.removeAmbience = true;
             ctx.ambience.masterVolume = 0.5f;
             ctx.ambience.rain = 0.1f;

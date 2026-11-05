@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using Subnet.Audio;
 using System.Collections.Generic;
 using Subnet.Dialogue;
 using Subnet.Gameplay;
@@ -21,7 +22,7 @@ namespace Subnet.EditorTools
             Ctx ctx = BeginGameplayScene(new Vector3(-12f, 0f, 0f), 90f, profile,
                 new Color(0.22f, 0.22f, 0.3f), new Color(0.75f, 0.75f, 0.95f), 0.5f, false);
 
-            AddSceneMusic(true);
+            AddSceneMusic(true, StemMix.Park);
             ctx.removeAmbience = true;
             ctx.ambience.masterVolume = 0.45f;
             ctx.ambience.wind = 0.5f;
@@ -264,6 +265,7 @@ namespace Subnet.EditorTools
                   "* Warm pixels drift up into the gray sky. The corridor ahead is clear."),
                 "park_puzzle_solved", L("* Sealed behind concrete."), "hack2_done", new[] { shell }, new[] { freed, kiraNpc });
             weepHack.portraitTarget = weeper.transform;
+            EnemyAura(obstacleRoot, shell.transform, new Vector3(-0.3f, 0f, 0f), 1.3f, 2.6f, new Color(0.55f, 0.7f, 1f), "Weeper");
             weepHack.portraitDistance = 2.2f;
             weepHack.tauntLines = L("Don't look at me.", "I'm fine. I'm FINE.", "Statues don't cry.",
                 "Everyone else is coping. Why can't I?", "Go away... no, wait.", "It's just concrete in my eyes.");

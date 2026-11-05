@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using Subnet.Audio;
 using System.Collections.Generic;
 using Subnet.Dialogue;
 using Subnet.Gameplay;
@@ -23,7 +24,7 @@ namespace Subnet.EditorTools
             VolumeProfile profile = LookProfile("PP_Subnet_GhostLine", 4f, 1.5f, 0.5f, 0.25f, 0.35f, new Color(0.85f, 0.86f, 1f));
             Ctx ctx = BeginGameplayScene(new Vector3(-8.2f, 0f, 0f), 90f, profile,
                 new Color(0.06f, 0.06f, 0.11f), new Color(0.55f, 0.6f, 0.95f), 0.15f, false);
-            AddSceneMusic(true);
+            AddSceneMusic(true, StemMix.Ghost);
             ctx.removeAmbience = true;
 
             Material floorMat = LitMaterial("Subnet/M_Ghost_Floor", new Color(0.16f, 0.15f, 0.22f), 0.5f);
@@ -166,8 +167,10 @@ namespace Subnet.EditorTools
                 L("* The door to the next carriage is sealed with static. {p}Something at the back is getting closer."),
                 "ghostline_done", new[] { purge, byteNpc }, new[] { collar });
             griefHack.portraitTarget = purge.transform;
+            EnemyAura(doorRoot, purge.transform, new Vector3(-0.6f, 0f, 0f), 1.4f, 3.2f, new Color(0.85f, 0.85f, 0.95f), "Purge");
             griefHack.portraitDistance = 3.2f;
             griefHack.fadeCompanion = true;
+            griefHack.musicOverride = Clip("truth"); // the song for losing Byte
             griefHack.companionLabel = "byte";
             griefHack.tauntLines = L("OLDEST FILES FIRST.", "A CAT. HOW SENTIMENTAL.", "HE WAS NEVER REAL.", "LETTING GO IS EFFICIENT.", "YOU CANNOT OUTRUN THIS.");
             griefHack.betweenRoundLines = L("* Somewhere behind me, a collar beeps. {p}Once.",

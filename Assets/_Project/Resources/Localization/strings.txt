@@ -4271,3 +4271,53 @@ fr|potion
 en|confirm, next line
 it|conferma, avanti
 fr|valider, suite
+
+# ---- Fragment cards, game over
+
+en|MEMORY FRAGMENTS
+it|FRAMMENTI DI MEMORIA
+fr|FRAGMENTS DE MÉMOIRE
+
+en|↑↓ choose     E confirm
+it|↑↓ scegli     E conferma
+fr|↑↓ choisir     E valider
+
+en|FRAGMENT ACCEPTED
+it|FRAMMENTO ACCETTATO
+fr|FRAGMENT ACCEPTÉ
+
+en|FRAGMENT REJECTED
+it|FRAMMENTO RIFIUTATO
+fr|FRAGMENT REJETÉ
+
+en|E  continue
+it|E  continua
+fr|E  continuer
+
+en|GAME OVER
+it|GAME OVER
+fr|GAME OVER
+
+en|TRY AGAIN
+it|RIPROVA
+fr|RÉESSAYER
+
+en|They're still in there. Waiting to be understood.
+it|È ancora lì dentro. Aspetta di essere capito.
+fr|Il est toujours là-dedans. Il attend d'être compris.
+
+en|Breathe. Listen. Try again.
+it|Respira. Ascolta. Riprova.
+fr|Respire. Écoute. Réessaie.
+
+en|The static is loud. You are louder.
+it|Il rumore è forte. Tu di più.
+fr|Le grésillement est fort. Toi, plus encore.
+
+en|Nobody gets it right the first time. Not even the people who love you.
+it|Nessuno ci riesce al primo colpo. Nemmeno chi ti vuole bene.
+fr|Personne n'y arrive du premier coup. Même pas ceux qui t'aiment.
+
+en|LIVE
+it|LIVE
+fr|EN DIRECT
