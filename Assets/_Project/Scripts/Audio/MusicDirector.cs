@@ -280,7 +280,8 @@ namespace Subnet.Audio
             AudioClip track = clip != null ? clip : FightTrack;
             InFight = true;
 
-            if (city.isPlaying) FadeCity(0f, 0.7f, 450f);
+            // Stems play on their own sources (city stays silent), so they count as "city playing" too.
+            if (city.isPlaying || stemsActive) FadeCity(0f, 0.7f, 450f);
 
             if (track == null) return;
             if (fightRoutine != null) StopCoroutine(fightRoutine);
@@ -300,7 +301,7 @@ namespace Subnet.Audio
             if (fightRoutine != null) StopCoroutine(fightRoutine);
             if (fight.isPlaying) fightRoutine = StartCoroutine(TapeStop());
 
-            if (city.clip != null && city.isPlaying)
+            if ((city.clip != null && city.isPlaying) || (stemsActive && !stemsStopPending))
             {
                 if (cityRoutine != null) StopCoroutine(cityRoutine);
                 cityRoutine = StartCoroutine(DelayedCityReturn(0.35f));

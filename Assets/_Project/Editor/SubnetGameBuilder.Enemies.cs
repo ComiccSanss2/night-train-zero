@@ -50,7 +50,8 @@ namespace Subnet.EditorTools
             var holder = new GameObject("Enemy_" + name.Replace("Enemy_", string.Empty));
             holder.transform.SetParent(parent, false);
             holder.transform.position = worldPos;
-            GameObject model = SpawnModel(asset, holder.transform, height, false, yaw);
+            // The FBX comes out of Blender facing backwards (+180 puts the face where 'yaw' says).
+            GameObject model = SpawnModel(asset, holder.transform, height, false, yaw + 180f);
 
             foreach (Renderer r in model.GetComponentsInChildren<Renderer>(true))
             {
