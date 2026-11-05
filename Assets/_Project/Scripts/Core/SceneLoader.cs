@@ -17,6 +17,29 @@ namespace Subnet.Core
         /// <summary>True while a transition is running.</summary>
         public static bool IsLoading => loading;
 
+        /// <summary>
+        /// Where Leo should appear in the next scene (a SceneEntry id, e.g. "from_park" when walking back).
+        /// Empty = the scene's normal start.
+        /// </summary>
+        public static string PendingEntry { get; private set; } = string.Empty;
+
+        /// <summary>Called by the SceneEntry that matched, so the next load starts normally again.</summary>
+        public static string ConsumeEntry()
+        {
+            string entry = PendingEntry;
+            PendingEntry = string.Empty;
+            return entry;
+        }
+
+        /// <summary>Same as Load, but Leo arrives at the SceneEntry with this id.</summary>
+        public static void LoadAt(string sceneName, string entryId, string unlockChapterKey = null)
+        {
+            if (loading) return;
+            PendingEntry = entryId ?? string.Empty;
+            Load(sceneName, unlockChapterKey);
+            if (!loading) PendingEntry = string.Empty; // load refused
+        }
+
         /// <summary>Loads <paramref name="sceneName"/> behind a fade. Unlocks a chapter and saves a checkpoint.</summary>
         public static void Load(string sceneName, string unlockChapterKey = null, bool saveCheckpoint = true, float fadeDuration = 0.9f)
         {
@@ -58,6 +81,10 @@ namespace Subnet.Core
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetStatics() => loading = false;
+        private static void ResetStatics()
+        {
+            loading = false;
+            PendingEntry = string.Empty;
+        }
     }
 }

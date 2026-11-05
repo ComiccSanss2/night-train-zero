@@ -3,6 +3,7 @@ using Subnet.Audio;
 using System.Collections.Generic;
 using Subnet.Dialogue;
 using Subnet.Gameplay;
+using Subnet.Interaction;
 using Subnet.Hacking;
 using TMPro;
 using UnityEditor;
@@ -309,6 +310,10 @@ namespace Subnet.EditorTools
             ExitZone(ctx, "Exit_ToGhostLine", new Vector3(13.9f, 1f, 0f), new Vector3(1f, 2f, 3.6f), GhostLineScene, "ch5", "hack2_done",
                 L("* Not yet."));
 
+            // Walking back west → the shopping street, arriving at its east end.
+            SceneExit toStreet = BackExit(ctx, "Exit_BackToSubnet", new Vector3(-13.9f, 1f, 0f), new Vector3(0.6f, 2f, 14f), SubnetScene, "from_park");
+            SetStrings(toStreet, "leavingLines", L("* Back the way we came. {p}Some things only show up on the way back."));
+            BuildParkReturn(ctx);
             EndGameplayScene(ctx, ParkScene);
         }
     }

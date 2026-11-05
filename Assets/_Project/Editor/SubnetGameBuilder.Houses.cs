@@ -139,11 +139,19 @@ namespace Subnet.EditorTools
         }
 
         /// <summary>A paper note taped to a door leaf (moves with the door when it rattles).</summary>
-        private static void DoorNote(HouseDoor door, string text)
+        private static void DoorNote(HouseDoor door, string text, string showFlag = null)
         {
             if (door == null) return;
             Transform hinge = door.transform.Find("Hinge");
             if (hinge == null) return;
+            if (!string.IsNullOrEmpty(showFlag))
+            {
+                // The note lives in its own holder so it can disappear once the owner is back.
+                var holder = new GameObject("NoteHolder").transform;
+                holder.SetParent(hinge, false);
+                Set(holder.gameObject.AddComponent<ShowWhenFlag>(), "flag", showFlag);
+                hinge = holder;
+            }
             float yaw = door.transform.eulerAngles.y;
             Material paper = LitMaterial("Houses/M_Note", new Color(0.97f, 0.95f, 0.85f));
             Material tape = LitMaterial("Houses/M_NoteTape", new Color(0.85f, 0.8f, 0.55f));

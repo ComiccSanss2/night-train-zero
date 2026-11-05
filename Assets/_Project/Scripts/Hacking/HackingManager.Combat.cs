@@ -24,6 +24,7 @@ namespace Subnet.Hacking
 
         private class Bullet
         {
+            public bool skinned;       // wears Blender art (Resources/HackSkins) instead of a tinted shape
             public RectTransform rect;
             public Image image;
             public Image glow;
@@ -754,6 +755,7 @@ namespace Subnet.Hacking
             bullet.glow.enabled = true;
             bullet.glow.color = new Color(color.r, color.g, color.b, 0.45f);
             bullet.rect.sizeDelta = size;
+            ApplySkin(bullet, shape, size);
             bullet.rect.localRotation = Quaternion.identity;
             bullet.rect.localScale = Vector3.one;
             bullet.rect.anchoredPosition = position;
@@ -776,17 +778,21 @@ namespace Subnet.Hacking
                 {
                     float n = b.age / b.delay;
                     b.rect.localScale = Vector3.one * Easing.Evaluate(EaseType.EaseOutBack, Mathf.Clamp01(n * 1.4f));
-                    b.image.color = Color.Lerp(Color.white, Color.Lerp(b.color, Color.white, 0.35f), Mathf.PingPong(b.age * 8f, 1f));
+                    b.image.color = b.skinned
+                        ? Color.Lerp(Color.white, new Color(1f, 0.75f, 0.75f), Mathf.PingPong(b.age * 8f, 1f))
+                        : Color.Lerp(Color.white, Color.Lerp(b.color, Color.white, 0.35f), Mathf.PingPong(b.age * 8f, 1f));
                     b.rect.Rotate(0f, 0f, b.spin * dt);
                     if (b.orbit) UpdateOrbit(b, dt, false);
                     continue;
                 }
+                if (b.skinned && b.delay > 0f) b.image.color = Color.white;
                 if (b.delay > 0f && b.aimOnLaunch)
                 {
                     b.aimOnLaunch = false;
                     b.velocity = (SoulPos - b.basePos).normalized * b.launchSpeed;
                     b.rect.localScale = Vector3.one;
                     b.trail = true;
+                    if (b.skinned) b.image.color = Color.white;
                 }
 
                 if (b.orbit)

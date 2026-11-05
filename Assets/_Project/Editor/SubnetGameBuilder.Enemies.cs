@@ -50,8 +50,20 @@ namespace Subnet.EditorTools
             var holder = new GameObject("Enemy_" + name.Replace("Enemy_", string.Empty));
             holder.transform.SetParent(parent, false);
             holder.transform.position = worldPos;
-            // The FBX comes out of Blender facing backwards (+180 puts the face where 'yaw' says).
-            GameObject model = SpawnModel(asset, holder.transform, height, false, yaw + 180f);
+            GameObject model = SpawnModel(asset, holder.transform, height, false, 0f);
+
+            // Each model has a "FacePoint" empty two metres in front of its face. Turn the holder so that point
+            // lies in the 'yaw' direction, nudged 30 degrees toward the isometric camera so we see the face, not a profile.
+            Transform facePoint = FindDeep(model.transform, "FacePoint");
+            if (facePoint != null)
+            {
+                Vector3 current = facePoint.position - holder.transform.position;
+                current.y = 0f;
+                Vector3 wanted = Quaternion.Euler(0f, yaw - 30f, 0f) * Vector3.forward;
+                if (current.sqrMagnitude > 0.0001f)
+                    holder.transform.rotation = Quaternion.Euler(0f, Vector3.SignedAngle(current, wanted, Vector3.up), 0f) * holder.transform.rotation;
+            }
+            else holder.transform.rotation = Quaternion.Euler(0f, yaw, 0f);
 
             foreach (Renderer r in model.GetComponentsInChildren<Renderer>(true))
             {
@@ -71,6 +83,17 @@ namespace Subnet.EditorTools
                 animator.updateMode = AnimatorUpdateMode.UnscaledTime; // keeps moving while the fight pauses the world
             }
             return holder;
+        }
+
+        private static Transform FindDeep(Transform t, string childName)
+        {
+            if (t.name == childName) return t;
+            foreach (Transform c in t)
+            {
+                Transform found = FindDeep(c, childName);
+                if (found != null) return found;
+            }
+            return null;
         }
 
         private static void ConfigureEnemyImport(ModelImporter importer)

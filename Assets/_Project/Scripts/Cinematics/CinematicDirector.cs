@@ -98,6 +98,13 @@ namespace Subnet.Cinematics
             if (skipHintGroup != null) skipHintGroup.alpha = 0f;
             if (skipProgressFill != null) skipProgressFill.fillAmount = 0f;
 
+            // A scene's intro plays once: walking back into the scene later doesn't replay it.
+            if (playIntroOnStart && introSequence != null && StoryFlags.Has(IntroKey))
+            {
+                playIntroOnStart = false;
+                introSkipped = true;
+            }
+
             // Lock immediately so the player can't move during the first frame before Start().
             if (playIntroOnStart && introSequence != null)
             {
@@ -108,8 +115,20 @@ namespace Subnet.Cinematics
 
         private void Start()
         {
-            if (playIntroOnStart && introSequence != null) Play(introSequence);
+            if (playIntroOnStart && introSequence != null)
+            {
+                StoryFlags.Set(IntroKey);
+                Play(introSequence);
+            }
+            else if (introSkipped && fader != null)
+            {
+                // Scenes with an intro start black and let the intro fade in; without it, fade in ourselves.
+                fader.FadeTo(0f, 1.2f);
+            }
         }
+
+        private string IntroKey => "intro." + gameObject.scene.name;
+        private bool introSkipped;
 
         private void OnDestroy()
         {

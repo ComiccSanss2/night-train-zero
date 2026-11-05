@@ -390,6 +390,7 @@ namespace Subnet.EditorTools
             Event(ctx, "TrainComing", Subnet.Gameplay.StoryEvent.TriggerMode.OnFlag, "train_arrived", 0.5f, "UNKNOWN",
                 L("get on. dont think about it too much. thats the trick."), L("* A train with no number. Its doors are open. It's waiting for me.", "* A conductor stands by the doors. {p}He's looking at my pocket."), null, string.Empty);
 
+            BuildStationReturn(ctx);
             EndGameplayScene(ctx, StationScene);
         }
 

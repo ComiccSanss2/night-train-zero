@@ -4341,3 +4341,159 @@ fr|Une petite boîte tiède. FRAGILE. CONTENU : TOI. Pas à livrer : Kira dit qu
 en|BACK IN\n5 MINUTES
 it|TORNO TRA\n5 MINUTI
 fr|DE RETOUR\nDANS 5 MIN
+
+en|Old Polaroid
+it|Vecchia Polaroid
+fr|Vieux Polaroid
+
+en|Two kids on a station platform, the boy holding the girl up to see the trains. 'L + M. The day we moved.'
+it|Due bambini su un binario, il ragazzo tiene in braccio la bambina perché veda i treni. 'L + M. Il giorno del trasloco.'
+fr|Deux enfants sur un quai, le garçon soulève la fillette pour qu'elle voie les trains. « L + M. Le jour du déménagement. »
+
+en|Old Headphones
+it|Vecchie Cuffie
+fr|Vieux Écouteurs
+
+en|Lost at Central Station the week Leo moved. Still tangled exactly the same way.
+it|Perse alla Stazione Centrale la settimana del trasloco. Ancora aggrovigliate allo stesso identico modo.
+fr|Perdus à la Gare Centrale la semaine du déménagement. Toujours emmêlés exactement pareil.
+
+en|LOST & FOUND
+it|OGGETTI SMARRITI
+fr|OBJETS TROUVÉS
+
+en|Oh! A customer. {p}Sorry, sorry. I only stepped out for five minutes.
+it|Oh! Un cliente. {p}Scusa, scusa. Ero uscito solo cinque minuti.
+fr|Oh ! Un client. {p}Pardon, pardon. J'étais sorti cinq minutes à peine.
+
+en|The calendar behind him says 1998. Every page.
+it|Il calendario dietro di lui dice 1998. Ogni pagina.
+fr|Le calendrier derrière lui indique 1998. Chaque page.
+
+en|This is the lost and found. Everything the city drops ends up here. {p}Umbrellas. Gloves. {p}{small}Whole afternoons.{/small}
+it|Questo è l'ufficio oggetti smarriti. Tutto quello che la città perde finisce qui. {p}Ombrelli. Guanti. {p}{small}Pomeriggi interi.{/small}
+fr|Ici, c'est les objets trouvés. Tout ce que la ville perd finit ici. {p}Des parapluies. Des gants. {p}{small}Des après-midi entiers.{/small}
+
+en|Something of yours came in. {p}It's been waiting a long time. {p}{slow}Things wait better than people do.{/slow}
+it|È arrivata una cosa tua. {p}Aspetta da tanto. {p}{slow}Le cose sanno aspettare meglio delle persone.{/slow}
+fr|Quelque chose à toi est arrivé. {p}Ça attend depuis longtemps. {p}{slow}Les choses attendent mieux que les gens.{/slow}
+
+en|He hands you a polaroid. Two kids on a station platform. The boy is holding the girl up so she can see the trains.
+it|Ti porge una polaroid. Due bambini su un binario. Il ragazzo tiene su la bambina perché possa vedere i treni.
+fr|Il te tend un polaroid. Deux enfants sur un quai. Le garçon soulève la fillette pour qu'elle puisse voir les trains.
+
+en|On the back, in your handwriting from a long time ago: <color=#FFD84F>L + M. THE DAY WE MOVED.</color>
+it|Sul retro, con la tua calligrafia di tanto tempo fa: <color=#FFD84F>L + M. IL GIORNO DEL TRASLOCO.</color>
+fr|Au dos, de ton écriture d'il y a longtemps : <color=#FFD84F>L + M. LE JOUR DU DÉMÉNAGEMENT.</color>
+
+en|And take this. On the house. {p}{small}The house is also lost. Long story.{/small}
+it|E prendi questo. Offre la casa. {p}{small}Anche la casa è smarrita. Lunga storia.{/small}
+fr|Et prends ça. C'est la maison qui offre. {p}{small}La maison aussi est perdue. Longue histoire.{/small}
+
+en|Five minutes. I'll be right back. {p}{small}...I'm already back, aren't I.{/small}
+it|Cinque minuti. Torno subito. {p}{small}...Sono già tornato, vero?{/small}
+fr|Cinq minutes. Je reviens tout de suite. {p}{small}...Je suis déjà revenu, non ?{/small}
+
+en|People come back for their things eventually. {p}You did.
+it|Prima o poi la gente torna a prendere le sue cose. {p}Tu l'hai fatto.
+fr|Les gens finissent toujours par revenir chercher leurs affaires. {p}Toi, tu l'as fait.
+
+en|Forty coats, all different sizes. Every one of them still warm.
+it|Quaranta cappotti, tutti di taglie diverse. Ognuno ancora caldo.
+fr|Quarante manteaux, toutes les tailles. Chacun encore tiède.
+
+en|One very small coat has a name tag. It just says: <color=#FF4FD8>SOMEONE'S</color>.
+it|Un cappottino minuscolo ha un'etichetta. Dice solo: <color=#FF4FD8>DI QUALCUNO</color>.
+fr|Un tout petit manteau a une étiquette. Elle dit juste : <color=#FF4FD8>À QUELQU'UN</color>.
+
+en|The coats sway a little, like the door just closed.
+it|I cappotti ondeggiano un po', come se la porta si fosse appena chiusa.
+fr|Les manteaux se balancent un peu, comme si la porte venait de se fermer.
+
+en|A box labelled <color=#FFD84F>THINGS PEOPLE MEANT TO SAY</color>. {p}It's very heavy.
+it|Una scatola con scritto <color=#FFD84F>COSE CHE LA GENTE VOLEVA DIRE</color>. {p}È pesantissima.
+fr|Une boîte étiquetée <color=#FFD84F>CHOSES QUE LES GENS VOULAIENT DIRE</color>. {p}Elle est très lourde.
+
+en|You don't open it. {p}Some of them might be yours.
+it|Non la apri. {p}Qualcuna potrebbe essere tua.
+fr|Tu ne l'ouvres pas. {p}Certaines sont peut-être à toi.
+
+en|Still heavy.
+it|Ancora pesante.
+fr|Toujours lourde.
+
+en|A ledger. Every line says: <color=#FFD84F>CLAIMED</color>. {p}The handwriting is very patient.
+it|Un registro. Ogni riga dice: <color=#FFD84F>RITIRATO</color>. {p}La calligrafia è molto paziente.
+fr|Un registre. Chaque ligne dit : <color=#FFD84F>RÉCUPÉRÉ</color>. {p}L'écriture est très patiente.
+
+en|CLAIMED. CLAIMED. CLAIMED.
+it|RITIRATO. RITIRATO. RITIRATO.
+fr|RÉCUPÉRÉ. RÉCUPÉRÉ. RÉCUPÉRÉ.
+
+en|A calendar from 1998. One day is circled: the day he stepped out.
+it|Un calendario del 1998. Un giorno è cerchiato: il giorno in cui è uscito.
+fr|Un calendrier de 1998. Un jour est entouré : le jour où il est sorti.
+
+en|Next to it, in pencil: <color=#FF4FD8>back in 5</color>.
+it|Accanto, a matita: <color=#FF4FD8>torno tra 5</color>.
+fr|À côté, au crayon : <color=#FF4FD8>de retour dans 5</color>.
+
+en|Five minutes is a long time in this city.
+it|Cinque minuti sono tanti, in questa città.
+fr|Cinq minutes, c'est long, dans cette ville.
+
+en|Central Station again. {p}It looks smaller. {p}{small}Or I got bigger. Hard to say.{/small}
+it|Di nuovo la Stazione Centrale. {p}Sembra più piccola. {p}{small}O sono io che sono cresciuto. Difficile dirlo.{/small}
+fr|La Gare Centrale, encore. {p}Elle a l'air plus petite. {p}{small}Ou c'est moi qui ai grandi. Difficile à dire.{/small}
+
+en|A box by the wall: <color=#FFD84F>LOST PROPERTY</color>. {p}On top, a pair of tangled headphones.
+it|Una scatola contro il muro: <color=#FFD84F>OGGETTI SMARRITI</color>. {p}Sopra, un paio di cuffie aggrovigliate.
+fr|Une boîte contre le mur : <color=#FFD84F>OBJETS PERDUS</color>. {p}Dessus, des écouteurs emmêlés.
+
+en|...They're mine. I lost them here the week I moved. Three years ago.
+it|...Sono mie. Le ho perse qui la settimana del trasloco. Tre anni fa.
+fr|...Ce sont les miens. Je les ai perdus ici la semaine du déménagement. Il y a trois ans.
+
+en|They're still tangled exactly the same way. {p}Somebody kept them.
+it|Sono ancora aggrovigliate allo stesso identico modo. {p}Qualcuno le ha tenute.
+fr|Ils sont toujours emmêlés exactement pareil. {p}Quelqu'un les a gardés.
+
+en|Somebody put a potion in the box. And a note: 'for the round trip'.
+it|Qualcuno ha messo una pozione nella scatola. E un biglietto: 'per il viaggio di ritorno'.
+fr|Quelqu'un a mis une potion dans la boîte. Et un mot : « pour le retour ».
+
+en|The park again. {p}Somebody switched the fountain back on.
+it|Di nuovo il parco. {p}Qualcuno ha riacceso la fontana.
+fr|Le parc, encore. {p}Quelqu'un a rallumé la fontaine.
+
+en|A fountain. It wasn't running before. {p}The water is warm, and full of coins.
+it|Una fontana. Prima era spenta. {p}L'acqua è tiepida, e piena di monete.
+fr|Une fontaine. Elle ne coulait pas avant. {p}L'eau est tiède, et pleine de pièces.
+
+en|Every coin has a wish scratched into it. {p}<color=#FF4FD8>'come home'</color>. <color=#FF4FD8>'call me'</color>. <color=#FF4FD8>'one more day'</color>.
+it|Su ogni moneta è graffiato un desiderio. {p}<color=#FF4FD8>'torna a casa'</color>. <color=#FF4FD8>'chiamami'</color>. <color=#FF4FD8>'un giorno in più'</color>.
+fr|Sur chaque pièce, un vœu est gravé. {p}<color=#FF4FD8>« rentre à la maison »</color>. <color=#FF4FD8>« appelle-moi »</color>. <color=#FF4FD8>« encore un jour »</color>.
+
+en|A few coins have nothing scratched on them yet. You take those. {p}Somebody left them for whoever needed a wish.
+it|Alcune monete non hanno ancora niente sopra. Prendi quelle. {p}Qualcuno le ha lasciate per chi avesse bisogno di un desiderio.
+fr|Quelques pièces sont encore vierges. Tu prends celles-là. {p}Quelqu'un les a laissées pour qui aurait besoin d'un vœu.
+
+en|The fountain keeps running. {p}Like it's waiting for the next person who comes back.
+it|La fontana continua a scorrere. {p}Come se aspettasse la prossima persona che torna.
+fr|La fontaine continue de couler. {p}Comme si elle attendait la prochaine personne qui reviendra.
+
+en|The Night Train is still waiting at the platform, doors open. {p}It goes back to Central Station.
+it|Il Night Train aspetta ancora al binario, con le porte aperte. {p}Torna alla Stazione Centrale.
+fr|Le Night Train attend toujours à quai, portes ouvertes. {p}Il retourne à la Gare Centrale.
+
+en|The street, from the other end. {p}Everything's a little different on the way back.
+it|La strada, dall'altro lato. {p}Al ritorno tutto è un po' diverso.
+fr|La rue, de l'autre côté. {p}Au retour, tout est un peu différent.
+
+en|The 'BACK IN 5 MINUTES' shop has its lights on.
+it|Il negozio 'TORNO TRA 5 MINUTI' ha le luci accese.
+fr|La boutique « DE RETOUR DANS 5 MINUTES » a les lumières allumées.
+
+en|Back the way we came. {p}Some things only show up on the way back.
+it|Torniamo da dove siamo venuti. {p}Certe cose si vedono solo al ritorno.
+fr|On revient sur nos pas. {p}Certaines choses n'apparaissent qu'au retour.

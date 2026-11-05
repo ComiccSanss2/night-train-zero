@@ -40,11 +40,15 @@ namespace Subnet.Gameplay
         private bool fired;
         private bool started;
 
+        // Remembers that this beat played, so walking back into a scene doesn't replay its arrival lines and SMS.
+        private string OnceKey => "evt." + gameObject.scene.name + "." + name;
+
         private void Start()
         {
             started = true;
-            // Already happened in a saved game.
+            // Already happened in a saved game (or on an earlier visit to this scene).
             if (!string.IsNullOrEmpty(flagToSet) && StoryFlags.Has(flagToSet)) fired = true;
+            if (StoryFlags.Has(OnceKey)) fired = true;
         }
 
         private void Update()
@@ -107,6 +111,7 @@ namespace Subnet.Gameplay
             }
 
             StoryFlags.Set(flagToSet);
+            StoryFlags.Set(OnceKey);
             onFired?.Invoke();
         }
 

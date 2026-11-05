@@ -17,6 +17,8 @@ namespace Subnet.Interaction
         [SerializeField] private string targetScene = "02_Station";
         [Tooltip("Chapter key unlocked in CORRUPTED MEMORIES when leaving through here.")]
         [SerializeField] private string unlockChapterKey = string.Empty;
+        [Tooltip("Arrive at this SceneEntry id in the target scene (walking back). Empty = the scene's normal start.")]
+        [SerializeField] private string entryId = string.Empty;
 
         [Header("Requirement")]
         [Tooltip("Story flag needed to leave. Empty = always open.")]
@@ -102,6 +104,10 @@ namespace Subnet.Interaction
             }
         }
 
-        private void Load() => SceneLoader.Load(targetScene, unlockChapterKey);
+        private void Load()
+        {
+            if (string.IsNullOrEmpty(entryId)) SceneLoader.Load(targetScene, unlockChapterKey);
+            else SceneLoader.LoadAt(targetScene, entryId, unlockChapterKey);
+        }
     }
 }

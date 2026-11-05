@@ -178,6 +178,7 @@ namespace Subnet.Hacking
         {
             IsActive = true;
             obstacle = target;
+            skinPrefix = SkinPrefixFor(target);
             InputLock.Acquire(this);
 
             titleText.text = string.Empty;

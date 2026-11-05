@@ -12,7 +12,14 @@ namespace Subnet.Gameplay
         private bool shown;
         private float popTimer;
 
-        private void Start() => SetChildren(StoryFlags.Has(flag));
+        // "flag" shows the children once it's set; "!flag" shows them only until it's set.
+        private bool Met()
+        {
+            if (string.IsNullOrEmpty(flag)) return false;
+            return flag[0] == '!' ? !StoryFlags.Has(flag.Substring(1)) : StoryFlags.Has(flag);
+        }
+
+        private void Start() => SetChildren(Met());
 
         private void SetChildren(bool visible)
         {
@@ -23,7 +30,9 @@ namespace Subnet.Gameplay
 
         private void Update()
         {
-            if (!shown && !string.IsNullOrEmpty(flag) && StoryFlags.Has(flag))
+            bool met = Met();
+            if (shown && !met) SetChildren(false);
+            if (!shown && met)
             {
                 SetChildren(true);
                 popTimer = popSeconds;

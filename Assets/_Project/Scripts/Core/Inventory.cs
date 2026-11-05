@@ -43,6 +43,10 @@ namespace Subnet.Core
 
             new ItemDef { id = "care_package", name = "Kira's Care Package", key = true,
                 description = "A small warm box. FRAGILE. CONTENTS: YOU. Not one to deliver: Kira says it's yours." },
+            new ItemDef { id = "old_polaroid", name = "Old Polaroid", key = true,
+                description = "Two kids on a station platform, the boy holding the girl up to see the trains. 'L + M. The day we moved.'" },
+            new ItemDef { id = "old_headphones", name = "Old Headphones", key = true,
+                description = "Lost at Central Station the week Leo moved. Still tangled exactly the same way." },
             new ItemDef { id = "voicemail_tape", name = "Voicemail Tape", key = true,
                 description = "Found in apartment 0451. A little girl sings happy birthday to a dad who never came home in time." },
             new ItemDef { id = "mia_drawing", name = "Mia's Drawing", key = true,

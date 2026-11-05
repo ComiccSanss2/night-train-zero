@@ -429,7 +429,8 @@ namespace Subnet.EditorTools
             HouseDoor backIn5 = LockedDoor(ctx, "BackIn5", new Vector3(-12.6f, 0f, 4.72f), 180f, LitMaterial("Houses/M_Door_Closed", new Color(0.5f, 0.2f, 0.3f)), Magenta,
                 LitMaterial("Houses/M_Facade_Closed", new Color(0.3f, 0.2f, 0.35f)),
                 L("* A note on the door: BACK IN 5 MINUTES.", "* The note is dated 1998."));
-            DoorNote(backIn5, "BACK IN\n5 MINUTES");
+            DoorNote(backIn5, "BACK IN\n5 MINUTES", "!back_subnet");
+            BuildLostAndFound(ctx, backIn5);
             Event(ctx, "GiveTape", StoryEvent.TriggerMode.OnPlayerEnter, "key.voicemail_tape", 0.1f, null, null,
                 L("* You hand him the tape. He listens. {p}Then he listens again.",
                   "* The third time, he sits down on the curb and laughs. Then cries. Then laughs.",
@@ -439,8 +440,16 @@ namespace Subnet.EditorTools
                 spkCommuter, "gave_tape;+openness#gave_tape;$6#gave_tape_tokens",
                 new Vector3(13.2f, 1f, -2.8f), new Vector3(3.2f, 2f, 3.2f));
 
-            ExitZone(ctx, "Exit_ToConcretePark", new Vector3(22.3f, 1f, 0f), new Vector3(1.5f, 2f, 8.4f), ParkScene, "ch4", "hack1_done",
+            SceneExit toPark = ExitZone(ctx, "Exit_ToConcretePark", new Vector3(22.3f, 1f, 0f), new Vector3(1.5f, 2f, 8.4f), ParkScene, "ch4", "hack1_done",
                 L("* The street goes on, but something's still blocking Kira's route."));
+            Set(toPark, "entryId", "from_subnet");
+
+            // Walking back: west end → the Night Train back to Central Station; arriving from the park → east end.
+            SceneExit toStation = BackExit(ctx, "Exit_BackToStation", new Vector3(-16.4f, 1f, 0f), new Vector3(0.8f, 2f, 8.4f), StationScene, "from_subnet");
+            SetStrings(toStation, "leavingLines", L("* The Night Train is still waiting at the platform, doors open. {p}It goes back to Central Station."));
+            Entry(ctx, "from_park", new Vector3(19.6f, 0f, 0f), -90f, "back_subnet",
+                L("* The street, from the other end. {p}Everything's a little different on the way back.",
+                  "* The 'BACK IN 5 MINUTES' shop has its lights on."));
 
             // Arrival cinematic
             Transform points = new GameObject("CinematicPoints").transform;
