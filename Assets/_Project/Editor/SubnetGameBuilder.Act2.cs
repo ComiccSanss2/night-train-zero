@@ -307,8 +307,10 @@ namespace Subnet.EditorTools
                 L("next stop: concrete park. east. follow the cold."),
                 L("You didn't fight him. You just... listened. Is that allowed?",
                   "{approach=kira}Here. Take one of these. Somebody should get a care package delivered to them, for once.",
-                  "* (Kira hands you a small warm box. The label says: FRAGILE. CONTENTS: YOU.)"),
-                spkKira, "got_care_package");
+                  "* (Kira hands you a small warm box. The label says: FRAGILE. CONTENTS: YOU.)",
+                  "It's not one to deliver. {p}It's yours. {p}{small}Open it when the night gets heavy.{/small}",
+                  "Next stop: the Concrete Park, end of the street, east. {p}{fast}But if you want five minutes of nothing first: the fire escape next to the guy you just freed. Roof. I'll be up there.{/fast}"),
+                spkKira, "got_care_package;key:care_package");
             Event(ctx, "ByteHint", StoryEvent.TriggerMode.OnFlag, "met_byte", 6f, "BYTE",
                 L("the courier by the mannequins. talk to her. she knows the route."), null, null, string.Empty);
 
@@ -424,9 +426,10 @@ namespace Subnet.EditorTools
             // ---------------------------------------------------------------- Buildings you can enter
             BuildNeonMart(ctx, new Vector3(5.8f, 0f, 4.72f), LitMaterial("Houses/M_Facade_Mart", new Color(0.24f, 0.12f, 0.34f)));
             BuildApartment0451(ctx, new Vector3(18.8f, 0f, 4.72f), LitMaterial("Houses/M_Facade_0451", new Color(0.4f, 0.42f, 0.46f)));
-            LockedDoor(ctx, "BackIn5", new Vector3(-12.6f, 0f, 4.72f), 180f, LitMaterial("Houses/M_Door_Closed", new Color(0.5f, 0.2f, 0.3f)), Magenta,
+            HouseDoor backIn5 = LockedDoor(ctx, "BackIn5", new Vector3(-12.6f, 0f, 4.72f), 180f, LitMaterial("Houses/M_Door_Closed", new Color(0.5f, 0.2f, 0.3f)), Magenta,
                 LitMaterial("Houses/M_Facade_Closed", new Color(0.3f, 0.2f, 0.35f)),
                 L("* A note on the door: BACK IN 5 MINUTES.", "* The note is dated 1998."));
+            DoorNote(backIn5, "BACK IN\n5 MINUTES");
             Event(ctx, "GiveTape", StoryEvent.TriggerMode.OnPlayerEnter, "key.voicemail_tape", 0.1f, null, null,
                 L("* You hand him the tape. He listens. {p}Then he listens again.",
                   "* The third time, he sits down on the curb and laughs. Then cries. Then laughs.",

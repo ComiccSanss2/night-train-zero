@@ -4321,3 +4321,23 @@ fr|Personne n'y arrive du premier coup. Même pas ceux qui t'aiment.
 en|LIVE
 it|LIVE
 fr|EN DIRECT
+
+en|It's not one to deliver. {p}It's yours. {p}{small}Open it when the night gets heavy.{/small}
+it|Questo non è da consegnare. {p}È tuo. {p}{small}Aprilo quando la notte si fa pesante.{/small}
+fr|Celui-là, il n'est pas à livrer. {p}Il est à toi. {p}{small}Ouvre-le quand la nuit devient lourde.{/small}
+
+en|Next stop: the Concrete Park, end of the street, east. {p}{fast}But if you want five minutes of nothing first: the fire escape next to the guy you just freed. Roof. I'll be up there.{/fast}
+it|Prossima tappa: il Concrete Park, in fondo alla strada, a est. {p}{fast}Ma se prima vuoi cinque minuti di niente: la scala antincendio vicino al tizio che hai appena liberato. Tetto. Io sarò lassù.{/fast}
+fr|Prochain arrêt : le Concrete Park, au bout de la rue, à l'est. {p}{fast}Mais si tu veux d'abord cinq minutes de rien : l'escalier de secours à côté du gars que tu viens de libérer. Le toit. Je serai là-haut.{/fast}
+
+en|Kira's Care Package
+it|Il Pacco di Kira
+fr|Le Colis de Kira
+
+en|A small warm box. FRAGILE. CONTENTS: YOU. Not one to deliver: Kira says it's yours.
+it|Una scatolina tiepida. FRAGILE. CONTENUTO: TU. Non è da consegnare: Kira dice che è tuo.
+fr|Une petite boîte tiède. FRAGILE. CONTENU : TOI. Pas à livrer : Kira dit qu'il est à toi.
+
+en|BACK IN\n5 MINUTES
+it|TORNO TRA\n5 MINUTI
+fr|DE RETOUR\nDANS 5 MIN

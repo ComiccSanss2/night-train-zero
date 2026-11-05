@@ -41,6 +41,8 @@ namespace Subnet.Core
             new ItemDef { id = "ramen", name = "Cup Ramen", heal = 5, price = 3,
                 description = "Three minutes of hope. Heals 5 HP." },
 
+            new ItemDef { id = "care_package", name = "Kira's Care Package", key = true,
+                description = "A small warm box. FRAGILE. CONTENTS: YOU. Not one to deliver: Kira says it's yours." },
             new ItemDef { id = "voicemail_tape", name = "Voicemail Tape", key = true,
                 description = "Found in apartment 0451. A little girl sings happy birthday to a dad who never came home in time." },
             new ItemDef { id = "mia_drawing", name = "Mia's Drawing", key = true,

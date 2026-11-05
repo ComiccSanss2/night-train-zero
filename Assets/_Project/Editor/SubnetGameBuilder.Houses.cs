@@ -130,11 +130,32 @@ namespace Subnet.EditorTools
         }
 
         /// <summary>A locked door with a funny note (the door rattles).</summary>
-        private static void LockedDoor(Ctx ctx, string key, Vector3 position, float yaw, Material doorMat, Color glow, Material backing, string[] lines)
+        private static HouseDoor LockedDoor(Ctx ctx, string key, Vector3 position, float yaw, Material doorMat, Color glow, Material backing, string[] lines)
         {
             HouseDoor door = BuildDoor(ctx, key, position, yaw, doorMat, glow, backing);
             SetStrings(door, "lockedLines", lines);
             Set(door, "requiredFlag", "__never");
+            return door;
+        }
+
+        /// <summary>A paper note taped to a door leaf (moves with the door when it rattles).</summary>
+        private static void DoorNote(HouseDoor door, string text)
+        {
+            if (door == null) return;
+            Transform hinge = door.transform.Find("Hinge");
+            if (hinge == null) return;
+            float yaw = door.transform.eulerAngles.y;
+            Material paper = LitMaterial("Houses/M_Note", new Color(0.97f, 0.95f, 0.85f));
+            Material tape = LitMaterial("Houses/M_NoteTape", new Color(0.85f, 0.8f, 0.55f));
+            Vector3 pos = hinge.TransformPoint(new Vector3(0.5f, 1.18f, 0.045f));
+            GameObject note = Deco("Note", hinge, pos, new Vector3(0.5f, 0.36f, 0.01f), paper, new Vector3(0f, yaw, -4f));
+            note.transform.SetParent(hinge, true);
+            GameObject strip = Deco("Tape", hinge, hinge.TransformPoint(new Vector3(0.5f, 1.36f, 0.052f)), new Vector3(0.16f, 0.06f, 0.006f), tape, new Vector3(0f, yaw, 6f));
+            strip.transform.SetParent(hinge, true);
+            TextMeshPro label = WorldSign(hinge, text, hinge.TransformPoint(new Vector3(0.5f, 1.18f, 0.056f)), yaw, new Color(0.12f, 0.08f, 0.14f), 1.15f);
+            label.transform.rotation = Quaternion.Euler(0f, yaw + 180f, -4f);
+            label.rectTransform.sizeDelta = new Vector2(0.48f, 0.34f);
+            label.lineSpacing = -20f;
         }
 
         /// <summary>Floating 3D neon text (shop signs, apartment numbers).</summary>
