@@ -107,9 +107,23 @@ namespace Subnet.EditorTools
             AnimationClip clip = AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(asset)).OfType<AnimationClip>()
                 .FirstOrDefault(c => c.name.ToLowerInvariant() == clipName);
             Animator animator = characterRoot.GetComponentInChildren<Animator>();
-            if (clip == null || animator == null) return;
-            clip.SampleAnimation(animator.gameObject, clip.length * at);
-            animator.enabled = false;
+            if (clip == null || animator == null) { ReportLine($"statue pose: no clip '{clipName}' on {modelName}"); return; }
+            // A one-state controller frozen on one frame of the clip (speed 0): the pose holds at runtime.
+            string folder = Root + "/Art/Animations/Enemies";
+            EnsureFolder(folder);
+            string path = folder + "/AC_Statue_" + modelName + "_" + clipName + ".controller";
+            AssetDatabase.DeleteAsset(path);
+            AnimatorController controller = AnimatorController.CreateAnimatorControllerAtPathWithClip(path, clip);
+            AnimatorState state = controller.layers[0].stateMachine.defaultState;
+            if (state != null)
+            {
+                state.speed = 0f;
+                state.cycleOffset = at;
+            }
+            animator.runtimeAnimatorController = controller;
+            animator.enabled = true;
+            animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+            clip.SampleAnimation(animator.gameObject, clip.length * at); // also right in the editor view
         }
 
         /// <summary>
