@@ -90,6 +90,30 @@ namespace Subnet.CameraSystem
         /// <summary>Back to the isometric follow camera.</summary>
         public void ClearShot() => shotTarget = 0f;
 
+        private float defaultNear = -1f;
+
+        /// <summary>Near-plane distance that skips whatever stands between the camera and the subject.</summary>
+        private float OccluderClip(Vector3 cameraPosition, Vector3 subject)
+        {
+            float near = defaultNear > 0f ? defaultNear : 0.1f;
+            Vector3 toCam = cameraPosition - subject;
+            float length = toCam.magnitude;
+            if (length < 0.5f) return near;
+            float best = -1f; // distance from the camera to the far side of the closest blocker
+            foreach (RaycastHit hit in Physics.RaycastAll(subject, toCam / length, length, ~0, QueryTriggerInteraction.Ignore))
+            {
+                if (hit.distance < 0.6f) continue; // the subject itself
+                Collider c = hit.collider;
+                if (c is CharacterController || c.CompareTag("Player") || c.GetComponentInParent<Animator>() != null) continue;
+                float fromCam = length - hit.distance;
+                // The ray from the subject enters the blocker on its subject side: clip everything up to there.
+                float through = fromCam + 0.05f;
+                if (through > best) best = through;
+            }
+            if (best < 0f) return near;
+            return Mathf.Clamp(best, near, Mathf.Max(near, length - 0.6f));
+        }
+
         /// <summary>World box around a character's visible meshes (particles ignored).</summary>
         public static Bounds BodyBounds(Transform body)
         {
@@ -229,11 +253,23 @@ namespace Subnet.CameraSystem
                     cam.fieldOfView = Mathf.Lerp(fieldOfView, shotFov, k);
                     fovTouched = true;
                 }
+                // A wall, a pillar or a prop between the lens and the characters: push the near plane just past it,
+                // so the shot sees through it instead of showing the back of a wall.
+                if (cam != null)
+                {
+                    if (defaultNear < 0f) defaultNear = cam.nearClipPlane;
+                    float wanted = Mathf.Lerp(defaultNear, OccluderClip(position, shotLook), k);
+                    cam.nearClipPlane = Mathf.Lerp(cam.nearClipPlane, wanted, 1f - Mathf.Exp(-12f * dt));
+                }
             }
-            else if (fovTouched && cam != null && !cam.orthographic)
+            else
             {
-                cam.fieldOfView = fieldOfView;
-                fovTouched = false;
+                if (fovTouched && cam != null && !cam.orthographic)
+                {
+                    cam.fieldOfView = fieldOfView;
+                    fovTouched = false;
+                }
+                if (cam != null && defaultNear > 0f && cam.nearClipPlane != defaultNear) cam.nearClipPlane = defaultNear;
             }
 
             // Trauma² shake: perceptually smoother than linear.

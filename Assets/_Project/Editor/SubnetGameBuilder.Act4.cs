@@ -109,6 +109,14 @@ namespace Subnet.EditorTools
             algoActor.actorId = "algorithm";
             algoActor.turnToFace = false;
             PixelTears(algorithm.transform, algorithm.transform.position, staticParticles, 25f);
+            // A solid body at the foot of the boss (the model itself has no collider: Leo used to walk through it).
+            var algoBody = new GameObject("TheAlgorithm_Body");
+            algoBody.transform.SetParent(ctx.story, false);
+            algoBody.transform.position = new Vector3(14.5f, 0f, 0f);
+            var algoCapsule = algoBody.AddComponent<CapsuleCollider>();
+            algoCapsule.center = new Vector3(0f, 2f, 0f);
+            algoCapsule.radius = 1.7f;
+            algoCapsule.height = 4f;
 
             // Arrival of The Algorithm
             Transform points = new GameObject("CinematicPoints").transform;
