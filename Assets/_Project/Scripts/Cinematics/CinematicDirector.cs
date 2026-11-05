@@ -425,8 +425,7 @@ namespace Subnet.Cinematics
             if (letterboxRoutine != null) StopCoroutine(letterboxRoutine);
 
             float target = show ? Mathf.Max(letterboxHeight, 140f) : 0f;
-            // Dialogue turns into subtitles inside the bottom bar while the bars are up.
-            if (DialogueManager.Instance != null) DialogueManager.Instance.SetCinematicSkin(show, target);
+            // (The subtitle skin was hard to read: the normal dialogue box stays during cinematics.)
             if (instant || letterboxDuration <= 0f)
             {
                 SetBarHeight(target);

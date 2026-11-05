@@ -103,8 +103,8 @@ namespace Subnet.CameraSystem
             return b;
         }
 
-        /// <summary>Share of the screen height left between the cinema bars (dialogue sits inside the bottom bar).</summary>
-        public const float FramedHeight = 0.72f;
+        /// <summary>Share of the screen height left between the top bar and the dialogue box.</summary>
+        public const float FramedHeight = 0.56f;
 
         /// <summary>
         /// Frames <paramref name="subject"/> (a box around the characters) seen along <paramref name="viewDirection"/>:
@@ -222,7 +222,7 @@ namespace Subnet.CameraSystem
                 Vector3 shotPos = shotPosition + drift;
                 position = Vector3.Lerp(position, shotPos, k);
                 // Aim a little below the subject so faces sit in the upper part of the frame, clear of the dialogue box.
-                Quaternion aim = Quaternion.LookRotation(shotLook - shotPos, Vector3.up);
+                Quaternion aim = Quaternion.LookRotation(shotLook - shotPos, Vector3.up) * Quaternion.Euler(shotFov * 0.12f, 0f, 0f);
                 rotation = Quaternion.Slerp(rotation, aim, k);
                 if (cam != null && !cam.orthographic)
                 {
