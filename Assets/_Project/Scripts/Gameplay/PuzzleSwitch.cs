@@ -12,6 +12,10 @@ namespace Subnet.Gameplay
         [SerializeField] private Renderer glowRenderer;
         [SerializeField] private Color litColor = new Color(1f, 0.85f, 0.55f);
         [SerializeField] private Transform promptAnchor;
+        [Tooltip("Optional: a note this switch plays when touched (bottles, drums), pitch set on the source.")]
+        [SerializeField] private AudioSource noteSource;
+        [Tooltip("Optional: what bounces when touched.")]
+        [SerializeField] private Transform punch;
 
         private static readonly int EmissionId = Shader.PropertyToID("_EmissionColor");
         private SequencePuzzle owner;
@@ -35,7 +39,22 @@ namespace Subnet.Gameplay
         public void Interact(PlayerInteractor interactor)
         {
             if (interactor != null) interactor.FaceTowards(transform.position);
+            if (owner != null && owner.IsLocked) { owner.SayLocked(); return; }
+            if (noteSource != null) noteSource.Play();
+            if (punch != null) StartCoroutine(Punch());
             if (owner != null) owner.Report(this);
+        }
+
+        private System.Collections.IEnumerator Punch()
+        {
+            Vector3 baseScale = punch.localScale;
+            for (float t = 0f; t < 0.25f; t += Time.unscaledDeltaTime)
+            {
+                float k = Mathf.Sin(t / 0.25f * Mathf.PI);
+                punch.localScale = new Vector3(baseScale.x * (1f + 0.12f * k), baseScale.y * (1f - 0.1f * k), baseScale.z * (1f + 0.12f * k));
+                yield return null;
+            }
+            punch.localScale = baseScale;
         }
 
         public void SetLit(bool lit)

@@ -37,6 +37,7 @@ namespace Subnet.Core
                 flags.Add(once);
                 flag = flag.Substring(0, onceAt);
             }
+            if (flag.StartsWith("clear:")) { Clear(flag.Substring(6)); return; }
             if (Inventory.TryHandleFlag(flag)) return;
             if (flag.Length > 1 && flag[0] == '+')
             {

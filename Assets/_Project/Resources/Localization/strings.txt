@@ -5087,3 +5087,679 @@ en|Maybe that's why.
 it|Forse è per questo.
 fr|C'est peut-être pour ça.
 
+# ---- Prologue: Halden, three years earlier
+
+en|MOM
+it|MAMMA
+fr|MAMAN
+
+en|DANI
+it|DANI
+fr|DANI
+
+en|MR. RUSSO
+it|SIG. RUSSO
+fr|M. RUSSO
+
+en|MRS. HALE
+it|SIG.RA HALE
+fr|MME HALE
+
+en|STATION MASTER
+it|CAPOSTAZIONE
+fr|CHEF DE GARE
+
+en|KID
+it|BAMBINO
+fr|GAMIN
+
+en|OLD MAN
+it|ANZIANO
+fr|VIEIL HOMME
+
+en|RUSSO  BAKERY
+it|PANIFICIO  RUSSO
+fr|BOULANGERIE  RUSSO
+
+en|CLOSED\nBACK AT 5
+it|CHIUSO\nRIAPRE ALLE 5
+fr|FERMÉ\nRÉOUVERTURE À 5H
+
+en|HALDEN
+it|HALDEN
+fr|HALDEN
+
+en|HOME
+it|CASA
+fr|CHEZ SOI
+
+en|HALDEN\npop. 4,212
+it|HALDEN\nab. 4.212
+fr|HALDEN\n4 212 hab.
+
+en|SWING
+it|ALTALENA
+fr|BALANÇOIRE
+
+en|BREAD
+it|PANE
+fr|PAIN
+
+en|DRUMS
+it|BATTERIA
+fr|BATTERIE
+
+en|21:40   CITY CENTRAL   ON TIME
+it|21:40   CITY CENTRAL   IN ORARIO
+fr|21:40   CITY CENTRAL   À L'HEURE
+
+en|22:55   COAST LINE     ON TIME
+it|22:55   LINEA COSTIERA IN ORARIO
+fr|22:55   LIGNE CÔTIÈRE  À L'HEURE
+
+en|MIA'S ROOM\nKNOCK!!
+it|CAMERA DI MIA\nBUSSARE!!
+fr|CHAMBRE DE MIA\nFRAPPER !!
+
+en|MEM_00 // HALDEN, THREE YEARS AGO
+it|MEM_00 // HALDEN, TRE ANNI FA
+fr|MEM_00 // HALDEN, IL Y A TROIS ANS
+
+en|The Last Day
+it|L'ultimo giorno
+fr|Le dernier jour
+
+en|Hometown, three years ago
+it|Halden, tre anni fa
+fr|Halden, il y a trois ans
+
+en|Your train ticket is gone. Look at your desk.
+it|Il biglietto del treno è sparito. Guarda sulla scrivania.
+fr|Ton billet de train a disparu. Regarde sur le bureau.
+
+en|Where the morning starts.
+it|Dove comincia la mattina.
+fr|Là où le matin commence.
+
+en|Boom. Tss.
+it|Bum. Tss.
+fr|Boum. Tss.
+
+en|Light the way to the swing.
+it|Illumina la strada fino all'altalena.
+fr|Éclaire le chemin jusqu'à la balançoire.
+
+en|Mia is at the bandstand.
+it|Mia ti aspetta al gazebo.
+fr|Mia t'attend au kiosque.
+
+en|Box fourteen is still open.
+it|Lo scatolone quattordici è ancora aperto.
+fr|Le carton quatorze est encore ouvert.
+
+en|Say goodbye to Mom.
+it|Saluta la mamma.
+fr|Dis au revoir à maman.
+
+en|Catch the 21:40.
+it|Prendi il treno delle 21:40.
+fr|Prends le train de 21h40.
+
+en|Warm Roll
+it|Panino caldo
+fr|Petit pain chaud
+
+en|From the bakery downstairs. Still warm. Heals 4 HP.
+it|Dal panificio sotto casa. Ancora caldo. Cura 4 PS.
+fr|De la boulangerie d'en bas. Encore chaud. Soigne 4 PV.
+
+en|Train Ticket
+it|Biglietto del treno
+fr|Billet de train
+
+en|HALDEN to CITY CENTRAL. 21:40. One way. Mia drew a sad face on the back, then crossed it out.
+it|HALDEN - CITY CENTRAL. 21:40. Solo andata. Mia ci ha disegnato dietro una faccina triste, poi l'ha cancellata.
+fr|HALDEN - CITY CENTRAL. 21h40. Aller simple. Mia a dessiné une tête triste au dos, puis l'a barrée.
+
+en|Recital Program
+it|Programma del saggio
+fr|Programme du spectacle
+
+en|Mia's dance recital, next spring. Front row, seat 1. A crayon heart on the back.
+it|Il saggio di danza di Mia, la prossima primavera. Prima fila, posto 1. Dietro, un cuore a pastello.
+fr|Le spectacle de danse de Mia, au printemps prochain. Premier rang, place 1. Un cœur au feutre au dos.
+
+en|Leo! So it's today, is it? {p}Your mother's been baking since noon. That's how I knew.
+it|Leo! Allora è oggi, eh? {p}Tua madre sforna dolci da mezzogiorno. L'ho capito così.
+fr|Leo ! C'est donc aujourd'hui ? {p}Ta mère fait des gâteaux depuis midi. C'est comme ça que j'ai su.
+
+en|The city. Well. {p}My Arthur went to the city once. Came back with a hat and an accent. {p}{small}Lost the accent. Kept the hat.{/small}
+it|La città. Mah. {p}Il mio Arthur ci è andato una volta. È tornato con un cappello e un accento. {p}{small}L'accento l'ha perso. Il cappello no.{/small}
+fr|La ville. Eh bien. {p}Mon Arthur y est allé une fois. Il est revenu avec un chapeau et un accent. {p}{small}L'accent est parti. Le chapeau est resté.{/small}
+
+en|These roses are older than you. {p}I talk to them. {small}They're better listeners than Arthur.{/small}
+it|Queste rose sono più vecchie di te. {p}Ci parlo. {small}Ascoltano meglio di Arthur.{/small}
+fr|Ces roses sont plus vieilles que toi. {p}Je leur parle. {small}Elles écoutent mieux qu'Arthur.{/small}
+
+en|Your sister asked me for a biscuit tin this morning. {p}Very serious about it. {p}{small}I didn't ask.{/small}
+it|Stamattina tua sorella mi ha chiesto una scatola di latta per biscotti. {p}Serissima. {p}{small}Non ho fatto domande.{/small}
+fr|Ta sœur m'a demandé une boîte à biscuits ce matin. {p}Très sérieuse. {p}{small}Je n'ai pas posé de questions.{/small}
+
+en|You'll write to your mother? {p}...Text. Whatever you young people do. {p}Just do it.
+it|Scriverai a tua madre? {p}...Messaggi. Quello che fate voi giovani. {p}Basta che lo fai.
+fr|Tu écriras à ta mère ? {p}...Des textos. Ce que vous faites, les jeunes. {p}Fais-le, c'est tout.
+
+en|A cheap amp with a strip of tape on it. In silver marker: <color=#33FFF2>NIGHT TRAIN</color>.
+it|Un amplificatore da quattro soldi con sopra una striscia di nastro. A pennarello argento: <color=#33FFF2>NIGHT TRAIN</color>.
+fr|Un ampli bon marché avec un bout de scotch dessus. Au marqueur argent : <color=#33FFF2>NIGHT TRAIN</color>.
+
+en|We named the band before we had a song. {p}Then we named the song after the band.
+it|Abbiamo dato il nome alla band prima di avere una canzone. {p}Poi alla canzone abbiamo dato il nome della band.
+fr|On a trouvé le nom du groupe avant d'avoir une chanson. {p}Puis on a appelé la chanson comme le groupe.
+
+en|NIGHT TRAIN. {p}Kick, tom, snare, crash. {p}That's the whole intro. We were very proud of it.
+it|NIGHT TRAIN. {p}Cassa, tom, rullante, piatto. {p}L'intro è tutta qui. Ne andavamo fierissimi.
+fr|NIGHT TRAIN. {p}Grosse caisse, tom, caisse claire, cymbale. {p}C'est toute l'intro. On en était très fiers.
+
+en|Dani's kit. Nobody touches Dani's kit. {p}Not even me.
+it|La batteria di Dani. Nessuno tocca la batteria di Dani. {p}Neanche io.
+fr|La batterie de Dani. Personne ne touche à la batterie de Dani. {p}Même pas moi.
+
+en|Wrong. {p}Dani winces like I stepped on his foot.
+it|Sbagliato. {p}Dani fa una smorfia, come se gli avessi pestato un piede.
+fr|Raté. {p}Dani grimace comme si je lui avais marché sur le pied.
+
+en|Summer fest, next year. You, me, NIGHT TRAIN. {p}{small}I'm printing posters. Don't make me waste posters.{/small}
+it|La festa d'estate, l'anno prossimo. Io, te, i NIGHT TRAIN. {p}{small}Faccio stampare i manifesti. Non farmeli buttare.{/small}
+fr|La fête de l'été, l'an prochain. Toi, moi, NIGHT TRAIN. {p}{small}J'imprime les affiches. Me les fais pas gâcher.{/small}
+
+en|Your sister left something on my snare. {p}Very official. She said you have to play first. Our intro.
+it|Tua sorella ha lasciato una cosa sul mio rullante. {p}Ufficialissima. Ha detto che prima devi suonare. La nostra intro.
+fr|Ta sœur a laissé un truc sur ma caisse claire. {p}Très officiel. Elle a dit que tu devais jouer d'abord. Notre intro.
+
+en|You remember it. Kick, tom, snare, crash. {p}{small}It's written on the amp, genius. In case your brain moved to the city already.{/small}
+it|Te la ricordi. Cassa, tom, rullante, piatto. {p}{small}È scritta sull'ampli, genio. Nel caso il tuo cervello si sia già trasferito in città.{/small}
+fr|Tu t'en souviens. Grosse caisse, tom, caisse claire, cymbale. {p}{small}C'est écrit sur l'ampli, génie. Au cas où ton cerveau aurait déjà déménagé en ville.{/small}
+
+en|There he is. The traitor. {p}...I'm joking. Mostly.
+it|Eccolo. Il traditore. {p}...Scherzo. Più o meno.
+fr|Le voilà. Le traître. {p}...Je rigole. À moitié.
+
+en|One last jam before the big city? {p}{small}Later. I'm tuning. It takes me an hour to make it sound this bad.{/small}
+it|Un'ultima suonata prima della grande città? {p}{small}Dopo. Sto accordando. Mi ci vuole un'ora per farla suonare così male.{/small}
+fr|Un dernier bœuf avant la grande ville ? {p}{small}Plus tard. J'accorde. Il me faut une heure pour que ça sonne aussi mal.{/small}
+
+en|...Still got it. {p}Sort of. Your crash was late.
+it|...Ce l'hai ancora. {p}Più o meno. Il piatto era in ritardo.
+fr|...T'as encore le truc. {p}Plus ou moins. Ta cymbale était en retard.
+
+en|Here. From your sister. {p}I'm not allowed to read it. {small}I read it.{/small}
+it|Tieni. Da parte di tua sorella. {p}Non potevo leggerlo. {small}L'ho letto.{/small}
+fr|Tiens. De la part de ta sœur. {p}J'avais pas le droit de le lire. {small}Je l'ai lu.{/small}
+
+en|A drawing of the old swing over the river, three little lanterns on the bridge, and: <color=#FF4FD8>IN THE ORDER YOU FOUND ME</color>.
+it|Un disegno della vecchia altalena sul fiume, tre lanterne sul ponte, e: <color=#FF4FD8>NELL'ORDINE IN CUI MI HAI TROVATA</color>.
+fr|Un dessin de la vieille balançoire au bord de la rivière, trois lanternes sur le pont, et : <color=#FF4FD8>DANS L'ORDRE OÙ TU M'AS TROUVÉE</color>.
+
+en|Summer fest next year, yeah? You come back, we play. {p}...Leo. {p}{slow}Come back.{/slow}
+it|La festa d'estate, l'anno prossimo, eh? Torni e suoniamo. {p}...Leo. {p}{slow}Torna.{/slow}
+fr|La fête de l'été l'an prochain, hein ? Tu reviens, on joue. {p}...Leo. {p}{slow}Reviens.{/slow}
+
+en|Sure, I tell him. {p}Easy.
+it|Certo, gli dico. {p}Facile.
+fr|Bien sûr, je lui dis. {p}Facile.
+
+en|last night in town and u havent come to say bye?? {p}carport. now.
+it|ultima sera in paese e non sei ancora passato a salutare?? {p}tettoia. subito.
+fr|dernier soir en ville et t'es pas encore venu dire au revoir ?? {p}l'abri. maintenant.
+
+en|CLOSED. BACK AT 5 A.M. {p}Mr. Russo's handwriting. Same sign since we moved in.
+it|CHIUSO. RIAPRE ALLE 5. {p}La calligrafia del signor Russo. Lo stesso cartello da quando abitiamo qui.
+fr|FERMÉ. RÉOUVERTURE À 5H. {p}L'écriture de M. Russo. La même pancarte depuis qu'on habite ici.
+
+en|Go on, the drummer's waiting. {p}{small}I can hear him from here. Everybody can.{/small}
+it|Vai, il batterista ti aspetta. {p}{small}Lo sento da qui. Lo sentono tutti.{/small}
+fr|Vas-y, le batteur t'attend. {p}{small}Je l'entends d'ici. Tout le monde l'entend.{/small}
+
+en|Ah. There he is. {p}Your sister came by an hour ago. Very official. {small}She had a clipboard.{/small}
+it|Ah. Eccolo. {p}Tua sorella è passata un'ora fa. Molto ufficiale. {small}Aveva una cartellina.{/small}
+fr|Ah. Le voilà. {p}Ta sœur est passée il y a une heure. Très officielle. {small}Elle avait un porte-bloc.{/small}
+
+en|She said: when Leo comes, give him this. And a roll. {p}The roll was my idea.
+it|Ha detto: quando arriva Leo, dagli questo. E un panino. {p}Il panino è stata un'idea mia.
+fr|Elle a dit : quand Leo arrive, donne-lui ça. Et un petit pain. {p}Le petit pain, c'était mon idée.
+
+en|Another crayon drawing. A drum kit, and two words: <color=#FF4FD8>BOOM TSS</color>.
+it|Un altro disegno a pastello. Una batteria, e due parole: <color=#FF4FD8>BUM TSS</color>.
+fr|Un autre dessin au feutre. Une batterie, et deux mots : <color=#FF4FD8>BOUM TSS</color>.
+
+en|...Dani's carport. {p}Of course.
+it|...La tettoia di Dani. {p}Ovvio.
+fr|...L'abri de Dani. {p}Évidemment.
+
+en|Leo! Last night in Halden, eh? {p}Five o'clock tomorrow and nobody steals the first roll. {p}{small}I'll have to eat it myself.{/small}
+it|Leo! Ultima sera a Halden, eh? {p}Domani alle cinque nessuno mi ruba il primo panino. {p}{small}Dovrò mangiarmelo io.{/small}
+fr|Leo ! Dernier soir à Halden, hein ? {p}Demain à cinq heures, personne ne me volera le premier petit pain. {p}{small}Je vais devoir le manger moi-même.{/small}
+
+en|Twelve years I've had you upstairs. Stomping. {p}{slow}It's going to be very quiet.{/slow}
+it|Dodici anni che ti ho al piano di sopra. A pestare i piedi. {p}{slow}Sarà tutto molto silenzioso.{/slow}
+fr|Douze ans que je t'ai au-dessus de ma tête. À taper des pieds. {p}{slow}Ça va être très calme.{/slow}
+
+en|Mia throws a coin in here every Sunday. {p}She's never told anyone what she wishes for.
+it|Mia ci butta una moneta ogni domenica. {p}Non ha mai detto a nessuno cosa desidera.
+fr|Mia y jette une pièce chaque dimanche. {p}Elle n'a jamais dit à personne ce qu'elle souhaite.
+
+en|There's a coin on the edge, drying in the sun. {p}You leave it. It isn't yours.
+it|Sul bordo c'è una moneta che si asciuga al sole. {p}La lasci lì. Non è tua.
+fr|Il y a une pièce sur le rebord, qui sèche au soleil. {p}Tu la laisses. Elle n'est pas à toi.
+
+en|The water sounds exactly like it did when I was ten.
+it|L'acqua fa lo stesso rumore di quando avevo dieci anni.
+fr|L'eau fait exactement le même bruit que quand j'avais dix ans.
+
+en|An espresso somebody abandoned halfway. {p}Very Halden. Nobody here finishes anything in a hurry.
+it|Un espresso lasciato a metà. {p}Molto Halden. Qui nessuno finisce niente di fretta.
+fr|Un expresso abandonné à moitié. {p}Très Halden. Ici, personne ne finit rien dans la précipitation.
+
+en|Apricots. The first ones of the summer. {p}You take one. Mr. Sana waves from inside, pretending he didn't see.
+it|Albicocche. Le prime dell'estate. {p}Ne prendi una. Il signor Sana ti saluta da dentro, facendo finta di non aver visto.
+fr|Des abricots. Les premiers de l'été. {p}Tu en prends un. M. Sana te fait signe de l'intérieur, l'air de rien.
+
+en|Still the best apricots in the world. {p}{small}I've never checked. I'm sure.{/small}
+it|Sempre le albicocche più buone del mondo. {p}{small}Non ho mai controllato. Ne sono sicuro.{/small}
+fr|Toujours les meilleurs abricots du monde. {p}{small}J'ai jamais vérifié. J'en suis sûr.{/small}
+
+en|NIGHT RUNNER. HIGH SCORES:
+it|NIGHT RUNNER. RECORD:
+fr|NIGHT RUNNER. MEILLEURS SCORES :
+
+en|1. MIA ..... 99,850 {p}2. LEO ..... 99,840
+it|1. MIA ..... 99.850 {p}2. LEO ..... 99.840
+fr|1. MIA ..... 99 850 {p}2. LEO ..... 99 840
+
+en|She beat me this morning. She made me watch the whole replay. Twice.
+it|Mi ha battuto stamattina. Mi ha fatto guardare tutto il replay. Due volte.
+fr|Elle m'a battu ce matin. Elle m'a fait regarder tout le replay. Deux fois.
+
+en|I'll win it back next summer.
+it|Me lo riprendo l'estate prossima.
+fr|Je le reprendrai l'été prochain.
+
+en|99,840. {p}{small}Next summer.{/small}
+it|99.840. {p}{small}L'estate prossima.{/small}
+fr|99 840. {p}{small}L'été prochain.{/small}
+
+en|Mr. Hale's car. It hasn't moved since he got his hip done. {p}Mrs. Hale washes it every Saturday anyway.
+it|La macchina del signor Hale. Non si è più mossa da quando si è operato all'anca. {p}La signora Hale la lava lo stesso ogni sabato.
+fr|La voiture de M. Hale. Elle n'a pas bougé depuis son opération de la hanche. {p}Mme Hale la lave quand même tous les samedis.
+
+en|RUSSO BAKERY - DELIVERIES. {p}The van smells like bread even with the doors shut.
+it|PANIFICIO RUSSO - CONSEGNE. {p}Il furgone profuma di pane anche a portiere chiuse.
+fr|BOULANGERIE RUSSO - LIVRAISONS. {p}La camionnette sent le pain même portes fermées.
+
+en|You're Mia's brother! {p}She said you're moving to the city to become a millionaire.
+it|Sei il fratello di Mia! {p}Ha detto che vai in città a diventare milionario.
+fr|T'es le frère de Mia ! {p}Elle a dit que tu partais en ville pour devenir millionnaire.
+
+en|Watch this. {p}...No, wait, watch THIS. {p}{small}...Okay, I'll do it when you're not looking.{/small}
+it|Guarda qua. {p}...No, aspetta, guarda QUESTO. {p}{small}...Va be', lo faccio quando non guardi.{/small}
+fr|Regarde ça. {p}...Non, attends, regarde ÇA. {p}{small}...Bon, je le ferai quand tu regardes pas.{/small}
+
+en|Is it true the city has trains every five minutes? {p}{big}Every five minutes?{/big} {p}What do they DO all day?
+it|È vero che in città c'è un treno ogni cinque minuti? {p}{big}Ogni cinque minuti?{/big} {p}Ma cosa FANNO tutto il giorno?
+fr|C'est vrai qu'en ville il y a un train toutes les cinq minutes ? {p}{big}Toutes les cinq minutes ?{/big} {p}Mais qu'est-ce qu'ils FONT toute la journée ?
+
+en|Mia's at the bandstand. She's been there since lunch. {p}She said nobody's allowed. {small}Especially you.{/small}
+it|Mia è al gazebo. È lì da pranzo. {p}Ha detto che non può andarci nessuno. {small}Soprattutto tu.{/small}
+fr|Mia est au kiosque. Elle y est depuis midi. {p}Elle a dit que personne n'avait le droit. {small}Surtout pas toi.{/small}
+
+en|I'm not telling you anything. I signed a contract. {p}{small}In crayon.{/small}
+it|Non ti dico niente. Ho firmato un contratto. {p}{small}A pastello.{/small}
+fr|Je te dirai rien. J'ai signé un contrat. {p}{small}Au feutre.{/small}
+
+en|The 21:40. {p}My son took it, twenty years ago. {p}{slow}Every Christmas he says next year.{/slow}
+it|Il treno delle 21:40. {p}Mio figlio l'ha preso vent'anni fa. {p}{slow}Ogni Natale dice: l'anno prossimo.{/slow}
+fr|Le 21h40. {p}Mon fils l'a pris, il y a vingt ans. {p}{slow}Chaque Noël, il dit : l'an prochain.{/slow}
+
+en|Don't look at me like that. He's happy. {p}{small}I think. He says so in the cards.{/small}
+it|Non guardarmi così. È felice. {p}{small}Credo. Lo scrive nei biglietti.{/small}
+fr|Me regarde pas comme ça. Il est heureux. {p}{small}Je crois. Il le dit dans ses cartes.{/small}
+
+en|River's low this summer. {p}You can see the stones you couldn't see before.
+it|Quest'estate il fiume è basso. {p}Si vedono sassi che prima non si vedevano.
+fr|La rivière est basse cet été. {p}On voit des pierres qu'on ne voyait pas avant.
+
+en|The river, the light, the swing on the other side. {p}I could sit here until the train's gone. {p}{small}I could.{/small}
+it|Il fiume, la luce, l'altalena sull'altra riva. {p}Potrei restare seduto qui finché il treno non è partito. {p}{small}Potrei.{/small}
+fr|La rivière, la lumière, la balançoire de l'autre côté. {p}Je pourrais rester assis là jusqu'à ce que le train soit parti. {p}{small}Je pourrais.{/small}
+
+en|Still here. Still could.
+it|Ancora qui. Potrei ancora.
+fr|Toujours là. Je pourrais encore.
+
+en|Mia's wind chimes. {p}If I touch them before she says so, I'm dead.
+it|Le campanelle a vento di Mia. {p}Se le tocco prima che me lo dica lei, sono morto.
+fr|Les carillons de Mia. {p}Si j'y touche avant qu'elle le dise, je suis mort.
+
+en|...That's not it. {p}Mia's drawing has the colours in order.
+it|...Non è così. {p}Sul disegno di Mia i colori sono in ordine.
+fr|...C'est pas ça. {p}Sur le dessin de Mia, les couleurs sont dans l'ordre.
+
+en|Mia's recital song, drawn in crayon. Four dots: <color=#4F8FFF>BLUE</color>, <color=#FFD84F>YELLOW</color>, <color=#FF4F4F>RED</color>, <color=#5FCF6F>GREEN</color>.
+it|La canzone del saggio di Mia, disegnata a pastello. Quattro pallini: <color=#4F8FFF>BLU</color>, <color=#FFD84F>GIALLO</color>, <color=#FF4F4F>ROSSO</color>, <color=#5FCF6F>VERDE</color>.
+fr|La chanson du spectacle de Mia, dessinée au feutre. Quatre points : <color=#4F8FFF>BLEU</color>, <color=#FFD84F>JAUNE</color>, <color=#FF4F4F>ROUGE</color>, <color=#5FCF6F>VERT</color>.
+
+en|Underneath: 'TINKLE TINKLE THEN I BOW'.
+it|Sotto: 'DIN DIN E POI FACCIO L'INCHINO'.
+fr|En dessous : « DING DING ET APRÈS JE SALUE ».
+
+en|<color=#4F8FFF>BLUE</color>, <color=#FFD84F>YELLOW</color>, <color=#FF4F4F>RED</color>, <color=#5FCF6F>GREEN</color>. Then she bows.
+it|<color=#4F8FFF>BLU</color>, <color=#FFD84F>GIALLO</color>, <color=#FF4F4F>ROSSO</color>, <color=#5FCF6F>VERDE</color>. Poi l'inchino.
+fr|<color=#4F8FFF>BLEU</color>, <color=#FFD84F>JAUNE</color>, <color=#FF4F4F>ROUGE</color>, <color=#5FCF6F>VERT</color>. Puis elle salue.
+
+en|Front row. Seat one. {p}{small}I'll check.{/small}
+it|Prima fila. Posto uno. {p}{small}Controllerò.{/small}
+fr|Premier rang. Place une. {p}{small}Je vérifierai.{/small}
+
+en|What ticket? {p}I don't know about any ticket. {p}{small}Go away. I'm practising.{/small}
+it|Quale biglietto? {p}Io non so niente di nessun biglietto. {p}{small}Vattene. Mi sto esercitando.{/small}
+fr|Quel billet ? {p}Je suis pas au courant d'un billet. {p}{small}Va-t'en. Je répète.{/small}
+
+en|...You found it. {p}{slow}Okay.{/slow}
+it|...L'hai trovato. {p}{slow}Va bene.{/slow}
+fr|...Tu l'as trouvé. {p}{slow}D'accord.{/slow}
+
+en|Then you have to play my song. Once. So I can practise my bow. {p}The colours are on my drawing. {small}Don't mess it up.{/small}
+it|Allora devi suonare la mia canzone. Una volta. Così provo l'inchino. {p}I colori sono sul mio disegno. {small}Non sbagliare.{/small}
+fr|Alors tu dois jouer ma chanson. Une fois. Pour que je répète mon salut. {p}Les couleurs sont sur mon dessin. {small}Te trompe pas.{/small}
+
+en|Again tomorrow? {p}...Oh. Right.
+it|Di nuovo domani? {p}...Ah. Già.
+fr|Encore demain ? {p}...Ah. C'est vrai.
+
+en|Mia bows. A very serious, very deep bow. {p}She nearly falls over.
+it|Mia fa l'inchino. Un inchino serissimo, profondissimo. {p}Per poco non cade.
+fr|Mia salue. Une révérence très sérieuse, très profonde. {p}Elle manque de tomber.
+
+en|Here. It's the program. I wrote your seat on it. {p}Front row. Seat one.
+it|Tieni. È il programma. Ci ho scritto il tuo posto. {p}Prima fila. Posto uno.
+fr|Tiens. C'est le programme. J'ai écrit ta place dessus. {p}Premier rang. Place une.
+
+en|["Promise."]
+it|["Promesso."]
+fr|[« Promis. »]
+
+en|["I'll try, Mia."]
+it|["Ci provo, Mia."]
+fr|[« J'essaierai, Mia. »]
+
+en|Pinky promise. {p}{small}Those are legally binding.{/small}
+it|Promessa col mignolo. {p}{small}Quelle valgono per legge.{/small}
+fr|Promesse du petit doigt. {p}{small}Ça a valeur légale.{/small}
+
+en|Trying isn't a promise. {p}...Fine. I'm writing down 'yes'.
+it|Provarci non è una promessa. {p}...Va bene. Scrivo 'sì'.
+fr|Essayer, c'est pas promettre. {p}...Bon. J'écris « oui ».
+
+en|Three paper lanterns, unlit. Somebody tied crayon tags to them. {p}Somebody short.
+it|Tre lanterne di carta, spente. Qualcuno ci ha legato dei cartellini a pastello. {p}Qualcuno bassino.
+fr|Trois lanternes en papier, éteintes. Quelqu'un y a accroché des étiquettes au feutre. {p}Quelqu'un de petit.
+
+en|The lanterns go out together. {p}'In the order you found me.'
+it|Le lanterne si spengono tutte insieme. {p}'Nell'ordine in cui mi hai trovata.'
+fr|Les lanternes s'éteignent ensemble. {p}« Dans l'ordre où tu m'as trouvée. »
+
+en|The last lantern catches. {p}Across the water, something glints under the swing.
+it|L'ultima lanterna si accende. {p}Dall'altra parte dell'acqua, sotto l'altalena, qualcosa luccica.
+fr|La dernière lanterne s'allume. {p}De l'autre côté de l'eau, quelque chose brille sous la balançoire.
+
+en|Mrs. Hale's biscuit tin. Empty now, except for crumbs.
+it|La scatola di biscotti della signora Hale. Vuota, a parte le briciole.
+fr|La boîte à biscuits de Mme Hale. Vide, à part les miettes.
+
+en|A biscuit tin, tied shut with string. On the lid, in crayon: <color=#FF4FD8>LIGHT THE WAY FIRST</color>.
+it|Una scatola di latta, legata con lo spago. Sul coperchio, a pastello: <color=#FF4FD8>PRIMA ILLUMINA LA STRADA</color>.
+fr|Une boîte en fer, fermée avec une ficelle. Sur le couvercle, au feutre : <color=#FF4FD8>ÉCLAIRE D'ABORD LE CHEMIN</color>.
+
+en|Inside: your train ticket. {p}Under it, one last drawing. A girl on a stage, bowing. An empty seat in the front row.
+it|Dentro: il tuo biglietto del treno. {p}Sotto, un ultimo disegno. Una bambina su un palco che fa l'inchino. Un posto vuoto in prima fila.
+fr|Dedans : ton billet de train. {p}En dessous, un dernier dessin. Une fille sur une scène, qui salue. Une place vide au premier rang.
+
+en|On the back: <color=#FF4FD8>COME SAY BYE PROPERLY. BANDSTAND.</color>
+it|Sul retro: <color=#FF4FD8>VIENI A SALUTARMI COME SI DEVE. GAZEBO.</color>
+fr|Au dos : <color=#FF4FD8>VIENS ME DIRE AU REVOIR COMME IL FAUT. KIOSQUE.</color>
+
+en|...She planned all of this. {p}{small}She's nine.{/small}
+it|...Ha organizzato tutto lei. {p}{small}Ha nove anni.{/small}
+fr|...Elle a tout organisé. {p}{small}Elle a neuf ans.{/small}
+
+en|Dad hung this swing the summer we moved here. {p}I pushed Mia on it until my arms hurt. She always said higher.
+it|Papà ha appeso quest'altalena l'estate in cui ci siamo trasferiti. {p}Spingevo Mia finché non mi facevano male le braccia. Lei diceva sempre più in alto.
+fr|Papa a accroché cette balançoire l'été où on a emménagé. {p}Je poussais Mia jusqu'à avoir mal aux bras. Elle disait toujours plus haut.
+
+en|From here you can see the whole town. The bakery. The station. {p}It all fits in one look.
+it|Da qui si vede tutto il paese. Il panificio. La stazione. {p}Ci sta tutto in uno sguardo.
+fr|D'ici, on voit toute la ville. La boulangerie. La gare. {p}Tout tient dans un seul regard.
+
+en|Higher. {p}{small}Always higher.{/small}
+it|Più in alto. {p}{small}Sempre più in alto.{/small}
+fr|Plus haut. {p}{small}Toujours plus haut.{/small}
+
+en|You sit. The rails tick in the heat. {p}Somewhere a long way north, the 21:40 is already on its way.
+it|Ti siedi. I binari ticchettano col caldo. {p}Da qualche parte, lontano a nord, il treno delle 21:40 è già in viaggio.
+fr|Tu t'assieds. Les rails cliquettent dans la chaleur. {p}Quelque part loin au nord, le 21h40 est déjà en route.
+
+en|Still sitting. Still on its way.
+it|Ancora seduto. Ancora in viaggio.
+fr|Toujours assis. Toujours en route.
+
+en|21:40, CITY CENTRAL, ON TIME. {p}Even the board is excited for me.
+it|21:40, CITY CENTRAL, IN ORARIO. {p}Perfino il tabellone è contento per me.
+fr|21h40, CITY CENTRAL, À L'HEURE. {p}Même le tableau est content pour moi.
+
+en|Three hours. {p}People do three hours for a concert. I'll be back all the time.
+it|Tre ore. {p}La gente fa tre ore per un concerto. Tornerò di continuo.
+fr|Trois heures. {p}Les gens font trois heures pour un concert. Je reviendrai tout le temps.
+
+en|21:40. On time.
+it|21:40. In orario.
+fr|21h40. À l'heure.
+
+en|Evening, Leo. {p}City Central, isn't it? Your mother told the whole platform. {small}It's a small platform.{/small}
+it|Buonasera, Leo. {p}City Central, giusto? Tua madre l'ha detto a tutto il binario. {small}È un binario piccolo.{/small}
+fr|Bonsoir, Leo. {p}City Central, c'est ça ? Ta mère l'a dit à tout le quai. {small}C'est un petit quai.{/small}
+
+en|The 21:40's never late. Thirty-one years. {p}{slow}Not once.{/slow} {p}Leaving is always on time. It's the coming back that gets delayed.
+it|Il treno delle 21:40 non è mai in ritardo. Trentun anni. {p}{slow}Mai una volta.{/slow} {p}Partire è sempre puntuale. È tornare che va in ritardo.
+fr|Le 21h40 n'est jamais en retard. Trente et un ans. {p}{slow}Pas une fois.{/slow} {p}Partir, c'est toujours à l'heure. C'est revenir qui prend du retard.
+
+en|The platform gate. You need a ticket. {p}You had a ticket.
+it|Il cancello del binario. Ci vuole il biglietto. {p}Tu ce l'avevi, un biglietto.
+fr|La grille du quai. Il faut un billet. {p}Tu avais un billet.
+
+en|The gate opens ten minutes before the train. {p}Ten minutes. Enough to go home and do this properly.
+it|Il cancello apre dieci minuti prima del treno. {p}Dieci minuti. Abbastanza per tornare a casa e fare le cose per bene.
+fr|La grille ouvre dix minutes avant le train. {p}Dix minutes. Assez pour rentrer et faire les choses bien.
+
+en|The barriers are down. The bell's been ringing on and off all evening. {p}They test it before the 21:40. Every day.
+it|Le sbarre sono abbassate. La campanella suona a intermittenza da tutta la sera. {p}La provano prima delle 21:40. Tutti i giorni.
+fr|Les barrières sont baissées. La sonnerie retentit par moments depuis le début de la soirée. {p}Ils la testent avant le 21h40. Tous les jours.
+
+en|Ding. Ding. Ding.
+it|Din. Din. Din.
+fr|Ding. Ding. Ding.
+
+en|Mom's waving from the window above the bakery. {p}Mia isn't. Mia's arms are crossed. Very crossed.
+it|La mamma saluta dalla finestra sopra il panificio. {p}Mia no. Mia ha le braccia incrociate. Incrociatissime.
+fr|Maman fait signe de la fenêtre au-dessus de la boulangerie. {p}Mia, non. Mia a les bras croisés. Très croisés.
+
+en|It's three hours. I'll be back all the time.
+it|Sono tre ore. Tornerò di continuo.
+fr|C'est trois heures. Je reviendrai tout le temps.
+
+en|Three years later.
+it|Tre anni dopo.
+fr|Trois ans plus tard.
+
+en|My ticket was on the desk. {p}It's not on the desk.
+it|Il mio biglietto era sulla scrivania. {p}Sulla scrivania non c'è.
+fr|Mon billet était sur le bureau. {p}Il n'est pas sur le bureau.
+
+en|Dinner's in a box for the train. Come up before you go. Don't argue.
+it|La cena per il treno è nella scatola. Passa su prima di andare. Non discutere.
+fr|Le dîner pour le train est dans une boîte. Monte avant de partir. Pas de discussion.
+
+en|Three years earlier.
+it|Tre anni prima.
+fr|Trois ans plus tôt.
+
+en|Halden. Six in the evening, the last day of June.
+it|Halden. Le sei di sera, l'ultimo giorno di giugno.
+fr|Halden. Six heures du soir, le dernier jour de juin.
+
+en|Thirteen boxes taped. One to go. {p}The train's at 21:40.
+it|Tredici scatoloni chiusi col nastro. Ne manca uno. {p}Il treno è alle 21:40.
+fr|Treize cartons scotchés. Plus qu'un. {p}Le train est à 21h40.
+
+en|The stairs. Twenty-two steps. {p}I could do them asleep. I have.
+it|Le scale. Ventidue gradini. {p}Potrei farli dormendo. L'ho fatto.
+fr|L'escalier. Vingt-deux marches. {p}Je pourrais les monter en dormant. Je l'ai déjà fait.
+
+en|The square. The fountain. Mr. Russo smoking where Mom can't see him.
+it|La piazza. La fontana. Il signor Russo che fuma dove la mamma non può vederlo.
+fr|La place. La fontaine. M. Russo qui fume là où maman ne peut pas le voir.
+
+en|Six in the evening, in summer. {p}If I could keep one hour, it'd be this one.
+it|Le sei di sera, d'estate. {p}Se potessi tenermi un'ora sola, sarebbe questa.
+fr|Six heures du soir, en été. {p}Si je pouvais garder une seule heure, ce serait celle-là.
+
+en|Somebody rides past on a bike. Bell, bell. {p}Gone.
+it|Qualcuno passa in bici. Drin, drin. {p}Sparito.
+fr|Quelqu'un passe à vélo. Dring, dring. {p}Parti.
+
+en|The fridge door is a museum of Mia. {p}Crayon cats, crayon trains, a crayon Leo with an enormous head.
+it|La porta del frigo è un museo di Mia. {p}Gatti a pastello, treni a pastello, un Leo a pastello con una testa enorme.
+fr|La porte du frigo est un musée de Mia. {p}Des chats au feutre, des trains au feutre, un Leo au feutre avec une tête énorme.
+
+en|In the corner, an old one: a grey kitten, its name coloured over so many times it's just a dark smudge.
+it|In un angolo, uno vecchio: un gattino grigio, col nome ripassato così tante volte che è solo una macchia scura.
+fr|Dans un coin, un vieux : un chaton gris, son nom colorié tant de fois que ce n'est plus qu'une tache sombre.
+
+en|The enormous head is accurate, apparently.
+it|La testa enorme, a quanto pare, è fedele.
+fr|La tête énorme est fidèle, apparemment.
+
+en|Go on. You'll miss it. {p}{small}Call when you get there.{/small}
+it|Vai. Lo perdi. {p}{small}Chiama quando arrivi.{/small}
+fr|Vas-y. Tu vas le rater. {p}{small}Appelle quand tu arrives.{/small}
+
+en|Your father's on nights this week. He said to tell you he's proud. {p}{small}He won't say it to your face. You two are the same.{/small}
+it|Tuo padre fa il turno di notte questa settimana. Ha detto di dirti che è fiero di te. {p}{small}In faccia non te lo dirà mai. Siete uguali, voi due.{/small}
+fr|Ton père est de nuit cette semaine. Il m'a dit de te dire qu'il est fier. {p}{small}Il ne te le dira pas en face. Vous êtes pareils, tous les deux.{/small}
+
+en|She gave you the program, didn't she. {p}She's been drawing that seat for a week. {p}{small}Put it somewhere safe. Box fourteen's still open.{/small}
+it|Ti ha dato il programma, vero? {p}È una settimana che disegna quel posto. {p}{small}Mettilo al sicuro. Lo scatolone quattordici è ancora aperto.{/small}
+fr|Elle t'a donné le programme, hein ? {p}Ça fait une semaine qu'elle dessine cette place. {p}{small}Range-le en lieu sûr. Le carton quatorze est encore ouvert.{/small}
+
+en|Your sister's been out since lunch. With a clipboard. {p}I'm staying out of it. {small}I'm her mother, not an accomplice.{/small}
+it|Tua sorella è fuori da pranzo. Con una cartellina. {p}Io non c'entro. {small}Sono sua madre, non la sua complice.{/small}
+fr|Ta sœur est dehors depuis midi. Avec un porte-bloc. {p}Je ne m'en mêle pas. {small}Je suis sa mère, pas sa complice.{/small}
+
+en|There he is. {p}I made too much food. I always make too much food when people leave.
+it|Eccolo. {p}Ho cucinato troppo. Cucino sempre troppo quando qualcuno parte.
+fr|Le voilà. {p}J'ai fait trop à manger. Je fais toujours trop à manger quand quelqu'un s'en va.
+
+en|Have you checked your ticket? {p}{small}Check your ticket.{/small}
+it|Hai controllato il biglietto? {p}{small}Controlla il biglietto.{/small}
+fr|Tu as vérifié ton billet ? {p}{small}Vérifie ton billet.{/small}
+
+en|Dinner for the train, in a box, with a note: <color=#FFD84F>EAT THIS. LOVE, MOM.</color> {p}And under it, in different writing: <color=#FF4FD8>AND MIA</color>.
+it|La cena per il treno, in una scatola, con un biglietto: <color=#FFD84F>MANGIA. CON AFFETTO, MAMMA.</color> {p}E sotto, con un'altra calligrafia: <color=#FF4FD8>E MIA</color>.
+fr|Le dîner pour le train, dans une boîte, avec un mot : <color=#FFD84F>MANGE ÇA. BISOUS, MAMAN.</color> {p}Et dessous, d'une autre écriture : <color=#FF4FD8>ET MIA</color>.
+
+en|EAT THIS. LOVE, MOM. AND MIA.
+it|MANGIA. CON AFFETTO, MAMMA. E MIA.
+fr|MANGE ÇA. BISOUS, MAMAN. ET MIA.
+
+en|The sofa where Dad falls asleep during every film. {p}Every single one.
+it|Il divano dove papà si addormenta durante ogni film. {p}Nessuno escluso.
+fr|Le canapé où papa s'endort devant chaque film. {p}Sans exception.
+
+en|He once fell asleep during the end of the world. On TV. {p}It was a good film.
+it|Una volta si è addormentato durante la fine del mondo. In TV. {p}Era un bel film.
+fr|Un jour, il s'est endormi pendant la fin du monde. À la télé. {p}C'était un bon film.
+
+en|The crayon drawing. A loaf of bread with a sun coming up behind it. <color=#FF4FD8>WHERE THE MORNING STARTS</color>.
+it|Il disegno a pastello. Una pagnotta con dietro il sole che sorge. <color=#FF4FD8>DOVE COMINCIA LA MATTINA</color>.
+fr|Le dessin au feutre. Une miche de pain avec le soleil qui se lève derrière. <color=#FF4FD8>LÀ OÙ LE MATIN COMMENCE</color>.
+
+en|Where the ticket was: a crayon drawing. A loaf of bread, a sun coming up behind it.
+it|Al posto del biglietto: un disegno a pastello. Una pagnotta, con dietro il sole che sorge.
+fr|À la place du billet : un dessin au feutre. Une miche de pain, le soleil qui se lève derrière.
+
+en|<color=#FF4FD8>WHERE THE MORNING STARTS. - M</color>
+it|<color=#FF4FD8>DOVE COMINCIA LA MATTINA. - M</color>
+fr|<color=#FF4FD8>LÀ OÙ LE MATIN COMMENCE. - M</color>
+
+en|...Mia. {p}{slow}Of course.{/slow}
+it|...Mia. {p}{slow}Ovvio.{/slow}
+fr|...Mia. {p}{slow}Évidemment.{/slow}
+
+en|The morning starts at five, downstairs. Mr. Russo's ovens.
+it|La mattina comincia alle cinque, al piano di sotto. I forni del signor Russo.
+fr|Le matin commence à cinq heures, en bas. Les fours de M. Russo.
+
+en|Box fourteen. Taped shut. Two layers. {p}I'll open it when I'm settled. First thing.
+it|Lo scatolone quattordici. Chiuso col nastro. Due giri. {p}Lo apro appena mi sistemo. Per primo.
+fr|Le carton quatorze. Scotché. Deux couches. {p}Je l'ouvrirai dès que je serai installé. En premier.
+
+en|You put the recital program in, on top. Front row, seat one, the crayon heart facing up.
+it|Ci metti dentro il programma del saggio, in cima. Prima fila, posto uno, col cuore a pastello verso l'alto.
+fr|Tu poses le programme du spectacle dedans, tout en haut. Premier rang, place une, le cœur au feutre vers le haut.
+
+en|{quake}Rrrip. {p}Tape. Two layers.
+it|{quake}Zzzip. {p}Nastro. Due giri.
+fr|{quake}Scrrrtch. {p}Scotch. Deux couches.
+
+en|Fourteen. {p}The lightest one. {p}{slow}I'll open it first.{/slow}
+it|Il quattordici. {p}Il più leggero. {p}{slow}Lo aprirò per primo.{/slow}
+fr|Le quatorze. {p}Le plus léger. {p}{slow}Je l'ouvrirai en premier.{/slow}
+
+en|Box fourteen. Nearly empty. {p}There's something that should go in here. I don't know what yet.
+it|Lo scatolone quattordici. Quasi vuoto. {p}C'è qualcosa che dovrebbe andarci dentro. Non so ancora cosa.
+fr|Le carton quatorze. Presque vide. {p}Il y a quelque chose qui devrait aller dedans. Je ne sais pas encore quoi.
+
+en|MIA'S ROOM. KNOCK. {p}Underneath, smaller: ESPECIALLY LEO.
+it|CAMERA DI MIA. BUSSARE. {p}Sotto, più piccolo: SOPRATTUTTO LEO.
+fr|CHAMBRE DE MIA. FRAPPER. {p}En dessous, plus petit : SURTOUT LEO.
+
+id|{cam=close}That's what I'm doing at the recital. In the spring.
+en|That's what I'm doing at the recital. In the spring.
+it|È quello che farò al saggio. In primavera.
+fr|C'est ce que je ferai au spectacle. Au printemps.
+
+id|{cam=two}You have to clap the loudest. {p}{bounce}Promise?{/bounce}
+en|You have to clap the loudest. {p}{bounce}Promise?{/bounce}
+it|Devi applaudire più forte di tutti. {p}{bounce}Promesso?{/bounce}
+fr|Tu dois applaudir le plus fort. {p}{bounce}Promis ?{/bounce}
+
+id|{cam=off}I said yes. {p}{slow}I'll come back for it. It's three hours.{/slow}
+en|I said yes. {p}{slow}I'll come back for it. It's three hours.{/slow}
+it|Ho detto di sì. {p}{slow}Tornerò apposta. Sono tre ore.{/slow}
+fr|J'ai dit oui. {p}{slow}Je reviendrai pour ça. C'est trois heures.{/slow}
+
+id|{cam=close}Got everything? {p}Charger. Toothbrush. The box with the dinner in it.
+en|Got everything? {p}Charger. Toothbrush. The box with the dinner in it.
+it|Hai preso tutto? {p}Caricabatterie. Spazzolino. La scatola con la cena.
+fr|Tu as tout ? {p}Chargeur. Brosse à dents. La boîte avec le dîner.
+
+id|{cam=two}Call when you get there. {p}And eat something that isn't from a machine.
+en|Call when you get there. {p}And eat something that isn't from a machine.
+it|Chiama quando arrivi. {p}E mangia qualcosa che non esca da un distributore.
+fr|Appelle quand tu arrives. {p}Et mange quelque chose qui ne sort pas d'une machine.
+
+id|{cam=off}She doesn't say don't go. {p}{slow}She never does.{/slow}
+en|She doesn't say don't go. {p}{slow}She never does.{/slow}
+it|Non dice non andare. {p}{slow}Non lo dice mai.{/slow}
+fr|Elle ne dit pas ne pars pas. {p}{slow}Elle ne le dit jamais.{/slow}
+

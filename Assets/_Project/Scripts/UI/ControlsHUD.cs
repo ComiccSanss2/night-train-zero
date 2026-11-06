@@ -219,7 +219,7 @@ namespace Subnet.UI
 
         private void Refresh()
         {
-            lastKey = Loc.T("Move") + StoryFlags.Has(PhoneMenu.HasPhoneFlag);
+            lastKey = Loc.T("Move") + PhoneMenu.HasPhone;
             if (capSprite == null)
             {
                 capSprite = RoundedSprite(false);
@@ -271,7 +271,7 @@ namespace Subnet.UI
                 Slash(p, x + w + 2f, y, CapH);
                 return w + 18f + TextCap(p, x + w + 18f, y, "Esc", Held(Key.Escape));
             }, Loc.T("Back, pause menu"), CapH));
-            if (StoryFlags.Has(PhoneMenu.HasPhoneFlag))
+            if (PhoneMenu.HasPhone)
             {
                 rows.Add(((p, x, y) => TextCap(p, x, y, "Tab", Held(Key.Tab)), Loc.T("Handheld: messages, items"), CapH));
                 rows.Add(((p, x, y) => TextCap(p, x, y, "J", Held(Key.J)), Loc.T("Quests"), CapH));
@@ -385,7 +385,7 @@ namespace Subnet.UI
             }
 
             // Rebuild when the language changes or the handheld becomes available.
-            string key = Loc.T("Move") + StoryFlags.Has(PhoneMenu.HasPhoneFlag);
+            string key = Loc.T("Move") + PhoneMenu.HasPhone;
             if (key != lastKey) Refresh();
         }
     }

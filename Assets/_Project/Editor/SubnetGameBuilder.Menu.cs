@@ -109,7 +109,7 @@ namespace Subnet.EditorTools
             ScreenFader fader = CreateFader(0f);
 
             var controller = new GameObject("MainMenu").AddComponent<MainMenuController>();
-            Set(controller, "newGameScene", TenementScene);
+            Set(controller, "newGameScene", HometownScene);
             Set(controller, "screenRoot", screenRoot);
             Set(controller, "mainPanel", mainPanel);
             Set(controller, "memoriesPanel", memoriesPanel);
@@ -157,6 +157,7 @@ namespace Subnet.EditorTools
             SerializedProperty chapters = so.FindProperty("chapters");
             string[,] chapterData =
             {
+                { "MEM_00 // HALDEN, THREE YEARS AGO", HometownScene, "" },
                 { "MEM_01 // THE MOVING BOXES", TenementScene, "" },
                 { "MEM_02 // CENTRAL STATION", StationScene, "ch2" },
                 { "MEM_03 // SUBNET: COMMERCIAL DISTRICT", SubnetScene, "ch3" },

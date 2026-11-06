@@ -87,6 +87,7 @@ namespace Subnet.EditorTools
 
                 var failures = new List<string>();
                 Step("Main menu...", 0.1f, BuildMainMenuScene, failures);
+                Step("Prologue: Halden, three years ago...", 0.18f, BuildHometownScene, failures);
                 Step("Act I: the tenement...", 0.25f, BuildTenementScene, failures);
                 Step("Act I: Central Station...", 0.4f, BuildStationScene, failures);
                 Step("Act II: Subnet...", 0.55f, BuildSubnetScene, failures);
@@ -100,7 +101,7 @@ namespace Subnet.EditorTools
                         "\n\nThe other scenes are fine. Send the red Console error to fix it.", "OK");
                 }
 
-                EditorBuildSettings.scenes = new[] { MenuScene, TenementScene, StationScene, SubnetScene, ParkScene, GhostLineScene, CoreScene }
+                EditorBuildSettings.scenes = new[] { MenuScene, HometownScene, TenementScene, StationScene, SubnetScene, ParkScene, GhostLineScene, CoreScene }
                     .Where(s => File.Exists(ScenesFolder + s + ".unity"))
                     .Select(s => new EditorBuildSettingsScene(ScenesFolder + s + ".unity", true))
                     .ToArray();
@@ -111,7 +112,7 @@ namespace Subnet.EditorTools
                 EditorSceneManager.OpenScene(ScenesFolder + MenuScene + ".unity", OpenSceneMode.Single);
                 Debug.Log("[Subnet] Full game built. Press Play in 00_MainMenu.");
                 EditorUtility.DisplayDialog("Night Train Zero",
-                    "Full game built (6 scenes).\n\nPress Play in 00_MainMenu.\n\n" +
+                    "Full game built (8 scenes).\n\nPress Play in 00_MainMenu.\n\n" +
                     "Move: WASD / arrows\nInteract / advance: E, Enter, Space\nBack: X / Esc (hold to skip cutscenes)\n\n" +
                     "No sound? Make sure the speaker icon in the Game view toolbar isn't muted, pick your Mac's output device, then restart Unity.",
                     "OK");

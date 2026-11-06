@@ -22,6 +22,9 @@ namespace Subnet.UI
         public const string HeardMiaFlag = "heard_mia";
         public const string HasPhoneFlag = "handheld_checked";
 
+        /// <summary>Leo has his phone: from the handheld onward, and all through the prologue (three years earlier).</summary>
+        public static bool HasPhone => StoryFlags.Has(HasPhoneFlag) || StoryFlags.Has("in_prologue");
+
         /// <summary>Mia's voicemails: (date label, lines). Lines are localization keys.</summary>
         public static readonly string[][] Voicemails =
         {
@@ -95,7 +98,7 @@ namespace Subnet.UI
 
         private static bool CanOpen()
         {
-            if (!StoryFlags.Has(HasPhoneFlag)) return false;
+            if (!HasPhone) return false;
             if (GameTime.Paused || PauseMenu.IsOpen || SceneLoader.IsLoading) return false;
             if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) return false;
             if (CinematicDirector.Instance != null && CinematicDirector.Instance.IsPlaying) return false;

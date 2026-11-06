@@ -41,6 +41,13 @@ namespace Subnet.Core
             new ItemDef { id = "ramen", name = "Cup Ramen", heal = 5, price = 3,
                 description = "Three minutes of hope. Heals 5 HP." },
 
+            new ItemDef { id = "warm_roll", name = "Warm Roll", heal = 4, price = 2,
+                description = "From the bakery downstairs. Still warm. Heals 4 HP." },
+
+            new ItemDef { id = "hometown_ticket", name = "Train Ticket", key = true,
+                description = "HALDEN to CITY CENTRAL. 21:40. One way. Mia drew a sad face on the back, then crossed it out." },
+            new ItemDef { id = "recital_program", name = "Recital Program", key = true,
+                description = "Mia's dance recital, next spring. Front row, seat 1. A crayon heart on the back." },
             new ItemDef { id = "care_package", name = "Kira's Care Package", key = true,
                 description = "A small warm box. FRAGILE. CONTENTS: YOU. Not one to deliver: Kira says it's yours." },
             new ItemDef { id = "old_polaroid", name = "Old Polaroid", key = true,

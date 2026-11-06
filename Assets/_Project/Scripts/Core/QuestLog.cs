@@ -24,9 +24,11 @@ namespace Subnet.Core
             public string where;
             public bool main;
             public string startFlag;
+            /// <summary>Hidden while this flag is set (the main quests stay out of the way during the prologue).</summary>
+            public string hiddenWhile;
             public Step[] steps;
 
-            public bool Started => string.IsNullOrEmpty(startFlag) || StoryFlags.Has(startFlag);
+            public bool Started => (string.IsNullOrEmpty(startFlag) || StoryFlags.Has(startFlag)) && !Has(hiddenWhile);
             public bool Done => steps.Length > 0 && Has(steps[steps.Length - 1].doneFlag);
 
             /// <summary>The first step that isn't done yet (null when complete).</summary>
@@ -56,8 +58,22 @@ namespace Subnet.Core
 
         public static readonly Quest[] All =
         {
+            // ------------------------------------------------------------------ Prologue (three years earlier)
+            new Quest { id = "m0", main = true, title = "The Last Day", where = "Hometown, three years ago", startFlag = "in_prologue",
+                steps = new[]
+                {
+                    S("Your train ticket is gone. Look at your desk.", "hunt_started"),
+                    S("Where the morning starts.", "clue_bakery"),
+                    S("Boom. Tss.", "clue_garage"),
+                    S("Light the way to the swing.", "ticket_found"),
+                    S("Mia is at the bandstand.", "mia_promise"),
+                    S("Box fourteen is still open.", "box14_sealed"),
+                    S("Say goodbye to Mom.", "ready_to_leave"),
+                    S("Catch the 21:40.", "boarded_home"),
+                } },
+
             // ------------------------------------------------------------------ Main story
-            new Quest { id = "m1", main = true, title = "The Ticket Home", where = "Apartment / Central Station", startFlag = "",
+            new Quest { id = "m1", main = true, title = "The Ticket Home", where = "Apartment / Central Station", startFlag = "", hiddenWhile = "in_prologue",
                 steps = new[]
                 {
                     S("Check your handheld.", "handheld_checked"),

@@ -19,6 +19,9 @@ namespace Subnet.Gameplay
         [SerializeField] private string flagOnSolved = "puzzle_solved";
         [TextArea(2, 3)] [SerializeField] private string[] wrongLines = { "* The lamps flicker out. Wrong order." };
         [TextArea(2, 3)] [SerializeField] private string[] solvedLines = { "* Something unlocks, deep in the concrete." };
+        [Tooltip("Optional: the switches do nothing until this story flag is set ('!flag' = while not set).")]
+        [SerializeField] private string requiredFlag = string.Empty;
+        [TextArea(2, 3)] [SerializeField] private string[] lockedLines = { };
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip correctClip;
         [SerializeField] private AudioClip wrongClip;
@@ -29,6 +32,24 @@ namespace Subnet.Gameplay
         private bool solved;
 
         public bool IsSolved => solved;
+
+        public bool IsLocked => !solved && !string.IsNullOrEmpty(requiredFlag) &&
+            (requiredFlag[0] == '!' ? StoryFlags.Has(requiredFlag.Substring(1)) : !StoryFlags.Has(requiredFlag));
+
+        public void SayLocked()
+        {
+            if (DialogueManager.Instance != null && lockedLines.Length > 0) DialogueManager.Instance.PlayLines(lockedLines);
+        }
+
+        private void Start()
+        {
+            // Already solved in this run (coming back to the scene): stay solved, everything lit.
+            if (!string.IsNullOrEmpty(flagOnSolved) && StoryFlags.Has(flagOnSolved))
+            {
+                solved = true;
+                foreach (PuzzleSwitch s in correctOrder) if (s != null) s.SetLit(true);
+            }
+        }
 
         private void Awake()
         {
