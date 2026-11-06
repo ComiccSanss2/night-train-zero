@@ -1001,7 +1001,7 @@ namespace Subnet.EditorTools
                         Prop(ctx, "Box" + n, "cardboardBoxClosed", F, p + Vector3.up * Top(box), rng.Next(-10, 10), 0.46f, false, null, null, null, false);
                     }
                 }
-            GameObject box14 = Prop(ctx, "Box14", "cardboardBoxOpen", F, new Vector3(c.x + 2.2f, 0f, c.z - 1.3f), 12f, 0.55f, false, null);
+            GameObject box14 = Prop(ctx, "Box14", "cardboardBoxOpen", F, new Vector3(c.x + 2.2f, 0f, c.z - 1.3f), 12f, 0.55f, false, L("..."));
             DialogueSequence boxSeq = SeqAsset("Hometown/Box14",
                 OnlyIf("box14_sealed", Say(null, "Box fourteen. Taped shut. Two layers. {p}I'll open it when I'm settled. First thing.", "", DialogueSequence.EndNodeId)),
                 OnlyIf("key.recital_program", Say(null, "You put the recital program in, on top. Front row, seat one, the crayon heart facing up.")),

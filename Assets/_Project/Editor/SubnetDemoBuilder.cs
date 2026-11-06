@@ -203,7 +203,7 @@ namespace Subnet.EditorTools
                 SpeakerStyle.Object, new Color(0.95f, 0.92f, 0.85f));
             // Mia lives in Resources so the handheld menu can replay her voicemails from any scene.
             EnsureFolder(Root + "/Resources");
-            spkMia = CreateSpeaker("../Resources/Speaker_Mia", "MIA", "tick_002", new Vector2(1.08f, 1.16f), 0.85f, new Color(1f, 0.75f, 0.85f),
+            spkMia = CreateSpeaker("../Resources/Speaker_Mia", "MIA", "tick_002", new Vector2(1.32f, 1.48f), 1.15f, new Color(1f, 0.75f, 0.85f),
                 SpeakerStyle.Default, new Color(1f, 0.92f, 0.95f), TextEffect.None);
             EnsureFolder(Root + "/Resources/Fonts");
             BuildFontLibrary();

@@ -1463,9 +1463,9 @@ it|La mattina dopo, Leo ha aperto lo scatolone quattordici.\nDentro: il programm
 fr|Le lendemain matin, Leo a ouvert le carton quatorze.\nDedans : le programme d'un spectacle de danse, avec un cœur dessiné au crayon de couleur au dos.
 
 id|He called home. Mia answered on the first ring.\n'You're late,' she said.\n'I know,' he said. 'I'm on my way.'
-en|He called home. Mia picked up on the first ring.\n'You're late,' she said.\n'I know,' he said. {p}'I'm on my way.'
-it|Ha chiamato casa. Mia ha risposto al primo squillo.\n'Sei in ritardo', ha detto.\n'Lo so', ha detto lui. {p}'Sto arrivando.'
-fr|Il a appelé la maison. Mia a décroché à la première sonnerie.\n« T'es en retard », a-t-elle dit.\n« Je sais », a-t-il répondu. {p}« J'arrive. »
+en|He called home. His little sister picked up on the first ring.\n'You're SO late,' Mia said.\n'I know,' he said. {p}'I'm on my way.'
+it|Ha chiamato casa. La sua sorellina ha risposto al primo squillo.\n'Sei in ritardissimo', ha detto Mia.\n'Lo so', ha detto lui. {p}'Sto arrivando.'
+fr|Il a appelé à la maison. Sa petite sœur a décroché à la première sonnerie.\n« T'es TROP en retard », a dit Mia.\n« Je sais », a-t-il dit. {p}« J'arrive. »
 
 id|Somewhere in Subnet, a cat's collar flickered one last message:\n<color=#33FFF2>'proud of u. idiot.'</color>
 en|Somewhere in Subnet, a cat's collar flickered one last message:\n<color=#33FFF2>'proud of u. {p}idiot.'</color>
@@ -2222,25 +2222,30 @@ en|VOICEMAIL  //  MIA  //  MAY 28
 it|VOCALE  //  MIA  //  28 MAGGIO
 fr|MESSAGE VOCAL  //  MIA  //  28 MAI
 
-en|Leo? It's me. Mom says you got the job. {p}That's... {p}that's huge.
-it|Leo? Sono io. La mamma dice che ti hanno preso. {p}È... {p}è enorme.
-fr|Leo ? C'est moi. Maman dit que t'as eu le boulot. {p}C'est... {p}c'est énorme.
+id|Leo? It's me. Mom says you got the job. {p}That's... {p}that's huge.
+en|LEO. It's me. Mom says you got a new job! {p}Is it a big one? Do you get a desk? {p}{small}Does the chair spin?{/small}
+it|LEO. Sono io. La mamma dice che hai un lavoro nuovo! {p}È un lavoro grande? Hai una scrivania? {p}{small}La sedia gira?{/small}
+fr|LEO. C'est moi. Maman dit que t'as un nouveau travail ! {p}C'est un gros travail ? T'as un bureau ? {p}{small}La chaise, elle tourne ?{/small}
 
-en|Call me back, okay? {p}I want to hear you say it. {wave}With your stupid proud voice.{/wave}
-it|Richiamami, ok? {p}Voglio sentirtelo dire. {wave}Con quella tua voce da scemo orgoglioso.{/wave}
-fr|Rappelle-moi, d'accord ? {p}Je veux te l'entendre dire. {wave}Avec ta voix de crâneur.{/wave}
+id|Call me back, okay? {p}I want to hear you say it. {wave}With your stupid proud voice.{/wave}
+en|Call me back, okay? I want you to tell me. {p}{wave}With your proud voice. The silly one you do.{/wave}
+it|Richiamami, va bene? Voglio che me lo dici tu. {p}{wave}Con la tua voce da tutto fiero. Quella buffa che fai.{/wave}
+fr|Rappelle-moi, d'accord ? Je veux que tu me le dises. {p}{wave}Avec ta voix de fier. La voix bizarre que tu fais.{/wave}
 
-en|Hey. It's me again. {p}The recital's on the twelfth.
-it|Ehi. Sono di nuovo io. {p}Il saggio è il dodici.
-fr|Coucou. C'est encore moi. {p}Le spectacle, c'est le douze.
+id|Hey. It's me again. {p}The recital's on the twelfth.
+en|Hi. It's me again. {p}The recital is on the twelfth. I'm in the front. {small}Well. The middle front.{/small}
+it|Ciao. Sono di nuovo io. {p}Il saggio è il dodici. Sono davanti. {small}Cioè. Davanti in mezzo.{/small}
+fr|Coucou. C'est encore moi. {p}Le spectacle, c'est le douze. Je suis devant. {small}Enfin. Devant au milieu.{/small}
 
-en|You don't have to come. {p=0.8}{slow}I'm just saying it's on the twelfth.{/slow}
-it|Non devi venire per forza. {p=0.8}{slow}Dico solo che è il dodici.{/slow}
-fr|T'es pas obligé de venir. {p=0.8}{slow}Je dis juste que c'est le douze.{/slow}
+id|You don't have to come. {p=0.8}{slow}I'm just saying it's on the twelfth.{/slow}
+en|You don't HAVE to come or anything. {p=0.8}{slow}I'm just saying. It's the twelfth.{/slow}
+it|Non è che DEVI venire per forza. {p=0.8}{slow}Te lo dico e basta. È il dodici.{/slow}
+fr|T'es pas OBLIGÉ de venir, hein. {p=0.8}{slow}Je dis ça comme ça. C'est le douze.{/slow}
 
-en|{small}...okay. bye.{/small}
-it|{small}...ok. ciao.{/small}
-fr|{small}...bon. salut.{/small}
+id|{small}...okay. bye.{/small}
+en|{small}...okay. bye. {p}bye.{/small}
+it|{small}...va bene. ciao. {p}ciao.{/small}
+fr|{small}...bon. salut. {p}salut.{/small}
 
 en|One new message. No sender. Just: <color=#33FFF2>'last train leaves at 00:00. platform zero. don't miss it.'</color>
 it|Un messaggio nuovo. Nessun mittente. Solo: <color=#33FFF2>'ultimo treno alle 00:00. binario zero. non perderlo.'</color>
@@ -2384,9 +2389,10 @@ en|The circle stops. {p}{big}It stops.{/big}
 it|Il giro si ferma. {p}{big}Si ferma.{/big}
 fr|Le cercle s'arrête. {p}{big}Il s'arrête.{/big}
 
-en|Mia knitted me a scarf once. It had a hole by the left end. {p}She said it was a feature.
-it|Mia una volta mi ha fatto una sciarpa a maglia. Aveva un buco vicino all'estremità sinistra. {p}Diceva che era una caratteristica.
-fr|Mia m'a tricoté une écharpe, une fois. Elle avait un trou au bout gauche. {p}Elle disait que c'était voulu.
+id|Mia knitted me a scarf once. It had a hole by the left end. {p}She said it was a feature.
+en|Mia knitted me a scarf when she was seven. Grandma did the hard bits. {p}It had a hole at one end. She said it was on purpose.
+it|Mia mi ha fatto una sciarpa a maglia quando aveva sette anni. I pezzi difficili li ha fatti la nonna. {p}Aveva un buco in fondo. Lei diceva che era apposta.
+fr|Mia m'a tricoté une écharpe quand elle avait sept ans. Mamie a fait les morceaux difficiles. {p}Elle avait un trou au bout. Mia disait que c'était exprès.
 
 en|I wore it every winter. {p}{slow}It's in box fourteen. I think.{/slow}
 it|L'ho messa ogni inverno. {p}{slow}È nello scatolone quattordici. Credo.{/slow}
@@ -2588,9 +2594,10 @@ en|[The last train home, all the lights off]
 it|[L'ultimo treno per casa, tutte le luci spente]
 fr|[Le dernier train pour la maison, toutes lumières éteintes]
 
-en|Mia used to draw me. Always with a giant head. {p}She said it's because I think too much.
-it|Mia mi disegnava sempre. Con una testa gigante. {p}Diceva che è perché penso troppo.
-fr|Mia me dessinait. Toujours avec une tête énorme. {p}Elle disait que c'est parce que je pense trop.
+id|Mia used to draw me. Always with a giant head. {p}She said it's because I think too much.
+en|My little sister used to draw me. Mia. Always with a giant head. {p}She said it's because I think too much.
+it|La mia sorellina mi disegnava sempre. Mia. Con una testa gigante. {p}Diceva che è perché penso troppo.
+fr|Ma petite sœur me dessinait tout le temps. Mia. Toujours avec une tête énorme. {p}Elle disait que c'est parce que je pense trop.
 
 en|There was a bakery under our flat. At five in the morning the whole street smelled like bread. {p}I'd pretend I was awake on purpose.
 it|Sotto casa c'era un forno. Alle cinque di mattina tutta la via sapeva di pane. {p}Io facevo finta di essere sveglio apposta.
@@ -3119,9 +3126,10 @@ en|this park used to have ducks. {p}{small}i can tell. the concrete looks disapp
 it|questo parco una volta aveva le anatre. {p}{small}si capisce. il cemento sembra deluso.{/small}
 fr|ce parc avait des canards, avant. {p}{small}ça se voit. le béton a l'air déçu.{/small}
 
-en|Mia fed ducks once. She threw the whole bag. {p}The bag, not the bread.
-it|Mia una volta ha dato da mangiare alle anatre. Ha lanciato tutto il sacchetto. {p}Il sacchetto, non il pane.
-fr|Mia a nourri des canards une fois. Elle a lancé tout le sac. {p}Le sac, pas le pain.
+id|Mia fed ducks once. She threw the whole bag. {p}The bag, not the bread.
+en|My little sister fed the ducks once. Mia. She was five. She threw the whole bag. {p}The bag, not the bread.
+it|Una volta la mia sorellina ha dato da mangiare alle anatre. Mia. Aveva cinque anni. Ha lanciato tutto il sacchetto. {p}Il sacchetto, non il pane.
+fr|Un jour, ma petite sœur a nourri les canards. Mia. Elle avait cinq ans. Elle a lancé tout le sac. {p}Le sac, pas le pain.
 
 en|{bounce}legend.{/bounce}
 it|{bounce}leggenda.{/bounce}
@@ -4104,22 +4112,25 @@ en|It rings. And rings. {p}Then it stops.
 it|Squilla. E squilla. {p}Poi smette.
 fr|Ça sonne. Et ça sonne. {p}Puis ça s'arrête.
 
-en|{small}Hey. It's me. I don't know why I keep calling this number at midnight.{/small}
-it|{small}Ehi. Sono io. Non so perché continuo a chiamare questo numero a mezzanotte.{/small}
-fr|{small}Hé. C'est moi. Je ne sais pas pourquoi j'appelle encore ce numéro à minuit.{/small}
+id|{small}Hey. It's me. I don't know why I keep calling this number at midnight.{/small}
+en|{small}Hi. It's me. {p}Mom thinks I'm asleep. I always call you when she thinks I'm asleep.{/small}
+it|{small}Ciao. Sono io. {p}La mamma pensa che dormo. Ti chiamo sempre quando pensa che dormo.{/small}
+fr|{small}Coucou. C'est moi. {p}Maman croit que je dors. Je t'appelle toujours quand elle croit que je dors.{/small}
 
-en|{small}...Okay. Bye.{/small}
-it|{small}...Ok. Ciao.{/small}
-fr|{small}...Bon. Salut.{/small}
+id|{small}...Okay. Bye.{/small}
+en|{small}...okay. Night, Leo.{/small}
+it|{small}...va bene. Notte, Leo.{/small}
+fr|{small}...bon. Bonne nuit, Leo.{/small}
 
 id|{cam=leo}...Leo?
 en|...Leo?
 it|...Leo?
 fr|...Leo ?
 
-en|Oh my god. You picked up. {p}{small}You actually picked up.{/small}
-it|Oddio. Hai risposto. {p}{small}Hai risposto davvero.{/small}
-fr|Oh mon dieu. Tu as décroché. {p}{small}Tu as vraiment décroché.{/small}
+id|Oh my god. You picked up. {p}{small}You actually picked up.{/small}
+en|Wait. {p}You PICKED UP? {p}{small}You never pick up!{/small}
+it|Aspetta. {p}Hai RISPOSTO? {p}{small}Tu non rispondi mai!{/small}
+fr|Attends. {p}T'as DÉCROCHÉ ? {p}{small}Tu décroches jamais !{/small}
 
 en|["Hi, Mia."]
 it|["Ciao, Mia."]
@@ -4133,21 +4144,25 @@ en|[Say nothing. Just listen.]
 it|[Non dire niente. Ascolta e basta.]
 fr|[Ne rien dire. Juste écouter.]
 
-en|Hi. {p}{wave}Hi hi hi.{/wave} {p}Okay. Sorry. You sound tired.
-it|Ciao. {p}{wave}Ciao ciao ciao.{/wave} {p}Ok. Scusa. Hai la voce stanca.
-fr|Salut. {p}{wave}Salut salut salut.{/wave} {p}Bon. Pardon. Tu as l'air fatigué.
+id|Hi. {p}{wave}Hi hi hi.{/wave} {p}Okay. Sorry. You sound tired.
+en|Hi! {p}{wave}Hi hi hi.{/wave} {p}Sorry. You sound tired. {small}Are you sick? You sound like when you had the flu.{/small}
+it|Ciao! {p}{wave}Ciao ciao ciao.{/wave} {p}Scusa. Hai la voce stanca. {small}Sei malato? Sembri tu quando avevi l'influenza.{/small}
+fr|Coucou ! {p}{wave}Coucou coucou coucou.{/wave} {p}Pardon. T'as l'air fatigué. {small}T'es malade ? On dirait toi quand t'avais la grippe.{/small}
 
-en|...Yeah. You did. {p}I bowed to an empty chair, you know. {p}{small}I'm still mad. I'm also really, really happy you called.{/small}
-it|...Già. Te lo sei perso. {p}Ho fatto l'inchino a una sedia vuota, sai. {p}{small}Sono ancora arrabbiata. E sono anche tanto, tanto felice che hai chiamato.{/small}
-fr|...Ouais. Tu l'as raté. {p}J'ai salué une chaise vide, tu sais. {p}{small}Je suis encore fâchée. Et je suis aussi vraiment, vraiment contente que tu appelles.{/small}
+id|...Yeah. You did. {p}I bowed to an empty chair, you know. {p}{small}I'm still mad. I'm also really, really happy you called.{/small}
+en|...Yeah. You did. {p}I did my bow and your chair was empty. I looked. {p}{small}I'm still mad at you. But I'm also really happy. Both at the same time.{/small}
+it|...Sì. È vero. {p}Ho fatto l'inchino e la tua sedia era vuota. Ho guardato. {p}{small}Sono ancora arrabbiata con te. Però sono anche contentissima. Tutte e due le cose insieme.{/small}
+fr|...Ouais. C'est vrai. {p}J'ai fait ma révérence et ta chaise était vide. J'ai regardé. {p}{small}Je suis encore fâchée. Mais je suis aussi trop contente. Les deux en même temps.{/small}
 
-en|You don't have to talk. I'll talk. {p}Mom made lasagna on Sunday. Dad fell asleep during the news. {p}{slow}Normal stuff. You're missing all the normal stuff.{/slow}
-it|Non devi parlare. Parlo io. {p}La mamma domenica ha fatto le lasagne. Papà si è addormentato durante il telegiornale. {p}{slow}Cose normali. Ti stai perdendo tutte le cose normali.{/slow}
-fr|T'es pas obligé de parler. Je parle, moi. {p}Maman a fait des lasagnes dimanche. Papa s'est endormi devant les infos. {p}{slow}Des trucs normaux. Tu rates tous les trucs normaux.{/slow}
+id|You don't have to talk. I'll talk. {p}Mom made lasagna on Sunday. Dad fell asleep during the news. {p}{slow}Normal stuff. You're missing all the normal stuff.{/slow}
+en|You don't have to talk. I'll talk, I'm good at talking. {p}Mom made lasagna on Sunday. Dad fell asleep during the news. Again. {p}{slow}Boring stuff. You're missing all the boring stuff.{/slow}
+it|Non devi parlare. Parlo io, che sono brava. {p}Domenica la mamma ha fatto le lasagne. Papà si è addormentato col telegiornale. Di nuovo. {p}{slow}Cose noiose. Ti stai perdendo tutte le cose noiose.{/slow}
+fr|T'es pas obligé de parler. Je parle, moi, je suis forte pour ça. {p}Dimanche, maman a fait des lasagnes. Papa s'est endormi devant les infos. Encore. {p}{slow}Des trucs nuls. Tu rates tous les trucs nuls.{/slow}
 
-en|Where are you? {p}It sounds like a train.
-it|Dove sei? {p}Sembra un treno.
-fr|T'es où ? {p}On dirait un train.
+id|Where are you? {p}It sounds like a train.
+en|Where are you? {p}It sounds like a train. {small}Are you on a train RIGHT NOW?{/small}
+it|Dove sei? {p}Sembra un treno. {small}Sei su un treno ADESSO?{/small}
+fr|T'es où ? {p}On dirait un train. {small}T'es dans un train LÀ, MAINTENANT ?{/small}
 
 en|["Somewhere weird. I'm with friends."]
 it|["In un posto strano. Sono con degli amici."]
@@ -4157,17 +4172,20 @@ en|["I think I'm on my way home."]
 it|["Credo di essere sulla strada di casa."]
 fr|[« Je crois que je rentre à la maison. »]
 
-en|Friends? {p}{bounce}Leo has friends?{/bounce} {p}Tell them I said thanks. For keeping you.
-it|Amici? {p}{bounce}Leo ha degli amici?{/bounce} {p}Ringraziali da parte mia. Per averti tenuto con loro.
-fr|Des amis ? {p}{bounce}Leo a des amis ?{/bounce} {p}Dis-leur merci de ma part. De t'avoir gardé.
+id|Friends? {p}{bounce}Leo has friends?{/bounce} {p}Tell them I said thanks. For keeping you.
+en|Friends?? {p}{bounce}You have FRIENDS?{/bounce} {p}Tell them thank you. For looking after you. {small}You're bad at it.{/small}
+it|Amici?? {p}{bounce}Tu hai degli AMICI?{/bounce} {p}Digli grazie da parte mia. Perché ti badano. {small}Tu da solo non sei capace.{/small}
+fr|Des amis ?? {p}{bounce}T'as des AMIS ?{/bounce} {p}Dis-leur merci de ma part. De s'occuper de toi. {small}Toi, t'es nul pour ça.{/small}
 
-en|{slow}...Really?{/slow} {p}I'll wait at the station. {p}{small}I'll bring a sign. A stupid one.{/small}
-it|{slow}...Davvero?{/slow} {p}Ti aspetto in stazione. {p}{small}Porto un cartello. Uno stupido.{/small}
-fr|{slow}...C'est vrai ?{/slow} {p}Je t'attendrai à la gare. {p}{small}J'apporterai une pancarte. Une débile.{/small}
+id|{slow}...Really?{/slow} {p}I'll wait at the station. {p}{small}I'll bring a sign. A stupid one.{/small}
+en|{slow}...Really?{/slow} {p}I'm coming to the station. I'm making a sign. {p}{small}It's going to be SO embarrassing. For you.{/small}
+it|{slow}...Davvero?{/slow} {p}Vengo in stazione. Faccio un cartello. {p}{small}Sarà imbarazzantissimo. Per te.{/small}
+fr|{slow}...C'est vrai ?{/slow} {p}Je viens à la gare. Je fais une pancarte. {p}{small}Ça va être TROP la honte. Pour toi.{/small}
 
-en|The battery's dying. {p}Leo, whatever you're doing right now... {p}{slow}don't delete anything. Okay?{/slow}
-it|La batteria sta morendo. {p}Leo, qualunque cosa tu stia facendo adesso... {p}{slow}non cancellare niente. Ok?{/slow}
-fr|La batterie va lâcher. {p}Leo, quoi que tu sois en train de faire... {p}{slow}n'efface rien. D'accord ?{/slow}
+id|The battery's dying. {p}Leo, whatever you're doing right now... {p}{slow}don't delete anything. Okay?{/slow}
+en|My battery's dying. And Mom's going to hear me. {p}Leo, whatever you're doing... {p}{slow}don't delete anything. Okay? Not even the sad stuff.{/slow}
+it|Ho la batteria scarica. E la mamma mi sente. {p}Leo, qualunque cosa stai facendo... {p}{slow}non cancellare niente. Va bene? Neanche le cose tristi.{/slow}
+fr|J'ai plus de batterie. Et maman va m'entendre. {p}Leo, quoi que tu fasses... {p}{slow}supprime rien. D'accord ? Même pas les trucs tristes.{/slow}
 
 en|The line goes quiet. {p}Kira is looking at me like she heard every word.
 it|La linea tace. {p}Kira mi guarda come se avesse sentito ogni parola.
@@ -4948,17 +4966,20 @@ en|It's been ringing since you walked in. You pick up.
 it|Squilla da quando sei entrato. Rispondi.
 fr|Ça sonne depuis que tu es entré. Tu décroches.
 
-en|{small}...hello? {p}Is this... sorry. I don't know whose number this is.{/small}
-it|{small}...pronto? {p}È il... scusa. Non so di chi sia questo numero.{/small}
-fr|{small}...allô ? {p}C'est bien... pardon. Je ne sais pas à qui est ce numéro.{/small}
+id|{small}...hello? {p}Is this... sorry. I don't know whose number this is.{/small}
+en|{small}...hello? {p}Who's this? {p}Sorry. I just press the same numbers every time.{/small}
+it|{small}...pronto? {p}Chi è? {p}Scusa. Premo sempre gli stessi numeri.{/small}
+fr|{small}...allô ? {p}C'est qui ? {p}Pardon. J'appuie toujours sur les mêmes numéros.{/small}
 
-en|{small}I just keep calling it. Nobody ever picks up. {p}It's nice that somebody did.{/small}
-it|{small}Continuo a chiamarlo e basta. Non risponde mai nessuno. {p}È bello che qualcuno l'abbia fatto.{/small}
-fr|{small}Je l'appelle tout le temps. Personne ne décroche jamais. {p}C'est gentil que quelqu'un l'ait fait.{/small}
+id|{small}I just keep calling it. Nobody ever picks up. {p}It's nice that somebody did.{/small}
+en|{small}Nobody ever answers. I talk anyway. {p}Is it okay if I talk?{/small}
+it|{small}Non risponde mai nessuno. Io parlo lo stesso. {p}Posso parlare?{/small}
+fr|{small}Personne répond jamais. Je parle quand même. {p}Je peux parler ?{/small}
 
-en|{small}There's a garden in the park. Behind the wall nobody looks at. {p}I left the key under the phone. {slow}Like always.{/slow}{/small}
-it|{small}C'è un giardino nel parco. Dietro il muro che nessuno guarda. {p}Ho lasciato la chiave sotto il telefono. {slow}Come sempre.{/slow}{/small}
-fr|{small}Il y a un jardin dans le parc. Derrière le mur que personne ne regarde. {p}J'ai laissé la clé sous le téléphone. {slow}Comme toujours.{/slow}{/small}
+id|{small}There's a garden in the park. Behind the wall nobody looks at. {p}I left the key under the phone. {slow}Like always.{/slow}{/small}
+en|{small}There's a secret garden in the park. Behind the wall. {p}I hid the key under the phone. Like always. {slow}Don't tell.{/slow}{/small}
+it|{small}C'è un giardino segreto nel parco. Dietro il muro. {p}Ho nascosto la chiave sotto il telefono. Come sempre. {slow}Non dirlo a nessuno.{/slow}{/small}
+fr|{small}Y a un jardin secret dans le parc. Derrière le mur. {p}J'ai caché la clé sous le téléphone. Comme toujours. {slow}Le dis à personne.{/slow}{/small}
 
 en|Click. {p}Under the phone, taped to the shelf: a small brass key.
 it|Clic. {p}Sotto il telefono, attaccata al ripiano con lo scotch: una piccola chiave d'ottone.
@@ -5297,9 +5318,10 @@ en|Here. From your sister. {p}I'm not allowed to read it. {small}I read it.{/sma
 it|Tieni. Da parte di tua sorella. {p}Non potevo leggerlo. {small}L'ho letto.{/small}
 fr|Tiens. De la part de ta sœur. {p}J'avais pas le droit de le lire. {small}Je l'ai lu.{/small}
 
-en|A drawing of the old swing over the river, three little lanterns on the bridge, and: <color=#FF4FD8>IN THE ORDER YOU FOUND ME</color>.
-it|Un disegno della vecchia altalena sul fiume, tre lanterne sul ponte, e: <color=#FF4FD8>NELL'ORDINE IN CUI MI HAI TROVATA</color>.
-fr|Un dessin de la vieille balançoire au bord de la rivière, trois lanternes sur le pont, et : <color=#FF4FD8>DANS L'ORDRE OÙ TU M'AS TROUVÉE</color>.
+id|A drawing of the old swing over the river, three little lanterns on the bridge, and: <color=#FF4FD8>IN THE ORDER YOU FOUND ME</color>.
+en|A drawing of the old swing over the river, three little lanterns on the bridge, and: <color=#FF4FD8>LIGHT THEM IN THE SAME ORDER AS MY CLUES!!</color>
+it|Un disegno della vecchia altalena sul fiume, tre lanterne sul ponte, e: <color=#FF4FD8>ACCENDILE NELLO STESSO ORDINE DEI MIEI INDIZI!!</color>
+fr|Un dessin de la vieille balançoire au bord de la rivière, trois lanternes sur le pont, et : <color=#FF4FD8>ALLUME-LES DANS LE MÊME ORDRE QUE MES INDICES !!</color>
 
 en|Summer fest next year, yeah? You come back, we play. {p}...Leo. {p}{slow}Come back.{/slow}
 it|La festa d'estate, l'anno prossimo, eh? Torni e suoniamo. {p}...Leo. {p}{slow}Torna.{/slow}
@@ -5457,33 +5479,39 @@ en|<color=#4F8FFF>BLUE</color>, <color=#FFD84F>YELLOW</color>, <color=#FF4F4F>RE
 it|<color=#4F8FFF>BLU</color>, <color=#FFD84F>GIALLO</color>, <color=#FF4F4F>ROSSO</color>, <color=#5FCF6F>VERDE</color>. Poi l'inchino.
 fr|<color=#4F8FFF>BLEU</color>, <color=#FFD84F>JAUNE</color>, <color=#FF4F4F>ROUGE</color>, <color=#5FCF6F>VERT</color>. Puis elle salue.
 
-en|Front row. Seat one. {p}{small}I'll check.{/small}
-it|Prima fila. Posto uno. {p}{small}Controllerò.{/small}
-fr|Premier rang. Place une. {p}{small}Je vérifierai.{/small}
+id|Front row. Seat one. {p}{small}I'll check.{/small}
+en|Front row. Seat one. {p}{small}I'm going to look from the stage. I'll SEE you.{/small}
+it|Prima fila. Posto uno. {p}{small}Dal palco guardo. Ti VEDO.{/small}
+fr|Premier rang. Place une. {p}{small}Je vais regarder depuis la scène. Je vais te VOIR.{/small}
 
-en|What ticket? {p}I don't know about any ticket. {p}{small}Go away. I'm practising.{/small}
-it|Quale biglietto? {p}Io non so niente di nessun biglietto. {p}{small}Vattene. Mi sto esercitando.{/small}
-fr|Quel billet ? {p}Je suis pas au courant d'un billet. {p}{small}Va-t'en. Je répète.{/small}
+id|What ticket? {p}I don't know about any ticket. {p}{small}Go away. I'm practising.{/small}
+en|What ticket? {p}I don't know any ticket. {p}{small}Go away! It's secret practice!{/small}
+it|Quale biglietto? {p}Io non so niente di biglietti. {p}{small}Vattene! È una prova segreta!{/small}
+fr|Quel billet ? {p}Je connais pas de billet. {p}{small}Va-t'en ! C'est une répétition secrète !{/small}
 
-en|...You found it. {p}{slow}Okay.{/slow}
-it|...L'hai trovato. {p}{slow}Va bene.{/slow}
-fr|...Tu l'as trouvé. {p}{slow}D'accord.{/slow}
+id|...You found it. {p}{slow}Okay.{/slow}
+en|You found it?! {p}{shake}Already?!{/shake} {p}...Mrs. Hale told you. She's a TRAITOR.
+it|L'hai trovato?! {p}{shake}Di già?!{/shake} {p}...Te l'ha detto la signora Hale. È una TRADITRICE.
+fr|Tu l'as trouvé ?! {p}{shake}Déjà ?!{/shake} {p}...C'est Mme Hale qui t'a dit. C'est une TRAÎTRESSE.
 
-en|Then you have to play my song. Once. So I can practise my bow. {p}The colours are on my drawing. {small}Don't mess it up.{/small}
-it|Allora devi suonare la mia canzone. Una volta. Così provo l'inchino. {p}I colori sono sul mio disegno. {small}Non sbagliare.{/small}
-fr|Alors tu dois jouer ma chanson. Une fois. Pour que je répète mon salut. {p}Les couleurs sont sur mon dessin. {small}Te trompe pas.{/small}
+id|Then you have to play my song. Once. So I can practise my bow. {p}The colours are on my drawing. {small}Don't mess it up.{/small}
+en|Okay, okay. But first you play my song, and I do my bow. {p}The colours are on my drawing. {small}Don't do it wrong!{/small}
+it|Va bene, va bene. Ma prima suoni la mia canzone, e io faccio l'inchino. {p}I colori sono sul mio disegno. {small}Non sbagliare!{/small}
+fr|D'accord, d'accord. Mais d'abord tu joues ma chanson, et moi je fais ma révérence. {p}Les couleurs sont sur mon dessin. {small}Te trompe pas !{/small}
 
-en|Again tomorrow? {p}...Oh. Right.
-it|Di nuovo domani? {p}...Ah. Già.
-fr|Encore demain ? {p}...Ah. C'est vrai.
+id|Again tomorrow? {p}...Oh. Right.
+en|Can we do it again tomorrow? {p}...Oh. {p}{small}You're not here tomorrow.{/small}
+it|La rifacciamo domani? {p}...Ah. {p}{small}Domani non ci sei.{/small}
+fr|On recommence demain ? {p}...Ah. {p}{small}T'es pas là demain.{/small}
 
 en|Mia bows. A very serious, very deep bow. {p}She nearly falls over.
 it|Mia fa l'inchino. Un inchino serissimo, profondissimo. {p}Per poco non cade.
 fr|Mia salue. Une révérence très sérieuse, très profonde. {p}Elle manque de tomber.
 
-en|Here. It's the program. I wrote your seat on it. {p}Front row. Seat one.
-it|Tieni. È il programma. Ci ho scritto il tuo posto. {p}Prima fila. Posto uno.
-fr|Tiens. C'est le programme. J'ai écrit ta place dessus. {p}Premier rang. Place une.
+id|Here. It's the program. I wrote your seat on it. {p}Front row. Seat one.
+en|Here. It's the program. Miss Carla gave me two. {p}I wrote your seat. Front row. Seat one. {small}It's the best one.{/small}
+it|Tieni. È il programma. La maestra Carla me ne ha dati due. {p}Ci ho scritto il tuo posto. Prima fila. Posto uno. {small}È il più bello.{/small}
+fr|Tiens. C'est le programme. Mlle Carla m'en a donné deux. {p}J'ai écrit ta place. Premier rang. Place une. {small}C'est la meilleure.{/small}
 
 en|["Promise."]
 it|["Promesso."]
@@ -5493,21 +5521,24 @@ en|["I'll try, Mia."]
 it|["Ci provo, Mia."]
 fr|[« J'essaierai, Mia. »]
 
-en|Pinky promise. {p}{small}Those are legally binding.{/small}
-it|Promessa col mignolo. {p}{small}Quelle valgono per legge.{/small}
-fr|Promesse du petit doigt. {p}{small}Ça a valeur légale.{/small}
+id|Pinky promise. {p}{small}Those are legally binding.{/small}
+en|Pinky promise. {p}{small}Pinky promises are forever. Everybody knows that.{/small}
+it|Promessa col mignolo. {p}{small}Quelle valgono per sempre. Lo sanno tutti.{/small}
+fr|Promesse du petit doigt. {p}{small}C'est pour toujours. Tout le monde le sait.{/small}
 
-en|Trying isn't a promise. {p}...Fine. I'm writing down 'yes'.
-it|Provarci non è una promessa. {p}...Va bene. Scrivo 'sì'.
-fr|Essayer, c'est pas promettre. {p}...Bon. J'écris « oui ».
+id|Trying isn't a promise. {p}...Fine. I'm writing down 'yes'.
+en|Trying isn't promising! {p}...I'm writing yes anyway. {small}In pen.{/small}
+it|Provarci non vale! {p}...Scrivo sì lo stesso. {small}A penna.{/small}
+fr|Essayer, c'est pas promettre ! {p}...J'écris oui quand même. {small}Au stylo.{/small}
 
 en|Three paper lanterns, unlit. Somebody tied crayon tags to them. {p}Somebody short.
 it|Tre lanterne di carta, spente. Qualcuno ci ha legato dei cartellini a pastello. {p}Qualcuno bassino.
 fr|Trois lanternes en papier, éteintes. Quelqu'un y a accroché des étiquettes au feutre. {p}Quelqu'un de petit.
 
-en|The lanterns go out together. {p}'In the order you found me.'
-it|Le lanterne si spengono tutte insieme. {p}'Nell'ordine in cui mi hai trovata.'
-fr|Les lanternes s'éteignent ensemble. {p}« Dans l'ordre où tu m'as trouvée. »
+id|The lanterns go out together. {p}'In the order you found me.'
+en|The lanterns go out together. {p}'Same order as my clues.' Bread first.
+it|Le lanterne si spengono tutte insieme. {p}'Nello stesso ordine dei miei indizi.' Prima il pane.
+fr|Les lanternes s'éteignent ensemble. {p}« Dans le même ordre que mes indices. » Le pain d'abord.
 
 en|The last lantern catches. {p}Across the water, something glints under the swing.
 it|L'ultima lanterna si accende. {p}Dall'altra parte dell'acqua, sotto l'altalena, qualcosa luccica.
@@ -5517,17 +5548,19 @@ en|Mrs. Hale's biscuit tin. Empty now, except for crumbs.
 it|La scatola di biscotti della signora Hale. Vuota, a parte le briciole.
 fr|La boîte à biscuits de Mme Hale. Vide, à part les miettes.
 
-en|A biscuit tin, tied shut with string. On the lid, in crayon: <color=#FF4FD8>LIGHT THE WAY FIRST</color>.
-it|Una scatola di latta, legata con lo spago. Sul coperchio, a pastello: <color=#FF4FD8>PRIMA ILLUMINA LA STRADA</color>.
-fr|Une boîte en fer, fermée avec une ficelle. Sur le couvercle, au feutre : <color=#FF4FD8>ÉCLAIRE D'ABORD LE CHEMIN</color>.
+id|A biscuit tin, tied shut with string. On the lid, in crayon: <color=#FF4FD8>LIGHT THE WAY FIRST</color>.
+en|A biscuit tin, tied shut with string. On the lid, in crayon: <color=#FF4FD8>LIGHT THE LANTERNS FIRST!!!</color>
+it|Una scatola di latta, legata con lo spago. Sul coperchio, a pastello: <color=#FF4FD8>PRIMA ACCENDI LE LANTERNE!!!</color>
+fr|Une boîte en fer, fermée avec une ficelle. Sur le couvercle, au feutre : <color=#FF4FD8>ALLUME D'ABORD LES LANTERNES !!!</color>
 
 en|Inside: your train ticket. {p}Under it, one last drawing. A girl on a stage, bowing. An empty seat in the front row.
 it|Dentro: il tuo biglietto del treno. {p}Sotto, un ultimo disegno. Una bambina su un palco che fa l'inchino. Un posto vuoto in prima fila.
 fr|Dedans : ton billet de train. {p}En dessous, un dernier dessin. Une fille sur une scène, qui salue. Une place vide au premier rang.
 
-en|On the back: <color=#FF4FD8>COME SAY BYE PROPERLY. BANDSTAND.</color>
-it|Sul retro: <color=#FF4FD8>VIENI A SALUTARMI COME SI DEVE. GAZEBO.</color>
-fr|Au dos : <color=#FF4FD8>VIENS ME DIRE AU REVOIR COMME IL FAUT. KIOSQUE.</color>
+id|On the back: <color=#FF4FD8>COME SAY BYE PROPERLY. BANDSTAND.</color>
+en|On the back: <color=#FF4FD8>COME SAY BYE PROPERLY!! AT THE BANDSTAND. NOW!!</color>
+it|Sul retro: <color=#FF4FD8>VIENI A SALUTARMI PER BENE!! AL GAZEBO. SUBITO!!</color>
+fr|Au dos : <color=#FF4FD8>VIENS ME DIRE AU REVOIR COMME IL FAUT !! AU KIOSQUE. TOUT DE SUITE !!</color>
 
 en|...She planned all of this. {p}{small}She's nine.{/small}
 it|...Ha organizzato tutto lei. {p}{small}Ha nove anni.{/small}
@@ -5734,14 +5767,14 @@ it|CAMERA DI MIA. BUSSARE. {p}Sotto, più piccolo: SOPRATTUTTO LEO.
 fr|CHAMBRE DE MIA. FRAPPER. {p}En dessous, plus petit : SURTOUT LEO.
 
 id|{cam=close}That's what I'm doing at the recital. In the spring.
-en|That's what I'm doing at the recital. In the spring.
-it|È quello che farò al saggio. In primavera.
-fr|C'est ce que je ferai au spectacle. Au printemps.
+en|That's my bow for the recital! In the spring! {p}{small}It'll be better there. There's a curtain.{/small}
+it|È il mio inchino per il saggio! In primavera! {p}{small}Lì viene meglio. C'è il sipario.{/small}
+fr|C'est ma révérence pour le spectacle ! Au printemps ! {p}{small}Là-bas ce sera mieux. Y a un rideau.{/small}
 
 id|{cam=two}You have to clap the loudest. {p}{bounce}Promise?{/bounce}
-en|You have to clap the loudest. {p}{bounce}Promise?{/bounce}
-it|Devi applaudire più forte di tutti. {p}{bounce}Promesso?{/bounce}
-fr|Tu dois applaudir le plus fort. {p}{bounce}Promis ?{/bounce}
+en|And you have to clap the LOUDEST. Louder than Mom. {p}{bounce}Promise?{/bounce}
+it|E devi applaudire FORTISSIMO. Più forte della mamma. {p}{bounce}Promesso?{/bounce}
+fr|Et tu dois applaudir le PLUS FORT. Plus fort que maman. {p}{bounce}Promis ?{/bounce}
 
 id|{cam=off}I said yes. {p}{slow}I'll come back for it. It's three hours.{/slow}
 en|I said yes. {p}{slow}I'll come back for it. It's three hours.{/slow}
