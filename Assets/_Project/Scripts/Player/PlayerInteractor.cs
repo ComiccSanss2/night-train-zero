@@ -25,9 +25,9 @@ namespace Subnet.Player
         [Tooltip("Objects outside this cone (degrees, total) in front of Leo are ignored.")]
         [Range(30f, 360f)] [SerializeField] private float facingAngle = 170f;
         [Tooltip("How much facing direction weighs against distance (higher = aim matters more).")]
-        [SerializeField] private float angleWeight = 0.025f;
+        [SerializeField] private float angleWeight = 0.04f;
         [Tooltip("A new target must beat the current one by this score margin to take focus.")]
-        [SerializeField] private float stickiness = 0.35f;
+        [SerializeField] private float stickiness = 0.18f;
         [Tooltip("Set to the 'Interactable' layer.")]
         [SerializeField] private LayerMask interactableMask = ~0;
 
@@ -52,6 +52,9 @@ namespace Subnet.Player
         private IsometricPlayerController movement;
         private Camera cachedCamera;
         private IInteractable current;
+        private IInteractable manual;   // picked with Q among several close targets
+        private readonly System.Collections.Generic.List<(IInteractable target, float score)> candidates = new System.Collections.Generic.List<(IInteractable, float)>();
+        private int lastCandidateCount;
         private float promptScaleVelocity;
         private float promptScale;
 
@@ -76,7 +79,23 @@ namespace Subnet.Player
             bool blocked = InputLock.IsLocked
                 || (DialogueManager.Instance != null && DialogueManager.Instance.ClosedRecently)
                 || Time.frameCount - UI.PauseMenu.LastClosedFrame <= 1;
-            SetFocus(InputLock.IsLocked ? null : FindBestInteractable());
+            IInteractable best = InputLock.IsLocked ? null : FindBestInteractable();
+            // Q (or a shoulder button) cycles through everything in reach, nearest first.
+            if (!blocked && candidates.Count > 1 && CyclePressed())
+            {
+                candidates.Sort((x, y) => x.score.CompareTo(y.score));
+                int at = candidates.FindIndex(c => ReferenceEquals(c.target, current));
+                manual = candidates[(at + 1) % candidates.Count].target;
+                best = manual;
+            }
+            if (manual != null && !candidates.Exists(c => ReferenceEquals(c.target, manual))) manual = null;
+            if (manual != null) best = manual;
+            SetFocus(best);
+            if (candidates.Count != lastCandidateCount)
+            {
+                lastCandidateCount = candidates.Count;
+                RefreshPromptLabel();
+            }
 
             if (!blocked && IsAlive(current) && GameInput.SubmitPressed)
             {
@@ -90,8 +109,16 @@ namespace Subnet.Player
             UpdatePrompt();
         }
 
+        private static bool CyclePressed()
+        {
+            var kb = UnityEngine.InputSystem.Keyboard.current;
+            var gp = UnityEngine.InputSystem.Gamepad.current;
+            return (kb != null && kb.qKey.wasPressedThisFrame) || (gp != null && (gp.rightShoulder.wasPressedThisFrame || gp.leftShoulder.wasPressedThisFrame));
+        }
+
         private IInteractable FindBestInteractable()
         {
+            candidates.Clear();
             Vector3 origin = transform.position + Vector3.up * detectionHeight;
             int count = Physics.OverlapSphereNonAlloc(origin, detectionRadius, overlapBuffer, interactableMask, QueryTriggerInteraction.Collide);
 
@@ -123,6 +150,9 @@ namespace Subnet.Player
                 if (angle > halfAngle && distance > 0.15f) continue;
 
                 float score = distance + angle * angleWeight;
+                int known = candidates.FindIndex(c => ReferenceEquals(c.target, candidate));
+                if (known < 0) candidates.Add((candidate, score));
+                else if (score < candidates[known].score) candidates[known] = (candidate, score);
                 if (ReferenceEquals(candidate, current)) currentScore = Mathf.Min(currentScore, score);
                 if (score < bestScore)
                 {
@@ -160,7 +190,8 @@ namespace Subnet.Player
 
         private void RefreshPromptLabel()
         {
-            if (promptLabel != null && IsAlive(current)) promptLabel.text = $"<b>{keyHint}</b>  {Loc.T(DisplayName(current))}";
+            if (promptLabel != null && IsAlive(current))
+                promptLabel.text = $"<b>{keyHint}</b>  {Loc.T(DisplayName(current))}" + (candidates.Count > 1 ? "   <size=75%><color=#8A8F99><b>Q</b> " + Loc.T("next") + "</color></size>" : string.Empty);
         }
 
         /// <summary>"Prop_FrontDoor" → "Front Door", "NPC_Commuter_Phone" → "Commuter", "Lamp_Waited" → "Lamp".</summary>

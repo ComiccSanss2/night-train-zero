@@ -136,6 +136,26 @@ namespace Subnet.EditorTools
             return puzzle;
         }
 
+        private static InstrumentPlayer Instrument(GameObject target, PuzzleSwitch[] pads, string[] labels, Color[] colors, Transform cam, Vector3 look, float fov, string title)
+        {
+            var player = target.AddComponent<InstrumentPlayer>();
+            SetArray(player, "pads", pads);
+            SetStrings(player, "labels", labels);
+            var so = new SerializedObject(player);
+            SerializedProperty list = so.FindProperty("colors");
+            list.arraySize = colors.Length;
+            for (int i = 0; i < colors.Length; i++) list.GetArrayElementAtIndex(i).colorValue = colors[i];
+            so.ApplyModifiedPropertiesWithoutUndo();
+            var lookAt = new GameObject("Look").transform;
+            lookAt.SetParent(target.transform, true);
+            lookAt.position = look;
+            Set(player, "cameraPoint", cam);
+            Set(player, "lookPoint", lookAt);
+            Set(player, "fieldOfView", fov);
+            Set(player, "title", title);
+            return player;
+        }
+
         private static PuzzleSwitch Switch(GameObject go, Light light, Renderer glow, Color lit, AudioSource note, Transform punch)
         {
             var sw = go.AddComponent<PuzzleSwitch>();
@@ -168,6 +188,8 @@ namespace Subnet.EditorTools
 
             AddSceneMusic(true, StemMix.Home);
             ctx.removeAmbience = true;
+            ctx.cam.backgroundColor = new Color(0.32f, 0.26f, 0.3f);
+            Transform points = new GameObject("CinematicPoints").transform;
 
             // ---------------------------------------------------------------- materials
             Material grass = LitMaterial("Town/M_Grass", new Color(0.36f, 0.52f, 0.27f), 0.05f);
@@ -191,7 +213,7 @@ namespace Subnet.EditorTools
             Material whiteFlower = LitMaterial("Town/M_FlowerWhite", new Color(0.98f, 0.97f, 0.93f));
             Material red = LitMaterial("Town/M_FlowerRed", new Color(0.85f, 0.15f, 0.18f));
             Material iron = LitMaterial("Town/M_Iron", new Color(0.18f, 0.18f, 0.2f), 0.5f);
-            Material warmWindow = EmissiveMaterial("Town/M_WindowWarm", new Color(0.5f, 0.38f, 0.25f), new Color(1f, 0.75f, 0.45f) * 1.1f);
+            Material warmWindow = EmissiveMaterial("Town/M_WindowWarm", new Color(0.22f, 0.18f, 0.16f), new Color(1f, 0.72f, 0.42f) * 0.55f);
             Material paper = LitMaterial("Town/M_Paper", new Color(0.97f, 0.95f, 0.88f));
             Color lampGlow = new Color(1f, 0.8f, 0.55f);
 
@@ -274,8 +296,13 @@ namespace Subnet.EditorTools
             Block("Carport_Floor", ctx.env, cp + new Vector3(0f, 0.02f, 0f), new Vector3(6f, 0.04f, 6f), LitMaterial("Town/M_Concrete", new Color(0.6f, 0.59f, 0.57f)), ctx.groundLayer);
             Block("Carport_WallN", ctx.env, cp + new Vector3(0f, 1.4f, 3.05f), new Vector3(6.2f, 2.8f, 0.15f), carportWall, 0);
             Block("Carport_WallE", ctx.env, cp + new Vector3(3.05f, 1.4f, 0f), new Vector3(0.15f, 2.8f, 6.2f), carportWall, 0);
-            Deco("Carport_Roof", ctx.env, cp + new Vector3(0f, 2.86f, 0f), new Vector3(6.4f, 0.12f, 6.4f), carportRoof);
-            foreach (Vector3 o in new[] { new Vector3(-2.95f, 0f, -2.95f), new Vector3(2.95f, 0f, -2.95f), new Vector3(-2.95f, 0f, 2.95f) })
+            GameObject carRoof = Deco("Carport_Roof", ctx.env, cp + new Vector3(0f, 2.86f, 0f), new Vector3(6.4f, 0.12f, 6.4f), carportRoof);
+            var carCut = new GameObject("Cutaway_Carport").AddComponent<CutawayZone>();
+            carCut.transform.SetParent(ctx.env, false);
+            carCut.transform.position = cp + new Vector3(-0.5f, 1f, -1.5f);
+            Set(carCut, "size", new Vector3(9f, 4f, 10f));
+            SetArray(carCut, "hide", new Object[] { carRoof.GetComponent<Renderer>() });
+            foreach (Vector3 o in new[] { new Vector3(2.95f, 0f, -2.95f), new Vector3(-2.95f, 0f, 2.95f) })
                 Block("Carport_Post", ctx.env, cp + o + Vector3.up * 1.4f, new Vector3(0.14f, 2.8f, 0.14f), white, 0);
             Block("Bound_Carport_W", ctx.env, cp + new Vector3(-3.1f, 1f, 1f), new Vector3(0.2f, 2f, 4f), null, 0);
             Deco("Driveway", ctx.env, new Vector3(-4.5f, 0.01f, 5.9f), new Vector3(4.5f, 0.02f, 4.4f), LitMaterial("Town/M_Concrete", new Color(0.6f, 0.59f, 0.57f)));
@@ -304,7 +331,7 @@ namespace Subnet.EditorTools
             Material trim = LitMaterial("Town/M_BakeryTrim", new Color(0.36f, 0.24f, 0.18f));
             Material awningRed = LitMaterial("Town/M_AwningRed", new Color(0.72f, 0.18f, 0.16f));
             Material awningCream = LitMaterial("Town/M_AwningCream", new Color(0.95f, 0.9f, 0.78f));
-            Material shopGlass = EmissiveMaterial("Town/M_BakeryGlass", new Color(0.35f, 0.26f, 0.18f), new Color(1f, 0.7f, 0.4f) * 0.7f);
+            Material shopGlass = EmissiveMaterial("Town/M_BakeryGlass", new Color(0.2f, 0.15f, 0.12f), new Color(1f, 0.7f, 0.4f) * 0.4f);
             Block("Bakery_Body", ctx.env, new Vector3(14f, 3.6f, 15.5f), new Vector3(8f, 7.2f, 7f), plaster, 0);
             Deco("Bakery_Base", ctx.env, new Vector3(14f, 0.3f, 11.97f), new Vector3(8.02f, 0.6f, 0.06f), darkStone);
             Deco("Bakery_Cornice", ctx.env, new Vector3(14f, 7.25f, 11.95f), new Vector3(8.3f, 0.22f, 0.3f), trim);
@@ -326,6 +353,8 @@ namespace Subnet.EditorTools
                 float wx = 10.9f + i * 2.05f;
                 Deco("UpWindowFrame", ctx.env, new Vector3(wx, 4.9f, 11.96f), new Vector3(1.05f, 1.35f, 0.06f), trim);
                 Deco("UpWindow", ctx.env, new Vector3(wx, 4.9f, 11.93f), new Vector3(0.9f, 1.2f, 0.04f), warmWindow);
+                Deco("UpMullionV", ctx.env, new Vector3(wx, 4.9f, 11.9f), new Vector3(0.05f, 1.2f, 0.03f), trim);
+                Deco("UpMullionH", ctx.env, new Vector3(wx, 5.1f, 11.9f), new Vector3(0.9f, 0.05f, 0.03f), trim);
                 if (i % 2 == 0)
                 {
                     Deco("FlowerBox", ctx.env, new Vector3(wx, 4.18f, 11.85f), new Vector3(1f, 0.18f, 0.22f), trim);
@@ -338,6 +367,11 @@ namespace Subnet.EditorTools
             Material flatDoorMat = LitMaterial("Town/M_FlatDoor", new Color(0.2f, 0.32f, 0.4f));
             HouseDoor flatOutside = BuildDoor(ctx, "FlatStreet", new Vector3(16.95f, 0f, 11.88f), 180f, flatDoorMat, lampGlow, null, "HALDEN");
             PointLight(ctx.env, new Vector3(12.1f, 1.6f, 10.8f), new Color(1f, 0.72f, 0.42f), 1.4f, 4f);
+            // The window display: tomorrow's loaves, on a shelf behind the glass.
+            Deco("DisplayShelf", ctx.env, new Vector3(12.1f, 0.72f, 11.86f), new Vector3(3.2f, 0.06f, 0.18f), trim);
+            string[] breads = { "loaf", "croissant", "loaf-baguette", "loaf-round", "croissant", "bread" };
+            for (int i = 0; i < breads.Length; i++)
+                Prop(ctx, "Display" + i, breads[i], "food", new Vector3(10.85f + i * 0.5f, 0.75f, 11.83f), 90f + i * 13f, 0.38f, true, null, null, null, false);
 
             // Baker outside his shop, flour on his sleeves.
             GameObject baker = Character(ctx, "Baker", "character-male-e", "mini-characters", new Vector3(11.3f, 0f, 10.7f), 190f, 1.05f);
@@ -356,20 +390,45 @@ namespace Subnet.EditorTools
             GameObject basin = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             basin.name = "Fountain_Basin";
             basin.transform.SetParent(ctx.props, false);
-            basin.transform.position = fountain + Vector3.up * 0.3f;
-            basin.transform.localScale = new Vector3(3.2f, 0.3f, 3.2f);
+            basin.transform.position = fountain + Vector3.up * 0.12f;
+            basin.transform.localScale = new Vector3(3.2f, 0.12f, 3.2f);
             basin.GetComponent<Renderer>().sharedMaterial = stone;
             basin.layer = ctx.interactableLayer;
             GameObject fWater = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             Object.DestroyImmediate(fWater.GetComponent<Collider>());
             fWater.name = "Fountain_Water";
             fWater.transform.SetParent(ctx.props, false);
-            fWater.transform.position = fountain + Vector3.up * 0.56f;
-            fWater.transform.localScale = new Vector3(2.9f, 0.02f, 2.9f);
-            fWater.GetComponent<Renderer>().sharedMaterial = water;
-            Deco("Fountain_Column", ctx.props, fountain + Vector3.up * 1f, new Vector3(0.35f, 1.4f, 0.35f), stone);
-            Deco("Fountain_Bowl", ctx.props, fountain + Vector3.up * 1.72f, new Vector3(0.9f, 0.12f, 0.9f), stone);
-            PixelTears(ctx.props, fountain + Vector3.up * 1.85f, ParticleMaterial("Town/M_FountainDrops", new Color(0.75f, 0.9f, 1f)), 28f);
+            fWater.transform.position = fountain + Vector3.up * 0.36f;
+            fWater.transform.localScale = new Vector3(2.85f, 0.02f, 2.85f);
+            fWater.GetComponent<Renderer>().sharedMaterial = LitMaterial("Town/M_FountainWater", new Color(0.3f, 0.55f, 0.65f), 0.95f);
+            for (int i = 0; i < 20; i++)
+            {
+                float ang = i * 18f;
+                Vector3 rp = fountain + Quaternion.Euler(0f, ang, 0f) * Vector3.forward * 1.5f;
+                Deco("Fountain_Rim", ctx.props, rp + Vector3.up * 0.3f, new Vector3(0.52f, 0.36f, 0.22f), stone, new Vector3(0f, ang, 0f));
+            }
+            GameObject column = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            Object.DestroyImmediate(column.GetComponent<Collider>());
+            column.name = "Fountain_Column";
+            column.transform.SetParent(ctx.props, false);
+            column.transform.position = fountain + Vector3.up * 0.95f;
+            column.transform.localScale = new Vector3(0.26f, 0.6f, 0.26f);
+            column.GetComponent<Renderer>().sharedMaterial = stone;
+            GameObject bowl = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            Object.DestroyImmediate(bowl.GetComponent<Collider>());
+            bowl.name = "Fountain_Bowl";
+            bowl.transform.SetParent(ctx.props, false);
+            bowl.transform.position = fountain + Vector3.up * 1.58f;
+            bowl.transform.localScale = new Vector3(0.95f, 0.06f, 0.95f);
+            bowl.GetComponent<Renderer>().sharedMaterial = stone;
+            GameObject spout = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            Object.DestroyImmediate(spout.GetComponent<Collider>());
+            spout.name = "Fountain_Top";
+            spout.transform.SetParent(ctx.props, false);
+            spout.transform.position = fountain + Vector3.up * 1.78f;
+            spout.transform.localScale = new Vector3(0.22f, 0.32f, 0.22f);
+            spout.GetComponent<Renderer>().sharedMaterial = stone;
+            PixelTears(ctx.props, fountain + Vector3.up * 1.62f, ParticleMaterial("Town/M_FountainDrops", new Color(0.75f, 0.9f, 1f)), 28f);
             Inspectable(basin, "TownFountain",
                 L("* Mia throws a coin in here every Sunday. {p}She's never told anyone what she wishes for.",
                   "* There's a coin on the edge, drying in the sun. {p}You leave it. It isn't yours."),
@@ -377,7 +436,7 @@ namespace Subnet.EditorTools
             foreach (float a in new[] { 200f, 340f })
             {
                 Vector3 bp = fountain + Quaternion.Euler(0f, a, 0f) * Vector3.forward * 2.9f;
-                Prop(ctx, "SquareBench" + a, "bench", F, bp, a, 1.15f, true, null);
+                Prop(ctx, "SquareBench" + a, "bench", F, bp, a, 1.5f, true, null);
             }
             for (int i = 0; i < 3; i++)
                 Character(ctx, "Pigeon" + i, "animal-chick", "cube-pets", fountain + new Vector3(-1.6f + i * 0.5f, 0f, -2.2f + (i % 2) * 0.4f), 150f + i * 40f, 0.28f, LitMaterial("Town/M_Pigeon", new Color(0.6f, 0.62f, 0.66f)), false);
@@ -426,7 +485,8 @@ namespace Subnet.EditorTools
             Drift(ctx.props, new Vector3(0f, 0.9f, -10f), new Vector3(60f, 1.4f, 5f), ParticleMaterial("Town/M_Firefly", new Color(1f, 0.95f, 0.6f)), 4f, 0.05f, -0.004f);
 
             // Skate ramp, two kids.
-            Prop(ctx, "SkateRamp", "half-pipe-low", "mini-skate", new Vector3(3f, 0f, -9.6f), 90f, 3.6f, true, null);
+            Prop(ctx, "SkateRamp", "ramp", "mini-skate", new Vector3(3.6f, 0f, -10.4f), -90f, 2.2f, true, null);
+            Prop(ctx, "SkateRail", "rail-low", "mini-skate", new Vector3(1.4f, 0f, -10.6f), 0f, 2f, true, null);
             Prop(ctx, "Skateboard", "skateboard", "mini-skate", new Vector3(5.4f, 0f, -8.6f), 30f, 0.7f, true, null, null, null, false);
             GameObject kidA = Character(ctx, "KidA", "character-male-a", "mini-characters", new Vector3(5.8f, 0f, -9.3f), 240f, 0.74f);
             Inspectable(kidA, "KidA", L("..."),
@@ -435,7 +495,7 @@ namespace Subnet.EditorTools
                   "Is it true the city has trains every five minutes? {p}{big}Every five minutes?{/big} {p}What do they DO all day?"),
                 null, spkKid);
             Set(kidA.GetComponent<InspectableObject>(), "cycleRepeat", true);
-            GameObject kidB = Character(ctx, "KidB", "character-female-f", "mini-characters", new Vector3(0.6f, 0f, -8.9f), 120f, 0.72f);
+            GameObject kidB = Character(ctx, "KidB", "character-female-f", "mini-characters", new Vector3(-0.2f, 0f, -9.4f), 120f, 0.72f);
             Inspectable(kidB, "KidB", L("..."),
                 L("Mia's at the bandstand. She's been there since lunch. {p}She said nobody's allowed. {small}Especially you.{/small}",
                   "I'm not telling you anything. I signed a contract. {p}{small}In crayon.{/small}"),
@@ -489,7 +549,25 @@ namespace Subnet.EditorTools
             roof.transform.position = band + Vector3.up * 2.68f;
             roof.transform.localScale = new Vector3(5f, 0.08f, 5f);
             roof.GetComponent<Renderer>().sharedMaterial = bandRoof;
-            Deco("Bandstand_Cap", ctx.env, band + Vector3.up * 2.95f, new Vector3(1.4f, 0.5f, 1.4f), bandRoof, new Vector3(0f, 45f, 0f));
+            GameObject cap = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            Object.DestroyImmediate(cap.GetComponent<Collider>());
+            cap.name = "Bandstand_Cap";
+            cap.transform.SetParent(ctx.env, false);
+            cap.transform.position = band + Vector3.up * 2.86f;
+            cap.transform.localScale = new Vector3(2.4f, 0.12f, 2.4f);
+            cap.GetComponent<Renderer>().sharedMaterial = bandRoof;
+            GameObject knob = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            Object.DestroyImmediate(knob.GetComponent<Collider>());
+            knob.name = "Bandstand_Knob";
+            knob.transform.SetParent(ctx.env, false);
+            knob.transform.position = band + Vector3.up * 3.08f;
+            knob.transform.localScale = Vector3.one * 0.3f;
+            knob.GetComponent<Renderer>().sharedMaterial = bandWhite;
+            var bandCut = new GameObject("Cutaway_Bandstand").AddComponent<CutawayZone>();
+            bandCut.transform.SetParent(ctx.env, false);
+            bandCut.transform.position = band + Vector3.up;
+            Set(bandCut, "size", new Vector3(7f, 4f, 7f));
+            SetArray(bandCut, "hide", new Object[] { roof.GetComponent<Renderer>(), cap.GetComponent<Renderer>(), knob.GetComponent<Renderer>() });
 
             // Four chimes on the camera side, each with a coloured ribbon.
             (string color, Color tint, string clip, float pitch)[] chimes =
@@ -507,11 +585,6 @@ namespace Subnet.EditorTools
                 var holder = new GameObject("Chime_" + chimes[i].color);
                 holder.transform.SetParent(ctx.props, false);
                 holder.transform.position = p + Vector3.up * 1.4f;
-                holder.layer = ctx.interactableLayer;
-                var col = holder.AddComponent<BoxCollider>();
-                col.size = new Vector3(0.5f, 2.6f, 0.5f);
-                col.center = new Vector3(0f, -0.1f, 0f);
-                col.isTrigger = true;
                 var swing = new GameObject("Swing").transform;
                 swing.SetParent(holder.transform, false);
                 swing.localPosition = new Vector3(0f, 1.2f, 0f);
@@ -532,6 +605,11 @@ namespace Subnet.EditorTools
                 L("* Mia's wind chimes. {p}If I touch them before she says so, I'm dead."),
                 L("...That's not it. {p}Mia's drawing has the colours in order."),
                 null);
+            GameObject chimeTarget = Hitbox("Prop_Chimes", ctx.props, band + new Vector3(0f, 1.2f, -1.2f), new Vector3(3.2f, 2.2f, 0.8f), ctx.interactableLayer);
+            Transform chimeCam = CinematicPoint("CP_Chimes", points, band + new Vector3(-0.4f, 1.6f, -4.7f), band + new Vector3(0f, 1.55f, -1.2f));
+            Instrument(chimeTarget, new[] { chimeSwitches["red"], chimeSwitches["yellow"], chimeSwitches["green"], chimeSwitches["blue"] },
+                new[] { "Red", "Yellow", "Green", "Blue" }, new[] { chimes[0].tint, chimes[1].tint, chimes[2].tint, chimes[3].tint },
+                chimeCam, band + new Vector3(0f, 1.55f, -1.2f), 44f, "MIA'S SONG");
             GameObject stand = Block("Prop_MusicStand", ctx.props, band + new Vector3(0.9f, 1.05f, 0.1f), new Vector3(0.55f, 0.4f, 0.04f), paper, ctx.interactableLayer);
             stand.transform.rotation = Quaternion.Euler(-20f, 200f, 0f);
             Deco("StandPole", ctx.props, band + new Vector3(0.9f, 0.5f, 0.12f), new Vector3(0.03f, 1f, 0.03f), iron);
@@ -579,7 +657,7 @@ namespace Subnet.EditorTools
                 ("DRUMS", new Vector3(bx - 1.15f, 0f, -16.2f)),
             };
             var lanternSwitches = new Dictionary<string, PuzzleSwitch>();
-            Material lanternPaper = EmissiveMaterial("Town/M_PaperLantern", new Color(0.95f, 0.88f, 0.75f), Color.black);
+            Material lanternPaper = EmissiveMaterial("Town/M_PaperLantern", new Color(0.85f, 0.32f, 0.22f), Color.black);
             foreach (var ln in lanterns)
             {
                 var holder = new GameObject("Lantern_" + ln.word);
@@ -601,9 +679,13 @@ namespace Subnet.EditorTools
                 globe.GetComponent<Renderer>().sharedMaterial = lanternPaper;
                 Light l = PointLight(holder.transform, globe.transform.position, new Color(1f, 0.7f, 0.4f), 1.8f, 4f);
                 l.enabled = false;
-                GameObject tagGo = Deco("Tag", holder.transform, ln.pos + new Vector3(0f, 1.18f, 0.37f), new Vector3(0.36f, 0.18f, 0.01f), paper);
-                TextMeshPro word = WorldSign(holder.transform, ln.word, ln.pos + new Vector3(0f, 1.18f, 0.36f) + new Vector3(0f, 0f, -0.012f), 180f, new Color(0.85f, 0.3f, 0.45f), 1f);
-                word.rectTransform.sizeDelta = new Vector2(0.34f, 0.16f);
+                GameObject tagGo = Deco("Tag", holder.transform, ln.pos + new Vector3(0f, 1.12f, 0.37f), new Vector3(0.62f, 0.26f, 0.01f), paper);
+                TextMeshPro word = WorldSign(holder.transform, ln.word, ln.pos + new Vector3(0f, 1.12f, 0.37f) + new Vector3(0f, 0f, -0.012f), 180f, new Color(0.7f, 0.12f, 0.22f), 1.6f);
+                word.rectTransform.sizeDelta = new Vector2(0.58f, 0.22f);
+                foreach (float ry in new[] { -0.14f, 0f, 0.14f })
+                    Deco("LanternRib", holder.transform, globe.transform.position + Vector3.up * ry, new Vector3(0.37f - Mathf.Abs(ry), 0.015f, 0.37f - Mathf.Abs(ry)), darkWood);
+                Deco("LanternCapTop", holder.transform, globe.transform.position + Vector3.up * 0.23f, new Vector3(0.14f, 0.05f, 0.14f), darkWood);
+                Deco("LanternCapBottom", holder.transform, globe.transform.position + Vector3.down * 0.23f, new Vector3(0.14f, 0.05f, 0.14f), darkWood);
                 FitText(word);
                 lanternSwitches[ln.word] = Switch(holder, l, globe.GetComponent<Renderer>(), new Color(1f, 0.72f, 0.4f), null, globe.transform);
             }
@@ -657,7 +739,6 @@ namespace Subnet.EditorTools
             foreach (Vector3 o in new[] { new Vector3(28f, 0f, 9f), new Vector3(28f, 0f, 13f), new Vector3(30.6f, 0f, 9f), new Vector3(30.6f, 0f, 13f) })
                 Block("ShelterPost", ctx.env, o + Vector3.up * 1.4f, new Vector3(0.12f, 2.8f, 0.12f), iron, 0);
             Deco("ShelterRoof", ctx.env, new Vector3(29.3f, 2.85f, 11f), new Vector3(3.2f, 0.12f, 4.6f), LitMaterial("Town/M_ShelterRoof", new Color(0.32f, 0.42f, 0.36f)));
-            Block("ShelterBack", ctx.env, new Vector3(27.2f, 1.3f, 11f), new Vector3(0.1f, 2.4f, 4.4f), LitMaterial("Town/M_ShelterGlass", new Color(0.55f, 0.65f, 0.7f), 0.8f), 0);
             GameObject platformBench = Prop(ctx, "PlatformBench", "bench", F, new Vector3(28f, 0.18f, 11f), -90f, 1.15f, true,
                 L("* You sit. The rails tick in the heat. {p}Somewhere a long way north, the 21:40 is already on its way."),
                 L("* Still sitting. Still on its way."), "+openness#platform_bench");
@@ -744,7 +825,6 @@ namespace Subnet.EditorTools
                 "boarded_home;clear:in_prologue", new Vector3(31.15f, 1f, 8f), new Vector3(0.5f, 2f, 2.6f));
             GameObject doors = Block("TrainDoors_Home", ctx.story, new Vector3(31.62f, 1.1f, 8f), new Vector3(0.4f, 2f, 2.4f), null, ctx.interactableLayer);
             doors.GetComponent<Collider>().isTrigger = true;
-            Transform points = new GameObject("CinematicPoints").transform;
             Transform bA = CinematicPoint("CP_Home_Board", points, new Vector3(27.2f, 1.6f, 4.5f), new Vector3(32.6f, 1.2f, 9f));
             Transform bB = CinematicPoint("CP_Home_Away", points, new Vector3(18f, 9f, -8f), new Vector3(30f, 0f, 14f));
             CinematicSequence boarding = Cinematic("Cinematic_Leaving_Halden", ctx.story,
@@ -782,20 +862,20 @@ namespace Subnet.EditorTools
                 var holder = new GameObject("Drum_" + drums[i].pad);
                 holder.transform.SetParent(ctx.props, false);
                 holder.transform.position = p;
-                holder.layer = ctx.interactableLayer;
-                var col = holder.AddComponent<BoxCollider>();
-                col.size = new Vector3(0.35f, 0.35f, 0.35f);
-                col.isTrigger = true;
                 Light l = PointLight(holder.transform, p + Vector3.up * 0.3f, new Color(1f, 0.75f, 0.45f), 0.9f, 1.4f);
                 l.enabled = false;
                 drumSwitches[drums[i].pad] = Switch(holder, l, null, Color.white, NoteSource(holder.transform, drums[i].clip, drums[i].pitch), kit != null ? kit.transform : null);
-                Set(drumSwitches[drums[i].pad], "promptAnchor", holder.transform);
             }
             OrderPuzzle(ctx, "DrumPuzzle", new[] { drumSwitches["Pad_Kick"], drumSwitches["Pad_Tom"], drumSwitches["Pad_Snare"], drumSwitches["Pad_Crash"] },
                 "drums_played", "clue_bakery",
                 L("* Dani's kit. Nobody touches Dani's kit. {p}Not even me."),
                 L("* Wrong. {p}Dani winces like I stepped on his foot."),
                 null);
+            GameObject kitTarget = Hitbox("Prop_DrumKit", ctx.props, kitCenter + new Vector3(0f, 0.6f, 0f), new Vector3(1.9f, 1.2f, 1.5f), ctx.interactableLayer);
+            Transform kitCam = CinematicPoint("CP_DrumKit", points, kitCenter + new Vector3(-1.6f, 1.55f, -2.3f), kitCenter + new Vector3(0f, 0.65f, 0.1f));
+            Instrument(kitTarget, new[] { drumSwitches["Pad_Kick"], drumSwitches["Pad_Tom"], drumSwitches["Pad_Snare"], drumSwitches["Pad_Crash"] },
+                new[] { "Kick", "Tom", "Snare", "Crash" }, new[] { new Color(1f, 0.55f, 0.3f), new Color(1f, 0.8f, 0.35f), new Color(0.9f, 0.9f, 0.95f), new Color(1f, 0.85f, 0.3f) },
+                kitCam, kitCenter + new Vector3(0f, 0.65f, 0.1f), 42f, "NIGHT TRAIN - INTRO");
             DialogueSequence daniSeq = SeqAsset("Hometown/Dani",
                 OnlyIf("clue_garage", Say(spkDani, "Summer fest, next year. You, me, NIGHT TRAIN. {p}{small}I'm printing posters. Don't make me waste posters.{/small}", "", DialogueSequence.EndNodeId)),
                 OnlyIf("clue_bakery", Say(spkDani, "Your sister left something on my snare. {p}Very official. She said you have to play first. Our intro.")),
@@ -857,7 +937,7 @@ namespace Subnet.EditorTools
             AddStemZone(ctx, "Flat", c + Vector3.up, new Vector3(9.5f, 4f, 7f), StemMix.Home);
 
             // Window over the square (east wall).
-            GameObject window = Block("Prop_FlatWindow", ctx.props, new Vector3(c.x + 4.47f, 1.5f, c.z - 0.6f), new Vector3(0.04f, 1.1f, 1.5f), EmissiveMaterial("Flat/M_Window", new Color(0.5f, 0.38f, 0.26f), evening * 2.2f), ctx.interactableLayer);
+            GameObject window = Block("Prop_FlatWindow", ctx.props, new Vector3(c.x + 4.47f, 1.5f, c.z - 0.6f), new Vector3(0.04f, 1.1f, 1.5f), EmissiveMaterial("Flat/M_Window", new Color(0.45f, 0.34f, 0.24f), evening * 1.1f), ctx.interactableLayer);
             PointLight(window.transform, new Vector3(c.x + 3.6f, 1.6f, c.z - 0.6f), evening, 3f, 6.5f);
             Inspectable(window, "FlatWindow",
                 L("* The square. The fountain. Mr. Russo smoking where Mom can't see him.", "* Six in the evening, in summer. {p}If I could keep one hour, it'd be this one."),

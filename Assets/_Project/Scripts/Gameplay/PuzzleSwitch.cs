@@ -31,6 +31,7 @@ namespace Subnet.Gameplay
 
         private void Awake()
         {
+            if (punch != null) { punchBase = punch.localScale; punchBaseSet = true; }
             SetLit(false);
         }
 
@@ -39,15 +40,32 @@ namespace Subnet.Gameplay
         public void Interact(PlayerInteractor interactor)
         {
             if (interactor != null) interactor.FaceTowards(transform.position);
+            Hit();
+        }
+
+        public SequencePuzzle Owner => owner;
+
+        /// <summary>Plays this switch (note, bounce) and reports it to the puzzle. Also used by InstrumentPlayer.</summary>
+        public void Hit()
+        {
             if (owner != null && owner.IsLocked) { owner.SayLocked(); return; }
             if (noteSource != null) noteSource.Play();
-            if (punch != null) StartCoroutine(Punch());
-            if (owner != null) owner.Report(this);
+            if (punch != null)
+            {
+                if (punching != null) StopCoroutine(punching);
+                punching = StartCoroutine(Punch());
+            }
+            if (owner != null && !owner.IsSolved && !IsLit) owner.Report(this);
         }
+
+        private Vector3 punchBase;
+        private bool punchBaseSet;
+        private Coroutine punching;
 
         private System.Collections.IEnumerator Punch()
         {
-            Vector3 baseScale = punch.localScale;
+            if (!punchBaseSet) { punchBase = punch.localScale; punchBaseSet = true; }
+            Vector3 baseScale = punchBase;
             for (float t = 0f; t < 0.25f; t += Time.unscaledDeltaTime)
             {
                 float k = Mathf.Sin(t / 0.25f * Mathf.PI);

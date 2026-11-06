@@ -5763,3 +5763,167 @@ en|She doesn't say don't go. {p}{slow}She never does.{/slow}
 it|Non dice non andare. {p}{slow}Non lo dice mai.{/slow}
 fr|Elle ne dit pas ne pars pas. {p}{slow}Elle ne le dit jamais.{/slow}
 
+en|Kick
+it|Cassa
+fr|Grosse caisse
+
+en|Tom
+it|Tom
+fr|Tom
+
+en|Snare
+it|Rullante
+fr|Caisse claire
+
+en|Crash
+it|Piatto
+fr|Cymbale
+
+en|Red
+it|Rosso
+fr|Rouge
+
+en|Yellow
+it|Giallo
+fr|Jaune
+
+en|Green
+it|Verde
+fr|Vert
+
+en|Blue
+it|Blu
+fr|Bleu
+
+en|NIGHT TRAIN - INTRO
+it|NIGHT TRAIN - INTRO
+fr|NIGHT TRAIN - INTRO
+
+en|MIA'S SONG
+it|LA CANZONE DI MIA
+fr|LA CHANSON DE MIA
+
+en|ARROWS / WASD: PLAY    X: STOP
+it|FRECCE / WASD: SUONA    X: BASTA
+fr|FLÈCHES / WASD : JOUER    X : ARRÊTER
+
+en|next
+it|altro
+fr|suivant
+
+en|Drum Kit
+it|Batteria
+fr|Batterie
+
+en|Chimes
+it|Campanelle
+fr|Carillons
+
+en|Music Stand
+it|Leggio
+fr|Pupitre
+
+en|Biscuit Tin
+it|Scatola di latta
+fr|Boîte en fer
+
+en|The Swing
+it|L'altalena
+fr|La balançoire
+
+en|Home Timetable
+it|Tabellone
+fr|Tableau des départs
+
+en|Platform Gate
+it|Cancello del binario
+fr|Grille du quai
+
+en|Crossing
+it|Passaggio a livello
+fr|Passage à niveau
+
+en|Ticket Note
+it|Disegno
+fr|Dessin
+
+en|Flat Window
+it|Finestra
+fr|Fenêtre
+
+en|Night Runner
+it|Night Runner
+fr|Night Runner
+
+en|Mrs Hale
+it|Sig.ra Hale
+fr|Mme Hale
+
+en|Old Man
+it|Anziano
+fr|Vieil homme
+
+en|Station Master
+it|Capostazione
+fr|Chef de gare
+
+en|Baker
+it|Panettiere
+fr|Boulanger
+
+en|Town Fountain
+it|Fontana
+fr|Fontaine
+
+en|Fruit Crates
+it|Cassette di frutta
+fr|Cagettes de fruits
+
+en|River Bench
+it|Panchina
+fr|Banc
+
+en|Platform Bench
+it|Panchina
+fr|Banc
+
+en|Amp
+it|Ampli
+fr|Ampli
+
+en|Box
+it|Scatolone
+fr|Carton
+
+en|Flat Table
+it|Tavolo
+fr|Table
+
+en|Flat Sofa
+it|Divano
+fr|Canapé
+
+en|Flat Fridge
+it|Frigo
+fr|Frigo
+
+en|Car Sedan
+it|Auto
+fr|Voiture
+
+en|Car Van
+it|Furgone
+fr|Camionnette
+
+en|Cafe Cup
+it|Tazzina
+fr|Tasse
+
+en|Kid A
+it|Bambino
+fr|Gamin
+
+en|Kid B
+it|Bambina
+fr|Gamine
+
