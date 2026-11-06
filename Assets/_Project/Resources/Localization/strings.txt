@@ -99,7 +99,7 @@ fr|Une vieille télé laissée par l'ancien locataire. La neige ressemble à une
 
 id|Lo. Leeo. Leeeo. ...It's just static. Probably.
 en|{glitch}Lo. Leeo. Leeeeo.{/glitch} {p=0.8}...It's just static. {p}{small}Probably.{/small}
-it|{glitch}Lo. Leeo. Leeeeo.{/glitch} {p=0.8}...È solo statico. {p}{small}Credo.{/small}
+it|{glitch}Lo. Leeo. Leeeeo.{/glitch} {p=0.8}...È solo rumore di fondo. {p}{small}Credo.{/small}
 fr|{glitch}Lé. Lééo. Lééééo.{/glitch} {p=0.8}...C'est juste de la neige. {p}{small}Sûrement.{/small}
 
 id|A cracked mirror. The crack runs right through your reflection, like it's trying to split you into a before and an after.
@@ -353,9 +353,9 @@ it|Non posso parlare. Sono in call. Sono in call da martedì.
 fr|Peux pas parler. En call. En call depuis mardi.
 
 id|His skin is slowly turning to paper. Little sticky notes flutter off his shoulders.
-en|His skin is slowly turning to paper. Little sticky notes flutter off his shoulders like dandruff.
-it|La sua pelle si sta trasformando lentamente in carta. Dalle spalle gli volano via post-it, come forfora.
-fr|Sa peau se transforme lentement en papier. Des post-it s'envolent de ses épaules, comme des pellicules.
+en|~
+it|~
+fr|~
 
 id|Yes. Yes. Let's circle back. Let's circle back. Let's circle...
 en|Yes. Yes. Let's circle back. Let's circle back. {shake}Let's circle ba-{/shake}
@@ -365,7 +365,7 @@ fr|Oui. Oui. On fait un point. On fait un point. {shake}On fait un p-{/shake}
 id|Is it late? It feels late. It's always felt late.
 en|Is it late? It feels late. {p}It has always felt late.
 it|È tardi? Sembra tardi. {p}È sempre sembrato tardi.
-fr|Il est tard ? On dirait qu'il est tard. {p}On a toujours dit qu'il était tard.
+fr|Il est tard ? On dirait qu'il est tard. {p}Il est toujours tard.
 
 id|A wristwatch on each arm. Neither of them shows the same time.
 en|A watch on each wrist. They disagree about everything.
@@ -403,9 +403,9 @@ it|Le porte si aprono con un sibilo. Non scende nessuno. {p}Non sale nessun altr
 fr|Les portes s'ouvrent dans un sifflement. Personne ne descend. {p}Personne d'autre ne monte.
 
 id|The carriage inside is empty, and much brighter than it should be.
-en|The carriage is empty, and much, much brighter than it should be.
-it|La carrozza è vuota, e molto, molto più luminosa di quanto dovrebbe.
-fr|Le wagon est vide, et beaucoup, beaucoup plus lumineux qu'il ne devrait l'être.
+en|~
+it|~
+fr|~
 
 id|As the doors close, the colors outside drain away... and come back wrong.
 en|As the doors close, the colors outside start to drain away... {p}and come back {wave}wrong.{/wave}
@@ -468,9 +468,9 @@ it|oh, bene. ce l'hai fatta. {p}cominciavo a pensare che saresti rimasto su quel
 fr|ah, parfait. t'as réussi. {p}je commençais à croire que t'allais rester dans ce train pour toujours. ça arrive. {small}demande au type du wagon six.{/small}
 
 id|A cat. Talking. Its collar is a tiny holographic screen scrolling old text messages from 2003.
-en|A cat. {p}A talking cat. Its collar is a tiny hologram scrolling through old text messages from 2003.
-it|Un gatto. {p}Un gatto che parla. Il collare è un minuscolo ologramma che fa scorrere vecchi SMS del 2003.
-fr|Un chat. {p}Un chat qui parle. Son collier est un minuscule hologramme qui fait défiler de vieux SMS de 2003.
+en|A cat. {p}A talking cat.
+it|Un gatto. {p}Un gatto che parla.
+fr|Un chat. {p}Un chat qui parle.
 
 id|Name's Byte. Before you ask: yes, I'm a cat. No, I won't explain the collar. Questions?
 en|im byte. before u ask: yes, cat. no, i will not explain the collar. {p}next question.
@@ -633,9 +633,9 @@ it|{fast}Ehi ehi ehi, attenzione! Passo io! Consegna! Ho una consegna! Ho sempre
 fr|{fast}Hop hop hop, attention ! Je passe ! Livraison ! J'ai une livraison ! J'ai toujours une livraison !{/fast}
 
 id|A courier on jet-powered inline skates. Her thermal backpack is glowing and humming softly, like it's purring.
-en|A courier on jet-powered inline skates. Her thermal backpack glows and hums softly. {p}It might be purring.
-it|Una corriera su pattini a reazione. Lo zaino termico brilla e ronza piano. {p}Forse fa le fusa.
-fr|Une coursière sur des rollers à réaction. Son sac isotherme brille et bourdonne doucement. {p}On dirait qu'il ronronne.
+en|~
+it|~
+fr|~
 
 id|I'm Kira. I deliver care packages. Little boxes of self-esteem, addressed to people nobody sees anymore.
 en|I'm Kira! I deliver care packages. Little boxes of self-esteem for people nobody looks at anymore. {p}{bounce}Five-star service!{/bounce} {small}Mostly.{/small}
@@ -694,8 +694,8 @@ fr|Je vais prendre une pause déj. Une vraie. {p}Avec un sandwich. {bounce}Et to
 
 id|Thank you for... not fighting me. Nobody's ever not fought me.
 en|Thank you for... not fighting me. {p}Nobody's ever not fought me before.
-it|Grazie per... non avermi combattuto. {p}Nessuno mi aveva mai non-combattuto prima.
-fr|Merci de... ne pas m'avoir combattu. {p}Personne ne m'avait jamais pas combattu.
+it|Grazie per... non avermi combattuto. {p}Nessuno aveva mai scelto di non combattermi.
+fr|Merci de... ne pas m'avoir combattu. {p}Personne n'avait jamais choisi de ne pas me combattre.
 
 id|Did you know the sky here is pink? I never looked up before.
 en|Did you know the sky here is pink? {p}{wave}I never looked up.{/wave}
@@ -818,13 +818,13 @@ it|Le scartoffie si sciolgono in pixel caldi. La strada è libera.
 fr|La paperasse se dissout en pixels tièdes. La rue est dégagée.
 
 id|A wall of paperwork, humming with dread. Clocks tick inside it, all at different speeds.
-en|A wall of paperwork, trembling with anxiety. Clocks tick inside it, every one at its own panicked speed.
-it|Un muro di scartoffie che trema d'ansia. Dentro ticchettano orologi, ognuno alla sua velocità di panico.
-fr|Un mur de paperasse qui tremble d'angoisse. Des horloges y tictaquent, chacune à sa propre vitesse de panique.
+en|A wall of paperwork. Every clock inside it is panicking at its own speed.
+it|Un muro di scartoffie. Ogni orologio lì dentro va nel panico a modo suo.
+fr|Un mur de paperasse. Chaque horloge, à l'intérieur, panique à son propre rythme.
 
 id|That courier on the skates seemed to know what this is. I should talk to her first.
 en|That courier on skates looked like she knew what this was. I should talk to her first.
-it|Quella corriera sui pattini sembrava sapere cos'è questa cosa. Dovrei parlarle prima.
+it|Quella rider sui pattini sembrava sapere cos'è questa cosa. Dovrei parlarle prima.
 fr|La coursière en rollers avait l'air de savoir ce que c'était. Je devrais lui parler d'abord.
 
 id|Deadline! Deadline!
@@ -889,7 +889,7 @@ fr|(Kira te glisse une petite boîte tiède dans les mains. L'étiquette dit : F
 
 id|the courier by the mannequins. talk to her. she knows the route.
 en|courier by the mannequins. talk to her. {p}she knows the route.
-it|la corriera vicino ai manichini. parlaci. {p}conosce il giro.
+it|la rider vicino ai manichini. parlaci. {p}conosce il giro.
 fr|la coursière près des mannequins. parle-lui. {p}elle connaît la tournée.
 
 id|The street goes on, but something's still blocking Kira's route.
@@ -903,9 +903,9 @@ it|...Questa non è Central Station.
 fr|...Ce n'est pas Central Station.
 
 id|Everything is the right shape, but the wrong color. Like a memory of a city, drawn by someone who missed it.
-en|Everything is the right shape and the wrong color. {p}Like a city remembered by someone who missed it.
-it|Tutto ha la forma giusta e il colore sbagliato. {p}Come una città ricordata da qualcuno a cui mancava.
-fr|Tout a la bonne forme et la mauvaise couleur. {p}Comme une ville dont quelqu'un se souviendrait, parce qu'elle lui manque.
+en|~
+it|~
+fr|~
 
 id|Somewhere ahead, a cat is waiting. I don't know how I know that.
 en|Further ahead, a cat is waiting. {p}I don't know how I know that.
@@ -938,9 +938,9 @@ it|{slow}Alla fine, ho smesso di aprire la porta.{/slow} Restare dentro era più
 fr|{slow}Enfin, j'ai arrêté d'ouvrir la porte.{/slow} Rester à l'intérieur, c'était plus facile que d'être vue.
 
 id|The plaque reads: THE ONE WHO STAYED. Black pixels drip from its eyes and dissolve before they hit the ground.
-en|The plaque reads: THE ONE WHO STAYED. Black pixels leak from her eyes and vanish before they ever touch the ground.
-it|La targa dice: COLEI CHE È RIMASTA. Pixel neri le colano dagli occhi e svaniscono prima di toccare terra.
-fr|La plaque dit : CELLE QUI EST RESTÉE. Des pixels noirs coulent de ses yeux et disparaissent avant de toucher le sol.
+en|The plaque reads: THE ONE WHO STAYED.
+it|La targa dice: COLEI CHE È RIMASTA.
+fr|La plaque dit : CELLE QUI EST RESTÉE.
 
 id|THE ONE WHO WAITED
 en|THE ONE WHO WAITED
@@ -953,9 +953,9 @@ it|{slow}Prima, ho smesso di chiamare.{/slow} Mi dicevo che mi avrebbero chiamat
 fr|{slow}D'abord, j'ai arrêté d'appeler.{/slow} Je me disais qu'ils m'appelleraient. {p}Eux aussi, ils attendaient.
 
 id|The plaque reads: THE ONE WHO WAITED. Its hand is still raised, like it's holding a phone that isn't there.
-en|The plaque reads: THE ONE WHO WAITED. One hand is still raised, holding a phone that isn't there.
-it|La targa dice: COLUI CHE ASPETTAVA. Una mano è ancora alzata, stretta su un telefono che non c'è.
-fr|La plaque dit : CELUI QUI ATTENDAIT. Une main est toujours levée, serrée sur un téléphone qui n'existe pas.
+en|The plaque reads: THE ONE WHO WAITED.
+it|La targa dice: COLUI CHE ASPETTAVA.
+fr|La plaque dit : CELUI QUI ATTENDAIT.
 
 id|THE ONE WHO LEFT
 en|THE ONE WHO LEFT
@@ -998,9 +998,9 @@ it|Da qualche parte a est, {quake}il cemento si spacca.
 fr|Quelque part à l'est, {quake}le béton se fend.
 
 id|A concrete barrier, poured over something that wanted to grow. It's cold to the touch, like a shoulder turned away.
-en|A concrete barrier, poured over something that wanted to grow. It's cold to the touch, like a shoulder turning away.
-it|Una barriera di cemento, colata sopra qualcosa che voleva crescere. È fredda al tatto, come una spalla che si gira dall'altra parte.
-fr|Une barrière de béton, coulée sur quelque chose qui voulait pousser. Elle est froide au toucher, comme une épaule qui se détourne.
+en|Concrete, poured over something that wanted to grow.
+it|Cemento, colato sopra qualcosa che voleva crescere.
+fr|Du béton, coulé sur quelque chose qui voulait pousser.
 
 id|There's a faint warmth behind it. Like someone crying very quietly.
 en|There's a faint warmth behind it. {p}Like someone crying very, very quietly.
@@ -2428,9 +2428,9 @@ en|I come up here when the route gets loud. {p}It never gets quiet. But it gets 
 it|Vengo quassù quando il giro fa troppo rumore. {p}Non diventa mai silenzioso. Ma diventa lontano.
 fr|Je monte ici quand la tournée devient trop bruyante. {p}Ça ne devient jamais calme. Mais ça devient loin.
 
-en|You sit on the crate. Kira sits on the next one, swinging her skates.
-it|Ti siedi sulla cassa. Kira si siede su quella accanto, dondolando i pattini.
-fr|Tu t'assois sur la caisse. Kira s'assoit sur celle d'à côté, en balançant ses rollers.
+en|~
+it|~
+fr|~
 
 id|{cam=kira}Fun fact: I've delivered to every building you can see from here. {p}{small}Except one.{/small}
 en|Fun fact: I've delivered to every building you can see from here. {p}{small}Except one.{/small}
@@ -2446,9 +2446,9 @@ en|The crate creaks. Kira pretends it was her.
 it|La cassa scricchiola. Kira fa finta che sia stata lei.
 fr|La caisse grince. Kira fait semblant que c'était elle.
 
-en|You sit on the ledge. Byte sits next to you, tail hanging over the drop like it's nothing.
-it|Ti siedi sul cornicione. Byte si siede accanto a te, la coda penzoloni sul vuoto come se niente fosse.
-fr|Tu t'assois sur le rebord. Byte s'assoit à côté de toi, la queue pendue au-dessus du vide comme si de rien n'était.
+en|~
+it|~
+fr|~
 
 id|{cam=byte}dont look down. {p}look out. {p}{small}different thing.{/small}
 en|dont look down. {p}look out. {p}{small}different thing.{/small}
@@ -2459,9 +2459,9 @@ en|Byte's tail swings over the edge. {p}He is very obviously not worried. {p}You
 it|La coda di Byte dondola oltre il bordo. {p}Lui chiaramente non è preoccupato. {p}Tu un pochino sì.
 fr|La queue de Byte se balance au-dessus du vide. {p}Lui, clairement, ne s'inquiète pas. {p}Toi, un peu.
 
-en|You sit under the water tank. Kira drops down next to you. Then Byte. Then nobody says anything.
-it|Ti siedi sotto la cisterna. Kira si lascia cadere accanto a te. Poi Byte. Poi nessuno dice niente.
-fr|Tu t'assois sous le réservoir. Kira se laisse tomber à côté de toi. Puis Byte. Puis personne ne dit rien.
+en|~
+it|~
+fr|~
 
 id|{cam=two}...This is nice. {p}{slow}Is it weird that this is nice?{/slow}
 en|...This is nice. {p}{slow}Is it weird that this is nice?{/slow}
@@ -4617,3 +4617,473 @@ fr|LIGNE 7   RETARDÉ
 en|LINE 9   DELAYED
 it|LINEA 9   IN RITARDO
 fr|LIGNE 9   RETARDÉ
+
+# ---- Open world: quests, night market, quiet garden
+
+en|QUESTS
+it|QUEST
+fr|QUÊTES
+
+en|DONE
+it|FATTA
+fr|FAIT
+
+en|Quests
+it|Missioni
+fr|Quêtes
+
+en|NEW OBJECTIVE
+it|NUOVO OBIETTIVO
+fr|NOUVEL OBJECTIF
+
+en|NEW QUEST
+it|NUOVA MISSIONE
+fr|NOUVELLE QUÊTE
+
+en|QUEST COMPLETE
+it|MISSIONE COMPLETATA
+fr|QUÊTE TERMINÉE
+
+en|+{0} SIDE QUESTS
+it|+{0} MISSIONI SECONDARIE
+fr|+{0} QUÊTES ANNEXES
+
+en|NOTHING TO DO. ENJOY IT WHILE IT LASTS.
+it|NIENTE DA FARE. GODITELA FINCHÉ DURA.
+fr|RIEN À FAIRE. PROFITES-EN TANT QUE ÇA DURE.
+
+en|UP/DOWN: PICK   LEFT/RIGHT: TAB   J / TAB: CLOSE
+it|SU/GIÙ: SCEGLI   SINISTRA/DESTRA: SCHEDA   J / TAB: CHIUDI
+fr|HAUT/BAS : CHOISIR   GAUCHE/DROITE : ONGLET   J / TAB : FERMER
+
+en|The Ticket Home
+it|Il biglietto per casa
+fr|Le billet du retour
+
+en|Apartment / Central Station
+it|Appartamento / Central Station
+fr|Appartement / Central Station
+
+en|Check your handheld.
+it|Controlla la console.
+fr|Regarde ta console.
+
+en|Read the departures board.
+it|Leggi il tabellone delle partenze.
+fr|Lis le tableau des départs.
+
+en|Get on the train with no number.
+it|Sali sul treno senza numero.
+fr|Monte dans le train sans numéro.
+
+en|The Wrong Colours
+it|I colori sbagliati
+fr|Les mauvaises couleurs
+
+en|Subnet
+it|Subnet
+fr|Subnet
+
+en|Follow the cat.
+it|Segui il gatto.
+fr|Suis le chat.
+
+en|Talk to the courier by the mannequins.
+it|Parla con la rider vicino ai manichini.
+fr|Parle à la coursière près des mannequins.
+
+en|Get past the wall of paperwork.
+it|Supera il muro di scartoffie.
+fr|Passe le mur de paperasse.
+
+en|Head east, to the Concrete Park.
+it|Vai a est, verso il Parco di Cemento.
+fr|Va vers l'est, jusqu'au Parc de Béton.
+
+en|Three Statues
+it|Tre statue
+fr|Trois statues
+
+en|Concrete Park
+it|Parco di Cemento
+fr|Parc de Béton
+
+en|Light the lamps in the order they gave up.
+it|Accendi le lampade nell'ordine in cui si sono arresi.
+fr|Allume les lampes dans l'ordre où ils ont abandonné.
+
+en|Reach the statue crying in the corridor.
+it|Raggiungi la statua che piange nel corridoio.
+fr|Rejoins la statue qui pleure dans le couloir.
+
+en|Take the Ghost Line.
+it|Prendi la Linea Fantasma.
+fr|Prends la Ligne Fantôme.
+
+en|The Last Stop
+it|L'ultima fermata
+fr|Le dernier arrêt
+
+en|Central Core
+it|Core centrale
+fr|Cœur central
+
+en|Find out what the Algorithm wants.
+it|Scopri cosa vuole l'Algoritmo.
+fr|Découvre ce que veut l'Algorithme.
+
+en|Open the memory file.
+it|Apri il file del ricordo.
+fr|Ouvre le fichier du souvenir.
+
+en|Talk to Kira.
+it|Parla con Kira.
+fr|Parle à Kira.
+
+en|Wait for the last train.
+it|Aspetta l'ultimo treno.
+fr|Attends le dernier train.
+
+en|Get on.
+it|Sali.
+fr|Monte.
+
+en|Five Minutes of Nothing
+it|Cinque minuti di niente
+fr|Cinq minutes de rien
+
+en|Subnet, the roof
+it|Subnet, il tetto
+fr|Subnet, le toit
+
+en|Climb the fire escape near the freed commuter.
+it|Sali dalla scala antincendio vicino al pendolare liberato.
+fr|Grimpe à l'escalier de secours près du navetteur libéré.
+
+en|Sit down somewhere. Stay a while.
+it|Siediti da qualche parte. Resta un po'.
+fr|Assieds-toi quelque part. Reste un peu.
+
+en|Proof of Purchase
+it|Prova d'acquisto
+fr|Preuve d'achat
+
+en|Find the receipt. Try where people throw away what they used to want.
+it|Trova lo scontrino. Prova dove la gente butta quello che voleva una volta.
+fr|Trouve le ticket. Cherche là où les gens jettent ce qu'ils voulaient avant.
+
+en|Give it back.
+it|Restituiscilo.
+fr|Rends-le.
+
+en|Saturday Isn't Over
+it|Il sabato non è finito
+fr|Samedi n'est pas fini
+
+en|Subnet, apartment 0451
+it|Subnet, appartamento 0451
+fr|Subnet, appartement 0451
+
+en|Bring the tape to the man from 0451.
+it|Porta la cassetta all'uomo dello 0451.
+fr|Apporte la cassette à l'homme du 0451.
+
+en|Noodles at Midnight
+it|Noodles a mezzanotte
+fr|Nouilles de minuit
+
+en|Subnet, night market
+it|Subnet, mercato notturno
+fr|Subnet, marché de nuit
+
+en|Find a cup with a little cloud on it.
+it|Trova un bicchiere con sopra una nuvoletta.
+fr|Trouve un gobelet avec un petit nuage dessus.
+
+en|Bring it to the noodle cart.
+it|Portalo al carretto dei noodles.
+fr|Apporte-le au stand de nouilles.
+
+en|Someone Is Calling
+it|Qualcuno sta chiamando
+fr|Quelqu'un appelle
+
+en|Subnet, then Concrete Park
+it|Subnet, poi il Parco di Cemento
+fr|Subnet, puis le Parc de Béton
+
+en|Answer the payphone in the night market.
+it|Rispondi al telefono pubblico del mercato notturno.
+fr|Réponds à la cabine du marché de nuit.
+
+en|Find the gate the brass key opens.
+it|Trova il cancello che apre la chiave d'ottone.
+fr|Trouve la grille qu'ouvre la clé en laiton.
+
+en|Sit by the pond.
+it|Siediti vicino allo stagno.
+fr|Assieds-toi près de l'étang.
+
+en|Something for Mia
+it|Qualcosa per Mia
+fr|Quelque chose pour Mia
+
+en|Concrete Park, your old room
+it|Parco di Cemento, la tua vecchia camera
+fr|Parc de Béton, ton ancienne chambre
+
+en|Your old room is in the park, somehow. Look around.
+it|La tua vecchia camera è nel parco, chissà come. Guardati intorno.
+fr|Ton ancienne chambre est dans le parc, va savoir comment. Fouille un peu.
+
+en|Back in Five
+it|Torno subito
+fr|Je reviens
+
+en|The shop that was 'back in 5 minutes' is open.
+it|Il negozio del 'torno tra 5 minuti' è aperto.
+fr|La boutique « de retour dans 5 minutes » est ouverte.
+
+en|Cup With a Cloud
+it|Bicchiere con la nuvoletta
+fr|Gobelet au nuage
+
+en|A paper cup from the street café. Somebody drew a little cloud on it, the way they do every day.
+it|Un bicchiere di carta del bar sulla strada. Qualcuno ci ha disegnato una nuvoletta, come fa tutti i giorni.
+fr|Un gobelet en carton du café de la rue. Quelqu'un a dessiné un petit nuage dessus, comme tous les jours.
+
+en|Brass Key
+it|Chiave d'ottone
+fr|Clé en laiton
+
+en|Small and warm, on a faded ribbon. The tag says: GARDEN. PLEASE CLOSE THE GATE.
+it|Piccola e tiepida, con un nastrino sbiadito. Sull'etichetta: GIARDINO. CHIUDERE IL CANCELLO.
+fr|Petite et tiède, au bout d'un ruban délavé. L'étiquette dit : JARDIN. MERCI DE FERMER LA GRILLE.
+
+en|Paper Boat
+it|Barchetta di carta
+fr|Bateau en papier
+
+en|Folded out of an old receipt. Mia made a whole fleet of these once and sank every one in the bath.
+it|Piegata da un vecchio scontrino. Una volta Mia ne aveva fatta una flotta intera e le aveva affondate tutte nella vasca.
+fr|Plié dans un vieux ticket de caisse. Un jour, Mia en avait fait toute une flotte et les avait toutes coulées dans la baignoire.
+
+en|NOODLE GUY
+it|QUELLO DEI NOODLES
+fr|LE MEC DES NOUILLES
+
+en|MADAME TOKEN
+it|MADAME GETTONE
+fr|MADAME JETON
+
+en|NIGHT MARKET
+it|MERCATO NOTTURNO
+fr|MARCHÉ DE NUIT
+
+en|OPENS WHEN WORK ENDS
+it|APRE QUANDO FINISCE IL LAVORO
+fr|OUVRE QUAND LE TRAVAIL FINIT
+
+en|NIGHT MARKET. OPENS WHEN WORK ENDS.
+it|MERCATO NOTTURNO. APRE QUANDO FINISCE IL LAVORO.
+fr|MARCHÉ DE NUIT. OUVRE QUAND LE TRAVAIL FINIT.
+
+en|Behind it, somebody's frying something. Smells incredible.
+it|Lì dietro qualcuno sta friggendo qualcosa. Profumo pazzesco.
+fr|Derrière, quelqu'un fait frire quelque chose. Ça sent incroyablement bon.
+
+en|Still shut. The frying smell is getting personal.
+it|Ancora chiuso. L'odore di fritto ormai è una cosa personale.
+fr|Toujours fermé. L'odeur de friture devient personnelle.
+
+en|the market south of the street just opened. {p}smells like noodles. {p}{small}im not saying go. im saying noodles.{/small}
+it|il mercato a sud della strada ha appena aperto. {p}profumo di noodles. {p}{small}non dico di andarci. dico noodles.{/small}
+fr|le marché au sud de la rue vient d'ouvrir. {p}ça sent les nouilles. {p}{small}je dis pas d'y aller. je dis nouilles.{/small}
+
+en|NOODLES
+it|NOODLES
+fr|NOUILLES
+
+en|Back for seconds? {p}Pull up a stool. {small}The left one wobbles. It's the best one.{/small}
+it|Il bis? {p}Prenditi uno sgabello. {small}Quello a sinistra balla. È il migliore.{/small}
+fr|Tu reviens pour du rab ? {p}Prends un tabouret. {small}Celui de gauche est bancal. C'est le meilleur.{/small}
+
+en|Oh, that's the one. Look at that little cloud.
+it|Oh, è lui. Guarda che nuvoletta.
+fr|Oh, c'est celui-là. Regarde-moi ce petit nuage.
+
+en|She draws one on every cup. Every customer, every day. {p}{small}Nobody ever looks.{/small}
+it|Ne disegna una su ogni bicchiere. Ogni cliente, ogni giorno. {p}{small}Non ci fa caso nessuno.{/small}
+fr|Elle en dessine un sur chaque gobelet. Chaque client, chaque jour. {p}{small}Personne ne regarde jamais.{/small}
+
+en|Here. Two bowls, on the house. {p}And a little something for walking all that way.
+it|Tieni. Due ciotole, offre la casa. {p}E qualcosina per tutta la strada che hai fatto.
+fr|Tiens. Deux bols, c'est la maison qui offre. {p}Et un petit quelque chose pour toute cette marche.
+
+en|No cup, no noodles. I don't make the rules. {p}{small}I do make the rules. But still.{/small}
+it|Niente bicchiere, niente noodles. Le regole non le faccio io. {p}{small}Cioè, le faccio io. Però insomma.{/small}
+fr|Pas de gobelet, pas de nouilles. C'est pas moi qui fais les règles. {p}{small}Si, c'est moi. Mais quand même.{/small}
+
+en|Kitchen's open! {p}Problem is, I ran out of cups an hour ago.
+it|Cucina aperta! {p}Il problema è che ho finito i bicchieri un'ora fa.
+fr|La cuisine est ouverte ! {p}Le souci, c'est que je n'ai plus de gobelets depuis une heure.
+
+en|The café up on the street throws out the good ones. The ones with the little clouds on. {p}Bring me one and I'll fill it.
+it|Il bar su in strada butta via quelli buoni. Quelli con le nuvolette. {p}Portamene uno e te lo riempio.
+fr|Le café, en haut dans la rue, jette les bons. Ceux avec les petits nuages. {p}Ramène-m'en un et je te le remplis.
+
+en|A paper cup with a little cloud drawn on it. {p}Somebody took their time.
+it|Un bicchiere di carta con una nuvoletta disegnata sopra. {p}Qualcuno ci ha messo cura.
+fr|Un gobelet en carton avec un petit nuage dessiné dessus. {p}Quelqu'un a pris son temps.
+
+en|A cup with a little cloud. That's the one he meant.
+it|Un bicchiere con la nuvoletta. Intendeva questo.
+fr|Un gobelet avec un petit nuage. C'est celui-là qu'il voulait.
+
+en|Dial tone. {p}Whoever it was has hung up.
+it|Linea libera. {p}Chiunque fosse, ha riattaccato.
+fr|Tonalité. {p}Qui que ce soit, il a raccroché.
+
+en|It's been ringing since you walked in. You pick up.
+it|Squilla da quando sei entrato. Rispondi.
+fr|Ça sonne depuis que tu es entré. Tu décroches.
+
+en|{small}...hello? {p}Is this... sorry. I don't know whose number this is.{/small}
+it|{small}...pronto? {p}È il... scusa. Non so di chi sia questo numero.{/small}
+fr|{small}...allô ? {p}C'est bien... pardon. Je ne sais pas à qui est ce numéro.{/small}
+
+en|{small}I just keep calling it. Nobody ever picks up. {p}It's nice that somebody did.{/small}
+it|{small}Continuo a chiamarlo e basta. Non risponde mai nessuno. {p}È bello che qualcuno l'abbia fatto.{/small}
+fr|{small}Je l'appelle tout le temps. Personne ne décroche jamais. {p}C'est gentil que quelqu'un l'ait fait.{/small}
+
+en|{small}There's a garden in the park. Behind the wall nobody looks at. {p}I left the key under the phone. {slow}Like always.{/slow}{/small}
+it|{small}C'è un giardino nel parco. Dietro il muro che nessuno guarda. {p}Ho lasciato la chiave sotto il telefono. {slow}Come sempre.{/slow}{/small}
+fr|{small}Il y a un jardin dans le parc. Derrière le mur que personne ne regarde. {p}J'ai laissé la clé sous le téléphone. {slow}Comme toujours.{/slow}{/small}
+
+en|Click. {p}Under the phone, taped to the shelf: a small brass key.
+it|Clic. {p}Sotto il telefono, attaccata al ripiano con lo scotch: una piccola chiave d'ottone.
+fr|Clic. {p}Sous le téléphone, scotchée à la tablette : une petite clé en laiton.
+
+en|...Mia used to hide keys under things. {p}Doormats. Plant pots. {p}{slow}Phones.{/slow}
+it|...Mia nascondeva sempre le chiavi sotto le cose. {p}Zerbini. Vasi. {p}{slow}Telefoni.{/slow}
+fr|...Mia cachait toujours les clés sous des trucs. {p}Paillassons. Pots de fleurs. {p}{slow}Téléphones.{/slow}
+
+en|Fortunes. One token. {p}{small}Refunds if they don't come true. Nobody's ever asked.{/small}
+it|Predizioni. Un gettone. {p}{small}Rimborso se non si avverano. Non l'ha mai chiesto nessuno.{/small}
+fr|Prédictions. Un jeton. {p}{small}Remboursé si ça ne se réalise pas. Personne n'a jamais demandé.{/small}
+
+en|[Pay  ◊1]
+it|[Paga  ◊1]
+fr|[Payer  ◊1]
+
+en|[Not today]
+it|[Oggi no]
+fr|[Pas aujourd'hui]
+
+en|She stares into the ball for a long time. {p}{small}Then she checks her phone.{/small}
+it|Fissa la sfera a lungo. {p}{small}Poi controlla il telefono.{/small}
+fr|Elle fixe la boule longtemps. {p}{small}Puis elle regarde son téléphone.{/small}
+
+en|No tokens? {p}Here's one for free: you'll find some tokens.
+it|Niente gettoni? {p}Eccone una gratis: troverai dei gettoni.
+fr|Pas de jetons ? {p}En voilà une gratuite : tu vas trouver des jetons.
+
+en|You'll be late for something that doesn't matter. {p}And early for something that does.
+it|Arriverai in ritardo a una cosa che non conta. {p}E in anticipo a una che conta.
+fr|Tu seras en retard pour un truc sans importance. {p}Et en avance pour un truc qui compte.
+
+en|Someone is thinking about you right now. {p}{small}It's me. You haven't paid the full amount.{/small}
+it|Qualcuno sta pensando a te in questo momento. {p}{small}Io. Non hai pagato tutto.{/small}
+fr|Quelqu'un pense à toi en ce moment. {p}{small}Moi. Tu n'as pas payé le compte.{/small}
+
+en|You'll feel better soon. {p}Here. That's not magic, it's a potion.
+it|Presto starai meglio. {p}Tieni. Non è magia, è una pozione.
+fr|Tu iras bientôt mieux. {p}Tiens. C'est pas de la magie, c'est une potion.
+
+en|Call her. {p}{small}I don't know who. You do.{/small}
+it|Chiamala. {p}{small}Non so chi. Tu sì.{/small}
+fr|Appelle-la. {p}{small}Je sais pas qui. Toi, tu sais.{/small}
+
+en|Skewers of something. Grilled to perfection.
+it|Spiedini di qualcosa. Cotti alla perfezione.
+fr|Des brochettes de quelque chose. Grillées à la perfection.
+
+en|There's a sign: <color=#FFD84F>TAKE ONE. PAY LATER. OR DON'T. WE TRUST YOU.</color>
+it|C'è un cartello: <color=#FFD84F>PRENDINE UNO. PAGHI DOPO. O ANCHE NO. CI FIDIAMO.</color>
+fr|Il y a un panneau : <color=#FFD84F>SERS-TOI. TU PAIERAS PLUS TARD. OU PAS. ON TE FAIT CONFIANCE.</color>
+
+en|You take one. {p}Tastes like the first warm day of the year.
+it|Ne prendi uno. {p}Sa del primo giorno caldo dell'anno.
+fr|Tu en prends une. {p}Ça a le goût du premier jour chaud de l'année.
+
+en|Nobody here is in a hurry. {p}It takes a minute to remember how.
+it|Qui nessuno ha fretta. {p}Ci vuole un attimo per ricordarsi come si fa.
+fr|Ici, personne n'est pressé. {p}Il faut une minute pour se rappeler comment on fait.
+
+en|Still not in a hurry.
+it|Ancora nessuna fretta.
+fr|Toujours pas pressé.
+
+en|Crates of instant noodles. <color=#FFD84F>BEST BEFORE: SOMEDAY.</color>
+it|Casse di noodles istantanei. <color=#FFD84F>DA CONSUMARSI ENTRO: PRIMA O POI.</color>
+fr|Des cartons de nouilles instantanées. <color=#FFD84F>À CONSOMMER AVANT : UN JOUR.</color>
+
+en|Someday's a while away.
+it|Prima o poi è ancora lontano.
+fr|Un jour, c'est pas tout de suite.
+
+en|Fish. Real ones, orange and white, going round and round like they've got somewhere to be.
+it|Pesci. Veri, arancioni e bianchi, che girano in tondo come se avessero un appuntamento.
+fr|Des poissons. Des vrais, orange et blancs, qui tournent en rond comme s'ils avaient un rendez-vous.
+
+en|A paper boat drifts against the stones. It's folded out of a receipt.
+it|Una barchetta di carta si è arenata contro i sassi. È fatta con uno scontrino.
+fr|Un bateau en papier dérive contre les pierres. Il est plié dans un ticket de caisse.
+
+en|Mia made a whole fleet of these once. Sank every single one in the bath. {p}She said they were 'brave'.
+it|Una volta Mia ne aveva fatta una flotta intera. Le ha affondate tutte nella vasca. {p}Diceva che erano 'coraggiose'.
+fr|Un jour, Mia en avait fait toute une flotte. Elle les a toutes coulées dans la baignoire. {p}Elle disait qu'ils étaient « courageux ».
+
+en|The koi keep going round. {p}{small}No hurry. They'll get there.{/small}
+it|Le carpe continuano a girare. {p}{small}Nessuna fretta. Ci arriveranno.{/small}
+fr|Les carpes continuent de tourner. {p}{small}Pas pressées. Elles finiront par arriver.{/small}
+
+en|QUIET GARDEN
+it|GIARDINO QUIETO
+fr|JARDIN TRANQUILLE
+
+en|A locked gate. Through the bars: water, and something green. {p}Green! Down here!
+it|Un cancello chiuso. Tra le sbarre: acqua, e qualcosa di verde. {p}Verde! Quaggiù!
+fr|Une grille fermée. Entre les barreaux : de l'eau, et quelque chose de vert. {p}Du vert ! Ici !
+
+en|The brass key turns like it's been waiting for you.
+it|La chiave d'ottone gira come se ti stesse aspettando.
+fr|La clé en laiton tourne comme si elle t'attendait.
+
+en|The water ripples. Byte's tail twitches. {p}Nobody eats anybody.
+it|L'acqua si increspa. La coda di Byte freme. {p}Nessuno mangia nessuno.
+fr|L'eau frissonne. La queue de Byte frétille. {p}Personne ne mange personne.
+
+en|GARDEN RULES. {p}1. No phones. {p}2. No hurrying. {p}3. If you find something, it was left for you.
+it|REGOLE DEL GIARDINO. {p}1. Niente telefoni. {p}2. Niente fretta. {p}3. Se trovi qualcosa, l'hanno lasciata per te.
+fr|RÈGLES DU JARDIN. {p}1. Pas de téléphone. {p}2. Pas de précipitation. {p}3. Si tu trouves quelque chose, on l'a laissé pour toi.
+
+en|Rule 3 has been underlined. Twice.
+it|La regola 3 è sottolineata. Due volte.
+fr|La règle 3 est soulignée. Deux fois.
+
+id|{cam=byte}im not going to eat them. {p}{small}im just going to think about it very hard.{/small}
+en|im not going to eat them. {p}{small}im just going to think about it very hard.{/small}
+it|non li mangio. {p}{small}ci penso solo molto, molto intensamente.{/small}
+fr|je vais pas les manger. {p}{small}je vais juste y penser très, très fort.{/small}
+
+id|{cam=two}...you know whats weird. {p}nobody comes here. {p}{small}and its the best place in the whole city.{/small}
+en|...you know whats weird. {p}nobody comes here. {p}{small}and its the best place in the whole city.{/small}
+it|...sai cosa è strano. {p}qui non viene nessuno. {p}{small}ed è il posto più bello di tutta la città.{/small}
+fr|...tu sais ce qui est bizarre. {p}personne vient ici. {p}{small}et c'est le meilleur endroit de toute la ville.{/small}
+
+id|{cam=close}Maybe that's why.
+en|Maybe that's why.
+it|Forse è per questo.
+fr|C'est peut-être pour ça.
+

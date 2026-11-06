@@ -55,6 +55,12 @@ namespace Subnet.Core
                 description = "The tape on them is still sticky. One, two. One, two." },
             new ItemDef { id = "plush_cat", name = "Plush Cat", key = true,
                 description = "Won from a claw machine. Looks exactly like Byte. Byte denies everything." },
+            new ItemDef { id = "cloud_cup", name = "Cup With a Cloud", key = true,
+                description = "A paper cup from the street café. Somebody drew a little cloud on it, the way they do every day." },
+            new ItemDef { id = "garden_key", name = "Brass Key", key = true,
+                description = "Small and warm, on a faded ribbon. The tag says: GARDEN. PLEASE CLOSE THE GATE." },
+            new ItemDef { id = "paper_boat", name = "Paper Boat", key = true,
+                description = "Folded out of an old receipt. Mia made a whole fleet of these once and sank every one in the bath." },
             new ItemDef { id = "first_payslip", name = "First Payslip", key = true,
                 description = "Leo's first salary, folded into a tiny square. 'Send Mia something' scribbled on the back. He never did." },
         };
@@ -181,6 +187,13 @@ namespace Subnet.Core
             if (flag.StartsWith("key:"))
             {
                 Add(flag.Substring(4));
+                return true;
+            }
+            if (flag.StartsWith("take:"))
+            {
+                // Hands a key item over (it leaves the handheld).
+                string id = flag.Substring(5);
+                if (HasKey(id)) { StoryFlags.Clear(KeyPrefix + id); Changed?.Invoke(null); }
                 return true;
             }
             if (flag.StartsWith("heal:"))

@@ -125,6 +125,7 @@ namespace Subnet.Hacking
         private Vector3 animBaseScale;
         private Vector3 lastHop;
         private bool animCanHop;
+        private Vector3 animLungeDir;
         private float attackPulse;
         private float lastPulseTime;
         private bool waveActive;
@@ -481,6 +482,7 @@ namespace Subnet.Hacking
             dir.y = 0f;
             if (dir.sqrMagnitude < 0.01f) dir = Vector3.back;
             dir.Normalize();
+            animLungeDir = dir;
             // Far enough that the whole body fits the (narrow) feed lens, head to toe.
             float fit = bounds.size.y * 1.15f / (2f * Mathf.Tan(portraitFov * 0.5f * Mathf.Deg2Rad));
             float distance = Mathf.Max(target.portraitDistance, fit);
@@ -959,7 +961,9 @@ namespace Subnet.Hacking
             animTarget.localScale = new Vector3(animBaseScale.x * (1f + 0.14f * p), animBaseScale.y * (1f - 0.12f * p), animBaseScale.z * (1f + 0.14f * p));
             if (animCanHop)
             {
-                Vector3 hop = Vector3.up * (Mathf.Sin(p * Mathf.PI) * 0.18f);
+                // Hop, and lunge a little toward Leo (the feed films from his side, so it comes at the camera).
+                Vector3 world = Vector3.up * (Mathf.Sin(p * Mathf.PI) * 0.18f) + animLungeDir * (Mathf.Sin(p * Mathf.PI) * 0.32f);
+                Vector3 hop = animTarget.parent != null ? animTarget.parent.InverseTransformVector(world) : world;
                 animTarget.localPosition += hop - lastHop;
                 lastHop = hop;
             }

@@ -52,7 +52,7 @@ namespace Subnet.UI
         private TextMeshProUGUI body;
         private TextMeshProUGUI hint;
         private AudioSource audioSource;
-        private int tab;      // 0 = messages, 1 = voicemails, 2 = items
+        private int tab;      // 0 = messages, 1 = voicemails, 2 = items, 3 = quests
         private int cursor;
         private int openedFrame;
         private float navTimer;
@@ -108,11 +108,13 @@ namespace Subnet.UI
             if (!IsOpen)
             {
                 if (TogglePressed() && CanOpen()) Open();
+                else if (Keyboard.current != null && Keyboard.current.jKey.wasPressedThisFrame && CanOpen()) { Open(); tab = 3; cursor = 0; Refresh(); }
                 return;
             }
             if (GameTime.Paused) return;
 
-            if (Time.frameCount != openedFrame && (TogglePressed() || (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame) || GameInput.CancelPressed))
+            bool jClose = Keyboard.current != null && Keyboard.current.jKey.wasPressedThisFrame;
+            if (Time.frameCount != openedFrame && (TogglePressed() || jClose || (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame) || GameInput.CancelPressed))
             {
                 Close();
                 return;
@@ -124,7 +126,7 @@ namespace Subnet.UI
             else if (navTimer <= 0f)
             {
                 navTimer = 0.22f;
-                if (Mathf.Abs(move.x) > Mathf.Abs(move.y)) { tab = Mathf.Clamp(tab + (move.x > 0 ? 1 : -1), 0, 2); cursor = 0; }
+                if (Mathf.Abs(move.x) > Mathf.Abs(move.y)) { tab = Mathf.Clamp(tab + (move.x > 0 ? 1 : -1), 0, 3); cursor = 0; }
                 else cursor += move.y > 0 ? -1 : 1;
                 Play(moveClip);
                 Refresh();
@@ -217,14 +219,14 @@ namespace Subnet.UI
         private void Refresh()
         {
             header.text = Loc.T("HANDHELD") + "   <color=#8A8F99>" + System.DateTime.Now.ToString("HH:mm") + "</color>";
-            string[] names = { Loc.T("MESSAGES"), Loc.T("VOICEMAILS"), Loc.T("ITEMS") };
+            string[] names = { Loc.T("MESSAGES"), Loc.T("VOICEMAILS"), Loc.T("ITEMS"), Loc.T("QUESTS") };
             var tabLine = new StringBuilder();
             for (int i = 0; i < names.Length; i++)
             {
                 tabLine.Append(i == tab ? $"<color=#33FFF2>[ {names[i]} ]</color>" : names[i]).Append("   ");
             }
             tabs.text = tabLine.ToString();
-            body.fontSize = tab == 2 ? 21 : 26;
+            body.fontSize = tab >= 2 ? 21 : 26;
             var sb = new StringBuilder();
             if (tab == 0)
             {
@@ -240,6 +242,35 @@ namespace Subnet.UI
                       .Append(TextFX.Strip(Loc.T(log[i].text))).Append("\n");
                 }
                 hint.text = Loc.T("UP/DOWN: SCROLL   LEFT/RIGHT: TAB   TAB: CLOSE");
+            }
+            else if (tab == 3)
+            {
+                List<QuestLog.Quest> quests = QuestLog.Visible();
+                if (quests.Count == 0) sb.Append("<color=#8A8F99>").Append(Loc.T("NOTHING TO DO. ENJOY IT WHILE IT LASTS.")).Append("</color>");
+                cursor = Mathf.Clamp(cursor, 0, Mathf.Max(0, quests.Count - 1));
+                int start = Mathf.Max(0, Mathf.Min(cursor - 2, quests.Count - 6));
+                for (int i = start; i < Mathf.Min(quests.Count, start + 6); i++)
+                {
+                    QuestLog.Quest q = quests[i];
+                    bool sel = i == cursor;
+                    string color = q.Done ? "#5E6470" : (q.main ? "#FFD84F" : "#33FFF2");
+                    sb.Append(sel ? "<color=#FF4FD8>> </color>" : "  ")
+                      .Append($"<color={color}>").Append(q.main ? "» " : "◊ ").Append(Loc.T(q.title)).Append("</color>")
+                      .Append(q.Done ? "  <color=#5E6470>" + Loc.T("DONE") + "</color>" : $"  <color=#8A8F99>{q.DoneCount}/{q.steps.Length}</color>").Append("\n");
+                    if (sel)
+                    {
+                        sb.Append("    <size=78%><color=#8A8F99>").Append(Loc.T(q.where)).Append("</color></size>\n");
+                        foreach (QuestLog.Step step in q.steps)
+                        {
+                            bool done = StoryFlags.Has(step.doneFlag);
+                            bool current = step == q.Current;
+                            if (!done && !current) break; // future steps stay hidden
+                            sb.Append("    <size=85%>").Append(done ? "<color=#5E6470>- <s>" : "<color=#E8ECF2>> ")
+                              .Append(Loc.T(step.text)).Append(done ? "</s></color>" : "</color>").Append("</size>\n");
+                        }
+                    }
+                }
+                hint.text = Loc.T("UP/DOWN: PICK   LEFT/RIGHT: TAB   J / TAB: CLOSE");
             }
             else if (tab == 2)
             {

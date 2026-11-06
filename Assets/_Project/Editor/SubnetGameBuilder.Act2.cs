@@ -56,7 +56,6 @@ namespace Subnet.EditorTools
             }
             Deco("CurbNeon", ctx.env, new Vector3(3f, 0.08f, 3.08f), new Vector3(42f, 0.04f, 0.06f), neonMagenta);
             Block("Bound_North", ctx.env, new Vector3(3f, 1f, 4.4f), new Vector3(42f, 2f, 0.2f), null, 0);
-            Block("Bound_South", ctx.env, new Vector3(3f, 1f, -4.3f), new Vector3(42f, 2f, 0.2f), null, 0);
             Block("Bound_West", ctx.env, new Vector3(-17f, 1f, 0f), new Vector3(0.2f, 2f, 8.6f), null, 0);
             Block("Bound_East", ctx.env, new Vector3(23.5f, 1f, 0f), new Vector3(0.2f, 2f, 8.6f), null, 0);
 
@@ -394,6 +393,9 @@ namespace Subnet.EditorTools
                 Say(spkByte, "anyway. {p}stay close. this district bites. {p}{small}not me. i nibble.{/small}", "end", "", "+closeness#walk_byte"));
             Event(ctx, "WalkByte", StoryEvent.TriggerMode.OnPlayerEnter, "met_byte", 0.2f, null, null, null, null, "walk_byte",
                 new Vector3(0f, 1f, 0f), new Vector3(1f, 2f, 9f), walkByte);
+
+            // ---------------------------------------------------------------- Off the main road: the night market (south)
+            BuildNightMarket(ctx, groundMat, neonCyan, neonMagenta, poleMat);
 
             // ---------------------------------------------------------------- Buildings you can enter
             Storefront(ctx, 5.8f, 4.8f, LitMaterial("Houses/M_Facade_Mart", new Color(0.36f, 0.2f, 0.46f)), new Color(1f, 0.45f, 0.8f), 6.6f);

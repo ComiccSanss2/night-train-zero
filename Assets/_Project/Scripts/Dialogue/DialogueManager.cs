@@ -390,6 +390,14 @@ namespace Subnet.Dialogue
                 }
 
                 StoryFlags.Set(node.flagToSet);
+
+                // A line translated as "~" is cut in that language (it only described what's already on screen).
+                if ((node.choices == null || node.choices.Count == 0) && Loc.T(node.text) == "~")
+                {
+                    index = ResolveNext(sequence, index, node.nextNodeId);
+                    continue;
+                }
+
                 DialogueSpeaker speaker = node.speaker != null ? node.speaker : defaultSpeaker;
                 ApplySpeaker(speaker);
                 currentEffect = node.effect != TextEffect.None ? node.effect : (speaker != null ? speaker.signatureEffect : TextEffect.None);

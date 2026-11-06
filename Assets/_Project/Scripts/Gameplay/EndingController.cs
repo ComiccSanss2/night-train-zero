@@ -73,6 +73,7 @@ namespace Subnet.Gameplay
         {
             if (running) return;
             running = true;
+            StoryFlags.Set("game_finished");
             StartCoroutine(Run());
         }
 

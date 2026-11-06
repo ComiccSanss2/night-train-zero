@@ -45,7 +45,6 @@ namespace Subnet.EditorTools
             Block("Plaza", ctx.env, new Vector3(-2.75f, -0.1f, 0f), new Vector3(23f, 0.2f, 14.4f), concrete, ctx.groundLayer);
             Block("CorridorFloor", ctx.env, new Vector3(11.5f, -0.1f, 0f), new Vector3(6.4f, 0.2f, 4f), concreteDark, ctx.groundLayer);
             Block("Wall_North", ctx.env, new Vector3(-2.75f, 0.6f, 7.3f), new Vector3(23f, 1.2f, 0.4f), concreteDark, 0);
-            Block("Bound_South", ctx.env, new Vector3(-2.75f, 1f, -7.3f), new Vector3(23f, 2f, 0.2f), null, 0);
             Block("Bound_West", ctx.env, new Vector3(-14.3f, 1f, 0f), new Vector3(0.2f, 2f, 14.4f), null, 0);
             Block("EastWall_North", ctx.env, new Vector3(8.8f, 1.25f, 4.4f), new Vector3(0.6f, 2.5f, 5.8f), concreteDark, 0);
             Block("EastWall_South", ctx.env, new Vector3(8.8f, 1.25f, -4.4f), new Vector3(0.6f, 2.5f, 5.8f), concreteDark, 0);
@@ -327,6 +326,9 @@ namespace Subnet.EditorTools
                 Say(null, "Byte bumps his head against my ankle. {p}Once. {p}Like it was an accident.", "end", "", "+closeness#walk_park"));
             Event(ctx, "WalkPark", StoryEvent.TriggerMode.OnPlayerEnter, string.Empty, 0.2f, null, null, null, null, "walk_park",
                 new Vector3(-6f, 1f, 0f), new Vector3(1f, 2f, 14.4f), walkPark);
+
+            // Behind the south hedge: the Quiet Garden (the payphone in the night market has the key).
+            BuildQuietGarden(ctx, concrete, concreteDark, stone);
 
             // Leo's childhood home, sitting in the park like it was always here.
             BuildLeosRoom(ctx, new Vector3(-11.8f, 0f, 6.95f), LitMaterial("Houses/M_Facade_Home", new Color(0.85f, 0.8f, 0.7f)));

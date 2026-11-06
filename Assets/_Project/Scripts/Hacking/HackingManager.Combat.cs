@@ -176,6 +176,7 @@ namespace Subnet.Hacking
             wavePhase = 0f;
             RefreshItemHint();
             if (wave == null) return;
+            RefreshMotifs(wave);
             Color accent = PatternColor(wave.pattern);
             foreach (Image b in brackets) b.color = accent;
             if (arenaGlow != null) arenaGlow.color = new Color(accent.r, accent.g, accent.b, 0.18f);
@@ -1373,6 +1374,7 @@ namespace Subnet.Hacking
                 hpGhost.sizeDelta = new Vector2(HpBarWidth * Mathf.Max(ghostValue, fillValue), hpGhost.sizeDelta.y);
             }
             if (!waveActive && particles.Count > 0) UpdateParticles(dt);
+            UpdateMotifs(dt);
             if (battleHud != null)
             {
                 bool talking = (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) || fragmentsOpen || gameOverOpen;

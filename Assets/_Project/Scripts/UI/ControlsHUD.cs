@@ -272,7 +272,10 @@ namespace Subnet.UI
                 return w + 18f + TextCap(p, x + w + 18f, y, "Esc", Held(Key.Escape));
             }, Loc.T("Back, pause menu"), CapH));
             if (StoryFlags.Has(PhoneMenu.HasPhoneFlag))
+            {
                 rows.Add(((p, x, y) => TextCap(p, x, y, "Tab", Held(Key.Tab)), Loc.T("Handheld: messages, items"), CapH));
+                rows.Add(((p, x, y) => TextCap(p, x, y, "J", Held(Key.J)), Loc.T("Quests"), CapH));
+            }
             rows.Add(((p, x, y) => TextCap(p, x, y, "F", Held(Key.F)), Loc.T("Drink a potion (in fights)"), CapH));
 
             float yCursor = -38f;

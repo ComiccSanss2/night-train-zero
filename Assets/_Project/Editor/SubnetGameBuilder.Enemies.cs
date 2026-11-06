@@ -26,6 +26,7 @@ namespace Subnet.EditorTools
             { "M_Glow_Amber", new Color(1f, 0.65f, 0.2f) * 3f },
             { "M_Glow_Screen", new Color(0.05f, 0.35f, 0.4f) * 1.5f },
             { "M_Static", new Color(0.7f, 0.7f, 0.75f) * 0.8f },
+            { "M_Water", new Color(0.05f, 0.28f, 0.42f) * 0.9f },
         };
 
         /// <summary>
@@ -34,11 +35,24 @@ namespace Subnet.EditorTools
         /// Returns a holder object (safe to scale/twitch), or null if the FBX isn't there yet.
         /// </summary>
         private static GameObject EnemyModel(string name, Transform parent, Vector3 worldPos, float height, float yaw)
+            => BlenderModel(EnemyFolder, name, parent, worldPos, height, yaw, 30f);
+
+        private const string PropFolder = Root + "/Art/Models/Props";
+
+        /// <summary>
+        /// A hand-made Blender prop (Art/Models/Props), same rules as the enemies: looping baked animation, URP
+        /// materials, "FacePoint" turned toward <paramref name="yaw"/> (no camera nudge).
+        /// </summary>
+        private static GameObject PropModel(string name, Transform parent, Vector3 worldPos, float height, float yaw)
+            => BlenderModel(PropFolder, name, parent, worldPos, height, yaw, 0f);
+
+        private static GameObject BlenderModel(string folder, string name, Transform parent, Vector3 worldPos, float height, float yaw, float cameraNudge)
         {
-            string path = EnemyFolder + "/" + name + ".fbx";
+            string path = folder + "/" + name + ".fbx";
             if (!(AssetImporter.GetAtPath(path) is ModelImporter importer))
             {
-                Debug.LogWarning("[Subnet] Enemy model missing: " + path);
+                Debug.LogWarning("[Subnet] Blender model missing: " + path);
+                ReportLine("missing blender model: " + path);
                 return null;
             }
             ConfigureEnemyImport(importer);
@@ -47,7 +61,7 @@ namespace Subnet.EditorTools
             AnimationClip clip = AssetDatabase.LoadAllAssetsAtPath(path).OfType<AnimationClip>()
                 .FirstOrDefault(c => !c.name.StartsWith("__preview__"));
 
-            var holder = new GameObject("Enemy_" + name.Replace("Enemy_", string.Empty));
+            var holder = new GameObject(name.StartsWith("Enemy_") ? name : "Model_" + name);
             holder.transform.SetParent(parent, false);
             holder.transform.position = worldPos;
             // Keep the FBX root's own rotation (axis conversion): overwriting it laid the Weeper on its side.
@@ -70,7 +84,7 @@ namespace Subnet.EditorTools
             {
                 Vector3 current = facePoint.position - holder.transform.position;
                 current.y = 0f;
-                Vector3 wanted = Quaternion.Euler(0f, yaw - 30f, 0f) * Vector3.forward;
+                Vector3 wanted = Quaternion.Euler(0f, yaw - cameraNudge, 0f) * Vector3.forward;
                 if (current.sqrMagnitude > 0.0001f)
                     holder.transform.rotation = Quaternion.Euler(0f, Vector3.SignedAngle(current, wanted, Vector3.up), 0f) * holder.transform.rotation;
             }
